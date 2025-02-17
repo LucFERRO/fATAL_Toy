@@ -7,6 +7,7 @@ public class DiceSpawner : MonoBehaviour
     // Start is called before the first frame update
     public GameObject gameManager;
     public GameObject diceToSpawn;
+    public GameObject diceToSpawn2;
     public DiceManager diceManager;
     public int movementSpeed;
     private Vector3 startingPosition;
@@ -21,7 +22,6 @@ public class DiceSpawner : MonoBehaviour
         // z -4 - 2
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer -= Time.deltaTime;
@@ -36,6 +36,14 @@ public class DiceSpawner : MonoBehaviour
     public void SpawnDice()
     {
         GameObject spawnedDice = Instantiate(diceToSpawn, gameManager.transform);
+        spawnedDice.transform.position = transform.position;
+        Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        spawnedDice.GetComponent<Rigidbody>().AddTorque(randomSpinVector.normalized * 5f, ForceMode.Impulse);
+        diceManager.UpdateDiceData();
+    }    
+    public void SpawnDice2()
+    {
+        GameObject spawnedDice = Instantiate(diceToSpawn2, gameManager.transform);
         spawnedDice.transform.position = transform.position;
         Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         spawnedDice.GetComponent<Rigidbody>().AddTorque(randomSpinVector.normalized * 5f, ForceMode.Impulse);
