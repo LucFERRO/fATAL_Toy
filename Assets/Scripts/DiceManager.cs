@@ -119,6 +119,12 @@ public class DiceManager : MonoBehaviour
         uiManager.HideButton(uiManager.confirmRollsButton);
         uiManager.HideButton(uiManager.rollButton);
         UpdateRolledDices();
+        // 0 0 0
+        // 0 0 -90
+        // 0 0 90
+        //90 0 0
+        //-90 0 0
+        //-180 0 0
     }
 
     public void PutDicesToResultHolder()
