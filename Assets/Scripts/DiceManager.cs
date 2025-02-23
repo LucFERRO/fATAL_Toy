@@ -32,6 +32,7 @@ public class DiceManager : MonoBehaviour
     private Vector3[] resultHolderPositions;
     public string[] currentRollResults;
     public string[] globalRollResults;
+    public string[] globalRollResultsColors;
     public string[] possibleResults;
 
     public int CurrentNumberOfRolls
@@ -62,6 +63,7 @@ public class DiceManager : MonoBehaviour
         {
             numberOfDicesInUse = value;
             UpdateDicesInUse();
+            UpdateDiceData();
         }
     }
     void Start()
@@ -105,6 +107,7 @@ public class DiceManager : MonoBehaviour
         allDiceDatas = new DiceData[allDices.Length];
         globalDicesDataInUse = new DiceData[maxNumberOfDices];
         globalRollResults = new string[maxNumberOfDices];
+        globalRollResultsColors = new string[maxNumberOfDices];
 
         for (int i = 0; i < allDices.Length; i++)
         {
@@ -224,6 +227,7 @@ public class DiceManager : MonoBehaviour
                 return;
             }
             globalRollResults[i] = GetDiceRollResult(globalDicesDataInUse[i]);
+            globalRollResultsColors[i] = GetDiceRollColorResult(globalDicesDataInUse[i]);
         }
     }
     private string GetDiceRollResult(DiceData dice)
@@ -236,6 +240,29 @@ public class DiceManager : MonoBehaviour
         for (int i = 0; i < dice.numberOfFaces; i++)
         {
             stringResultArray[i] = dice.facesArray[i].GetComponent<FaceComponent>().faceType;
+            // /!\ /!\ /!\ AYMERIC A CHANGER LE TRANSFORM.UP EN TRANSFORM.FORWARD /!\ /!\ /!\
+            // Produit scalaire entre le vector.up de chaque face et Vector3.up
+            vectorDotResultArray[i] = Vector3.Dot(dice.facesArray[i].transform.up, Vector3.up);
+
+            // Garde la face qui a son vecteur le plus vertical
+            if (vectorDotResultArray[i] >= closestVectorDot)
+            {
+                closestVectorDot = vectorDotResultArray[i];
+                closestIndex = i;
+            }
+        }
+        return stringResultArray[closestIndex];
+    }    
+    private string GetDiceRollColorResult(DiceData dice)
+    {
+        string[] stringResultArray = new string[dice.numberOfFaces];
+        float[] vectorDotResultArray = new float[dice.numberOfFaces];
+        float closestVectorDot = 0;
+        int closestIndex = 0;
+
+        for (int i = 0; i < dice.numberOfFaces; i++)
+        {
+            stringResultArray[i] = dice.facesArray[i].GetComponent<FaceComponent>().faceColor;
             // /!\ /!\ /!\ AYMERIC A CHANGER LE TRANSFORM.UP EN TRANSFORM.FORWARD /!\ /!\ /!\
             // Produit scalaire entre le vector.up de chaque face et Vector3.up
             vectorDotResultArray[i] = Vector3.Dot(dice.facesArray[i].transform.up, Vector3.up);
