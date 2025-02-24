@@ -5,5 +5,9 @@ using UnityEngine;
 public class FaceComponent : MonoBehaviour
 {
     public string faceType;
-    public string faceColor;
+    [HideInInspector]public string faceColor;
+    private void Start()
+    {
+        faceColor = transform.parent.GetComponent<DiceData>().diceColor;
+    }
 }

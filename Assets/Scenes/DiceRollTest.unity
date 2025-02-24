@@ -2443,7 +2443,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: m_Name
-      value: DiceVectors Green4 Red2
+      value: DiceVectors Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3093601220801428942, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
@@ -2499,6 +2503,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521343698359564630, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
+      value: green
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818951899976316541, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: diceColor
       value: green
       objectReference: {fileID: 0}
     - target: {fileID: 7136218834570934459, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
@@ -3413,7 +3421,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: m_Name
-      value: DiceVectors Red5 Green1
+      value: DiceVectors Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3093601220801428942, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
@@ -3469,6 +3481,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521343698359564630, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
+      value: red
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818951899976316541, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: diceColor
       value: red
       objectReference: {fileID: 0}
     - target: {fileID: 7136218834570934459, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
@@ -4099,7 +4115,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: m_Name
-      value: DiceVectors Blue6
+      value: DiceVectors Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3093601220801428942, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
@@ -4157,6 +4177,10 @@ PrefabInstance:
       propertyPath: faceColor
       value: blue
       objectReference: {fileID: 0}
+    - target: {fileID: 6818951899976316541, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: diceColor
+      value: blue
+      objectReference: {fileID: 0}
     - target: {fileID: 7136218834570934459, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
       value: blue
@@ -4180,7 +4204,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: m_Name
-      value: DiceVectors Red5 Blue1
+      value: DiceVectors Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251213322033932864, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3093601220801428942, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
@@ -4236,6 +4264,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521343698359564630, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
+      value: red
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818951899976316541, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: diceColor
       value: red
       objectReference: {fileID: 0}
     - target: {fileID: 7136218834570934459, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
@@ -4778,7 +4810,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: m_Name
-      value: DiceVectors Green6
+      value: DiceVectors Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3093601220801428942, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
@@ -4834,6 +4870,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521343698359564630, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: faceColor
+      value: green
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818951899976316541, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: diceColor
       value: green
       objectReference: {fileID: 0}
     - target: {fileID: 7136218834570934459, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
