@@ -10,7 +10,7 @@ public class CraftCalculator : MonoBehaviour
     //public List colorList;
     public GameObject craftingPawn;
     private Vector3 craftingPawnStartingPosition;
-    private NavMeshAgent craftPawnAgent;
+    private NavMeshAgent craftingPawnAgent;
     public List<FaceComponent> diceRollResults;
     public FaceComponent[] diceResultsArray;
     public List<string> colorList;
@@ -19,11 +19,16 @@ public class CraftCalculator : MonoBehaviour
 
 
     //TEST
+    public GameObject[] resultGameObjects;
+    public Material[] materialArray;
+    //public ProtoRandomVectors protoRandomVectors;
+    public float remainingDistance;
+    public int craftProgressInt;
+    public float vectorStrength;
     public bool isMoving;
-    private FaceComponent[] testFaces;
+    public FaceComponent[] testFaces;
     public Vector2[] craftVectorArray;
     public Vector3[] computedDestinationArray;
-    public int craftProgressInt;
     public int CraftProgressInt
     {
         get
@@ -33,40 +38,30 @@ public class CraftCalculator : MonoBehaviour
         set
         {
             craftProgressInt = value;
-            craftPawnAgent.SetDestination(computedDestinationArray[craftProgressInt]);
+            if (computedDestinationArray.Length != 0)
+            {
+
+                craftingPawnAgent.SetDestination(computedDestinationArray[craftProgressInt]);
+            }
         }
     }
 
     void Start()
     {
+        CraftProgressInt = 0;
         craftVectorArray = new Vector2[] { Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero };
         craftingPawnStartingPosition = craftingPawn.transform.position;
-        craftPawnAgent = craftingPawn.GetComponent<NavMeshAgent>();
-        //craftingPawn.SetActive(false);
-        //string[] vectors = new string[5] { "up", "up","right", "up", "right"};
-        //string[] colors = new string[5] { "green", "red","green", "blue", "red"};
-        //rollResults = new string[][] { vectors, colors };
-
-        //Debug.Log("Liste: "+diceRollResults[2].faceType);
-        //Debug.Log(diceRollResults[2].faceColor);
-        //Debug.Log(" "+diceResultsArray[4].faceType);
-        //Debug.Log(diceResultsArray[4].faceColor);
-
-
-
-        //for (int i = 0; i < resultDictionary.Count; i++)
-        //{
-        //    Debug.Log();
-        //}
-
+        craftingPawnAgent = craftingPawn.GetComponent<NavMeshAgent>();
+        //Voir avec Bourhis pourquoi marche pas si mis en Press R (skip progressInt = 0)
+        RollNewStuff();
     }
-
+    
     private void Update()
     {
+        remainingDistance = craftingPawnAgent.remainingDistance;
         if (Input.GetKeyDown(KeyCode.R))
         {
             RollNewStuff();
-            isMoving = true;
         }
         if (isMoving)
         {
@@ -76,7 +71,7 @@ public class CraftCalculator : MonoBehaviour
 
     private void UpdateCraftPawnDestination()
     {
-        if (craftPawnAgent.remainingDistance < 0.5f)
+        if (craftingPawnAgent.remainingDistance < 0.1f)
         {
             if (craftProgressInt == craftVectorArray.Length - 1)
             {
@@ -85,11 +80,6 @@ public class CraftCalculator : MonoBehaviour
             }
             CraftProgressInt++;
         }
-    }
-
-    private void UpdateCraftPawnDestination(int destinationIndex)
-    {
-
     }
 
     private void ComputeCraftVectorPath(Vector2[] vectorArray)
@@ -108,13 +98,18 @@ public class CraftCalculator : MonoBehaviour
         InitiateTest();
         Debug.Log(GetCraftAttribute(testFaces));
         ComputeCraftVectorPath(craftVectorArray);
+        //protoRandomVectors.UpdateSprites();
+        CraftProgressInt = 0;
+        isMoving = true;
     }
 
     private void InitiateTest()
     {
-        craftProgressInt = 0;
+
         testFaces = diceResultsArray;
-        Vector2[] vectors = new Vector2[8] { Vector2.up, Vector2.right, Vector2.down, Vector2.left, (Vector2.left + Vector2.up).normalized, (Vector2.up + Vector2.right).normalized, (Vector2.right + Vector2.down).normalized, (Vector2.down + Vector2.left).normalized };
+        craftingPawn.transform.position = craftingPawnStartingPosition;
+        //Vector2[] vectors = new Vector2[8] { Vector2.up, Vector2.right, Vector2.down, Vector2.left, (Vector2.left + Vector2.up).normalized, (Vector2.up + Vector2.right).normalized, (Vector2.right + Vector2.down).normalized, (Vector2.down + Vector2.left).normalized };
+        Vector2[] vectors = new Vector2[4] { Vector2.up, Vector2.right, Vector2.down, Vector2.left};
         string[] colors = new string[3] { "red", "green", "blue" };
 
         for (int i = 0; i < testFaces.Length; i++)
@@ -123,9 +118,10 @@ public class CraftCalculator : MonoBehaviour
             string randomColor = colors[Random.Range(0, 3)];
             Vector2 randomVector = vectors[Random.Range(0, 4)];
             face.faceColor = randomColor;
-            face.faceVector = randomVector * 4f;
-            craftVectorArray[i] = randomVector * 4f;
+            face.faceVector = randomVector * vectorStrength;
+            craftVectorArray[i] = randomVector * vectorStrength;
         }
+        //protoRandomVectors.facesArray = testFaces;
     }
 
     private string GetCraftAttribute(FaceComponent[] faceArray)
