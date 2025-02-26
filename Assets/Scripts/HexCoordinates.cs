@@ -18,9 +18,13 @@ public class HexCoordinates : MonoBehaviour
     {
         int x = Mathf.RoundToInt(position.x / xOffset);
         displayX = position.x / xOffset;
-        int y = Mathf.RoundToInt(position.y / yOffset);
         int z = Mathf.FloorToInt(position.z / zOffset);
-        return new Vector3Int(x, y, z);
+        return new Vector3Int(x, z);
+    }
+
+    private void OnMouseOver()
+    {
+        Debug.Log($"Coordonnées : {offsetCoordinates.x} ; {offsetCoordinates.y} ");
     }
 }
 
