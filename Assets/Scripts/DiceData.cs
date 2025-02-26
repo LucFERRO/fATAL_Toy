@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DiceData : MonoBehaviour
@@ -17,32 +19,33 @@ public class DiceData : MonoBehaviour
         faceComponentArray = new FaceComponent[numberOfFaces];
         for (int i = 0; i < numberOfFaces; i++)
         {
-            Debug.Log(i);
-            faceComponentArray[i] = transform.GetChild(i).GetComponent<FaceComponent>();
+            faceComponentArray[i] = transform.GetChild(0).GetComponent<FaceComponent>();
         }
     }
-    public void UpdateRollResult()
+    public int UpdateRollResult()
     {
-        FaceComponent[] faceComponentArray = new FaceComponent[numberOfFaces];
         float[] vectorDotResultArray = new float[numberOfFaces];
         float closestVectorDot = 0;
         int closestIndex = 0;
 
         for (int i = 0; i < numberOfFaces; i++)
         {
-            faceComponentArray[i] = faceComponentArray[i];
             // /!\ /!\ /!\ AYMERIC A CHANGER LE TRANSFORM.UP EN TRANSFORM.FORWARD /!\ /!\ /!\
             // Produit scalaire entre le vector.up de chaque face et Vector3.up
             vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
-
+            //Debug.Log(vectorDotResultArray[i]);
             // Garde la face qui a son vecteur le plus vertical
             if (vectorDotResultArray[i] >= closestVectorDot)
             {
+                //Debug.Log("new index detected " + i);
                 closestVectorDot = vectorDotResultArray[i];
                 closestIndex = i;
             }
         }
-        chosenFaceIndex = closestIndex;
+        //chosenFaceIndex = closestIndex;
+        int chosenIndex = Array.IndexOf(vectorDotResultArray, vectorDotResultArray.Max());
+        Debug.Log($"chosenIndex of {transform.gameObject.name} is {chosenIndex}");
+        return chosenIndex;
     }
 
     private void OnMouseOver()

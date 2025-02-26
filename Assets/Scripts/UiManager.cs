@@ -11,17 +11,25 @@ public class UiManager : MonoBehaviour
     public GameObject confirmRollsButton;
     public GameObject addDiceButton;
     public GameObject rollButton;
+    public GameObject displayArea;
+    public TMP_Text errorMessage;
+
     void Start()
     {
         //diceManager = GetComponent<DiceManager>();
         numberOfRollsLeftText.text = diceManager.maxNumberOfRolls.ToString();
         confirmRollsButton.GetComponent<Button>().interactable = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void DisplayErrorMessage(string message)
     {
-
+        errorMessage.text = message;
+        displayArea.SetActive(true);
+    }
+    public void ClearErrorMessage()
+    {
+        errorMessage.text = "";
+        displayArea.SetActive(false);
     }
 
     public void UpdateNumberOfRollsLeft()
@@ -34,8 +42,8 @@ public class UiManager : MonoBehaviour
         confirmRollsButton.GetComponent<Button>().interactable = true;
     }
 
-    public void HideButton(GameObject button)
+    public void HideUiGameObject(GameObject objectToHide)
     {
-        button.SetActive(false);
+        objectToHide.SetActive(false);
     }
 }

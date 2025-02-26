@@ -47,7 +47,7 @@ public class RollingManager : MonoBehaviour
             if (currentNumberOfRolls < maxNumberOfRolls)
             {
                 uiManager.EnableConfirmButton();
-                uiManager.HideButton(uiManager.addDiceButton);
+                uiManager.HideUiGameObject(uiManager.addDiceButton);
             }
             uiManager.UpdateNumberOfRollsLeft();
         }
@@ -118,8 +118,8 @@ public class RollingManager : MonoBehaviour
     {
         CurrentNumberOfRolls = 0;
         isConfirmed = true;
-        uiManager.HideButton(uiManager.confirmRollsButton);
-        uiManager.HideButton(uiManager.rollButton);
+        uiManager.HideUiGameObject(uiManager.confirmRollsButton);
+        uiManager.HideUiGameObject(uiManager.rollButton);
         //UpdateRolledDices();
         // 0 0 0
         // 0 0 -90

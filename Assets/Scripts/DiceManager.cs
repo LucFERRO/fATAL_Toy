@@ -30,8 +30,8 @@ public class DiceManager : MonoBehaviour
     public bool isConfirmed;
     public GameObject resultHolder;
     public float resultMovementDuration;
-    public float elapsedTime;
-    public float percentageComplete;
+    private float elapsedTime;
+    private float percentageComplete;
     private Vector3[] resultHolderPositions;
     //public List<GameObject> currentRolledDices;
     //public List<DiceData> currentRollResults;
@@ -50,8 +50,9 @@ public class DiceManager : MonoBehaviour
             if (currentNumberOfRolls < maxNumberOfRolls)
             {
                 uiManager.EnableConfirmButton();
-                uiManager.HideButton(uiManager.addDiceButton);
+                uiManager.HideUiGameObject(uiManager.addDiceButton);
             }
+            uiManager.ClearErrorMessage();
             uiManager.UpdateNumberOfRollsLeft();
         }
     }
@@ -65,17 +66,16 @@ public class DiceManager : MonoBehaviour
         set
         {
             numberOfDicesInUse = value;
+            uiManager.ClearErrorMessage();
             //Update dices in use
-            List<DiceData> filteredList = allDiceDatas.Where(dice => dice.isInUse).ToList();
-            Debug.Log(filteredList.Count);
-            dicesInUse = filteredList;
-            //UpdateDiceData();
+            dicesInUse = allDiceDatas.Where(dice => dice.isInUse).ToList();
         }
     }
     void Start()
     {
         uiManager = GetComponent<UiManager>();
         CurrentNumberOfRolls = maxNumberOfRolls;
+        InitiateDices();
         UpdateDiceData();
         resultHolderPositions = new Vector3[] { resultHolder.transform.GetChild(0).transform.position, resultHolder.transform.GetChild(1).transform.position, resultHolder.transform.GetChild(2).transform.position, resultHolder.transform.GetChild(3).transform.position, resultHolder.transform.GetChild(4).transform.position };
     }
@@ -91,42 +91,71 @@ public class DiceManager : MonoBehaviour
                 percentageComplete = elapsedTime / resultMovementDuration;
                 PutDicesToResultHolder();
             }
-            //else
-            //{
-            //    ResetResultInertia();
-            //}
         }
-        //if (unusedDices.Length > 0)
-        //{
-        //    return;
-        //}
-        //else
-        //{
-        //    UpdateUnusedDices();
-        //}
-
+    }
+    public void InitiateDices()
+    {
+        int numberOfDices = transform.childCount;
+        allDices = new GameObject[numberOfDices];
+        allDiceDatas = new DiceData[numberOfDices];
+        for (int i = 0; i < numberOfDices; i++)
+        {
+            GameObject diceGameObject = transform.GetChild(i).gameObject;
+            DiceData diceData = diceGameObject.GetComponent<DiceData>();
+            allDices[i] = diceGameObject;
+            allDiceDatas[i] = diceData;
+        }
+        dicesInUse = allDiceDatas.ToList();
     }
 
     public void UpdateDiceData()
     {
-        allDices = GameObject.FindGameObjectsWithTag("Dice");
-        allDiceDatas = new DiceData[allDices.Length];
-        //globalDicesDataInUse = new DiceData[maxNumberOfDices];
-        //globalRollResults = new string[maxNumberOfDices];
-        //globalRollResultsColors = new string[maxNumberOfDices];
-
         for (int i = 0; i < allDices.Length; i++)
         {
             allDiceDatas[i] = allDices[i].GetComponent<DiceData>();
         }
+    }
+    public void RollDices()
+    {
+        if (currentNumberOfRolls <= 0)
+        {
+            string outOfRerollText = "OUT OF REROLLS!";
+            Debug.Log(outOfRerollText);
+            uiManager.DisplayErrorMessage(outOfRerollText);
+            return;
+        }
+        if (dicesInUse.Count == 0)
+        {
+            string noDiceText = "NO DICE SELECTED!";
+            Debug.Log(noDiceText);
+            uiManager.DisplayErrorMessage(noDiceText);
+            return;
+        }
+
+        for (int i = 0; i < dicesInUse.Count; i++)
+        {
+            // Vecteur pour le throw (just up pour l'instant) et random vector pour le random spin
+            Rigidbody diceInUseRigidbody = dicesInUse[i].gameObject.GetComponent<Rigidbody>();
+            Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            diceInUseRigidbody.AddForce(Vector3.up * rollThrowForce, ForceMode.Impulse);
+            diceInUseRigidbody.AddTorque(randomSpinVector.normalized * rollSpinForce, ForceMode.Impulse);
+        }
+
+        CurrentNumberOfRolls -= 1;
     }
 
     public void ConfirmRolls()
     {
         CurrentNumberOfRolls = 0;
         isConfirmed = true;
-        uiManager.HideButton(uiManager.confirmRollsButton);
-        uiManager.HideButton(uiManager.rollButton);
+        uiManager.HideUiGameObject(uiManager.confirmRollsButton);
+        uiManager.HideUiGameObject(uiManager.rollButton);
+        uiManager.ClearErrorMessage();
+
+        for (int i = 0; i < dicesInUse.Count; i++)
+        {
+            dicesInUse[i].UpdateRollResult();
+        }
         //UpdateRolledDices();
         // 0 0 0
         // 0 0 -90
@@ -146,59 +175,6 @@ public class DiceManager : MonoBehaviour
         }
     }
 
-    //private void ResetResultInertia()
-    //{
-    //    for (int i = 0; i < allRolledDices.Length; i++)
-    //    {
-    //        allRolledDices[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-    //    }
-    //}
-
-    public void RollDices()
-    {
-        if (currentNumberOfRolls <= 0)
-        {
-            Debug.Log("OUT OF REROLLS!");
-            return;
-        }
-        if (dicesInUse.Count == 0)
-        {
-            Debug.Log("NO DICE SELECTED!");
-            return;
-        }
-
-        for (int i = 0; i < dicesInUse.Count; i++)
-        {
-            // Affecte le tag RolledDice aux dés utilisés
-            //if (!dicesInUse[i].gameObject.CompareTag("RolledDice"))
-            //{
-            //    dicesInUse[i].gameObject.tag = "RolledDice";
-            //}
-            //GameObject diceInUseGameObject = dicesInUse[i].gameObject;
-            //Rigidbody diceInUseRigidbody = diceInUseGameObject.GetComponent<Rigidbody>();
-            //if (!diceInUseGameObject.CompareTag("RolledDice"))
-            //{
-            //if (!currentRolledDices.Contains(diceInUseGameObject))
-            //{
-            //    currentRolledDices.Add(diceInUseGameObject);
-            //    diceInUseGameObject.tag = "RolledDice";
-            //}
-            //}
-
-            // Vecteur pour le throw (just up pour l'instant) et random vector pour le random spin, 2 vecteurs pour moins de chances d'avoir une rotation nulle (arrive toujours parfois)
-            Rigidbody diceInUseRigidbody = dicesInUse[i].gameObject.GetComponent<Rigidbody>();
-            Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            diceInUseRigidbody.AddForce(Vector3.up * rollThrowForce, ForceMode.Impulse);
-            diceInUseRigidbody.AddTorque(randomSpinVector.normalized * rollSpinForce, ForceMode.Impulse);
-        }
-        //allRolledDices = GameObject.FindGameObjectsWithTag("RolledDice");
-        //for (int i = 0; i < allRolledDices.Length; i++)
-        //{
-        //    globalDicesDataInUse[i] = allRolledDices[i].GetComponent<DiceData>();
-        //}
-        // Utilise un roll
-        CurrentNumberOfRolls -= 1;
-    }
     //private void UpdateUnusedDices()
     //{
     //    if (allRolledDices.Length >= maxNumberOfDices)
