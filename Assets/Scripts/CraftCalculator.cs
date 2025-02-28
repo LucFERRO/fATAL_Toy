@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class CraftCalculator : MonoBehaviour
 {
@@ -55,7 +56,7 @@ public class CraftCalculator : MonoBehaviour
         //Voir avec Bourhis pourquoi marche pas si mis en Press R (skip progressInt = 0)
         RollNewStuff();
     }
-    
+
     private void Update()
     {
         remainingDistance = craftingPawnAgent.remainingDistance;
@@ -99,6 +100,7 @@ public class CraftCalculator : MonoBehaviour
         Debug.Log(GetCraftAttribute(testFaces));
         ComputeCraftVectorPath(craftVectorArray);
         //protoRandomVectors.UpdateSprites();
+        UpdateSprites();
         CraftProgressInt = 0;
         isMoving = true;
     }
@@ -109,7 +111,7 @@ public class CraftCalculator : MonoBehaviour
         testFaces = diceResultsArray;
         craftingPawn.transform.position = craftingPawnStartingPosition;
         //Vector2[] vectors = new Vector2[8] { Vector2.up, Vector2.right, Vector2.down, Vector2.left, (Vector2.left + Vector2.up).normalized, (Vector2.up + Vector2.right).normalized, (Vector2.right + Vector2.down).normalized, (Vector2.down + Vector2.left).normalized };
-        Vector2[] vectors = new Vector2[4] { Vector2.up, Vector2.right, Vector2.down, Vector2.left};
+        Vector2[] vectors = new Vector2[4] { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
         string[] colors = new string[3] { "red", "green", "blue" };
 
         for (int i = 0; i < testFaces.Length; i++)
@@ -146,5 +148,65 @@ public class CraftCalculator : MonoBehaviour
         KeyValuePair<string, int> chosenKvp = resultDictionary.Aggregate((l, r) => l.Value > r.Value ? l : r);
         string chosenAttribute = chosenKvp.Key;
         return chosenAttribute;
+    }
+    //Color GetColorFromArray(FaceComponent face)
+    //{
+    //    Color chosenColor;
+    //    if (face.faceColor == "red")
+    //    {
+    //        chosenColor = colorArray[0];
+    //    }
+    //    else if (face.faceColor == "blue")
+    //    {
+    //        chosenColor = colorArray[2];
+    //    }
+    //    else
+    //    {
+    //        chosenColor = colorArray[1];
+    //    }
+    //    return chosenColor;
+    //}
+
+    int GetVectorImageFromArray(FaceComponent face)
+    {
+        int chosenIndex = 0;
+        if (face.faceVector.x > 0)
+        {
+            chosenIndex = 1;
+        }
+        else if (face.faceVector.x < 0)
+        {
+            chosenIndex = 3;
+        }
+        if (face.faceVector.y > 0)
+        {
+            chosenIndex = 0;
+        }
+        else if (face.faceVector.y < 0)
+        {
+            chosenIndex = 2;
+        }
+
+        return chosenIndex;
+    }
+
+    public void UpdateSprites()
+    {
+        for (int i = 0; i < testFaces.Length; i++)
+        {
+            GameObject resultSlot = resultGameObjects[i];
+            Color chosenColor;
+            if (ColorUtility.TryParseHtmlString(testFaces[i].faceColor, out chosenColor))
+            {
+                resultSlot.transform.GetChild(0).GetComponent<RawImage>().color = chosenColor;
+            }
+            Material chosenMaterial = materialArray[GetVectorImageFromArray(testFaces[i])];
+            resultSlot.transform.GetChild(1).GetComponent<RawImage>().material = chosenMaterial;
+            //if (i == 1) { 
+            //    Debug.Log(chosenColor.ToString());
+            //    Debug.Log(chosenMaterial.name);
+            //    Debug.Log("should be "+ facesArray[i].faceColor + " and " + facesArray[i].faceVector.x + " : " + facesArray[i].faceVector.y);
+            //}
+        }
     }
 }
