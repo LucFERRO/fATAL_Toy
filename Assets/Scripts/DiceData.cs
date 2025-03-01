@@ -11,6 +11,7 @@ public class DiceData : MonoBehaviour
     public bool isInUse;
     private DiceManager resultManager;
     public string diceColor;
+    public string diceRarity;
     public int chosenFaceIndex;
 
     void Start()
