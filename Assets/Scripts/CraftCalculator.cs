@@ -12,7 +12,7 @@ public class CraftCalculator : MonoBehaviour
     public GameObject craftingPawn;
     private Vector3 craftingPawnStartingPosition;
     private NavMeshAgent craftingPawnAgent;
-    public List<FaceComponent> diceRollResults;
+    [HideInInspector]public List<FaceComponent> diceRollResults;
     public FaceComponent[] diceResultsArray;
     public List<string> colorList;
     public Dictionary<string, int> resultDictionary = new();
@@ -49,11 +49,9 @@ public class CraftCalculator : MonoBehaviour
 
     void Start()
     {
-        CraftProgressInt = 0;
         craftVectorArray = new Vector2[] { Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero };
         craftingPawnStartingPosition = craftingPawn.transform.position;
         craftingPawnAgent = craftingPawn.GetComponent<NavMeshAgent>();
-        //Voir avec Bourhis pourquoi marche pas si mis en Press R (skip progressInt = 0)
         RollNewStuff();
     }
 
@@ -97,7 +95,7 @@ public class CraftCalculator : MonoBehaviour
     private void RollNewStuff()
     {
         InitiateTest();
-        Debug.Log(GetCraftAttribute(testFaces));
+        //Debug.Log(GetCraftAttribute(testFaces));
         ComputeCraftVectorPath(craftVectorArray);
         //protoRandomVectors.UpdateSprites();
         UpdateSprites();
@@ -141,10 +139,10 @@ public class CraftCalculator : MonoBehaviour
                 resultDictionary[possibleNewColor]++;
             }
         }
-        foreach (KeyValuePair<string, int> kvp in resultDictionary)
-        {
-            Debug.Log(kvp);
-        }
+        //foreach (KeyValuePair<string, int> kvp in resultDictionary)
+        //{
+        //    Debug.Log(kvp);
+        //}
         KeyValuePair<string, int> chosenKvp = resultDictionary.Aggregate((l, r) => l.Value > r.Value ? l : r);
         string chosenAttribute = chosenKvp.Key;
         return chosenAttribute;
@@ -186,7 +184,6 @@ public class CraftCalculator : MonoBehaviour
         {
             chosenIndex = 2;
         }
-        Debug.Log("debug from GetVectorFromArray" + chosenIndex);
         return chosenIndex;
     }
 
@@ -200,7 +197,12 @@ public class CraftCalculator : MonoBehaviour
             {
                 resultSlot.transform.GetChild(0).GetComponent<RawImage>().color = chosenColor;
             }
-            Debug.Log("face number " + i + " "+GetVectorImageFromArray(testFaces[i]));
+            if (i == 1)
+            {
+                //Debug.Log("face number " + i + " " + GetVectorImageFromArray(testFaces[i]));
+                //Debug.Log(testFaces[i].faceColor);
+
+            }
             Material chosenMaterial = materialArray[GetVectorImageFromArray(testFaces[i])];
             resultSlot.transform.GetChild(1).GetComponent<RawImage>().material = chosenMaterial;
 

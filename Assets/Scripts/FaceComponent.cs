@@ -10,6 +10,5 @@ public class FaceComponent : MonoBehaviour
     private void Start()
     {
         faceColor = transform.parent.GetComponent<DiceData>().diceColor;
-        faceVector = new Vector2(Random.value, Random.value) * 3;
     }
 }
