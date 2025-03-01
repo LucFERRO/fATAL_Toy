@@ -11182,7 +11182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1347904082
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14736,6 +14736,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007473514}
     m_Modifications:
+    - target: {fileID: 764729122556359512, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+      propertyPath: m_Name
+      value: BUGGED Face 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1093163923949756755, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
       propertyPath: m_Name
       value: DiceVectors Red
@@ -16200,7 +16204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1882722144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16668,6 +16672,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1943793068 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6521343698359564630, guid: cdc778adc104e1540aea2d530bcdd5a7, type: 3}
+  m_PrefabInstance: {fileID: 1659591378}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7558affc43a6f8468d97ad45ce969dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2002284926
 GameObject:
   m_ObjectHideFlags: 0
@@ -17011,14 +17026,23 @@ MonoBehaviour:
   - {fileID: 1048179617}
   - {fileID: 1049362119}
   diceResultsArray:
+  - {fileID: 1943793068}
   - {fileID: 136773332}
-  - {fileID: 1048179617}
   - {fileID: 367948369}
   - {fileID: 1048179617}
   - {fileID: 1049362119}
   colorList: []
-  resultGameObjects: []
-  materialArray: []
+  resultGameObjects:
+  - {fileID: 721240616}
+  - {fileID: 1002692400}
+  - {fileID: 540467086}
+  - {fileID: 2020931303}
+  - {fileID: 2002284926}
+  materialArray:
+  - {fileID: 2100000, guid: d59491647e0424848b729665d509e5b2, type: 2}
+  - {fileID: 2100000, guid: 8a89cb2154015de4d9017e4defc5069d, type: 2}
+  - {fileID: 2100000, guid: 2ed8e4d95ab2b564abe6626c175e7208, type: 2}
+  - {fileID: 2100000, guid: fd9a0f464fc004740a6d88882a71b760, type: 2}
   remainingDistance: 0
   craftProgressInt: 0
   vectorStrength: 2
