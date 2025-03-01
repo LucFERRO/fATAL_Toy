@@ -4,35 +4,36 @@ public class SubArea : CraftingAreas
 {
     public int craftLvl;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("TEST");
-        if (!other.CompareTag("CraftingPawn"))
-        {
-            return;
-        }
-        PawnAreaData pawnAreaData = other.GetComponent<PawnAreaData>();
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("SAMARCHE");
+    //    if (!other.gameObject.CompareTag("CraftingPawn"))
+    //    {
+    //        return;
+    //    }
+    //    PawnAreaData pawnAreaData = other.gameObject.GetComponent<PawnAreaData>();
 
-        if (craftLvl == 0)
-        { 
-            pawnAreaData.typeArray[craftType] = true;
-        }
+    //    if (craftLvl == 0)
+    //    { 
+    //        pawnAreaData.typeArray[craftType] = true;
+    //    }
 
-        pawnAreaData.lvlArray[craftLvl] = true;
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("CraftingPawn"))
-        {
-            return;
-        }
-        PawnAreaData pawnAreaData = other.GetComponent<PawnAreaData>();
+    //    pawnAreaData.lvlArray[craftLvl] = true;
+    //}
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    Debug.Log("SAMARCHE_EXIT" + other.name);
+    //    if (!other.gameObject.CompareTag("CraftingPawn"))
+    //    {
+    //        return;
+    //    }
+    //    PawnAreaData pawnAreaData = other.gameObject.GetComponent<PawnAreaData>();
 
-        if (craftLvl == 0)
-        {
-            pawnAreaData.typeArray[craftType] = false;
-        }
+    //    if (craftLvl == 0)
+    //    {
+    //        pawnAreaData.typeArray[craftType] = false;
+    //    }
 
-        pawnAreaData.lvlArray[craftLvl] = false;
-    }
+    //    pawnAreaData.lvlArray[craftLvl] = false;
+    //}
 }
