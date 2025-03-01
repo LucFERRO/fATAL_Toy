@@ -186,7 +186,7 @@ public class CraftCalculator : MonoBehaviour
         {
             chosenIndex = 2;
         }
-
+        Debug.Log("debug from GetVectorFromArray" + chosenIndex);
         return chosenIndex;
     }
 
@@ -200,8 +200,10 @@ public class CraftCalculator : MonoBehaviour
             {
                 resultSlot.transform.GetChild(0).GetComponent<RawImage>().color = chosenColor;
             }
+            Debug.Log("face number " + i + " "+GetVectorImageFromArray(testFaces[i]));
             Material chosenMaterial = materialArray[GetVectorImageFromArray(testFaces[i])];
             resultSlot.transform.GetChild(1).GetComponent<RawImage>().material = chosenMaterial;
+
             //if (i == 1) { 
             //    Debug.Log(chosenColor.ToString());
             //    Debug.Log(chosenMaterial.name);
