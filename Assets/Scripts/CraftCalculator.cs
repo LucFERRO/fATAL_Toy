@@ -17,7 +17,6 @@ public class CraftCalculator : MonoBehaviour
     public FaceComponent[] diceResultsArray;
     public Dictionary<string, int> resultDictionary = new();
 
-
     //TEST
     public GameObject[] resultGameObjects;
     public Material[] materialArray;
@@ -39,7 +38,6 @@ public class CraftCalculator : MonoBehaviour
             craftProgressInt = value;
             if (computedDestinationArray.Length != 0)
             {
-
                 craftingPawnAgent.SetDestination(computedDestinationArray[craftProgressInt]);
             }
         }
@@ -103,13 +101,8 @@ public class CraftCalculator : MonoBehaviour
 
     private void InitiateTest()
     {
-
         testFaces = diceResultsArray;
         craftingPawn.transform.position = craftingPawnStartingPosition;
-        //Vector2[] vectors = new Vector2[8] { Vector2.up, Vector2.right, Vector2.down, Vector2.left, (Vector2.left + Vector2.up).normalized, (Vector2.up + Vector2.right).normalized, (Vector2.right + Vector2.down).normalized, (Vector2.down + Vector2.left).normalized };
-
-        //Vector2[] vectors = new Vector2[4] { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
-        //string[] colors = new string[3] { "red", "green", "blue" };        
         Vector2[] vectors = diceManager.possibleDiceVectors;
         string[] colors = diceManager.possibleDiceColors;
         //string[] rarities = diceManager.possibleDiceRarities;
@@ -120,7 +113,7 @@ public class CraftCalculator : MonoBehaviour
             string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
             Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)];
             face.faceColor = randomColor;
-            face.faceVector = randomVector * vectorStrength;
+            face.faceVector = randomVector;
             craftVectorArray[i] = randomVector * vectorStrength;
         }
     }
@@ -151,25 +144,7 @@ public class CraftCalculator : MonoBehaviour
 
     int GetVectorImageFromArray(FaceComponent face)
     {
-        //int vectorIndex = Array.FindIndex(diceManager.possibleDiceVectors, vector => Vector2.Dot(vector, face.faceVector) == 1);
-        int vectorIndex = Array.IndexOf(diceManager.possibleDiceVectors, face.faceVector.normalized);
-        //int chosenIndex = 0;
-        //if (face.faceVector.x > 0)
-        //{
-        //    chosenIndex = 1;
-        //}
-        //else if (face.faceVector.x < 0)
-        //{
-        //    chosenIndex = 3;
-        //}
-        //if (face.faceVector.y > 0)
-        //{
-        //    chosenIndex = 0;
-        //}
-        //else if (face.faceVector.y < 0)
-        //{
-        //    chosenIndex = 2;
-        //}
+        int vectorIndex = Array.IndexOf(diceManager.possibleDiceVectors, face.faceVector);
         return vectorIndex;
     }
 
