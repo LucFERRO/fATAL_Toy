@@ -14,7 +14,7 @@ public class CraftCalculator : MonoBehaviour
     private DiceManagerV2 diceManager;
     private NavMeshAgent craftingPawnAgent;
     [HideInInspector] public List<FaceComponent> diceRollResults;
-    public FaceComponent[] diceResultsArray;
+
     public Dictionary<string, int> resultDictionary = new();
 
     //TEST
@@ -38,6 +38,7 @@ public class CraftCalculator : MonoBehaviour
             craftProgressInt = value;
             if (computedDestinationArray.Length != 0)
             {
+                //Debug.Log($"moving to spot number {craftProgressInt}");
                 craftingPawnAgent.SetDestination(computedDestinationArray[craftProgressInt]);
             }
         }
@@ -49,7 +50,7 @@ public class CraftCalculator : MonoBehaviour
         craftVectorArray = new Vector2[] { Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero };
         craftingPawnStartingPosition = craftingPawn.transform.position;
         craftingPawnAgent = craftingPawn.GetComponent<NavMeshAgent>();
-        RollNewStuff();
+        //RollNewStuff();
     }
 
     private void Update()
@@ -92,7 +93,8 @@ public class CraftCalculator : MonoBehaviour
     private void RollNewStuff()
     {
         InitiateTest();
-        Debug.Log($"Craft color is {GetCraftAttribute(testFaces)}.");
+        //Debug.Log($"Craft color is {GetCraftAttribute(testFaces)}.");
+        diceManager.craftStrengthAreaParent.SetActive(true);
         ComputeCraftVectorPath(craftVectorArray);
         UpdateSprites();
         CraftProgressInt = 0;
@@ -101,7 +103,7 @@ public class CraftCalculator : MonoBehaviour
 
     private void InitiateTest()
     {
-        testFaces = diceResultsArray;
+        testFaces = diceManager.diceResultsArray;
         craftingPawn.transform.position = craftingPawnStartingPosition;
         Vector2[] vectors = diceManager.possibleDiceVectors;
         string[] colors = diceManager.possibleDiceColors;
@@ -121,9 +123,9 @@ public class CraftCalculator : MonoBehaviour
     private string GetCraftAttribute(FaceComponent[] faceArray)
     {
         resultDictionary.Clear();
-        for (int i = 0; i < diceResultsArray.Length; i++)
+        for (int i = 0; i < testFaces.Length; i++)
         {
-            string possibleNewColor = diceResultsArray[i].faceColor;
+            string possibleNewColor = testFaces[i].faceColor;
             if (!resultDictionary.ContainsKey(possibleNewColor))
             {
                 resultDictionary.Add(possibleNewColor, 1);
@@ -133,10 +135,10 @@ public class CraftCalculator : MonoBehaviour
                 resultDictionary[possibleNewColor]++;
             }
         }
-        foreach (KeyValuePair<string, int> kvp in resultDictionary)
-        {
-            Debug.Log(kvp);
-        }
+        //foreach (KeyValuePair<string, int> kvp in resultDictionary)
+        //{
+        //    Debug.Log(kvp);
+        //}
         KeyValuePair<string, int> chosenKvp = resultDictionary.Aggregate((l, r) => l.Value > r.Value ? l : r);
         string chosenAttribute = chosenKvp.Key;
         return chosenAttribute;

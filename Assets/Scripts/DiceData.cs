@@ -9,20 +9,47 @@ public class DiceData : MonoBehaviour
     [HideInInspector] public int numberOfFaces = 6;
     [HideInInspector] public FaceComponent[] faceComponentArray;
     public bool isInUse;
-    private DiceManager resultManager;
+    private DiceManagerV2 diceManager;
     public string diceColor;
     public string diceRarity;
+    //useless?
     public int chosenFaceIndex;
 
     void Start()
     {
-        resultManager = transform.parent.GetComponent<DiceManager>();
+        diceManager = transform.parent.GetComponent<DiceManagerV2>();
         faceComponentArray = new FaceComponent[numberOfFaces];
         for (int i = 0; i < numberOfFaces; i++)
         {
-            faceComponentArray[i] = transform.GetChild(0).GetComponent<FaceComponent>();
+            faceComponentArray[i] = transform.GetChild(i).GetComponent<FaceComponent>();
+        }
+        InitiateVanillaDice();
+    }
+
+    private void InitiateVanillaDice()
+    {
+        Vector2[] vectors = diceManager.possibleDiceVectors;
+        string[] colors = diceManager.possibleDiceColors;
+        //string[] rarities = diceManager.possibleDiceRarities;
+
+        string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
+        diceColor = randomColor;
+
+        for (int i = 0; i < faceComponentArray.Length; i++)
+        {
+            FaceComponent face = faceComponentArray[i];
+            Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)];
+            face.faceVector = randomVector;
+            face.faceColor = randomColor;
         }
     }
+
+    public FaceComponent GetRandomFace()
+    {
+        int randomInt = UnityEngine.Random.Range(0, numberOfFaces);
+        return faceComponentArray[randomInt];
+    }
+
     public int UpdateRollResult()
     {
         float[] vectorDotResultArray = new float[numberOfFaces];
@@ -51,16 +78,19 @@ public class DiceData : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0))
+        {
             // Si clique pour ajouter un dé inactif alors que déjà le nombre max de dés sélectionnés
-            if (!isInUse && resultManager.numberOfDicesInUse >= resultManager.maxNumberOfDices)
+            if (!isInUse && diceManager.numberOfDicesInUse >= diceManager.maxNumberOfDices)
             {
-                Debug.Log($"Cannot use more than {resultManager.maxNumberOfDices} dices!");
+                string selectedAllDicesAlreadyMessage = $"Cannot use more than {diceManager.maxNumberOfDices} dices!";
+                Debug.Log(selectedAllDicesAlreadyMessage);
+                diceManager.uiManager.DisplayErrorMessage(selectedAllDicesAlreadyMessage);
                 return;
             }
 
             isInUse = !isInUse;
-            resultManager.NumberOfDicesInUse += isInUse ? 1 : -1;
+            diceManager.NumberOfDicesInUse += isInUse ? 1 : -1;
         }
     }
 }

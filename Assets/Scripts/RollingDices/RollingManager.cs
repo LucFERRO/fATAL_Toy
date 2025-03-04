@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RollingManager : MonoBehaviour
 {
-    private UiManager uiManager;
+    private PhysicalRollUiManager uiManager;
     public GameObject diceSpawner;
     public GameObject[] allDices;
     public GameObject[] unusedDices;
@@ -68,7 +68,7 @@ public class RollingManager : MonoBehaviour
     }
     void Start()
     {
-        uiManager = GetComponent<UiManager>();
+        uiManager = GetComponent<PhysicalRollUiManager>();
         CurrentNumberOfRolls = maxNumberOfRolls;
         resultHolderPositions = new Vector3[] { resultHolder.transform.GetChild(0).transform.position, resultHolder.transform.GetChild(1).transform.position, resultHolder.transform.GetChild(2).transform.position, resultHolder.transform.GetChild(3).transform.position, resultHolder.transform.GetChild(4).transform.position };
     }

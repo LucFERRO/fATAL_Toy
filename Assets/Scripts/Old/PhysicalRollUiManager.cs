@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiManager : MonoBehaviour
+public class PhysicalRollUiManager : MonoBehaviour
 {
-    public DiceManager diceManager;
+    public PhysicalDiceManagerV0 diceManager;
     public TMP_Text numberOfRollsLeftText;
     public GameObject confirmRollsButton;
     public GameObject addDiceButton;

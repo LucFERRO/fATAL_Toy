@@ -1,15 +1,14 @@
+using UnityEngine;
 using NUnit.Framework;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class DiceManagerV2 : MonoBehaviour
+public class PhysicalDiceManager : MonoBehaviour
 {
-    public UiManagerV2 uiManager;
-    public GameObject craftStrengthAreaParent;
+    private PhysicalRollUiManager uiManager;
 
     [Header("Dice Spawner Parameters")]
     public Vector2[] possibleDiceVectors;
@@ -51,7 +50,7 @@ public class DiceManagerV2 : MonoBehaviour
             if (currentNumberOfRolls < maxNumberOfRolls)
             {
                 uiManager.EnableConfirmButton();
-                //uiManager.HideUiGameObject(uiManager.addDiceButton);
+                uiManager.HideUiGameObject(uiManager.addDiceButton);
             }
             uiManager.ClearErrorMessage();
             uiManager.UpdateNumberOfRollsLeft();
@@ -74,8 +73,7 @@ public class DiceManagerV2 : MonoBehaviour
     }
     void Start()
     {
-        uiManager = GetComponent<UiManagerV2>();
-        craftStrengthAreaParent.SetActive(false);
+        uiManager = GetComponent<PhysicalRollUiManager>();
         CurrentNumberOfRolls = maxNumberOfRolls;
         for (int i = 0; i < possibleDiceVectors.Length; i++)
         {
@@ -100,7 +98,7 @@ public class DiceManagerV2 : MonoBehaviour
     }
     public void InitiateDices()
     {
-        int numberOfDices = Mathf.Clamp(0,5,transform.childCount);
+        int numberOfDices = transform.childCount;
         allDices = new GameObject[numberOfDices];
         allDiceDatas = new DiceData[numberOfDices];
         for (int i = 0; i < numberOfDices; i++)
@@ -137,14 +135,15 @@ public class DiceManagerV2 : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < allDiceDatas.Length; i++)
+        for (int i = 0; i < dicesInUse.Count; i++)
         {
-            DiceData diceData = allDiceDatas[i];
-            if (diceData.isInUse)
-            {
-                diceResultsArray[i] = allDiceDatas[i].GetRandomFace();
-            }
+            // Vecteur pour le throw (just up pour l'instant) et random vector pour le random spin
+            Rigidbody diceInUseRigidbody = dicesInUse[i].gameObject.GetComponent<Rigidbody>();
+            Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            diceInUseRigidbody.AddForce(Vector3.up * rollThrowForce, ForceMode.Impulse);
+            diceInUseRigidbody.AddTorque(randomSpinVector.normalized * rollSpinForce, ForceMode.Impulse);
         }
+
         CurrentNumberOfRolls -= 1;
     }
 
@@ -156,12 +155,9 @@ public class DiceManagerV2 : MonoBehaviour
         uiManager.HideUiGameObject(uiManager.rollButton);
         uiManager.ClearErrorMessage();
 
-
-        for (int i = 0; i < diceResultsArray.Length; i++)
+        for (int i = 0; i < dicesInUse.Count; i++)
         {
-            FaceComponent face = diceResultsArray[i];
-            Debug.Log(face.faceColor);
-            Debug.Log(face.faceVector);
+            dicesInUse[i].UpdateRollResult();
         }
         //UpdateRolledDices();
         // 0 0 0

@@ -8,7 +8,7 @@ public class DiceSpawner : MonoBehaviour
     public GameObject gameManager;
     public GameObject diceToSpawn;
     public GameObject diceToSpawn2;
-    public DiceManager diceManager;
+    public PhysicalDiceManagerV0 diceManager;
     public int movementSpeed;
     private Vector3 startingPosition;
     private Vector3 targetPosition;

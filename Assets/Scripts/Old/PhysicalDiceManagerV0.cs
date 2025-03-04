@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class DiceManager : MonoBehaviour
+public class PhysicalDiceManagerV0 : MonoBehaviour
 {
-    private UiManager uiManager;
+    private PhysicalRollUiManager uiManager;
     public GameObject diceSpawner;
     //public GameObject[] unusedDices;
     //public GameObject[] allRolledDices;
@@ -73,7 +73,7 @@ public class DiceManager : MonoBehaviour
     }
     void Start()
     {
-        uiManager = GetComponent<UiManager>();
+        uiManager = GetComponent<PhysicalRollUiManager>();
         CurrentNumberOfRolls = maxNumberOfRolls;
         InitiateDices();
         UpdateDiceData();
