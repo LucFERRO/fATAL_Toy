@@ -23,6 +23,7 @@ public class DiceData : MonoBehaviour
         {
             faceComponentArray[i] = transform.GetChild(i).GetComponent<FaceComponent>();
         }
+        isInUse = true;
         InitiateVanillaDice();
     }
 
@@ -39,7 +40,7 @@ public class DiceData : MonoBehaviour
         {
             FaceComponent face = faceComponentArray[i];
             Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)];
-            face.faceVector = randomVector;
+            face.faceVector = randomVector.normalized;
             face.faceColor = randomColor;
         }
     }

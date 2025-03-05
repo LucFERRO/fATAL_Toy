@@ -21,7 +21,7 @@ public class CraftCalculator : MonoBehaviour
     public GameObject[] resultGameObjects;
     public Material[] materialArray;
     public float remainingDistance;
-    public int craftProgressInt;
+    public int craftProgressInt = 5;
     public float vectorStrength;
     public bool isMoving;
     public FaceComponent[] testFaces;
@@ -36,11 +36,11 @@ public class CraftCalculator : MonoBehaviour
         set
         {
             craftProgressInt = value;
-            if (computedDestinationArray.Length != 0)
-            {
+            //if (computedDestinationArray.Length != 0)
+            //{
                 //Debug.Log($"moving to spot number {craftProgressInt}");
                 craftingPawnAgent.SetDestination(computedDestinationArray[craftProgressInt]);
-            }
+            //}
         }
     }
 
@@ -62,11 +62,11 @@ public class CraftCalculator : MonoBehaviour
         }
         if (isMoving)
         {
-            UpdateCraftPawnDestination();
+            UpdateCraftProgressInt();
         }
     }
 
-    private void UpdateCraftPawnDestination()
+    private void UpdateCraftProgressInt()
     {
         if (craftingPawnAgent.remainingDistance < 0.1f)
         {
@@ -105,18 +105,18 @@ public class CraftCalculator : MonoBehaviour
     {
         testFaces = diceManager.diceResultsArray;
         craftingPawn.transform.position = craftingPawnStartingPosition;
-        Vector2[] vectors = diceManager.possibleDiceVectors;
-        string[] colors = diceManager.possibleDiceColors;
+        //Vector2[] vectors = diceManager.possibleDiceVectors;
+        //string[] colors = diceManager.possibleDiceColors;
         //string[] rarities = diceManager.possibleDiceRarities;
 
         for (int i = 0; i < testFaces.Length; i++)
         {
             FaceComponent face = testFaces[i];
-            string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
-            Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)];
-            face.faceColor = randomColor;
-            face.faceVector = randomVector;
-            craftVectorArray[i] = randomVector * vectorStrength;
+            //string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
+            //Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)];
+            //face.faceColor = randomColor;
+            //face.faceVector = randomVector;
+            craftVectorArray[i] = face.faceVector * vectorStrength;
         }
     }
 

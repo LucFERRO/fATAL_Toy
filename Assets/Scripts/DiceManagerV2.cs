@@ -111,6 +111,7 @@ public class DiceManagerV2 : MonoBehaviour
             allDiceDatas[i] = diceData;
         }
         dicesInUse = allDiceDatas.ToList();
+        numberOfDicesInUse = dicesInUse.Count;
     }
 
     public void UpdateDiceData()
@@ -160,8 +161,8 @@ public class DiceManagerV2 : MonoBehaviour
         for (int i = 0; i < diceResultsArray.Length; i++)
         {
             FaceComponent face = diceResultsArray[i];
-            Debug.Log(face.faceColor);
-            Debug.Log(face.faceVector);
+            //Debug.Log(face.faceColor);
+            //Debug.Log(face.faceVector);
         }
         //UpdateRolledDices();
         // 0 0 0
