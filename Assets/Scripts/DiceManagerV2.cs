@@ -74,7 +74,7 @@ public class DiceManagerV2 : MonoBehaviour
     }
     void Start()
     {
-        uiManager = GetComponent<UiManagerV2>();
+        //uiManager = GetComponent<UiManagerV2>();
         craftStrengthAreaParent.SetActive(false);
         CurrentNumberOfRolls = maxNumberOfRolls;
         for (int i = 0; i < possibleDiceVectors.Length; i++)
@@ -158,12 +158,14 @@ public class DiceManagerV2 : MonoBehaviour
         uiManager.ClearErrorMessage();
 
 
-        for (int i = 0; i < diceResultsArray.Length; i++)
-        {
-            FaceComponent face = diceResultsArray[i];
-            //Debug.Log(face.faceColor);
-            //Debug.Log(face.faceVector);
-        }
+        //for (int i = 0; i < diceResultsArray.Length; i++)
+        //{
+        //    FaceComponent face = diceResultsArray[i];
+        //    Debug.Log(face.faceColor);
+        //    Debug.Log(face.faceVector);
+        //}
+
+
         //UpdateRolledDices();
         // 0 0 0
         // 0 0 -90

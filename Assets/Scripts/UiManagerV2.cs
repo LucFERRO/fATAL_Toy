@@ -15,7 +15,7 @@ public class UiManagerV2 : MonoBehaviour
 
     void Start()
     {
-        diceManager = GetComponent<DiceManagerV2>();
+        //diceManager = GetComponent<DiceManagerV2>();
         numberOfRollsLeftText.text = diceManager.maxNumberOfRolls.ToString();
         confirmRollsButton.GetComponent<Button>().interactable = false;
     }

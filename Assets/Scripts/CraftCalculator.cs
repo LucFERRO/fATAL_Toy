@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class CraftCalculator : MonoBehaviour
 {
     public GameObject craftingPawn;
-    private Vector3 craftingPawnStartingPosition;
+    public Vector3 craftingPawnStartingPosition;
     private DiceManagerV2 diceManager;
     private NavMeshAgent craftingPawnAgent;
     [HideInInspector] public List<FaceComponent> diceRollResults;
@@ -38,8 +38,12 @@ public class CraftCalculator : MonoBehaviour
             craftProgressInt = value;
             //if (computedDestinationArray.Length != 0)
             //{
-                //Debug.Log($"moving to spot number {craftProgressInt}");
-                craftingPawnAgent.SetDestination(computedDestinationArray[craftProgressInt]);
+            Debug.Log($"moving to spot number {craftProgressInt}");
+            Debug.Log($"Current position: {craftingPawn.transform.position}");
+            Debug.Log($"Destination: ({computedDestinationArray[craftProgressInt]})");
+            Debug.Log($"Vector distance: {Mathf.Sqrt((Mathf.Pow(computedDestinationArray[craftProgressInt].x - craftingPawn.transform.position.x, 2f)) + (Mathf.Pow(computedDestinationArray[craftProgressInt].y - craftingPawn.transform.position.y, 2f)) + (Mathf.Pow(computedDestinationArray[craftProgressInt].z - craftingPawn.transform.position.z, 2f)))}");
+            craftingPawnAgent.SetDestination(computedDestinationArray[craftProgressInt]);
+            Debug.Log($"Distance between pos and destination: {craftingPawnAgent.remainingDistance}");
             //}
         }
     }
@@ -68,6 +72,7 @@ public class CraftCalculator : MonoBehaviour
 
     private void UpdateCraftProgressInt()
     {
+        Debug.Log("In update function: "+craftingPawnAgent.remainingDistance);
         if (craftingPawnAgent.remainingDistance < 0.1f)
         {
             if (craftProgressInt == craftVectorArray.Length - 1)

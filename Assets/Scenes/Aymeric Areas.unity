@@ -22212,6 +22212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftingPawn: {fileID: 1286082886}
+  craftingPawnStartingPosition: {x: 0, y: 0, z: 0}
   diceRollResults:
   - {fileID: 136773332}
   - {fileID: 1048179617}
@@ -22252,7 +22253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee2d0330b770bb4abe70ba5190b9705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 2007473522}
   craftStrengthAreaParent: {fileID: 241730332}
   possibleDiceVectors:
   - {x: 0, y: 1}
@@ -22341,7 +22342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6247bbb0c3bf574498021d375f58a336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceManager: {fileID: 0}
+  diceManager: {fileID: 2007473518}
   numberOfRollsLeftText: {fileID: 1713922725}
   confirmRollsButton: {fileID: 1478383258}
   addDiceButton: {fileID: 0}
