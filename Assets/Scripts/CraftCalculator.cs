@@ -24,7 +24,7 @@ public class CraftCalculator : MonoBehaviour
     public int craftProgressInt = 5;
     public float vectorStrength;
     public bool isMoving;
-    public FaceComponent[] testFaces;
+    public FaceComponent[] facesResultArray;
     public Vector2[] craftVectorArray;
     public Vector3[] computedDestinationArray;
     public int CraftProgressInt
@@ -54,7 +54,6 @@ public class CraftCalculator : MonoBehaviour
         craftVectorArray = new Vector2[] { Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero, Vector2.zero };
         craftingPawnStartingPosition = craftingPawn.transform.position;
         craftingPawnAgent = craftingPawn.GetComponent<NavMeshAgent>();
-        //RollNewStuff();
     }
 
     private void Update()
@@ -95,9 +94,9 @@ public class CraftCalculator : MonoBehaviour
         computedDestinationArray = vectorPath;
     }
 
-    private void RollNewStuff()
+    public void RollNewStuff()
     {
-        InitiateTest();
+        InitiateRoll();
         //Debug.Log($"Craft color is {GetCraftAttribute(testFaces)}.");
         diceManager.craftStrengthAreaParent.SetActive(true);
         ComputeCraftVectorPath(craftVectorArray);
@@ -106,17 +105,22 @@ public class CraftCalculator : MonoBehaviour
         isMoving = true;
     }
 
-    private void InitiateTest()
+    public void UpdateFaceResultArray()
     {
-        testFaces = diceManager.diceResultsArray;
+        facesResultArray = diceManager.diceResultsArray;
+    }
+
+    private void InitiateRoll()
+    {
+        UpdateFaceResultArray();
         craftingPawn.transform.position = craftingPawnStartingPosition;
         //Vector2[] vectors = diceManager.possibleDiceVectors;
         //string[] colors = diceManager.possibleDiceColors;
         //string[] rarities = diceManager.possibleDiceRarities;
 
-        for (int i = 0; i < testFaces.Length; i++)
+        for (int i = 0; i < facesResultArray.Length; i++)
         {
-            FaceComponent face = testFaces[i];
+            FaceComponent face = facesResultArray[i];
             //string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
             //Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)];
             //face.faceColor = randomColor;
@@ -128,9 +132,9 @@ public class CraftCalculator : MonoBehaviour
     private string GetCraftAttribute(FaceComponent[] faceArray)
     {
         resultDictionary.Clear();
-        for (int i = 0; i < testFaces.Length; i++)
+        for (int i = 0; i < facesResultArray.Length; i++)
         {
-            string possibleNewColor = testFaces[i].faceColor;
+            string possibleNewColor = facesResultArray[i].faceColor;
             if (!resultDictionary.ContainsKey(possibleNewColor))
             {
                 resultDictionary.Add(possibleNewColor, 1);
@@ -157,18 +161,19 @@ public class CraftCalculator : MonoBehaviour
 
     public void UpdateSprites()
     {
-        for (int i = 0; i < testFaces.Length; i++)
+        UpdateFaceResultArray();
+        for (int i = 0; i < facesResultArray.Length; i++)
         {
             GameObject resultSlot = resultGameObjects[i];
-            FaceComponent face = testFaces[i];
+            FaceComponent face = facesResultArray[i];
             Color chosenColor;
             if (ColorUtility.TryParseHtmlString(face.faceColor, out chosenColor))
             {
                 resultSlot.transform.GetChild(0).GetComponent<RawImage>().color = chosenColor;
             }
-            Debug.Log("materialArrayLength "+materialArray.Length);
-            Debug.Log("face name " + face.name);
-            Debug.Log("chosenVectorId: " + GetVectorImageFromArray(face));
+            //Debug.Log("materialArrayLength " + materialArray.Length);
+            //Debug.Log("face name " + face.name +" " + face.transform.parent.name);
+            //Debug.Log("chosenVectorId: " + GetVectorImageFromArray(face));
             Material chosenMaterial = materialArray[GetVectorImageFromArray(face)];
             resultSlot.transform.GetChild(1).GetComponent<RawImage>().material = chosenMaterial;
         }

@@ -158,7 +158,10 @@ public class DiceManagerV2 : MonoBehaviour
         uiManager.HideUiGameObject(uiManager.confirmRollsButton);
         uiManager.HideUiGameObject(uiManager.rollButton);
         uiManager.ClearErrorMessage();
-
+        for (int i = 0; i < allDices.Length; i++)
+        {
+            allDices[i].SetActive(false);
+        }
 
         //for (int i = 0; i < diceResultsArray.Length; i++)
         //{
