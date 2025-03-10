@@ -9,6 +9,7 @@ using System.Collections;
 public class DiceManagerV2 : MonoBehaviour
 {
     public UiManagerV2 uiManager;
+    //public FMODStudio
     public GameObject craftStrengthAreaParent;
 
     [Header("Dice Spawner Parameters")]
@@ -146,6 +147,7 @@ public class DiceManagerV2 : MonoBehaviour
                 diceResultsArray[i] = allDiceDatas[i].GetRandomFace();
             }
         }
+        FMODUnity.RuntimeManager.PlayOneShot("event:/DiceRoll");
         CurrentNumberOfRolls -= 1;
     }
 
