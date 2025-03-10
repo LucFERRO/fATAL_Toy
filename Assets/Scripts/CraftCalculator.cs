@@ -166,6 +166,9 @@ public class CraftCalculator : MonoBehaviour
             {
                 resultSlot.transform.GetChild(0).GetComponent<RawImage>().color = chosenColor;
             }
+            Debug.Log("materialArrayLength "+materialArray.Length);
+            Debug.Log("face name " + face.name);
+            Debug.Log("chosenVectorId: " + GetVectorImageFromArray(face));
             Material chosenMaterial = materialArray[GetVectorImageFromArray(face)];
             resultSlot.transform.GetChild(1).GetComponent<RawImage>().material = chosenMaterial;
         }
