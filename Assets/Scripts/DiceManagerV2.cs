@@ -147,7 +147,7 @@ public class DiceManagerV2 : MonoBehaviour
                 diceResultsArray[i] = allDiceDatas[i].GetRandomFace();
             }
         }
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/DiceRoll");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/DiceRoll");
         CurrentNumberOfRolls -= 1;
     }
 
