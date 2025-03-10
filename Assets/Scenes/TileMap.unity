@@ -1416,6 +1416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605911238}
   - component: {fileID: 605911237}
+  - component: {fileID: 605911239}
   m_Layer: 0
   m_Name: TileMap
   m_TagString: Untagged
@@ -1527,6 +1528,18 @@ Transform:
   - {fileID: 811647336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &605911239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605911236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd167cf118fd4b42bdc69992edfce69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &620139189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465705025895574450, guid: f8189a09b31d06e4b8454b492f5d1072, type: 3}
