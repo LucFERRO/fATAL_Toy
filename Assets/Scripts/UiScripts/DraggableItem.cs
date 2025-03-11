@@ -5,6 +5,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     Image image;
     CanvasGroup group;
+    private DiceManagerV2 diceManager;
     public Transform parentAfterDrag;
     public string diceColor;
 
@@ -12,6 +13,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         image = GetComponent<Image>();
         group = GetComponent<CanvasGroup>();
+        diceManager = GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<DiceManagerV2>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -19,8 +21,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.parent.GetComponent<Image>().color = transform.parent.GetComponent<DiceSlot>().baseColor;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
-
-        group.alpha = .5f;
+        diceManager.currentHeldDiceColor = diceColor;
+        group.alpha = 0.5f;
         image.raycastTarget = false;
     }
 
@@ -33,6 +35,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         transform.SetParent(parentAfterDrag);
         group.alpha = 1f;
+        diceManager.currentHeldDiceColor = "";
         image.raycastTarget = true;
     }
 }

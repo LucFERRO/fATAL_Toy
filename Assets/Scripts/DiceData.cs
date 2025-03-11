@@ -51,6 +51,15 @@ public class DiceData : MonoBehaviour
         return faceComponentArray[randomInt];
     }
 
+    private void UpdateFaceColors()
+    {
+        for (int i = 0; i < faceComponentArray.Length; i++)
+        {
+            FaceComponent face = faceComponentArray[i];
+            face.faceColor = diceColor;
+        }
+    }
+
     public int UpdateRollResult()
     {
         float[] vectorDotResultArray = new float[numberOfFaces];
@@ -92,6 +101,12 @@ public class DiceData : MonoBehaviour
 
             isInUse = !isInUse;
             diceManager.NumberOfDicesInUse += isInUse ? 1 : -1;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            diceColor = diceManager.currentHeldDiceColor;
+            UpdateFaceColors();
         }
     }
 }

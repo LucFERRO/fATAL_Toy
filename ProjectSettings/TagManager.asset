@@ -10,6 +10,7 @@ TagManager:
   - RolledDice
   - CraftingPawn
   - CraftArea
+  - GameManager
   layers:
   - Default
   - TransparentFX

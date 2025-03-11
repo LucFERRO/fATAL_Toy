@@ -97,7 +97,7 @@ public class CraftCalculator : MonoBehaviour
     public void RollNewStuff()
     {
         InitiateRoll();
-        //Debug.Log($"Craft color is {GetCraftAttribute(testFaces)}.");
+        Debug.Log($"Craft color is {GetCraftAttribute(facesResultArray)}.");
         diceManager.craftStrengthAreaParent.SetActive(true);
         ComputeCraftVectorPath(craftVectorArray);
         UpdateSprites();
@@ -171,9 +171,6 @@ public class CraftCalculator : MonoBehaviour
             {
                 resultSlot.transform.GetChild(0).GetComponent<RawImage>().color = chosenColor;
             }
-            //Debug.Log("materialArrayLength " + materialArray.Length);
-            //Debug.Log("face name " + face.name +" " + face.transform.parent.name);
-            //Debug.Log("chosenVectorId: " + GetVectorImageFromArray(face));
             Material chosenMaterial = materialArray[GetVectorImageFromArray(face)];
             resultSlot.transform.GetChild(1).GetComponent<RawImage>().material = chosenMaterial;
         }

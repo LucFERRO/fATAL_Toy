@@ -1327,7 +1327,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6072603947506675397, guid: e4524345714493a43959de3baf4d27f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1464028441}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4524345714493a43959de3baf4d27f9, type: 3}
 --- !u!1 &121118933
@@ -5776,7 +5779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 233.83154, y: 187.99998}
+  m_AnchoredPosition: {x: 233.83154, y: 232.3}
   m_SizeDelta: {x: 445.5719, y: 127.036316}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &540467086
@@ -5910,10 +5913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6072603947506675397, guid: e4524345714493a43959de3baf4d27f9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1464028441}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4524345714493a43959de3baf4d27f9, type: 3}
 --- !u!1 &547806876
@@ -9030,10 +9030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6072603947506675397, guid: e4524345714493a43959de3baf4d27f9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1354961293}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4524345714493a43959de3baf4d27f9, type: 3}
 --- !u!1 &734523791
@@ -14980,7 +14977,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1623136809}
+  m_Father: {fileID: 94075098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15145,7 +15142,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6072603947506675397, guid: e4524345714493a43959de3baf4d27f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1354961293}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4524345714493a43959de3baf4d27f9, type: 3}
 --- !u!1 &1375459104
@@ -15720,7 +15720,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 27850944}
+  m_Father: {fileID: 1166551011}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15992,7 +15992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -143.9, y: 160.99998}
+  m_AnchoredPosition: {x: -143.9, y: 189.4}
   m_SizeDelta: {x: 128.2408, y: 38.139893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1478383260
@@ -22773,7 +22773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160.55441, y: -49}
+  m_AnchoredPosition: {x: 160.55441, y: -24}
   m_SizeDelta: {x: 55.656006, y: 56.999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1964709982
@@ -23050,7 +23050,7 @@ GameObject:
   - component: {fileID: 2007473519}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23149,6 +23149,7 @@ MonoBehaviour:
   - rare
   - epic
   - legendary
+  currentHeldDiceColor: 
   maxNumberOfDices: 5
   maxNumberOfRolls: 3
   currentNumberOfRolls: 0

@@ -9,13 +9,13 @@ using System.Collections;
 public class DiceManagerV2 : MonoBehaviour
 {
     public UiManagerV2 uiManager;
-    //public FMODStudio
     public GameObject craftStrengthAreaParent;
 
     [Header("Dice Spawner Parameters")]
     public Vector2[] possibleDiceVectors;
     public string[] possibleDiceColors;
     public string[] possibleDiceRarities;
+    public string currentHeldDiceColor;
 
     [Header("Roll Parameters")]
     public int maxNumberOfDices = 5;
@@ -31,7 +31,6 @@ public class DiceManagerV2 : MonoBehaviour
     private float elapsedTime;
     private float percentageComplete;
     private Vector3[] resultHolderPositions;
-    //TO DO
     public FaceComponent[] diceResultsArray;
 
     [Header("Dice Data")]
@@ -162,14 +161,6 @@ public class DiceManagerV2 : MonoBehaviour
         {
             allDices[i].SetActive(false);
         }
-
-        //for (int i = 0; i < diceResultsArray.Length; i++)
-        //{
-        //    FaceComponent face = diceResultsArray[i];
-        //    Debug.Log(face.faceColor);
-        //    Debug.Log(face.faceVector);
-        //}
-
 
         //UpdateRolledDices();
         // 0 0 0

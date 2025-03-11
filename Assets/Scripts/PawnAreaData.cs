@@ -6,7 +6,6 @@ public class PawnAreaData : MonoBehaviour
     public bool[] lvlArray;
     // Hunter, Village, Hut
     // [0, 1, 2]
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         typeArray = new bool[] { false, false, false };

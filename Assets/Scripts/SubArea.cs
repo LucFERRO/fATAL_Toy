@@ -6,7 +6,6 @@ public class SubArea : CraftingAreas
 
     //public void OnTriggerEnter(Collider other)
     //{
-    //    Debug.Log("SAMARCHE");
     //    if (!other.gameObject.CompareTag("CraftingPawn"))
     //    {
     //        return;
