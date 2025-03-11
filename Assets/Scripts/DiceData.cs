@@ -11,6 +11,7 @@ public class DiceData : MonoBehaviour
     public bool isInUse;
     private DiceManagerV2 diceManager;
     public string diceColor;
+    public Vector2[] diceVectorArray;
     public string diceRarity;
     //useless?
     public int chosenFaceIndex;
@@ -31,16 +32,20 @@ public class DiceData : MonoBehaviour
     {
         Vector2[] vectors = diceManager.possibleDiceVectors;
         string[] colors = diceManager.possibleDiceColors;
-        //string[] rarities = diceManager.possibleDiceRarities;
+        string[] rarities = diceManager.possibleDiceRarities;
 
         string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
+        string randomRarity = rarities[UnityEngine.Random.Range(0, rarities.Length)];
+        diceVectorArray = new Vector2[numberOfFaces];
         diceColor = randomColor;
+        diceRarity = randomRarity;
 
         for (int i = 0; i < faceComponentArray.Length; i++)
         {
             FaceComponent face = faceComponentArray[i];
-            Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)];
-            face.faceVector = randomVector.normalized;
+            Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)].normalized;
+            diceVectorArray[i] = randomVector;
+            face.faceVector = randomVector;
             face.faceColor = randomColor;
         }
     }
@@ -51,12 +56,13 @@ public class DiceData : MonoBehaviour
         return faceComponentArray[randomInt];
     }
 
-    private void UpdateFaceColors()
+    private void UpdateFacesData()
     {
         for (int i = 0; i < faceComponentArray.Length; i++)
         {
             FaceComponent face = faceComponentArray[i];
             face.faceColor = diceColor;
+            face.faceVector = diceVectorArray[i];
         }
     }
 
@@ -105,8 +111,10 @@ public class DiceData : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            diceColor = diceManager.currentHeldDiceColor;
-            UpdateFaceColors();
+            diceColor = diceManager.currentlyHeldColor;
+            diceVectorArray = diceManager.currentlyHeldVectors;
+            diceRarity = diceManager.currentlyHeldRarity;
+            UpdateFacesData();
         }
     }
 }

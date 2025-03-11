@@ -15,7 +15,9 @@ public class DiceManagerV2 : MonoBehaviour
     public Vector2[] possibleDiceVectors;
     public string[] possibleDiceColors;
     public string[] possibleDiceRarities;
-    public string currentHeldDiceColor;
+    public string currentlyHeldColor;
+    public Vector2[] currentlyHeldVectors;
+    public string currentlyHeldRarity;
 
     [Header("Roll Parameters")]
     public int maxNumberOfDices = 5;

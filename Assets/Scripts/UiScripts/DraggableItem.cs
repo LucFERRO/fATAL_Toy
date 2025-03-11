@@ -8,12 +8,18 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private DiceManagerV2 diceManager;
     public Transform parentAfterDrag;
     public string diceColor;
+    public string diceRarity;
+    public Vector2[] diceVectorArray;
 
     private void Start()
     {
         image = GetComponent<Image>();
         group = GetComponent<CanvasGroup>();
         diceManager = GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<DiceManagerV2>();
+        for (int i = 0; i < diceVectorArray.Length; i++)
+        {
+            diceVectorArray[i] = diceVectorArray[i].normalized;
+        }
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -21,7 +27,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.parent.GetComponent<Image>().color = transform.parent.GetComponent<DiceSlot>().baseColor;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
-        diceManager.currentHeldDiceColor = diceColor;
+        diceManager.currentlyHeldColor = diceColor;
+        diceManager.currentlyHeldRarity = diceRarity;
+        diceManager.currentlyHeldVectors = diceVectorArray;
         group.alpha = 0.5f;
         image.raycastTarget = false;
     }
@@ -35,7 +43,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         transform.SetParent(parentAfterDrag);
         group.alpha = 1f;
-        diceManager.currentHeldDiceColor = "";
+        diceManager.currentlyHeldColor = "";
+        diceManager.currentlyHeldVectors = new Vector2[6];
+        diceManager.currentlyHeldRarity = "";
         image.raycastTarget = true;
     }
 }
