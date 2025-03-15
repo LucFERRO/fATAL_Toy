@@ -8,6 +8,7 @@ TagManager:
   - Dice
   - DiceSpot
   - RolledDice
+  - GameManager
   layers:
   - Default
   - TransparentFX
