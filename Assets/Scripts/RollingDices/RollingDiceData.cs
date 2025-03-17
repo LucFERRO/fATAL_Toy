@@ -18,7 +18,8 @@ public class RollingDiceData : MonoBehaviour
 
 
     ///
-    private bool isStopped;
+    //private bool isStopped;
+    public List<GameObject> adjacentTilesGO = new List<GameObject>();
 
     void Start()
     {
@@ -31,14 +32,59 @@ public class RollingDiceData : MonoBehaviour
         isInUse = true;
         //InitiateVanillaDice();
 
-        if (isStopped) {
-            GetChosenFace();
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            StopDice();
+        }
+    }
+    
+    private void GetClosestHexTile()
+    {
+
+    }
+
+    private void StopDice()
+    {
+        //isStopped = true;
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (!adjacentTilesGO.Contains(collision.gameObject))
+        {
+            adjacentTilesGO.Add(collision.gameObject);
         }
     }
 
-    private void GetChosenFace()
+    private int GetChosenFace()
     {
+        float[] vectorDotResultArray = new float[numberOfFaces];
+        float closestVectorDot = 0;
+        int closestIndex = 0;
 
+        for (int i = 0; i < numberOfFaces; i++)
+        {
+            // /!\ /!\ /!\ AYMERIC A CHANGER LE TRANSFORM.UP EN TRANSFORM.FORWARD /!\ /!\ /!\
+            // Produit scalaire entre le vector.up de chaque face et Vector3.up
+            vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
+            //Debug.Log(vectorDotResultArray[i]);
+            // Garde la face qui a son vecteur le plus vertical
+            if (vectorDotResultArray[i] >= closestVectorDot)
+            {
+                //Debug.Log("new index detected " + i);
+                closestVectorDot = vectorDotResultArray[i];
+                closestIndex = i;
+            }
+        }
+        //chosenFaceIndex = closestIndex;
+        int chosenIndex = Array.IndexOf(vectorDotResultArray, vectorDotResultArray.Max());
+        Debug.Log($"chosenIndex of {transform.gameObject.name} is index {chosenIndex} so biome {transform.GetChild(chosenIndex).GetComponent<FaceComponent>().faceType}");
+        return chosenIndex;
     }
 
     //private void InitiateVanillaDice()
