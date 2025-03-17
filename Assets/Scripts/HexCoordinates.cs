@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HexCoordinates : MonoBehaviour
 {
-    private static float xOffset = 1.732f, yOffset = 1f, zOffset = 1.5f;
+    private static float xOffset = 1.732f, zOffset = 1.5f;
     public float displayX;
 
     [Header("Offset coordinates")]

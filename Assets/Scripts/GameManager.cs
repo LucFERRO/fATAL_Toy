@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         typeBools = new bool[tileTypes.Length];
-
+        typeBools[0] = true;
     }
 
     void Update()
