@@ -9,6 +9,10 @@ TagManager:
   - DiceSpot
   - RolledDice
   - GameManager
+  - CraftArea
+  - CraftingPawn
+  - Hex
+  - BaseHex
   layers:
   - Default
   - TransparentFX

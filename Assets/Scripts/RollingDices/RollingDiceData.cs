@@ -9,7 +9,7 @@ public class RollingDiceData : MonoBehaviour
     [HideInInspector] public int numberOfFaces = 6;
     [HideInInspector] public FaceComponent[] faceComponentArray;
     public bool isInUse;
-    //private DiceManagerV2 diceManager;
+    private GameManager gameManager;
     public string diceColor;
     public Vector2[] diceVectorArray;
     public string diceRarity;
@@ -18,18 +18,41 @@ public class RollingDiceData : MonoBehaviour
 
 
     ///
-    //private bool isStopped;
-    public List<GameObject> adjacentTilesGO = new List<GameObject>();
+    private bool hasLanded;
+    private Rigidbody diceRb;
+    private int closestTileIndex;
+    public int maxDisappearanceTimer;
+    public float currentDisappearanceTimer;
+    public float velocityWatcher
+    {
+        get { return diceRb.linearVelocity.magnitude; }
+        set
+        {
+            if (value <= 0.2f)
+            {
+                GetClosestHexTile();
+
+                //UpdateTraveledHexes(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+                UpdateSingleHex(traveledTilesGO[closestTileIndex], gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+
+                Destroy(gameObject);
+            }
+        }
+    }
+    public List<GameObject> traveledTilesGO = new List<GameObject>();
 
     void Start()
     {
-        //diceManager = transform.parent.GetComponent<DiceManagerV2>();
+        gameManager = transform.parent.GetComponent<GameManager>();
+        diceRb = GetComponent<Rigidbody>();
         faceComponentArray = new FaceComponent[numberOfFaces];
         for (int i = 0; i < numberOfFaces; i++)
         {
             faceComponentArray[i] = transform.GetChild(i).GetComponent<FaceComponent>();
         }
         isInUse = true;
+        maxDisappearanceTimer = gameManager.diceMaxDisappearanceTimer;
+        currentDisappearanceTimer = maxDisappearanceTimer;
         //InitiateVanillaDice();
 
 
@@ -37,31 +60,95 @@ public class RollingDiceData : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    GetClosestHexTile();
+        //    //Debug.Log(GetChosenFace());
+        //    //Debug.Log(Array.IndexOf(gameManager.tileTypes,GetChosenFace()));
+        //    //Debug.Log(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())].name);
+        //    //UpdateSingleHex(traveledTilesGO[closestTileIndex], gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+        //    UpdateTraveledHexes(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+        //    Destroy(gameObject);
+        //    //CreateBiomeFromDice();
+        //}
+
+        if (hasLanded)
         {
-            StopDice();
+            currentDisappearanceTimer -= Time.deltaTime;
+        }
+        if (currentDisappearanceTimer <= 0 && hasLanded)
+        {
+            hasLanded = false;
+            velocityWatcher = diceRb.linearVelocity.magnitude;
         }
     }
-    
-    private void GetClosestHexTile()
-    {
 
+    private void UpdateTraveledHexes(GameObject newHexPrefab)
+    {
+        foreach (GameObject tile in traveledTilesGO)
+        {
+            UpdateSingleHex(tile, newHexPrefab);
+        }
     }
 
-    private void StopDice()
+    private void UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
+    {
+        Vector3Int hexPosition = hexToBeChanged.GetComponent<GridCoordinates>().cellPosition;
+        //Debug.Log("Hex Coordinates:" + hexPosition);
+        GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.parent);
+        newHex.transform.position = hexToBeChanged.transform.position;
+        GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
+        newGridCoordinates.tiletype = gameManager.chosenTileType;
+        newGridCoordinates.cellPosition = hexPosition;
+        //newGridCoordinates.currentPrefab = gameManager.chosenPrefab;
+        Destroy(hexToBeChanged.gameObject);
+    }
+    private void GetClosestHexTile()
+    {
+        float shortestTileDistance = 10f;
+        int closestIndex = 0;
+        for (int i = 0; i < traveledTilesGO.Count; i++)
+        {
+            GameObject tile = traveledTilesGO[i];
+            if (tile != null)
+            {
+                float tileDistance = Vector3.Distance(transform.position, tile.transform.position);
+                Debug.Log(tile.name + " is at " + tileDistance);
+                if (tileDistance < shortestTileDistance)
+                {
+                    shortestTileDistance = tileDistance;
+                    closestTileIndex = i;
+                }
+            }
+        }
+        closestTileIndex = closestIndex;
+        Debug.Log($"{traveledTilesGO[closestTileIndex].name} is at the closest");
+    }
+
+    private void CreateBiomeFromDice()
     {
         //isStopped = true;
     }
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
-        if (!adjacentTilesGO.Contains(collision.gameObject))
+        if (!collision.collider.CompareTag("BaseHex"))
         {
-            adjacentTilesGO.Add(collision.gameObject);
+            return;
+        }
+
+        hasLanded = true;
+        //if (!collision.collider.CompareTag("Hex"))
+        //{
+        //    return;
+        //}
+
+        if (!traveledTilesGO.Contains(collision.gameObject) || !(collision.collider.CompareTag("Hex") && gameManager.dicesCanReplaceAllHexes))
+        {
+            traveledTilesGO.Add(collision.gameObject);
         }
     }
 
-    private int GetChosenFace()
+    private string GetChosenFace()
     {
         float[] vectorDotResultArray = new float[numberOfFaces];
         float closestVectorDot = 0;
@@ -83,8 +170,7 @@ public class RollingDiceData : MonoBehaviour
         }
         //chosenFaceIndex = closestIndex;
         int chosenIndex = Array.IndexOf(vectorDotResultArray, vectorDotResultArray.Max());
-        Debug.Log($"chosenIndex of {transform.gameObject.name} is index {chosenIndex} so biome {transform.GetChild(chosenIndex).GetComponent<FaceComponent>().faceType}");
-        return chosenIndex;
+        return transform.GetChild(chosenIndex).GetComponent<FaceComponent>().faceType;
     }
 
     //private void InitiateVanillaDice()

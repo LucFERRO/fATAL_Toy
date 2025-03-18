@@ -5,10 +5,12 @@ using UnityEngine;
 public class PhysicalDiceSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
-    //public GameObject gameManager;
+    public GameObject gameManager;
     public GameObject diceToSpawn;
     //public RollingDiceManager diceManager;
     public int movementSpeed;
+    public int spinForce;
+    public int throwForce;
     public float distance;
     private Vector3 startingPosition;
     private Vector3 targetPosition;
@@ -40,8 +42,12 @@ public class PhysicalDiceSpawner : MonoBehaviour
     public void SpawnDice()
     {
         GameObject spawnedDice = Instantiate(diceToSpawn, transform.position, transform.rotation);
+        spawnedDice.transform.parent = gameManager.transform;
+        Rigidbody diceRb = spawnedDice.GetComponent<Rigidbody>();
         Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        spawnedDice.GetComponent<Rigidbody>().AddTorque(randomSpinVector.normalized * 5f, ForceMode.Impulse);
+        Vector3 randomThrowVector = new Vector3(Random.Range(-5f, 5f), Random.Range(-1f, 0), Random.Range(-5f, 5f));
+        diceRb.AddForce(randomThrowVector.normalized * throwForce, ForceMode.Impulse);
+        diceRb.AddTorque(randomSpinVector.normalized * spinForce, ForceMode.Impulse);
         //diceManager.UpdateDiceData();
     }
 }

@@ -15,22 +15,21 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3Int hexPosition = this.gameObject.GetComponent<GridCoordinates>().cellPosition;
-            Debug.Log("Hex Coordinates:" + hexPosition);
-            GameObject newHex = Instantiate(gameManager.chosenPrefab, transform.parent);
-            newHex.transform.position = transform.position;
-            GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
-            newGridCoordinates.tiletype = gameManager.chosenTileType;
-            newGridCoordinates.cellPosition = hexPosition;
-            //newGridCoordinates.currentPrefab = gameManager.chosenPrefab;
-            Destroy(gameObject);
-
+            UpdateHex();
         }
     }
 
     private void UpdateHex()
     {
-
+        Vector3Int hexPosition = this.gameObject.GetComponent<GridCoordinates>().cellPosition;
+        //Debug.Log("Hex Coordinates:" + hexPosition);
+        GameObject newHex = Instantiate(gameManager.chosenPrefab, transform.parent);
+        newHex.transform.position = transform.position;
+        GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
+        newGridCoordinates.tiletype = gameManager.chosenTileType;
+        newGridCoordinates.cellPosition = hexPosition;
+        //newGridCoordinates.currentPrefab = gameManager.chosenPrefab;
+        Destroy(gameObject);
     }
     public void OnPointerDown(PointerEventData eventData)
     {
