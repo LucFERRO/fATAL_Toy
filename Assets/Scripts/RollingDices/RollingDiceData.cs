@@ -142,7 +142,8 @@ public class RollingDiceData : MonoBehaviour
         //    return;
         //}
 
-        if (!traveledTilesGO.Contains(collision.gameObject) || !(collision.collider.CompareTag("Hex") && gameManager.dicesCanReplaceAllHexes))
+        //if (!traveledTilesGO.Contains(collision.gameObject) || !(collision.collider.CompareTag("Hex") && gameManager.dicesCanReplaceAllHexes)) ???
+        if (!traveledTilesGO.Contains(collision.gameObject))
         {
             traveledTilesGO.Add(collision.gameObject);
         }
