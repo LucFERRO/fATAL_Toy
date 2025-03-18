@@ -121,7 +121,7 @@ public class RollingDiceData : MonoBehaviour
                 }
             }
         }
-        closestTileIndex = closestIndex;
+        closestIndex = closestTileIndex;
         Debug.Log($"{traveledTilesGO[closestTileIndex].name} is at the closest");
     }
 

@@ -3900,7 +3900,7 @@ MonoBehaviour:
   - {fileID: 7574962650678293854, guid: 039354a20ee99b64587f77862fc0e424, type: 3}
   diceMaxDisappearanceTimer: 2
   onlyReplacesClosestTile: 0
-  dicesCanReplaceAllHexes: 0
+  dicesCanReplaceAllHexes: 1
   mountain: 0
   lake: 0
   forest: 0
