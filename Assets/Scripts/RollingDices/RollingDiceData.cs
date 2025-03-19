@@ -158,11 +158,22 @@ public class RollingDiceData : MonoBehaviour
 
         hasLanded = true;
 
-        if (collision.collider.CompareTag("Hex"))
+        string tileType = collision.collider.GetComponent<GridCoordinates>().tiletype;
+
+        //mountain
+        if (tileType == gameManager.tileTypes[0])
         {
             Vector3 diceVelocity = diceRb.linearVelocity;
             diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
+
         }
+        //forest
+        //if (tileType == gameManager.tileTypes[2])
+        //{
+        //    Vector3 diceVelocity = diceRb.linearVelocity;
+        //    diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
+        //}
+        
 
         if (!traveledTilesGO.Contains(collision.gameObject))
         {

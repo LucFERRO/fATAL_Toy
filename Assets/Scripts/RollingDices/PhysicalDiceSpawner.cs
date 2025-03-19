@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhysicalDiceSpawner : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class PhysicalDiceSpawner : MonoBehaviour
     public GameObject gameManagerGO;
     private GameManager gameManager;
     public GameObject diceToSpawn;
-    [Range(1, 150)] public int diceSize = 100;
+    public float diceSize = 100f;
+    public Slider diceSlider;
+    public int minSize = 1;
+    public int maxSize = 150;
 
     //public RollingDiceManager diceManager;
     public int movementSpeed;
@@ -26,6 +30,10 @@ public class PhysicalDiceSpawner : MonoBehaviour
         timer = positionSwitchTimer;
         // x 1.5 - 11.5
         // z -4 - 2
+        diceSlider.wholeNumbers = true;
+        diceSlider.minValue = minSize;
+        diceSlider.maxValue = maxSize;
+        diceSlider.value = diceSize;
     }
 
     void Update()
@@ -68,4 +76,10 @@ public class PhysicalDiceSpawner : MonoBehaviour
         diceRb.AddTorque(randomSpinVector.normalized * spinForce, ForceMode.Impulse);
         //diceManager.UpdateDiceData();
     }
+
+    public void ChangeDiceScale() 
+    {
+        diceSize = diceSlider.value;
+    }
+
 }

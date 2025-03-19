@@ -22,10 +22,20 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Debug")]
+    public GameObject debugUIGameObject;
     public bool mountain;
     public bool lake;
     public bool forest;
     public bool plain;
+    public bool debugUI;
+    public bool DebugUI { 
+        get { return debugUI;} 
+        set 
+        { 
+            debugUI = value;
+            debugUIGameObject.SetActive(value);
+        } 
+    }
 
     public GameObject chosenPrefab;
     public bool[] typeBools;
@@ -42,6 +52,27 @@ public class GameManager : MonoBehaviour
     {
         UpdateChosenTile();
 
+    }
+
+    public void ToggleDebugUI()
+    {
+        DebugUI = !DebugUI;
+    }
+
+    public void DebugChooseTile(int tileTypeId)
+    {
+        for (int i = 0; i < tileTypes.Length; i++) 
+        {
+            if (i == tileTypeId)
+            {
+                typeBools[i] = true;
+            }
+
+            else
+            {
+                typeBools[i] = false;
+            }
+        }
     }
 
     private void UpdateChosenTile()
