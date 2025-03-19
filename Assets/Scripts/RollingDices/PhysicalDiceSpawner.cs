@@ -38,13 +38,13 @@ public class PhysicalDiceSpawner : MonoBehaviour
         transform.position = Vector3.Slerp(transform.position, targetPosition, movementSpeed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnDice();
+            SpawnDice(Vector3.zero, transform);
         }
     }
 
-    public void SpawnDice()
+    public void SpawnDice(Vector3 throwVector, Transform originTransform)
     {
-        GameObject spawnedDice = Instantiate(diceToSpawn, transform.position, transform.rotation);
+        GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position, originTransform.rotation);
         spawnedDice.transform.parent = gameManagerGO.transform;
 
         for (int i = 0; i < gameManager.diceFaces.Length; i++)
@@ -55,10 +55,14 @@ public class PhysicalDiceSpawner : MonoBehaviour
             face.GetComponent<MeshRenderer>().material = gameManager.faceMaterials[biomeId];
         }
 
+        if (throwVector.magnitude == 0)
+        {
+            Vector3 randomThrowVector = new Vector3(Random.Range(-5f, 5f), Random.Range(-1f, 0), Random.Range(-5f, 5f));
+            throwVector = randomThrowVector;
+        }
         Rigidbody diceRb = spawnedDice.GetComponent<Rigidbody>();
         Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        Vector3 randomThrowVector = new Vector3(Random.Range(-5f, 5f), Random.Range(-1f, 0), Random.Range(-5f, 5f));
-        diceRb.AddForce(randomThrowVector.normalized * throwForce, ForceMode.Impulse);
+        diceRb.AddForce(throwVector * throwForce, ForceMode.Impulse);
         diceRb.AddTorque(randomSpinVector.normalized * spinForce, ForceMode.Impulse);
         //diceManager.UpdateDiceData();
     }

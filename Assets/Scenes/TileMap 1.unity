@@ -8068,7 +8068,7 @@ GameObject:
   - component: {fileID: 1826404928}
   m_Layer: 0
   m_Name: DiceSpawner
-  m_TagString: Untagged
+  m_TagString: DiceSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8089,7 +8089,7 @@ MonoBehaviour:
   diceToSpawn: {fileID: 6584360862380582654, guid: 93cb83f6212c35647b002d98184a9074, type: 3}
   movementSpeed: 5
   spinForce: 10
-  throwForce: 20
+  throwForce: 5
   distance: 4
   positionSwitchTimer: 0.5
 --- !u!4 &1826404929

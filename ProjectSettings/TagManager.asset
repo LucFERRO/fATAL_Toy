@@ -14,6 +14,7 @@ TagManager:
   - Hex
   - BaseHex
   - DiceSlot
+  - DiceSpawner
   layers:
   - Default
   - TransparentFX

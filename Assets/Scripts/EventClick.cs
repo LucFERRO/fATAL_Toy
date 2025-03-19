@@ -4,21 +4,25 @@ using UnityEngine.EventSystems;
 public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private GameManager gameManager;
+    private PhysicalDiceSpawner diceSpawner;
+    private Camera camera;
     private GridCoordinates gridCoordinates;
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
+        camera = Camera.main;
         gridCoordinates = GetComponent<GridCoordinates>();
-    }
-
-    private void ThrowDiceToPointer()
-    {
-
     }
 
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log(transform.position);
+            diceSpawner.SpawnDice(transform.position - camera.transform.position, camera.transform);
+        }        
+        if (Input.GetMouseButtonDown(1))
         {
             UpdateHex();
         }
