@@ -94,12 +94,12 @@ public class RollingDiceData : MonoBehaviour
         if (currentDisappearanceTimer <= 0 && hasLanded)
         {
             hasLanded = false;
-            if (traveledTilesGO.Count == 0)
-            {
-                Debug.Log("GIGA EARLY DESTROY");
-                Destroy(gameObject);
-                return;
-            }
+            //if (traveledTilesGO.Count == 0)
+            //{
+            //    Debug.Log("GIGA EARLY DESTROY");
+            //    Destroy(gameObject);
+            //    return;
+            //}
             VelocityWatcher = diceRb.linearVelocity.magnitude;
         }
     }
@@ -156,28 +156,25 @@ public class RollingDiceData : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.collider.CompareTag("BaseHex"))
+        if (collision.collider.CompareTag("Untagged"))
         {
             return;
         }
 
         hasLanded = true;
+
         if (collision.collider.CompareTag("Hex"))
         {
             Vector3 diceVelocity = diceRb.linearVelocity;
             diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
-
-            return;
         }
 
-        //if (!collision.collider.CompareTag("Hex"))
-        //{
-        //    return;
-        //}
-
-        //if (!traveledTilesGO.Contains(collision.gameObject) || !(collision.collider.CompareTag("Hex") && gameManager.dicesCanReplaceAllHexes)) ???
         if (!traveledTilesGO.Contains(collision.gameObject))
         {
+            if (collision.collider.CompareTag("Hex") && !gameManager.dicesCanReplaceAllHexes)
+            {
+                return;
+            }
             traveledTilesGO.Add(collision.gameObject);
         }
     }
@@ -207,93 +204,5 @@ public class RollingDiceData : MonoBehaviour
         return transform.GetChild(chosenIndex).GetComponent<FaceComponent>().faceType;
     }
 
-    //private void InitiateVanillaDice()
-    //{
-    //    Vector2[] vectors = diceManager.possibleDiceVectors;
-    //    string[] colors = diceManager.possibleDiceColors;
-    //    string[] rarities = diceManager.possibleDiceRarities;
 
-    //    string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
-    //    string randomRarity = rarities[UnityEngine.Random.Range(0, rarities.Length)];
-    //    diceVectorArray = new Vector2[numberOfFaces];
-    //    diceColor = randomColor;
-    //    diceRarity = randomRarity;
-
-    //    for (int i = 0; i < faceComponentArray.Length; i++)
-    //    {
-    //        FaceComponent face = faceComponentArray[i];
-    //        Vector2 randomVector = vectors[UnityEngine.Random.Range(0, vectors.Length)].normalized;
-    //        diceVectorArray[i] = randomVector;
-    //        face.faceVector = randomVector;
-    //        face.faceColor = randomColor;
-    //    }
-    //}
-
-    //public FaceComponent GetRandomFace()
-    //{
-    //    int randomInt = UnityEngine.Random.Range(0, numberOfFaces);
-    //    return faceComponentArray[randomInt];
-    //}
-
-    //private void UpdateFacesData()
-    //{
-    //    for (int i = 0; i < faceComponentArray.Length; i++)
-    //    {
-    //        FaceComponent face = faceComponentArray[i];
-    //        face.faceColor = diceColor;
-    //        face.faceVector = diceVectorArray[i];
-    //    }
-    //}
-
-    //public int UpdateRollResult()
-    //{
-    //    float[] vectorDotResultArray = new float[numberOfFaces];
-    //    float closestVectorDot = 0;
-    //    int closestIndex = 0;
-
-    //    for (int i = 0; i < numberOfFaces; i++)
-    //    {
-    //        // /!\ /!\ /!\ AYMERIC A CHANGER LE TRANSFORM.UP EN TRANSFORM.FORWARD /!\ /!\ /!\
-    //        // Produit scalaire entre le vector.up de chaque face et Vector3.up
-    //        vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
-    //        //Debug.Log(vectorDotResultArray[i]);
-    //        // Garde la face qui a son vecteur le plus vertical
-    //        if (vectorDotResultArray[i] >= closestVectorDot)
-    //        {
-    //            //Debug.Log("new index detected " + i);
-    //            closestVectorDot = vectorDotResultArray[i];
-    //            closestIndex = i;
-    //        }
-    //    }
-    //    //chosenFaceIndex = closestIndex;
-    //    int chosenIndex = Array.IndexOf(vectorDotResultArray, vectorDotResultArray.Max());
-    //    Debug.Log($"chosenIndex of {transform.gameObject.name} is {chosenIndex}");
-    //    return chosenIndex;
-    //}
-
-    //private void OnMouseOver()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        // Si clique pour ajouter un dé inactif alors que déjà le nombre max de dés sélectionnés
-    //        if (!isInUse && diceManager.numberOfDicesInUse >= diceManager.maxNumberOfDices)
-    //        {
-    //            string selectedAllDicesAlreadyMessage = $"Cannot use more than {diceManager.maxNumberOfDices} dices!";
-    //            Debug.Log(selectedAllDicesAlreadyMessage);
-    //            diceManager.uiManager.DisplayErrorMessage(selectedAllDicesAlreadyMessage);
-    //            return;
-    //        }
-
-    //        isInUse = !isInUse;
-    //        diceManager.NumberOfDicesInUse += isInUse ? 1 : -1;
-    //    }
-
-    //    if (Input.GetMouseButtonUp(0))
-    //    {
-    //        diceColor = diceManager.currentlyHeldColor;
-    //        diceVectorArray = diceManager.currentlyHeldVectors;
-    //        diceRarity = diceManager.currentlyHeldRarity;
-    //        UpdateFacesData();
-    //    }
-    //}
 }
