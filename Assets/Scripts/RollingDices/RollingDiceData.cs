@@ -30,12 +30,7 @@ public class RollingDiceData : MonoBehaviour
         set
         {
             velocityWatcher = value;
-            if (traveledTilesGO.Count == 0)
-            {
-                Debug.Log("EARLY DESTROY");
-                Destroy(gameObject);
-                return;
-            }
+
             if (value <= 0.2f)
             {
                 GetClosestHexTile();
@@ -93,13 +88,13 @@ public class RollingDiceData : MonoBehaviour
         }
         if (currentDisappearanceTimer <= 0 && hasLanded)
         {
+            if (traveledTilesGO.Count == 0)
+            {
+                Debug.Log("EARLY DESTROY");
+                Destroy(gameObject);
+                return;
+            }
             hasLanded = false;
-            //if (traveledTilesGO.Count == 0)
-            //{
-            //    Debug.Log("GIGA EARLY DESTROY");
-            //    Destroy(gameObject);
-            //    return;
-            //}
             VelocityWatcher = diceRb.linearVelocity.magnitude;
         }
     }
