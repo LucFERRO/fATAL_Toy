@@ -51,13 +51,6 @@ public class GameManager : MonoBehaviour
             if (typeBools[i])
             {
                 chosenTileType = tileTypes[i];
-            }
-        }
-
-        for (int i = 0; i < tileTypes.Length; i++)
-        {
-            if (typeBools[i])
-            {
                 chosenPrefab = tilePrefabs[i];
             }
         }

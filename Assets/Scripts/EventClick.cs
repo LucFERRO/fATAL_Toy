@@ -11,6 +11,11 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         gridCoordinates = GetComponent<GridCoordinates>();
     }
 
+    private void ThrowDiceToPointer()
+    {
+
+    }
+
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
