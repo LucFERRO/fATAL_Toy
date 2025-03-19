@@ -18,7 +18,7 @@ public class RollingDiceData : MonoBehaviour
 
 
     ///
-    private bool hasLanded;
+    public bool hasLanded;
     private Rigidbody diceRb;
     private int closestTileIndex;
     public int maxDisappearanceTimer;
@@ -31,12 +31,17 @@ public class RollingDiceData : MonoBehaviour
             if (value <= 0.2f)
             {
                 GetClosestHexTile();
+                if (gameManager.onlyReplacesClosestTile)
+                {
+                    UpdateSingleHex(traveledTilesGO[closestTileIndex], gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+                }
 
-                //UpdateTraveledHexes(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
-                UpdateSingleHex(traveledTilesGO[closestTileIndex], gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
-
-                Destroy(gameObject);
+                else
+                {
+                    UpdateTraveledHexes(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+                }
             }
+                Destroy(gameObject);
         }
     }
     public List<GameObject> traveledTilesGO = new List<GameObject>();
@@ -117,11 +122,11 @@ public class RollingDiceData : MonoBehaviour
                 if (tileDistance < shortestTileDistance)
                 {
                     shortestTileDistance = tileDistance;
-                    closestTileIndex = i;
+                    closestIndex = i;
                 }
             }
         }
-        closestIndex = closestTileIndex;
+        closestTileIndex = closestIndex;
         Debug.Log($"{traveledTilesGO[closestTileIndex].name} is at the closest");
     }
 
@@ -133,6 +138,14 @@ public class RollingDiceData : MonoBehaviour
     {
         if (!collision.collider.CompareTag("BaseHex"))
         {
+            return;
+        }
+
+        if (collision.collider.CompareTag("Hex"))
+        {
+            Vector3 diceVelocity = diceRb.linearVelocity;
+            diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f*diceVelocity.y, diceVelocity.z);
+
             return;
         }
 
