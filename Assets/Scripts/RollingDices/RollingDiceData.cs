@@ -23,11 +23,19 @@ public class RollingDiceData : MonoBehaviour
     private int closestTileIndex;
     public int maxDisappearanceTimer;
     public float currentDisappearanceTimer;
-    public float velocityWatcher
+    public float velocityWatcher;
+    public float VelocityWatcher
     {
-        get { return diceRb.linearVelocity.magnitude; }
+        get { return velocityWatcher; }
         set
         {
+            velocityWatcher = value;
+            if (traveledTilesGO.Count == 0)
+            {
+                Debug.Log("EARLY DESTROY");
+                Destroy(gameObject);
+                return;
+            }
             if (value <= 0.2f)
             {
                 GetClosestHexTile();
@@ -38,10 +46,12 @@ public class RollingDiceData : MonoBehaviour
 
                 else
                 {
+
                     UpdateTraveledHexes(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
                 }
             }
-                Destroy(gameObject);
+            Debug.Log("DESTROY BY DEFAULT");
+            Destroy(gameObject);
         }
     }
     public List<GameObject> traveledTilesGO = new List<GameObject>();
@@ -84,7 +94,13 @@ public class RollingDiceData : MonoBehaviour
         if (currentDisappearanceTimer <= 0 && hasLanded)
         {
             hasLanded = false;
-            velocityWatcher = diceRb.linearVelocity.magnitude;
+            if (traveledTilesGO.Count == 0)
+            {
+                Debug.Log("GIGA EARLY DESTROY");
+                Destroy(gameObject);
+                return;
+            }
+            VelocityWatcher = diceRb.linearVelocity.magnitude;
         }
     }
 
@@ -98,6 +114,10 @@ public class RollingDiceData : MonoBehaviour
 
     private void UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
     {
+        if (hexToBeChanged == null)
+        {
+            return;
+        }
         Vector3Int hexPosition = hexToBeChanged.GetComponent<GridCoordinates>().cellPosition;
         //Debug.Log("Hex Coordinates:" + hexPosition);
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.parent);
@@ -118,7 +138,7 @@ public class RollingDiceData : MonoBehaviour
             if (tile != null)
             {
                 float tileDistance = Vector3.Distance(transform.position, tile.transform.position);
-                Debug.Log(tile.name + " is at " + tileDistance);
+                //Debug.Log(tile.name + " is at " + tileDistance);
                 if (tileDistance < shortestTileDistance)
                 {
                     shortestTileDistance = tileDistance;
@@ -127,7 +147,7 @@ public class RollingDiceData : MonoBehaviour
             }
         }
         closestTileIndex = closestIndex;
-        Debug.Log($"{traveledTilesGO[closestTileIndex].name} is at the closest");
+        //Debug.Log($"{traveledTilesGO[closestTileIndex].name} is at the closest");
     }
 
     private void CreateBiomeFromDice()
@@ -141,15 +161,15 @@ public class RollingDiceData : MonoBehaviour
             return;
         }
 
+        hasLanded = true;
         if (collision.collider.CompareTag("Hex"))
         {
             Vector3 diceVelocity = diceRb.linearVelocity;
-            diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f*diceVelocity.y, diceVelocity.z);
+            diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
 
             return;
         }
 
-        hasLanded = true;
         //if (!collision.collider.CompareTag("Hex"))
         //{
         //    return;
