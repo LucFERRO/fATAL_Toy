@@ -44,7 +44,7 @@ public class PhysicalDiceSpawner : MonoBehaviour
 
     public void SpawnDice(Vector3 throwVector, Transform originTransform)
     {
-        GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position, originTransform.rotation);
+        GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position + originTransform.forward * 3, originTransform.rotation);
         spawnedDice.transform.parent = gameManagerGO.transform;
 
         for (int i = 0; i < gameManager.diceFaces.Length; i++)

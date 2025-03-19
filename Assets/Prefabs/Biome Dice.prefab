@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1921485794991289228}
   - component: {fileID: 36805460254522762}
   - component: {fileID: 5317049021217722127}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 9030648805985202334}
   - component: {fileID: 9142568714486009862}
   - component: {fileID: 1640519411057852592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Face 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 1377507228722209747}
   - component: {fileID: 7030601335324023046}
   - component: {fileID: 5845055489416422580}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 1535748679718807635}
   - component: {fileID: 6096666859829286192}
   - component: {fileID: 818186057076297322}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 2287776672071223856}
   - component: {fileID: 726131178309106910}
   - component: {fileID: 9127633417968628052}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Face 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 1121333672511003708}
   - component: {fileID: 2872681613749977411}
   - component: {fileID: 6168582695618040308}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 4352932622275946151}
   - component: {fileID: 2605610578013337523}
   - component: {fileID: 334516298117692512}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Face 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 2006690787367846441}
   - component: {fileID: 6442820632761982204}
   - component: {fileID: -3646177126015044755}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Biome Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,8 +711,10 @@ MonoBehaviour:
   diceVectorArray: []
   diceRarity: 
   chosenFaceIndex: 0
+  hasLanded: 0
   maxDisappearanceTimer: 2
   currentDisappearanceTimer: 0
+  velocityWatcher: 0
   traveledTilesGO: []
 --- !u!33 &342227487895964265
 MeshFilter:
@@ -826,7 +828,7 @@ GameObject:
   - component: {fileID: 6384220568908560519}
   - component: {fileID: 2481401918047418829}
   - component: {fileID: 3192365822278535043}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +915,7 @@ GameObject:
   - component: {fileID: 6910410944965029704}
   - component: {fileID: 6820605762351288078}
   - component: {fileID: 3158033246473325148}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Face 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1017,7 @@ GameObject:
   - component: {fileID: 2977624915265918453}
   - component: {fileID: 8616224273840239086}
   - component: {fileID: 3964870395156418358}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Face 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,7 +1119,7 @@ GameObject:
   - component: {fileID: 4912459013879963447}
   - component: {fileID: 8504219406654967152}
   - component: {fileID: 1824030594533029011}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Face 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1218,7 +1220,7 @@ GameObject:
   - component: {fileID: 3753943671283543339}
   - component: {fileID: 6148378276571869926}
   - component: {fileID: 9105613625146498700}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
