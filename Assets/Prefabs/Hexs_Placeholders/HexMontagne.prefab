@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 693698225900246622}
   - component: {fileID: 3333918909555974804}
   - component: {fileID: -8291450111539616793}
-  - component: {fileID: 5181011583995499191}
   - component: {fileID: 4405619146540109355}
+  - component: {fileID: 5310480877418792004}
   m_Layer: 0
   m_Name: HexMontagne
   m_TagString: Hex
@@ -104,8 +104,20 @@ MonoBehaviour:
   cellPosition: {x: 0, y: 0, z: 0}
   tiletype: 
   currentPrefab: {fileID: 0}
---- !u!65 &5181011583995499191
-BoxCollider:
+--- !u!114 &4405619146540109355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838344401963516737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &5310480877418792004
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,18 +134,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.9999979, y: 2.2728767, z: 2.3099976}
-  m_Center: {x: 0.000100165606, y: 1.1399822, z: 0.13033187}
---- !u!114 &4405619146540109355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3838344401963516737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 853119050311073872, guid: 526bfac537157bc4bb0c147adb79741e, type: 3}

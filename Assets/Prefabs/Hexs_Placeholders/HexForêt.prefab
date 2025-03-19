@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2773352048777085675}
   - component: {fileID: 114872265210148385}
   - component: {fileID: -834356048239404}
-  - component: {fileID: 7058409038208150853}
   - component: {fileID: -3733438492677510574}
+  - component: {fileID: 5882913256184920531}
   m_Layer: 0
   m_Name: "HexFor\xEAt"
   m_TagString: Hex
@@ -104,8 +104,20 @@ MonoBehaviour:
   cellPosition: {x: 0, y: 0, z: 0}
   tiletype: 
   currentPrefab: {fileID: 0}
---- !u!65 &7058409038208150853
-BoxCollider:
+--- !u!114 &-3733438492677510574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916536484484782068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &5882913256184920531
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,18 +134,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.959404, y: 3.6186783, z: 2.597153}
-  m_Center: {x: -0.06815642, y: 1.812883, z: 0.047116876}
---- !u!114 &-3733438492677510574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916536484484782068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5500308020991878382, guid: 68f66200bf3b3dd4a9a69c900051e0f3, type: 3}
