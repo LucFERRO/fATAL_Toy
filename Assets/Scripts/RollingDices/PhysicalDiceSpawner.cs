@@ -8,6 +8,7 @@ public class PhysicalDiceSpawner : MonoBehaviour
     public GameObject gameManagerGO;
     private GameManager gameManager;
     public GameObject diceToSpawn;
+    [Range(1, 150)] public int diceSize = 100;
 
     //public RollingDiceManager diceManager;
     public int movementSpeed;
@@ -46,6 +47,7 @@ public class PhysicalDiceSpawner : MonoBehaviour
     {
         GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position + originTransform.forward * 3, originTransform.rotation);
         spawnedDice.transform.parent = gameManagerGO.transform;
+        spawnedDice.transform.localScale = Vector3.one*diceSize*0.01f;
 
         for (int i = 0; i < gameManager.diceFaces.Length; i++)
         {
