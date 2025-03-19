@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7558affc43a6f8468d97ad45ce969dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: lake
+  faceType: plain
   faceColor: 
 --- !u!1 &2983286161506934475
 GameObject:
@@ -679,8 +679,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6584360862380582654}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.73, y: -70.1, z: 116.22}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18.824806, y: 14.56144, z: -4.291996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7558affc43a6f8468d97ad45ce969dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: lake
+  faceType: plain
   faceColor: 
 --- !u!1 &8150916348543643332
 GameObject:

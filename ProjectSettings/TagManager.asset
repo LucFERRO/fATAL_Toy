@@ -13,6 +13,7 @@ TagManager:
   - CraftingPawn
   - Hex
   - BaseHex
+  - DiceSlot
   layers:
   - Default
   - TransparentFX

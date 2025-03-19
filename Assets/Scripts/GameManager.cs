@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 {
     public string[] tileTypes;
     public GameObject[] tilePrefabs;
+    public GameObject[] diceFaces;
+    public Material[] faceMaterials;
     [Header("Variations")]
     [Range(0,5)] public int diceMaxDisappearanceTimer = 1;
     public bool onlyReplacesClosestTile;
