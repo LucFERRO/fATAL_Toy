@@ -18,7 +18,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         //item = GetComponent<Item>();
         //image.sprite = item.sprite;
 
-        Material potentialMaterialItem = GetComponent<Material>();
+        //Material potentialMaterialItem = GetComponent<Material>();
         //Consumable potentialConsumableItem = GetComponent<Consumable>();
 
         //if (potentialMaterialItem != null || potentialConsumableItem != null)
