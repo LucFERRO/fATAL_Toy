@@ -621,7 +621,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1441868373}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DebugChooseTile
+        m_MethodName: ChooseTileToSpawn
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2443,6 +2443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1441868373}
+  uiDistance: 600
 --- !u!1 &294849283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2529,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1441868373}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DebugChooseTile
+        m_MethodName: ChooseTileToSpawn
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3295,7 +3296,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1441868373}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DebugChooseTile
+        m_MethodName: ChooseTileToSpawn
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5958,7 +5959,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1441868373}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DebugChooseTile
+        m_MethodName: ChooseTileToSpawn
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
