@@ -23,10 +23,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Debug")]
     public GameObject debugUIGameObject;
-    public bool mountain;
-    public bool lake;
-    public bool forest;
-    public bool plain;
     public bool debugUI;
     public bool DebugUI { 
         get { return debugUI;} 
@@ -39,19 +35,22 @@ public class GameManager : MonoBehaviour
 
     public GameObject chosenPrefab;
     public bool[] typeBools;
+    public bool[] TypeBools
+    {
+        get { return typeBools; }
+        set
+        {
+            typeBools = value;
+            UpdateChosenTile();
+        }
+    }
     public string chosenTileType;
 
     public DebugVariableHolder instance = new DebugVariableHolder();
     void Start()
     {
-        typeBools = new bool[tileTypes.Length];
-        typeBools[0] = true;
-    }
-
-    void Update()
-    {
-        UpdateChosenTile();
-
+        TypeBools = new bool[tileTypes.Length];
+        ChooseTileToSpawn(0);
     }
 
     public void ToggleDebugUI()
@@ -59,27 +58,29 @@ public class GameManager : MonoBehaviour
         DebugUI = !DebugUI;
     }
 
-    public void DebugChooseTile(int tileTypeId)
+    public void ChooseTileToSpawn(int tileTypeId)
     {
+        bool[] newTypeBoolArray = new bool[tileTypes.Length];
         for (int i = 0; i < tileTypes.Length; i++) 
         {
             if (i == tileTypeId)
             {
-                typeBools[i] = true;
+                newTypeBoolArray[i] = true;
             }
 
             else
             {
-                typeBools[i] = false;
+                newTypeBoolArray[i] = false;
             }
         }
+        TypeBools = newTypeBoolArray;
     }
 
     private void UpdateChosenTile()
     {
         for (int i = 0; i < tileTypes.Length; i++)
         {
-            if (typeBools[i])
+            if (TypeBools[i])
             {
                 chosenTileType = tileTypes[i];
                 chosenPrefab = tilePrefabs[i];

@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float horizontalSensitivity = 1f;
     public float verticalSensitivity = 1f;
-    private Transform camTransform;
+    public float rotationSpeed;
     private Camera cam;
     private float movement;
     private float xMovement;
@@ -14,9 +13,9 @@ public class CameraControls : MonoBehaviour
     private Vector3 camRotation;
     public Vector3 startingRotation;
     public Vector3 startingCamRotation;
+
     void Start()
     {
-        //camTransform = GetComponentInChildren<Transform>();
         cam = GetComponentInChildren<Camera>();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -32,11 +31,10 @@ public class CameraControls : MonoBehaviour
         //xMovement = Input.GetAxisRaw("Mouse X") * horizontalSensitivity;
         //yMovement = -Input.GetAxisRaw("Mouse Y") * verticalSensitivity;
 
-        camHolderRotation = new Vector3(camHolderRotation.x,camHolderRotation.y + movement * 0.15f, camHolderRotation.z);
-        camRotation = new Vector3(camRotation.x, camRotation.y + movement * 0.15f, camRotation.z);
+        camHolderRotation = new Vector3(camHolderRotation.x,camHolderRotation.y + movement * rotationSpeed, camHolderRotation.z);
+        camRotation = new Vector3(camRotation.x, camRotation.y + movement * rotationSpeed, camRotation.z);
 
         cam.transform.eulerAngles = startingCamRotation + camRotation;
-        //cam.transform.eulerAngles = startingCamRotation;
         transform.eulerAngles = camHolderRotation + startingRotation;
     }
 }

@@ -6,24 +6,29 @@ using UnityEngine;
 
 public class RollingDiceData : MonoBehaviour
 {
+    [Header("Dice Configuration")]
     [HideInInspector] public int numberOfFaces = 6;
     [HideInInspector] public FaceComponent[] faceComponentArray;
-    public bool isInUse;
-    private GameManager gameManager;
     public string diceColor;
-    public Vector2[] diceVectorArray;
     public string diceRarity;
-    //useless?
     public int chosenFaceIndex;
+    public Vector2[] diceVectorArray;
 
-
-    ///
+    [Header("State")]
+    public bool isInUse;
     public bool hasLanded;
+    private GameManager gameManager;
     private Rigidbody diceRb;
     private int closestTileIndex;
+
+    [Header("Timers")]
     public int maxDisappearanceTimer;
     public float currentDisappearanceTimer;
+
+    [Header("Velocity Watcher")]
     public float velocityWatcher;
+    public List<GameObject> traveledTilesGO = new List<GameObject>();
+
     public float VelocityWatcher
     {
         get { return velocityWatcher; }
@@ -31,71 +36,71 @@ public class RollingDiceData : MonoBehaviour
         {
             velocityWatcher = value;
 
-            if (value <= 0.2f)
+            if (value <= 0.1f)
             {
                 GetClosestHexTile();
+                GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())];
                 if (gameManager.onlyReplacesClosestTile)
                 {
-                    UpdateSingleHex(traveledTilesGO[closestTileIndex], gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+                    UpdateSingleHex(traveledTilesGO[closestTileIndex], newHexPrefab);
                 }
-
                 else
                 {
-
-                    UpdateTraveledHexes(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
+                    UpdateTraveledHexes(newHexPrefab);
                 }
+
+                Debug.Log("DESTROY BY DEFAULT");
+                Destroy(gameObject);
             }
-            Debug.Log("DESTROY BY DEFAULT");
-            Destroy(gameObject);
         }
     }
-    public List<GameObject> traveledTilesGO = new List<GameObject>();
 
     void Start()
     {
+        Initialize();
+    }
+
+    void Update()
+    {
+        HandleDisappearanceTimer();
+        //if (hasLanded)
+        //{
+        //    VelocityWatcher = diceRb.linearVelocity.magnitude;
+        //}
+    }
+
+    private void Initialize()
+    {
         gameManager = transform.parent.GetComponent<GameManager>();
         diceRb = GetComponent<Rigidbody>();
+        maxDisappearanceTimer = gameManager.diceMaxDisappearanceTimer;
+        currentDisappearanceTimer = maxDisappearanceTimer;
+
         faceComponentArray = new FaceComponent[numberOfFaces];
         for (int i = 0; i < numberOfFaces; i++)
         {
             faceComponentArray[i] = transform.GetChild(i).GetComponent<FaceComponent>();
         }
+
         isInUse = true;
-        maxDisappearanceTimer = gameManager.diceMaxDisappearanceTimer;
-        currentDisappearanceTimer = maxDisappearanceTimer;
-        //InitiateVanillaDice();
-
-
     }
 
-    private void Update()
+    private void HandleDisappearanceTimer()
     {
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    GetClosestHexTile();
-        //    //Debug.Log(GetChosenFace());
-        //    //Debug.Log(Array.IndexOf(gameManager.tileTypes,GetChosenFace()));
-        //    //Debug.Log(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())].name);
-        //    //UpdateSingleHex(traveledTilesGO[closestTileIndex], gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
-        //    UpdateTraveledHexes(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())]);
-        //    Destroy(gameObject);
-        //    //CreateBiomeFromDice();
-        //}
-
-        if (hasLanded)
+        if (hasLanded && diceRb.linearVelocity.magnitude <= 0.1f)
         {
             currentDisappearanceTimer -= Time.deltaTime;
-        }
-        if (currentDisappearanceTimer <= 0 && hasLanded)
-        {
-            if (traveledTilesGO.Count == 0)
+
+            if (currentDisappearanceTimer <= 0)
             {
-                Debug.Log("EARLY DESTROY");
-                Destroy(gameObject);
-                return;
+                if (traveledTilesGO.Count == 0)
+                {
+                    Debug.Log("EARLY DESTROY");
+                    Destroy(gameObject);
+                    return;
+                }
+                VelocityWatcher = diceRb.linearVelocity.magnitude;
             }
-            hasLanded = false;
-            VelocityWatcher = diceRb.linearVelocity.magnitude;
         }
     }
 
@@ -113,46 +118,42 @@ public class RollingDiceData : MonoBehaviour
         {
             return;
         }
+
         Vector3Int hexPosition = hexToBeChanged.GetComponent<GridCoordinates>().cellPosition;
-        //Debug.Log("Hex Coordinates:" + hexPosition);
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.parent);
         newHex.transform.position = hexToBeChanged.transform.position;
+
         GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
         newGridCoordinates.tiletype = gameManager.chosenTileType;
         newGridCoordinates.cellPosition = hexPosition;
-        //newGridCoordinates.currentPrefab = gameManager.chosenPrefab;
+
         Destroy(hexToBeChanged.gameObject);
     }
+
     private void GetClosestHexTile()
     {
-        float shortestTileDistance = 10f;
-        int closestIndex = 0;
+        float shortestTileDistance = float.MaxValue;
+
         for (int i = 0; i < traveledTilesGO.Count; i++)
         {
             GameObject tile = traveledTilesGO[i];
             if (tile != null)
             {
                 float tileDistance = Vector3.Distance(transform.position, tile.transform.position);
-                //Debug.Log(tile.name + " is at " + tileDistance);
                 if (tileDistance < shortestTileDistance)
                 {
                     shortestTileDistance = tileDistance;
-                    closestIndex = i;
+                    closestTileIndex = i;
                 }
             }
         }
-        closestTileIndex = closestIndex;
-        //Debug.Log($"{traveledTilesGO[closestTileIndex].name} is at the closest");
     }
 
-    private void CreateBiomeFromDice()
-    {
-        //isStopped = true;
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Untagged"))
         {
+            Debug.Log("HIT A COLLIDER " + collision.collider.name);
             return;
         }
 
@@ -160,20 +161,10 @@ public class RollingDiceData : MonoBehaviour
 
         string tileType = collision.collider.GetComponent<GridCoordinates>().tiletype;
 
-        //mountain
-        if (tileType == gameManager.tileTypes[0])
+        if (tileType == gameManager.tileTypes[0]) // mountain
         {
-            Vector3 diceVelocity = diceRb.linearVelocity;
-            diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
-
+            ApplyMountainEffect();
         }
-        //forest
-        //if (tileType == gameManager.tileTypes[2])
-        //{
-        //    Vector3 diceVelocity = diceRb.linearVelocity;
-        //    diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
-        //}
-        
 
         if (!traveledTilesGO.Contains(collision.gameObject))
         {
@@ -185,30 +176,28 @@ public class RollingDiceData : MonoBehaviour
         }
     }
 
+    private void ApplyMountainEffect()
+    {
+        Vector3 diceVelocity = diceRb.linearVelocity;
+        diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
+    }
+
     private string GetChosenFace()
     {
         float[] vectorDotResultArray = new float[numberOfFaces];
-        float closestVectorDot = 0;
+        float closestVectorDot = float.MinValue;
         int closestIndex = 0;
 
         for (int i = 0; i < numberOfFaces; i++)
         {
-            // /!\ /!\ /!\ AYMERIC A CHANGER LE TRANSFORM.UP EN TRANSFORM.FORWARD /!\ /!\ /!\
-            // Produit scalaire entre le vector.up de chaque face et Vector3.up
             vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
-            //Debug.Log(vectorDotResultArray[i]);
-            // Garde la face qui a son vecteur le plus vertical
-            if (vectorDotResultArray[i] >= closestVectorDot)
+            if (vectorDotResultArray[i] > closestVectorDot)
             {
-                //Debug.Log("new index detected " + i);
                 closestVectorDot = vectorDotResultArray[i];
                 closestIndex = i;
             }
         }
-        //chosenFaceIndex = closestIndex;
-        int chosenIndex = Array.IndexOf(vectorDotResultArray, vectorDotResultArray.Max());
-        return transform.GetChild(chosenIndex).GetComponent<FaceComponent>().faceType;
+
+        return transform.GetChild(closestIndex).GetComponent<FaceComponent>().faceType;
     }
-
-
 }

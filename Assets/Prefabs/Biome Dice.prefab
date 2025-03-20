@@ -706,13 +706,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfFaces: 6
   faceComponentArray: []
-  isInUse: 0
   diceColor: 
-  diceVectorArray: []
   diceRarity: 
   chosenFaceIndex: 0
+  diceVectorArray: []
+  isInUse: 0
   hasLanded: 0
-  maxDisappearanceTimer: 2
+  maxDisappearanceTimer: 1
   currentDisappearanceTimer: 0
   velocityWatcher: 0
   traveledTilesGO: []

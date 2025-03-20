@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -228,6 +236,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -507,6 +523,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (65)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -782,6 +806,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -968,6 +1000,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1025,6 +1065,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (60)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1082,6 +1130,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1139,6 +1195,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (66)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1539,6 +1603,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1601,6 +1673,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1658,6 +1738,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (72)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1715,6 +1803,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (73)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1772,6 +1868,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1797,7 +1901,7 @@ GameObject:
   m_Layer: 2
   m_Name: Plane (4)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1943,6 +2047,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2000,6 +2112,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (62)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2062,6 +2182,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2119,6 +2247,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2176,6 +2312,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (76)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2190,6 +2334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 293149565}
+  - component: {fileID: 293149566}
   - component: {fileID: 293149564}
   - component: {fileID: 293149563}
   - component: {fileID: 293149562}
@@ -2285,6 +2430,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &293149566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293149561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0fba3656d7ad34484fdd12a7ec00f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1441868373}
 --- !u!1 &294849283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2757,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2782,6 +2948,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2802,7 +2976,7 @@ GameObject:
   m_Layer: 2
   m_Name: Plane (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2953,6 +3127,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3010,6 +3192,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3346,6 +3536,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3403,6 +3601,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3465,6 +3671,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3527,6 +3741,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3579,6 +3801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSensitivity: 1
   verticalSensitivity: 1
+  rotationSpeed: 0.2
   startingRotation: {x: 0, y: 0, z: 0}
   startingCamRotation: {x: 50, y: 0, z: 0}
 --- !u!4 &532171754 stripped
@@ -3765,6 +3988,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3832,6 +4063,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (67)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4025,6 +4264,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4215,6 +4462,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4402,6 +4657,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4576,7 +4839,7 @@ GameObject:
   m_Layer: 2
   m_Name: Plane (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5080,6 +5343,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (75)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5137,6 +5408,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5209,6 +5488,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5271,6 +5558,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5495,6 +5790,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5557,6 +5860,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6011,6 +6322,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (51)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6207,6 +6526,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6264,6 +6591,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6416,6 +6751,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6473,6 +6816,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6530,6 +6881,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (71)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6587,6 +6946,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6644,6 +7011,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (64)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6968,6 +7343,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7151,6 +7534,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7464,6 +7855,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7531,6 +7930,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7729,6 +8136,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7801,6 +8216,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7863,6 +8286,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8178,6 +8609,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (74)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8375,14 +8814,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9d212a56b60d9a24687897dca5edffa9, type: 2}
   - {fileID: 2100000, guid: a31f149385defe64ca8bb2f158efdd7c, type: 2}
   - {fileID: 2100000, guid: baa0b6ffca1d3af448ec56da7b9e3d16, type: 2}
-  diceMaxDisappearanceTimer: 3
+  diceMaxDisappearanceTimer: 1
   onlyReplacesClosestTile: 0
   dicesCanReplaceAllHexes: 0
   debugUIGameObject: {fileID: 121071784}
-  mountain: 0
-  lake: 0
-  forest: 0
-  plain: 0
   debugUI: 0
   chosenPrefab: {fileID: 0}
   typeBools: 
@@ -8468,6 +8903,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8530,6 +8973,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (68)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8796,6 +9247,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9112,6 +9571,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (63)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9312,6 +9779,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9495,6 +9970,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9552,6 +10035,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (59)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9725,6 +10216,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9904,6 +10403,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9961,6 +10468,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10007,8 +10522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManagerGO: {fileID: 1441868372}
   diceToSpawn: {fileID: 6584360862380582654, guid: 93cb83f6212c35647b002d98184a9074, type: 3}
-  diceSize: 100
   diceSlider: {fileID: 2018882530}
+  diceSize: 100
   minSize: 25
   maxSize: 150
   movementSpeed: 5
@@ -10083,6 +10598,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (69)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10140,6 +10663,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10202,6 +10733,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10401,6 +10940,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (61)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10458,6 +11005,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (70)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10520,6 +11075,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10818,6 +11381,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10880,6 +11451,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10900,7 +11479,7 @@ GameObject:
   m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11051,6 +11630,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11108,6 +11695,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11509,6 +12104,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (57)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11534,7 +12137,7 @@ GameObject:
   m_Layer: 2
   m_Name: Plane (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11705,6 +12308,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12011,6 +12622,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12068,6 +12687,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: diceSpawner
+      value: 
+      objectReference: {fileID: 1826404928}
+    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1441868373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
