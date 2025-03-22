@@ -3816,7 +3816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSensitivity: 1
   verticalSensitivity: 1
-  rotationSpeed: 0.2
+  rotationSpeed: 1
   startingRotation: {x: 0, y: 0, z: 0}
   startingCamRotation: {x: 50, y: 0, z: 0}
 --- !u!4 &532171754 stripped

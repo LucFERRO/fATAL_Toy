@@ -25,7 +25,7 @@ public class CameraControls : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         movement = -Input.GetAxisRaw("Horizontal");
         //xMovement = Input.GetAxisRaw("Mouse X") * horizontalSensitivity;
