@@ -4,7 +4,7 @@ public class HexElevation : MonoBehaviour
 {
     public float elevationStep = 3f; // difference between highs and lows
     public float terrainScale = 5f; // level of details
-    public bool isElevationRounded;
+    [Range(0,20)] public int elevationRoundNumber;
     private float hexHeight;
 
     public Transform[] gridCells;
@@ -37,12 +37,11 @@ public class HexElevation : MonoBehaviour
             float perlinY = (gridCellsCoords[i].cellPosition.z / terrainScale) + perlinOffsetY;
 
 
-            if (isElevationRounded)
+            if (elevationRoundNumber > 0)
             {
                 hexHeight = Mathf.PerlinNoise(perlinX, perlinY);
                 hexHeight = RoundedElevation(hexHeight);
             }
-
             else
             {
                 hexHeight = Mathf.PerlinNoise(perlinX, perlinY) * elevationStep;
@@ -51,20 +50,25 @@ public class HexElevation : MonoBehaviour
             gridCells[i].position = new Vector3(gridCells[i].position.x, hexHeight, gridCells[i].position.z);
         }
     }
-
+    private float[] CreateRoundArray(int partNumber)
+    {
+        float[] roundArray = new float[partNumber+1];
+        for (int i = 0; i < partNumber+1; i++)
+        {
+            roundArray[i] = (float)i / partNumber;
+        }
+        return roundArray;
+    }
     private float RoundedElevation(float elevation)
     {
-        if (elevation >= 0f && elevation <= 0.33f)
+        float[] roundArray = CreateRoundArray(elevationRoundNumber);
+
+        for (int i = 0; i < elevationRoundNumber; i++)
         {
-            elevation = 0.33f;
-        }
-        else if (elevation > 0.33f && elevation <= 0.66f)
-        {
-            elevation = 0.66f;
-        }
-        else
-        {
-            elevation = 0.99f;
+            if (elevation > roundArray[i] && elevation < roundArray[i + 1])
+            {
+                elevation = roundArray[i];
+            }
         }
         return elevation;
     }
