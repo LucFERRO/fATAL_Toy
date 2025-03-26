@@ -8658,6 +8658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elevationStep: 3
   terrainScale: 5
+  isElevationRounded: 0
   gridCells: []
   gridCellsCoords: []
   gridObjects: []

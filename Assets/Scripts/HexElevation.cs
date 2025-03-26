@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class HexElevation : MonoBehaviour
 {
-    public float elevationStep = 10f;  // Amplitude des hauteurs
-    public float terrainScale = 1f; // Facteur de normalisation du Perlin Noise
+    public float elevationStep = 3f; // difference between highs and lows
+    public float terrainScale = 5f; // level of details
+    public bool isElevationRounded;
+    private float hexHeight;
+
     public Transform[] gridCells;
     public GridCoordinates[] gridCellsCoords;
     public GameObject[] gridObjects;
+
     private float perlinOffsetX;
     private float perlinOffsetY;
 
@@ -27,15 +31,41 @@ public class HexElevation : MonoBehaviour
             gridCells[i] = gridObjects[i].transform;
         }
 
-        // Génération des hauteurs avec Perlin Noise
         for (int i = 0; i < gridCells.Length; i++)
         {
             float perlinX = (gridCellsCoords[i].cellPosition.x / terrainScale) + perlinOffsetX;
             float perlinY = (gridCellsCoords[i].cellPosition.z / terrainScale) + perlinOffsetY;
 
-            float hexHeight = Mathf.PerlinNoise(perlinX, perlinY) * elevationStep;  // Hauteur basée sur Perlin Noise
+
+            if (isElevationRounded)
+            {
+                hexHeight = Mathf.PerlinNoise(perlinX, perlinY);
+                hexHeight = RoundedElevation(hexHeight);
+            }
+
+            else
+            {
+                hexHeight = Mathf.PerlinNoise(perlinX, perlinY) * elevationStep;
+            }
 
             gridCells[i].position = new Vector3(gridCells[i].position.x, hexHeight, gridCells[i].position.z);
         }
+    }
+
+    private float RoundedElevation(float elevation)
+    {
+        if (elevation >= 0f && elevation <= 0.33f)
+        {
+            elevation = 0.33f;
+        }
+        else if (elevation > 0.33f && elevation <= 0.66f)
+        {
+            elevation = 0.66f;
+        }
+        else
+        {
+            elevation = 0.99f;
+        }
+        return elevation;
     }
 }
