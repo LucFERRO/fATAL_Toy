@@ -18,15 +18,15 @@ public class GridCoordinates : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            GetNeighbourTiles();
+            GetNeighbourTiles(cellPosition.x == 0, cellPosition.x == 8, cellPosition.z == 0, cellPosition.z == 8);
         }
     }
 
-    private void GetNeighbourTiles()
+    private void GetNeighbourTiles(bool isLeft, bool isRight, bool isBot, bool isTop)
     {
-        for (int i = -1; i < 2; i += 2)
+        for (int i = (isLeft ? 1 : -1); i < (isRight ? 1 : 2); i += 2)
         {
-            for (int j = -1; j < 2; j++)
+            for (int j = (isBot ? 0 : -1); j < (isTop ? 1 : 2); j++)
             {
                 GetTileAtCoordinates(new Vector3Int(cellPosition.x + i, cellPosition.y, cellPosition.z + j));
             }
@@ -42,10 +42,10 @@ public class GridCoordinates : MonoBehaviour
         RaycastHit hit;
 
         Physics.Raycast(ray, out hit);
-        if (hit.collider == null)
-        {
-            return;
-        }
+        //if (hit.collider == null)
+        //{
+        //    return;
+        //}
         foundObject = hit.collider.gameObject;
         Debug.Log(foundObject.name);
         return;
