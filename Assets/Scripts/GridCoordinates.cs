@@ -18,17 +18,22 @@ public class GridCoordinates : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            for (int i = -1; i < 2; i += 2)
+            GetNeighbourTiles();
+        }
+    }
+
+    private void GetNeighbourTiles()
+    {
+        for (int i = -1; i < 2; i += 2)
+        {
+            for (int j = -1; j < 2; j++)
             {
-                for (int j = -1; j < 2; j++)
-                {
-                    FindNeighbour(new Vector3Int(cellPosition.x + i, cellPosition.y, cellPosition.z + j));
-                }
+                GetTileAtCoordinates(new Vector3Int(cellPosition.x + i, cellPosition.y, cellPosition.z + j));
             }
         }
     }
 
-    private void FindNeighbour(Vector3Int cellCoordinates)
+    private void GetTileAtCoordinates(Vector3Int cellCoordinates)
     {
         Vector3 coordinates = grid.CellToWorld(cellCoordinates);
         coordinates.y += 10;
