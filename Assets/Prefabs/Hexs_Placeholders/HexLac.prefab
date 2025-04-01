@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPosition: {x: 0, y: 0, z: 0}
-  tiletype: 
+  tiletype: lake
   currentPrefab: {fileID: 0}
 --- !u!114 &-5495457399829926535
 MonoBehaviour:

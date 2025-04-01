@@ -8980,7 +8980,7 @@ MonoBehaviour:
   tilePrefabs:
   - {fileID: 3838344401963516737, guid: af084c7fb9fd91046ac32dbdf7f9b975, type: 3}
   - {fileID: 2159603174663806685, guid: c5e3abba24b3df74ab11a5d5c7ae5b73, type: 3}
-  - {fileID: 7866550637592084891, guid: 432b3f823c134fd4c8566ca3c9d20034, type: 3}
+  - {fileID: 2816769562290278656, guid: a8586f0c31a29ae4ca1d3fd54358264f, type: 3}
   - {fileID: 6815776892136139388, guid: aa672b04b880532468b4de836497591d, type: 3}
   diceFaces:
   - {fileID: 1688753790}
