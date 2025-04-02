@@ -124,7 +124,7 @@ public class RollingDiceData : MonoBehaviour
         newHex.transform.position = hexToBeChanged.transform.position;
 
         GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
-        newGridCoordinates.tiletype = gameManager.chosenTileType;
+        newGridCoordinates.tiletype = GetChosenFace();
         newGridCoordinates.cellPosition = hexPosition;
 
         Destroy(hexToBeChanged.gameObject);

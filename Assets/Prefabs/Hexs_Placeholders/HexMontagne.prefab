@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPosition: {x: 0, y: 0, z: 0}
-  tiletype: 
+  tiletype: mountain
   currentPrefab: {fileID: 0}
 --- !u!114 &4405619146540109355
 MonoBehaviour:

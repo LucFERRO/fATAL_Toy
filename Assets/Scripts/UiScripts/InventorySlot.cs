@@ -5,10 +5,24 @@ using JetBrains.Annotations;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
-
+    private DraggableItem draggableItem;
+    private Image inventoryImage;
+    private Image biomeImage;
     private void Start()
     {
+        draggableItem = transform.GetChild(0).GetComponent<DraggableItem>();
+        inventoryImage = GetComponent<Image>();
+        biomeImage = transform.GetChild(0).GetComponent<Image>();
+        if (!draggableItem.isOnDice)
+        {
+            EnableInventorySlot();
+        }
+    }
 
+    public void EnableInventorySlot()
+    {
+        inventoryImage.enabled = draggableItem.isAvailable;
+        biomeImage.enabled = draggableItem.isAvailable;
     }
 
     public void OnDrop(PointerEventData eventData)
