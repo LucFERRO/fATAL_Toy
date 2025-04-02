@@ -34,7 +34,7 @@ public class EnableCollider : MonoBehaviour
 
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
         hasEntered = true;
     }

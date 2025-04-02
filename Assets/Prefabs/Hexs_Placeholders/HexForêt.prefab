@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5895089976327263364}
   - component: {fileID: 8515012016403062862}
   - component: {fileID: 6239843950017176681}
+  - component: {fileID: 1421866521626232479}
   m_Layer: 0
   m_Name: "HexFor\xEAt"
   m_TagString: Hex
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497be776a0ef79d4b83e0e10650fbe21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugColors: []
   cellPosition: {x: 0, y: 0, z: 0}
   tiletype: forest
   currentPrefab: {fileID: 0}
@@ -138,3 +140,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5500308020991878382, guid: f1029bbf654b0a4489dc37cf5452da05, type: 3}
+--- !u!114 &1421866521626232479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866550637592084891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}

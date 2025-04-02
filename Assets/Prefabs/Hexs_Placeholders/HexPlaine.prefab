@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6488484489661013761}
   - component: {fileID: -421788423070726331}
   - component: {fileID: -6338247439042942806}
+  - component: {fileID: -8987876831711945426}
   m_Layer: 0
   m_Name: HexPlaine
   m_TagString: Hex
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497be776a0ef79d4b83e0e10650fbe21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugColors: []
   cellPosition: {x: 0, y: 0, z: 0}
   tiletype: plain
   currentPrefab: {fileID: 0}
@@ -138,3 +140,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6785822568837955140, guid: 7f5d1360fe2462b43a3cfdd45cc0bf1c, type: 3}
+--- !u!114 &-8987876831711945426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6815776892136139388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}

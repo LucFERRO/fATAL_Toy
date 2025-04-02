@@ -173,6 +173,7 @@ public class RollingDiceData : MonoBehaviour
                 return;
             }
             traveledTilesGO.Add(collision.gameObject);
+            collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
         }
     }
 
