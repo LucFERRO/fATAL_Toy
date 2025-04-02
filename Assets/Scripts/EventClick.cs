@@ -25,7 +25,7 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position);
             diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
         }
         if (Input.GetMouseButtonDown(1))
@@ -49,7 +49,7 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         Vector3Int hexPosition = gridCoordinates.cellPosition;
-        Debug.Log("Hex Coordinates:" + hexPosition);
+        //Debug.Log("Hex Coordinates:" + hexPosition);
 
         gridCoordinates.tiletype = gameManager.chosenTileType;
         gridCoordinates.currentPrefab = gameManager.chosenPrefab;
