@@ -10,6 +10,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Transform parentAfterDrag;
     public int biomeId;
     public bool isOnDice;
+    public bool isAvailable;
 
     private void Start()
     {

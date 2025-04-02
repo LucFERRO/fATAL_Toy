@@ -101,6 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497be776a0ef79d4b83e0e10650fbe21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugColors:
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 0, g: 1, b: 0.04104519, a: 0}
+  - {r: 1, g: 0.9251674, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0.875638, a: 0}
+  - {r: 0, g: 0.033645153, b: 1, a: 0}
   cellPosition: {x: 0, y: 0, z: 0}
   tiletype: empty
   currentPrefab: {fileID: 0}
