@@ -10908,10 +10908,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9d212a56b60d9a24687897dca5edffa9, type: 2}
   - {fileID: 2100000, guid: a31f149385defe64ca8bb2f158efdd7c, type: 2}
   - {fileID: 2100000, guid: baa0b6ffca1d3af448ec56da7b9e3d16, type: 2}
-  - {fileID: 2100000, guid: 0798c219183dc714d9835b1955a532fc, type: 2}
-  - {fileID: 2100000, guid: c89debc3ff3e6674ea88ac66f652a750, type: 2}
+  - {fileID: 2100000, guid: 9d212a56b60d9a24687897dca5edffa9, type: 2}
+  - {fileID: 2100000, guid: a31f149385defe64ca8bb2f158efdd7c, type: 2}
   - {fileID: 2100000, guid: baa0b6ffca1d3af448ec56da7b9e3d16, type: 2}
-  - {fileID: 2100000, guid: 0798c219183dc714d9835b1955a532fc, type: 2}
+  - {fileID: 2100000, guid: 9d212a56b60d9a24687897dca5edffa9, type: 2}
   - {fileID: 2100000, guid: baa0b6ffca1d3af448ec56da7b9e3d16, type: 2}
   - {fileID: 2100000, guid: baa0b6ffca1d3af448ec56da7b9e3d16, type: 2}
   diceMaxDisappearanceTimer: 1
