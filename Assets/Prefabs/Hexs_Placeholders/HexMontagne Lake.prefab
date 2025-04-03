@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8291450111539616793}
   - component: {fileID: 4405619146540109355}
   - component: {fileID: 5310480877418792004}
+  - component: {fileID: -5098377521689203832}
   m_Layer: 0
   m_Name: HexMontagne Lake
   m_TagString: Hex
@@ -139,3 +140,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 853119050311073872, guid: 526bfac537157bc4bb0c147adb79741e, type: 3}
+--- !u!114 &-5098377521689203832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838344401963516737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}

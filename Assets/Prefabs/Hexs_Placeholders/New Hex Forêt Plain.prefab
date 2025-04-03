@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: -6907554291734340256}
   - component: {fileID: 4330158875058532565}
   - component: {fileID: 649467818658688399}
+  - component: {fileID: 5427392120805476674}
   m_Layer: 0
   m_Name: "New Hex For\xEAt Plain"
-  m_TagString: Untagged
+  m_TagString: Hex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +140,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8250032440878711222, guid: 3617aef894d7b5e43bf74479b1479410, type: 3}
+--- !u!114 &5427392120805476674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816769562290278656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
