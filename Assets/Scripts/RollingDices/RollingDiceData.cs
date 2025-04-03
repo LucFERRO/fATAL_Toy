@@ -63,10 +63,15 @@ public class RollingDiceData : MonoBehaviour
     void Update()
     {
         HandleDisappearanceTimer();
-        //if (hasLanded)
-        //{
-        //    VelocityWatcher = diceRb.linearVelocity.magnitude;
-        //}
+        HandleSelfDestruct();
+    }
+
+    private void HandleSelfDestruct()
+    {
+        if (transform.position.y <= -5)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Initialize()
