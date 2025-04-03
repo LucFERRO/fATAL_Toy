@@ -96,6 +96,7 @@ public class PhysicalDiceSpawner : MonoBehaviour
 
             faceComponent.faceType = gameManager.tileTypes[biomeId];
             meshRenderer.material = gameManager.faceMaterials[biomeId];
+            //test
         }
     }
 
