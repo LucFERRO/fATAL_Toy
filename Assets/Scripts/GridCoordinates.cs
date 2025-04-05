@@ -54,81 +54,77 @@ public class GridCoordinates : MonoBehaviour
         List<GameObject> neighbourTiles = new List<GameObject>();
         //if (isEvenColumn)
         //{
-        //    for (int i = (isLeft ? 1 : -1); i < (isRight ? 1 : 2); i++)
+        //    if (!isLeft)
         //    {
-        //        for (int j = (isBot ? 0 : -1); j < (isTop ? 1 : 2); j++)
+        //        neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x - 1, cellPosition.y, cellPosition.z), 0));
+        //        if (!isTop)
         //        {
-        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + i, cellPosition.y, cellPosition.z + j)));
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
+        //        }
+        //        if (!isBot)
+        //        {
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
+        //        }
+        //    }
+
+        //    if (!isRight)
+        //    {
+        //        if (!isTop)
+        //        {
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
+        //        }
+        //        neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z), 4));
+        //        if (!isBot)
+        //        {
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
         //        }
         //    }
         //}
         //else
         //{
-        //    for (int i = (isLeft ? 1 : 0); i < (isRight ? 1 : 2); i++)
+        //    if (!isLeft)
         //    {
-        //        for (int j = (isBot ? 0 : -1); j < (isTop ? 1 : 2); j++)
+        //        neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z), 0));
+
+        //        if (!isTop)
         //        {
-        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + i, cellPosition.y, cellPosition.z + j)));
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
+        //        }
+        //        if (!isBot)
+        //        {
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
+        //        }
+        //    }
+
+        //    if (!isRight)
+        //    {
+        //        if (!isTop)
+        //        {
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
+        //        }
+        //        neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 2, cellPosition.y, cellPosition.z), 4));
+        //        if (!isBot)
+        //        {
+        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
         //        }
         //    }
         //}
-        if (isEvenColumn)
+
+        if (!isLeft)
         {
-            if (!isLeft)
-            {
-                neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x - 1, cellPosition.y, cellPosition.z), 0));
-                if (!isTop)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
-                }
-                if (!isBot)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
-                }
-            }
-
-            if (!isRight)
-            {
-                if (!isTop)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
-                }
-                neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z), 4));
-                if (!isBot)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
-                }
-            }
+            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x - (isEvenColumn ? 1 : 0), cellPosition.y, cellPosition.z), 0));
+            if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
+            if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
         }
-        else
+
+        if (!isRight)
         {
-            if (!isLeft)
-            {
-                neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z), 0));
-
-                if (!isTop)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
-                }
-                if (!isBot)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
-                }
-            }
-
-            if (!isRight)
-            {
-                if (!isTop)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
-                }
-                neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 2, cellPosition.y, cellPosition.z), 4));
-                if (!isBot)
-                {
-                    neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
-                }
-            }
+            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + (isEvenColumn ? 1 : 2), cellPosition.y, cellPosition.z), 4));
+            if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
+            if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
         }
+
+
         return neighbourTiles;
     }
 
