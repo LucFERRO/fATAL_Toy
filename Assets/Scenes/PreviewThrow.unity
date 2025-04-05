@@ -10929,12 +10929,13 @@ MonoBehaviour:
   - {fileID: 2816769562290278656, guid: c271eb61f5d2b214ca0d589ca73cfcf6, type: 3}
   - {fileID: 2159603174663806685, guid: a054a45d4b4668940981e7df306480be, type: 3}
   diceFaces:
-  - {fileID: 1688753790}
-  - {fileID: 2054163511}
   - {fileID: 904750188}
   - {fileID: 589662818}
+  - {fileID: 1688753790}
+  - {fileID: 2054163511}
   - {fileID: 1851081387}
   - {fileID: 1194646030}
+  baseDiceFaceColor: {r: 0, g: 0, b: 0, a: 0}
   faceMaterials:
   - {fileID: 2100000, guid: 9ae5c99c2e047fa43b0dbb737dce4b09, type: 2}
   - {fileID: 2100000, guid: 9d212a56b60d9a24687897dca5edffa9, type: 2}

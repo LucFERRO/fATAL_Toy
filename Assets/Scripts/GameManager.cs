@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class DebugVariableHolder
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public string[] tileTypes;
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
+    public Color baseDiceFaceColor;
     public Material[] faceMaterials;
     [Header("Variations")]
     [Range(0,5)] public int diceMaxDisappearanceTimer = 1;
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
     {
         TypeBools = new bool[tileTypes.Length];
         ChooseTileToSpawn(0);
+        baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
     }
 
     public void ToggleDebugUI()
