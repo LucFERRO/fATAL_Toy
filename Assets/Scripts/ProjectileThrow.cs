@@ -4,11 +4,15 @@ using UnityEngine.InputSystem;
 public class ProjectileThrow : MonoBehaviour
 {
     TrajectoryPreview trajectoryPreview;
+    Camera cam;
+
+    [SerializeField]
+    PhysicalDiceSpawner diceSpawner;
 
     [SerializeField]
     Rigidbody objectToThrow;
 
-    [SerializeField, Range(0.0f, 50.0f)]
+    [SerializeField, Range(0.0f, 200.0f)]
     float force;
 
     [SerializeField]
@@ -19,9 +23,12 @@ public class ProjectileThrow : MonoBehaviour
     void OnEnable()
     {
         trajectoryPreview = GetComponent<TrajectoryPreview>();
+        cam = Camera.main;
 
         if (StartPosition == null)
+        {
             StartPosition = transform;
+        }
 
         fire.Enable();
         fire.performed += ThrowObject;
@@ -53,7 +60,14 @@ public class ProjectileThrow : MonoBehaviour
 
     void ThrowObject(InputAction.CallbackContext ctx)
     {
-        Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
-        thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
+        //Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
+        //thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
+        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            Debug.Log(hit.collider.name+" "+hit.collider.transform.position);
+            Debug.Log("CAM: "+cam.transform.position);
+            diceSpawner.SpawnDice(hit.collider.gameObject.transform.position - cam.transform.position, cam.transform);
+        }
     }
 }

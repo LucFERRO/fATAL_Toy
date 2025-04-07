@@ -3,7 +3,9 @@ using UnityEngine.EventSystems;
 
 public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
     private GameManager gameManager;
+    [SerializeField]
     private PhysicalDiceSpawner diceSpawner;
     private Camera cam;
     private GridCoordinates gridCoordinates;
@@ -15,19 +17,25 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     private void InitializeComponents()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
+        if (gameManager == null)
+        {
+            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        }
+        if (diceSpawner == null)
+        {
+            diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
+        }
         cam = Camera.main;
         gridCoordinates = GetComponent<GridCoordinates>();
     }
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //Debug.Log(transform.position);
-            diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    //Debug.Log(transform.position);
+        //    diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
+        //}
         if (Input.GetMouseButtonDown(1))
         {
             UpdateHex();

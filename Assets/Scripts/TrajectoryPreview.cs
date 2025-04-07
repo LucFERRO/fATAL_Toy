@@ -16,8 +16,8 @@ public class TrajectoryPreview : MonoBehaviour
 
     private void Start()
     {
-        if (trajectoryLine == null)
-            trajectoryLine = GetComponent<LineRenderer>();
+
+        trajectoryLine = GetComponent<LineRenderer>();
 
         SetTrajectoryVisible(true);
     }

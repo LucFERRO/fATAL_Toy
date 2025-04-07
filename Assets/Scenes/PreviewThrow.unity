@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -239,7 +239,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -531,7 +531,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -814,7 +814,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -1040,7 +1040,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -1105,7 +1105,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -1170,7 +1170,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -1235,7 +1235,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -1882,7 +1882,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2073,7 +2073,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2138,7 +2138,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2203,7 +2203,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2517,7 +2517,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2696,7 +2696,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2761,7 +2761,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2831,7 +2831,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2896,7 +2896,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -2961,7 +2961,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -3408,7 +3408,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -3609,7 +3609,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -3788,7 +3788,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -3853,7 +3853,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -4332,7 +4332,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -4402,7 +4402,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -4593,7 +4593,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -4663,7 +4663,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -4917,7 +4917,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -4997,7 +4997,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -5198,7 +5198,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -5396,7 +5396,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -5599,7 +5599,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -6067,7 +6067,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -6714,7 +6714,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -6810,7 +6810,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -7011,7 +7011,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -7081,7 +7081,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -7323,7 +7323,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -7393,7 +7393,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -7854,7 +7854,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -8058,7 +8058,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -8160,7 +8160,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -8562,7 +8562,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -8627,7 +8627,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -8692,7 +8692,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -8757,7 +8757,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -8822,7 +8822,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -9167,7 +9167,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -9366,7 +9366,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -9696,7 +9696,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -9761,7 +9761,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -9969,7 +9969,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -10300,7 +10300,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -10516,7 +10516,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -10726,7 +10726,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -11039,7 +11039,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -11109,7 +11109,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -11384,7 +11384,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -11718,7 +11718,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -11934,7 +11934,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -12133,7 +12133,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -12198,7 +12198,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -12379,7 +12379,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -12530,7 +12530,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -12595,7 +12595,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -12830,7 +12830,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -12895,7 +12895,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -13081,7 +13081,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -13248,6 +13248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e86a93972b6dc4485843d7e06e92f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diceSpawner: {fileID: 0}
   objectToThrow: {fileID: -3646177126015044755, guid: 93cb83f6212c35647b002d98184a9074, type: 3}
   force: 0
   StartPosition: {fileID: 1852280152}
@@ -13258,7 +13259,15 @@ MonoBehaviour:
     m_Id: 17e7e842-657e-4fcc-a3f8-857394bfbee2
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: adfb1177-0032-46f0-8ccb-52f096756c47
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fire
+      m_Flags: 0
     m_Flags: 0
 --- !u!114 &1852280155
 MonoBehaviour:
@@ -13332,7 +13341,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.102947235
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -13344,7 +13353,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -13369,7 +13378,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -13438,7 +13447,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -13503,7 +13512,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -13573,7 +13582,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -13889,7 +13898,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -13964,7 +13973,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -14226,7 +14235,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -14291,7 +14300,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -14834,7 +14843,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -15029,7 +15038,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
@@ -15094,7 +15103,7 @@ PrefabInstance:
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: diceSpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1826404928}
     - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
