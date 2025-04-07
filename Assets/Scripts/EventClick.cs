@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,6 +10,9 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private PhysicalDiceSpawner diceSpawner;
     private Camera cam;
     private GridCoordinates gridCoordinates;
+
+
+
 
     private void Start()
     {
@@ -31,16 +35,34 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     private void OnMouseOver()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    //Debug.Log(transform.position);
-        //    diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
+        }
         if (Input.GetMouseButtonDown(1))
+        {
+            ToggleLockTile();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             UpdateHex();
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log(GridCoordinates.currentLockedTiles);
+        }
     }
+
+    private void ToggleLockTile()
+    {
+        if (GridCoordinates.currentLockedTiles == gameManager.maxLockedTiles && !gridCoordinates.IsLocked)
+        {
+            return;
+        }
+        gridCoordinates.IsLocked = !gridCoordinates.IsLocked;
+        GetComponent<GlowingHexes>().glowMaterial = GetComponent<GlowingHexes>().lockedGlowMaterial;
+    }
+
     private void UpdateHex()
     {
         Vector3Int hexPosition = gridCoordinates.cellPosition;

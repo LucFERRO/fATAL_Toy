@@ -6,10 +6,7 @@ public class init : MonoBehaviour
 {
     // Start is called before the first frame update
     //Update 5 Février
-    void Start()
-    {
-        
-    }
+
 
     /*
      * debut semaine: rolls pour recolte
@@ -21,6 +18,6 @@ public class init : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

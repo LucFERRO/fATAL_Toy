@@ -10,7 +10,18 @@ public class GridCoordinates : MonoBehaviour
     public GameObject currentPrefab;
     private Grid grid;
     public Dictionary<string, int> neighbourTilesDictionnary = new();
-
+    static public int currentLockedTiles;
+    public bool isLocked;
+    public bool IsLocked
+    {
+        get { return isLocked; }
+        set
+        {
+            isLocked = value;
+            currentLockedTiles += value ? 1 : -1;
+            Debug.Log($"CHANGED ISLOCKED : CURRENTLOCKEDTILES VALUE {(value ? 1 : -1)} TO {currentLockedTiles}");
+        }
+    }
     void Start()
     {
         grid = transform.parent.GetComponent<Grid>();

@@ -6,8 +6,7 @@ public class ProjectileThrow : MonoBehaviour
     TrajectoryPreview trajectoryPreview;
     Camera cam;
 
-    [SerializeField]
-    PhysicalDiceSpawner diceSpawner;
+    private PhysicalDiceSpawner diceSpawner;
 
     [SerializeField]
     Rigidbody objectToThrow;
@@ -23,6 +22,10 @@ public class ProjectileThrow : MonoBehaviour
     void OnEnable()
     {
         trajectoryPreview = GetComponent<TrajectoryPreview>();
+        if (diceSpawner == null)
+        {
+            diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
+        }
         cam = Camera.main;
 
         if (StartPosition == null)
@@ -62,12 +65,12 @@ public class ProjectileThrow : MonoBehaviour
     {
         //Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
         //thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
-        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            Debug.Log(hit.collider.name+" "+hit.collider.transform.position);
-            Debug.Log("CAM: "+cam.transform.position);
-            diceSpawner.SpawnDice(hit.collider.gameObject.transform.position - cam.transform.position, cam.transform);
-        }
+        //Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        //if (Physics.Raycast(ray, out RaycastHit hit))
+        //{
+        //    Debug.Log(hit.collider.name+" "+hit.collider.transform.position);
+        //    Debug.Log("CAM: "+cam.transform.position);
+        //    diceSpawner.SpawnDice(hit.collider.gameObject.transform.position - cam.transform.position, cam.transform);
+        //}
     }
 }

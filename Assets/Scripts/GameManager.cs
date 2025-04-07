@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [Range(0,5)] public int diceMaxDisappearanceTimer = 1;
     public bool onlyReplacesClosestTile;
     public bool dicesCanReplaceAllHexes;
-
+    public int maxLockedTiles;
 
     [Header("Debug")]
     public GameObject debugUIGameObject;

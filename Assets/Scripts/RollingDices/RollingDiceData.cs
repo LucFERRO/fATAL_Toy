@@ -158,9 +158,8 @@ public class RollingDiceData : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Untagged"))
+        if (collision.collider.CompareTag("Untagged") )
         {
-            Debug.Log("HIT A COLLIDER " + collision.collider.name);
             return;
         }
 
