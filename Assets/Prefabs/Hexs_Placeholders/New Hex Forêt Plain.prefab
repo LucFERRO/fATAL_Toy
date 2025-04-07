@@ -71,8 +71,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugColors: []
   cellPosition: {x: 0, y: 0, z: 0}
-  tiletype: forest
+  tiletype: forestPlain
   currentPrefab: {fileID: 0}
+  comboThreshold: 4
+  majorTile: 
+  gameManager: {fileID: 0}
 --- !u!23 &4330158875058532565
 MeshRenderer:
   m_ObjectHideFlags: 0

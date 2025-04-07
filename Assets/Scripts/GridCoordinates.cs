@@ -10,14 +10,33 @@ public class GridCoordinates : MonoBehaviour
     public GameObject currentPrefab;
     private Grid grid;
     public Dictionary<string, int> neighbourTilesDictionnary = new();
+    public string majorTile;
+    public GameManager gameManager;
 
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         grid = transform.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
         //Debug.Log($"");
         //UpdateCurrentNeighbourTiles(GetNeighbourTiles(cellPosition.x == 0, cellPosition.x == 8, cellPosition.z == 0, cellPosition.z == 8));
     }
+
+
+    public string GetMajorTile()
+    {
+        foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
+        {
+            if (kvp.Value >= gameManager.comboThreshold)
+            {
+                majorTile = kvp.Key;
+            }
+        }
+
+        return majorTile;
+    }
+
+
 
     public void UpdateCurrentNeighbourTiles(List<GameObject> neighbourList)
     {
@@ -42,6 +61,7 @@ public class GridCoordinates : MonoBehaviour
         {
             Debug.Log($"{transform.name}: {cellPosition}");
             UpdateCurrentNeighbourTiles(GetNeighbourTiles(cellPosition.x == 0, cellPosition.x == 8, cellPosition.z == 0, cellPosition.z == 8, cellPosition.z % 2 == 0));
+            GetMajorTile();
             foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
             {
                 Debug.Log(kvp.Key + ": " + kvp.Value);
@@ -52,26 +72,7 @@ public class GridCoordinates : MonoBehaviour
     private List<GameObject> GetNeighbourTiles(bool isLeft, bool isRight, bool isBot, bool isTop, bool isEvenColumn)
     {
         List<GameObject> neighbourTiles = new List<GameObject>();
-        //if (isEvenColumn)
-        //{
-        //    for (int i = (isLeft ? 1 : -1); i < (isRight ? 1 : 2); i++)
-        //    {
-        //        for (int j = (isBot ? 0 : -1); j < (isTop ? 1 : 2); j++)
-        //        {
-        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + i, cellPosition.y, cellPosition.z + j)));
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    for (int i = (isLeft ? 1 : 0); i < (isRight ? 1 : 2); i++)
-        //    {
-        //        for (int j = (isBot ? 0 : -1); j < (isTop ? 1 : 2); j++)
-        //        {
-        //            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + i, cellPosition.y, cellPosition.z + j)));
-        //        }
-        //    }
-        //}
+
         if (isEvenColumn)
         {
             if (!isLeft)

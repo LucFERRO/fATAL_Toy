@@ -104,8 +104,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugColors: []
   cellPosition: {x: 0, y: 0, z: 0}
-  tiletype: mountain
+  tiletype: forestMountain
   currentPrefab: {fileID: 0}
+  comboThreshold: 4
+  majorTile: 
+  gameManager: {fileID: 0}
 --- !u!114 &4405619146540109355
 MonoBehaviour:
   m_ObjectHideFlags: 0

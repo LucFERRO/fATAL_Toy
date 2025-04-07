@@ -18,6 +18,7 @@ public class RollingDiceData : MonoBehaviour
     public bool isInUse;
     public bool hasLanded;
     private GameManager gameManager;
+    private EventClick eventClick;
     private Rigidbody diceRb;
     private int closestTileIndex;
 
@@ -47,6 +48,7 @@ public class RollingDiceData : MonoBehaviour
                 else
                 {
                     UpdateTraveledHexes(newHexPrefab);
+
                 }
 
                 Debug.Log("DESTROY BY DEFAULT");

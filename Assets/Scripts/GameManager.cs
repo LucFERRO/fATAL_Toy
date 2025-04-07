@@ -15,10 +15,15 @@ public class GameManager : MonoBehaviour
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
     public Material[] faceMaterials;
+
+    public Dictionary<int, string> baseTileDictionary = new();
+    public Dictionary<int, string> comboDictionary = new();
     [Header("Variations")]
     [Range(0,5)] public int diceMaxDisappearanceTimer = 1;
     public bool onlyReplacesClosestTile;
     public bool dicesCanReplaceAllHexes;
+    public int comboThreshold = 4;
+
 
 
     [Header("Debug")]
@@ -51,11 +56,44 @@ public class GameManager : MonoBehaviour
     {
         TypeBools = new bool[tileTypes.Length];
         ChooseTileToSpawn(0);
+        CreateBaseTileDictionary();
+        CreateComboTileDictionary();
     }
 
     public void ToggleDebugUI()
     {
         DebugUI = !DebugUI;
+    }
+
+    private void CreateBaseTileDictionary()
+    {
+        baseTileDictionary.Clear();
+
+        baseTileDictionary.Add(1, "mountain");
+        baseTileDictionary.Add(2, "lake");
+        baseTileDictionary.Add(3, "plain");
+        baseTileDictionary.Add(4, "forest");
+    }
+
+    private Dictionary<int, string> CreateComboTileDictionary()
+    {
+        comboDictionary = new Dictionary<int, string>();
+
+
+        foreach (KeyValuePair<int, string> kvp in baseTileDictionary)
+        {
+            foreach (KeyValuePair<int, string> kvp2 in baseTileDictionary)
+            {
+                int newKey = 10 * kvp.Key + kvp2.Key;
+                if (!baseTileDictionary.ContainsKey(newKey))
+                {
+                    comboDictionary.Add(newKey, kvp.Value + "_" + kvp2.Value);
+                }
+                Debug.Log(newKey + " " + kvp.Value + "_" + kvp2.Value);
+            }
+        }
+
+        return comboDictionary;
     }
 
     public void ChooseTileToSpawn(int tileTypeId)
