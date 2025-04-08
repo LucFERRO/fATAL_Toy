@@ -27,16 +27,19 @@ public class EventClick : MonoBehaviour, IPointerDownHandler
 
     private string GetComboTile()
     {
+
         int typeValue1 = 0;
         int typeValue2 = 0;
         int typeValue3 = 0;
 
+        Debug.Log("GetComboTile launched" + gameManager.baseTileDictionary.Count);
         foreach (KeyValuePair<int, string> kvp in gameManager.baseTileDictionary)
         {
+            Debug.Log("ENTERING THE BOUUCLE");
             if (kvp.Value == gridCoordinates.tiletype)
             {
                 typeValue1 = kvp.Key * 10;
-                Debug.Log(kvp.Key);
+                Debug.Log("Debug ligne 40" + kvp.Key);
             }
 
             if (kvp.Value == gridCoordinates.majorTile)
@@ -49,9 +52,10 @@ public class EventClick : MonoBehaviour, IPointerDownHandler
 
         Debug.Log(typeValue1 + "," + typeValue2);
         typeValue3 = typeValue1 + typeValue2;
+        Debug.Log("typeValue3 : " + typeValue3);
 
         gameManager.comboDictionary.TryGetValue(typeValue3, out string comboTile);
-        
+
         string[] types = comboTile.Split("_");
         string type1 = types[0];
         string type2 = types[1];
@@ -100,11 +104,14 @@ public class EventClick : MonoBehaviour, IPointerDownHandler
     {
         for (int i = 0; i < gameManager.tileTypes.Length; i++)
         {
+            // array.sort GetComboTile dans gameManager.tiletype
             if (gameManager.tileTypes[i] == GetComboTile())
             {
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
                 Debug.Log(gameManager.chosenPrefab);
                 UpdateHex();
+                gameManager.chosenPrefab = gameManager.tilePrefabs[0];
+                gameManager.chosenTileType = gameManager.tileTypes[0];
             }
         }
     }
@@ -140,9 +147,11 @@ public class EventClick : MonoBehaviour, IPointerDownHandler
 
     private void OnMouseOver()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T) && !transform.CompareTag("BaseHex"))
         {
             //Debug.Log(GetComboTile());
+            
+
             UpdateComboTile();
         }
 
@@ -165,7 +174,7 @@ public class EventClick : MonoBehaviour, IPointerDownHandler
         GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
         newGridCoordinates.tiletype = gameManager.chosenPrefab.GetComponent<GridCoordinates>().tiletype;
         newGridCoordinates.cellPosition = hexPosition;
-
+ 
         Destroy(gameObject);
     }
 

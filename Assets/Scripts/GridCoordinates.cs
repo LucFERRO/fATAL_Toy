@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class GridCoordinates : MonoBehaviour
@@ -25,17 +26,99 @@ public class GridCoordinates : MonoBehaviour
 
     public string GetMajorTile()
     {
+        Dictionary<string, int> neighbourSplitTypes = new Dictionary<string, int>();
         foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
         {
+            Debug.Log(kvp.Key);
+            if (Regex.IsMatch(kvp.Key, "(?<!^)(?=[A-Z])"))
+            {
+                string[] types = SplitAtUpperCase(kvp.Key).Split(" ");
+                Debug.Log("key needing split " + types.Length);
+                string type1 = types[1];
+                string type2 = FirstLetterToLower(types[2]);
+                Debug.Log($"Type 1 : {type1}");
+                Debug.Log($"Type 2 : {type2}");
+
+                if (!neighbourSplitTypes.ContainsKey(type1))
+                {
+                    neighbourSplitTypes.Add(type1, kvp.Value);
+                }
+                else
+                {
+                    neighbourSplitTypes[type1]+= kvp.Value;
+                }
+
+                //if (type1 == type2)
+                //{
+                //    return;
+                //}
+                //else
+                if (type1 != type2)
+                {
+                    if (!neighbourSplitTypes.ContainsKey(type2))
+                    {
+                        neighbourSplitTypes.Add(type2, kvp.Value);
+                    }
+                    else
+                    {
+                        neighbourSplitTypes[type2]+= kvp.Value;
+                    }
+                }
+
+            }
+            else
+            {
+                if (!neighbourSplitTypes.ContainsKey(kvp.Key))
+                {
+                    neighbourSplitTypes.Add(kvp.Key, kvp.Value);
+                }
+                else
+                {
+                    neighbourSplitTypes[kvp.Key]+= kvp.Value;
+                }
+            }
+
+        }
+        foreach (KeyValuePair<string, int> kvp in neighbourSplitTypes)
+        {
+            Debug.Log("Final types : " + kvp.Key + " " + kvp.Value);
             if (kvp.Value >= gameManager.comboThreshold)
             {
                 majorTile = kvp.Key;
             }
+            else
+            {
+                Debug.LogWarning("No major Tiles determined");
+            }
         }
-
         return majorTile;
     }
 
+    public string SplitAtUpperCase(string str)
+    {
+        string res = "";
+        string[] split = Regex.Split(str, @"(?<!^)(?=[A-Z])");
+        for (int i = 0; i < split.Length; i++)
+        {
+            res += " " + split[i];
+        }
+        return res;
+    }
+
+    public string FirstLetterToLower(string str)
+    {
+        if (str == null)
+        {
+            return null;
+        }
+
+        if (str.Length > 1)
+        {
+            return char.ToLower(str[0]) + str.Substring(1);
+        }
+
+        return str.ToLower();
+    }
 
 
     public void UpdateCurrentNeighbourTiles(List<GameObject> neighbourList)
