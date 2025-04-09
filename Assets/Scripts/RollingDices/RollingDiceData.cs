@@ -50,8 +50,6 @@ public class RollingDiceData : MonoBehaviour
                     UpdateTraveledHexes(newHexPrefab);
 
                 }
-
-                Debug.Log("DESTROY BY DEFAULT");
                 Destroy(gameObject);
             }
         }
@@ -159,19 +157,24 @@ public class RollingDiceData : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Untagged") || collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
+        if (collision.collider.CompareTag("Untagged"))
         {
             return;
         }
 
         hasLanded = true;
 
+        if (collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
+        {
+            return;
+        }
+
         string tileType = collision.collider.GetComponent<NeighbourTileProcessor>().tiletype;
 
-        if (tileType == gameManager.tileTypes[0]) // mountain
-        {
-            ApplyMountainEffect();
-        }
+        //if (tileType == gameManager.tileTypes[0]) // mountain
+        //{
+        //    ApplyMountainEffect();
+        //}
 
         if (!traveledTilesGO.Contains(collision.gameObject))
         {

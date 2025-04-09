@@ -38,6 +38,7 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     void Start()
     {
+        debugColors = new Color[] { Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.white };
         cam = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
@@ -244,8 +245,8 @@ public class NeighbourTileProcessor : MonoBehaviour
         Physics.Raycast(ray, out hit);
         Debug.Log(cellCoordinates);
         foundObject = hit.collider.gameObject;
-        //foundObject.GetComponent<MeshRenderer>().material.color = debugColors[id];
-        //Debug.Log($"{foundObject.name} : {foundObject.GetComponent<GridCoordinates>().tiletype} at coordinates {cellCoordinates}");
+        foundObject.GetComponent<MeshRenderer>().material.color = debugColors[id];
+        Debug.Log($"{foundObject.name} : {foundObject.GetComponent<NeighbourTileProcessor>().tiletype} at coordinates {cellCoordinates}");
         return foundObject;
     }
 

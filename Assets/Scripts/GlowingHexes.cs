@@ -41,7 +41,7 @@ public class GlowingHexes : MonoBehaviour
         {
             if (!cachedGlowMaterial.TryGetValue(originalMaterials[i].color, out Material mat))
             {
-                Debug.Log(transform.GetComponent<NeighbourTileProcessor>().isLocked);
+                //Debug.Log(transform.GetComponent<NeighbourTileProcessor>().isLocked);
                 mat = new Material(glowMaterial);
                 mat.color = originalMaterials[i].color;
                 cachedGlowMaterial[originalMaterials[i].color] = mat;

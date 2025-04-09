@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
                 {
                     comboDictionary.Add(newKey, kvp.Value + "_" + kvp2.Value);
                 }
-                Debug.Log(newKey + " " + kvp.Value + "_" + kvp2.Value);
+                //Debug.Log(newKey + " " + kvp.Value + "_" + kvp2.Value);
             }
         }
 
