@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class NeighbourTileProcessor : MonoBehaviour
 {
     [Header("References")]
-    public GameManager gameManager;
+    private GameManager gameManager;
     private PhysicalDiceSpawner diceSpawner;
     private Camera cam;
     [Header("Combo")]
@@ -38,7 +38,9 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     void Start()
     {
+        cam = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
         grid = transform.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
         //Debug.Log($"");
@@ -163,7 +165,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         neighbourTilesDictionnary.Clear();
         for (int i = 0; i < neighbourList.Count; i++)
         {
-            string newTileTypeNeighbour = neighbourList[i].GetComponent<GridCoordinates>().tiletype;
+            string newTileTypeNeighbour = neighbourList[i].GetComponent<NeighbourTileProcessor>().tiletype;
             if (!neighbourTilesDictionnary.ContainsKey(newTileTypeNeighbour))
             {
                 neighbourTilesDictionnary.Add(newTileTypeNeighbour, 1);
@@ -186,6 +188,23 @@ public class NeighbourTileProcessor : MonoBehaviour
             {
                 Debug.Log(kvp.Key + ": " + kvp.Value);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.T) && !transform.CompareTag("BaseHex"))
+        {
+            //Debug.Log(GetComboTile());
+
+
+            UpdateComboTile();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Debug.Log(transform.position);
+            diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            UpdateHex();
         }
     }
 
@@ -323,8 +342,8 @@ public class NeighbourTileProcessor : MonoBehaviour
         GameObject newHex = Instantiate(gameManager.chosenPrefab, transform.parent);
         newHex.transform.position = transform.position;
 
-        GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
-        newGridCoordinates.tiletype = gameManager.chosenPrefab.GetComponent<GridCoordinates>().tiletype;
+        NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
+        newGridCoordinates.tiletype = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tiletype;
         newGridCoordinates.cellPosition = hexPosition;
 
         Destroy(gameObject);

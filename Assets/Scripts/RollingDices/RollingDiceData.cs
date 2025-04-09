@@ -19,7 +19,6 @@ public class RollingDiceData : MonoBehaviour
     public bool isInUse;
     public bool hasLanded;
     private GameManager gameManager;
-    private EventClick eventClick;
     private Rigidbody diceRb;
     private int closestTileIndex;
 
@@ -128,11 +127,11 @@ public class RollingDiceData : MonoBehaviour
             return;
         }
 
-        Vector3Int hexPosition = hexToBeChanged.GetComponent<GridCoordinates>().cellPosition;
+        Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.parent);
         newHex.transform.position = hexToBeChanged.transform.position;
 
-        GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
+        NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
         newGridCoordinates.tiletype = GetChosenFace();
         newGridCoordinates.cellPosition = hexPosition;
 
@@ -160,14 +159,14 @@ public class RollingDiceData : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Untagged") || collision.collider.GetComponent<GridCoordinates>().isLocked)
+        if (collision.collider.CompareTag("Untagged") || collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
         {
             return;
         }
 
         hasLanded = true;
 
-        string tileType = collision.collider.GetComponent<GridCoordinates>().tiletype;
+        string tileType = collision.collider.GetComponent<NeighbourTileProcessor>().tiletype;
 
         if (tileType == gameManager.tileTypes[0]) // mountain
         {

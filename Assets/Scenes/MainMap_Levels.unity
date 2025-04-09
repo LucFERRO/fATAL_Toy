@@ -11316,6 +11316,7 @@ MonoBehaviour:
   - {fileID: 589662818}
   - {fileID: 1851081387}
   - {fileID: 1194646030}
+  baseDiceFaceColor: {r: 0, g: 0, b: 0, a: 0}
   faceMaterials:
   - {fileID: 2100000, guid: a31f149385defe64ca8bb2f158efdd7c, type: 2}
   - {fileID: 2100000, guid: 4c03322b8ff300d48a8e24c81241dfb8, type: 2}
@@ -14377,11 +14378,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseHex
       objectReference: {fileID: 0}
-    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
-      propertyPath: diceSpawner
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8246250400973225634, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+    - target: {fileID: 8360481078308758039, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1441868373}

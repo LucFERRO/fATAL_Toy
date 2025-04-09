@@ -8,7 +8,7 @@ public class HexElevation : MonoBehaviour
     private float hexHeight;
 
     public Transform[] gridCells;
-    public GridCoordinates[] gridCellsCoords;
+    public NeighbourTileProcessor[] gridCellsCoords;
     public GameObject[] gridObjects;
 
     private float perlinOffsetX;
@@ -21,13 +21,13 @@ public class HexElevation : MonoBehaviour
 
         int childCount = transform.childCount;
         gridObjects = new GameObject[childCount];
-        gridCellsCoords = new GridCoordinates[childCount];
+        gridCellsCoords = new NeighbourTileProcessor[childCount];
         gridCells = new Transform[childCount];
 
         for (int i = 0; i < childCount; i++)
         {
             gridObjects[i] = transform.GetChild(i).gameObject;
-            gridCellsCoords[i] = gridObjects[i].GetComponent<GridCoordinates>();
+            gridCellsCoords[i] = gridObjects[i].GetComponent<NeighbourTileProcessor>();
             gridCells[i] = gridObjects[i].transform;
         }
 

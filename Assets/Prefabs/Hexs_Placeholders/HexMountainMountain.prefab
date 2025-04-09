@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 6276796977542601222}
   - component: {fileID: 6968319924072813987}
   - component: {fileID: 5138753705989103977}
-  - component: {fileID: -614840610383899265}
+  - component: {fileID: 7310535556607687100}
   - component: {fileID: 2689517815992796764}
-  - component: {fileID: 8246250400973225634}
   - component: {fileID: 1327107713026015923}
   m_Layer: 0
   m_Name: HexMountainMountain
@@ -90,7 +89,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-614840610383899265
+--- !u!114 &7310535556607687100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,22 +98,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6651949917212000444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497be776a0ef79d4b83e0e10650fbe21, type: 3}
+  m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugColors:
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 0, g: 1, b: 0.04104519, a: 0}
-  - {r: 1, g: 0.9251674, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0.875638, a: 0}
-  - {r: 0, g: 0.033645153, b: 1, a: 0}
-  cellPosition: {x: 0, y: 0, z: 0}
+  gameManager: {fileID: 0}
   tiletype: mountainMountain
   currentPrefab: {fileID: 0}
-  comboThreshold: 4
   majorTile: 
-  gameManager: {fileID: 0}
+  cellPosition: {x: 0, y: 0, z: 0}
+  isLocked: 0
+  debugColors: []
 --- !u!65 &2689517815992796764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -136,18 +129,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9999979, y: 0.99999905, z: 2.3099976}
   m_Center: {x: 0.000100165606, y: 0.5035434, z: 0.13033187}
---- !u!114 &8246250400973225634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6651949917212000444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1327107713026015923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,4 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalMaterials: []
+  glowMaterials: []
   glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
+  lockedGlowMaterial: {fileID: 0}
+  objRenderer: {fileID: 0}
+  isGlowing: 0
