@@ -32,11 +32,11 @@ public class PhysicalDiceSpawner : MonoBehaviour
         Initialize();
     }
 
-    void Update()
-    {
-        HandlePositionSwitching();
-        HandleDiceSpawn();
-    }
+    //void Update()
+    //{
+    //    HandlePositionSwitching();
+    //    HandleDiceSpawn();
+    //}
 
     private void Initialize()
     {
@@ -50,28 +50,32 @@ public class PhysicalDiceSpawner : MonoBehaviour
         diceSlider.value = diceSize;
     }
 
-    private void HandlePositionSwitching()
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            timer = positionSwitchTimer;
-            targetPosition = new Vector3(Random.Range(-distance, distance), 0, Random.Range(-distance, distance)) + startingPosition;
-        }
+    //private void HandlePositionSwitching()
+    //{
+    //    timer -= Time.deltaTime;
+    //    if (timer <= 0)
+    //    {
+    //        timer = positionSwitchTimer;
+    //        targetPosition = new Vector3(Random.Range(-distance, distance), 0, Random.Range(-distance, distance)) + startingPosition;
+    //    }
 
-        transform.position = Vector3.Slerp(transform.position, targetPosition, movementSpeed * Time.deltaTime);
-    }
+    //    transform.position = Vector3.Slerp(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+    //}
 
-    private void HandleDiceSpawn()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnDice(Vector3.zero, transform);
-        }
-    }
+    //private void HandleDiceSpawn()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        SpawnDice(Vector3.zero, transform);
+    //    }
+    //}
 
     public void SpawnDice(Vector3 throwVector, Transform originTransform)
     {
+        if (gameManagerGO.transform.childCount != 0)
+        {
+            return;
+        }
         GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position + originTransform.forward * 3, originTransform.rotation);
         spawnedDice.transform.parent = gameManagerGO.transform;
         spawnedDice.transform.localScale = Vector3.one * diceSize * 0.01f;
@@ -92,6 +96,7 @@ public class PhysicalDiceSpawner : MonoBehaviour
 
             faceComponent.faceType = gameManager.tileTypes[biomeId];
             meshRenderer.material = gameManager.faceMaterials[biomeId];
+            //test
         }
     }
 

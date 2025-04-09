@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3196707267542092730}
   - component: {fileID: 2013997197956121631}
-  - component: {fileID: -3413838314061287637}
-  - component: {fileID: -6907554291734340256}
   - component: {fileID: 4330158875058532565}
+  - component: {fileID: 8253803585145216720}
   - component: {fileID: 649467818658688399}
+  - component: {fileID: 672020381052156257}
   m_Layer: 0
   m_Name: "New Hex For\xEAt"
-  m_TagString: Untagged
+  m_TagString: Hex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,33 +44,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2816769562290278656}
   m_Mesh: {fileID: 8250032440878711222, guid: 3617aef894d7b5e43bf74479b1479410, type: 3}
---- !u!114 &-3413838314061287637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816769562290278656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-6907554291734340256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816769562290278656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497be776a0ef79d4b83e0e10650fbe21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellPosition: {x: 0, y: 0, z: 0}
-  tiletype: forest
-  currentPrefab: {fileID: 0}
 --- !u!23 &4330158875058532565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116,6 +89,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8253803585145216720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816769562290278656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  tiletype: forest
+  currentPrefab: {fileID: 0}
+  majorTile: 
+  cellPosition: {x: 0, y: 0, z: 0}
+  isLocked: 0
+  debugColors: []
 --- !u!64 &649467818658688399
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -138,3 +130,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8250032440878711222, guid: 3617aef894d7b5e43bf74479b1479410, type: 3}
+--- !u!114 &672020381052156257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816769562290278656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalMaterials: []
+  glowMaterials: []
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
+  lockedGlowMaterial: {fileID: 0}
+  objRenderer: {fileID: 0}
+  isGlowing: 0

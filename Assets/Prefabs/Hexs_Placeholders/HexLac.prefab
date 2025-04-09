@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1635830351585870951}
   - component: {fileID: 2385914517987724226}
   - component: {fileID: 502309503560843016}
-  - component: {fileID: 6239927328975798929}
-  - component: {fileID: -5495457399829926535}
   - component: {fileID: 6224663108927524662}
+  - component: {fileID: 5724405302936682377}
+  - component: {fileID: 7068725743156567894}
   m_Layer: 0
   m_Name: HexLac
   m_TagString: Hex
@@ -89,33 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6239927328975798929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2159603174663806685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497be776a0ef79d4b83e0e10650fbe21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellPosition: {x: 0, y: 0, z: 0}
-  tiletype: lake
-  currentPrefab: {fileID: 0}
---- !u!114 &-5495457399829926535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2159603174663806685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &6224663108927524662
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -138,3 +111,40 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8979922291462756988, guid: 246ed286edbb5ca418400158bde52cbd, type: 3}
+--- !u!114 &5724405302936682377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159603174663806685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  tiletype: lake
+  currentPrefab: {fileID: 0}
+  majorTile: 
+  cellPosition: {x: 0, y: 0, z: 0}
+  isLocked: 0
+  debugColors: []
+--- !u!114 &7068725743156567894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159603174663806685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalMaterials: []
+  glowMaterials: []
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
+  lockedGlowMaterial: {fileID: 0}
+  objRenderer: {fileID: 0}
+  isGlowing: 0

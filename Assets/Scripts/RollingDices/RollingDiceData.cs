@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RollingDiceData : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class RollingDiceData : MonoBehaviour
                 else
                 {
                     UpdateTraveledHexes(newHexPrefab);
+
                 }
 
                 Debug.Log("DESTROY BY DEFAULT");
@@ -63,10 +65,16 @@ public class RollingDiceData : MonoBehaviour
     void Update()
     {
         HandleDisappearanceTimer();
-        //if (hasLanded)
-        //{
-        //    VelocityWatcher = diceRb.linearVelocity.magnitude;
-        //}
+        HandleSelfDestruct();
+        LiveUpdateChosenFaceUi();
+    }
+
+    private void HandleSelfDestruct()
+    {
+        if (transform.position.y <= -5)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Initialize()
@@ -119,11 +127,11 @@ public class RollingDiceData : MonoBehaviour
             return;
         }
 
-        Vector3Int hexPosition = hexToBeChanged.GetComponent<GridCoordinates>().cellPosition;
+        Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.parent);
         newHex.transform.position = hexToBeChanged.transform.position;
 
-        GridCoordinates newGridCoordinates = newHex.GetComponent<GridCoordinates>();
+        NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
         newGridCoordinates.tiletype = GetChosenFace();
         newGridCoordinates.cellPosition = hexPosition;
 
@@ -151,15 +159,14 @@ public class RollingDiceData : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Untagged"))
+        if (collision.collider.CompareTag("Untagged") || collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
         {
-            Debug.Log("HIT A COLLIDER " + collision.collider.name);
             return;
         }
 
         hasLanded = true;
 
-        string tileType = collision.collider.GetComponent<GridCoordinates>().tiletype;
+        string tileType = collision.collider.GetComponent<NeighbourTileProcessor>().tiletype;
 
         if (tileType == gameManager.tileTypes[0]) // mountain
         {
@@ -173,6 +180,7 @@ public class RollingDiceData : MonoBehaviour
                 return;
             }
             traveledTilesGO.Add(collision.gameObject);
+            collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
         }
     }
 
@@ -180,6 +188,26 @@ public class RollingDiceData : MonoBehaviour
     {
         Vector3 diceVelocity = diceRb.linearVelocity;
         diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
+    }
+
+    private void LiveUpdateChosenFaceUi()
+    {
+        float[] vectorDotResultArray = new float[numberOfFaces];
+        float closestVectorDot = float.MinValue;
+        int closestIndex = 0;
+
+        for (int i = 0; i < numberOfFaces; i++)
+        {
+            vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
+            gameManager.diceFaces[i].transform.GetChild(0).GetComponent<Image>().color = gameManager.baseDiceFaceColor;
+            if (vectorDotResultArray[i] > closestVectorDot)
+            {
+                closestVectorDot = vectorDotResultArray[i];
+                closestIndex = i;
+            }
+        }
+
+        gameManager.diceFaces[closestIndex].transform.GetChild(0).GetComponent<Image>().color = Color.blue;
     }
 
     private string GetChosenFace()
