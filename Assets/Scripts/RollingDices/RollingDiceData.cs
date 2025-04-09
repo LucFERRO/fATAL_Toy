@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RollingDiceData : MonoBehaviour
 {
@@ -66,6 +67,7 @@ public class RollingDiceData : MonoBehaviour
     {
         HandleDisappearanceTimer();
         HandleSelfDestruct();
+        LiveUpdateChosenFaceUi();
     }
 
     private void HandleSelfDestruct()
@@ -158,9 +160,8 @@ public class RollingDiceData : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Untagged"))
+        if (collision.collider.CompareTag("Untagged") || collision.collider.GetComponent<GridCoordinates>().isLocked)
         {
-            Debug.Log("HIT A COLLIDER " + collision.collider.name);
             return;
         }
 
@@ -188,6 +189,26 @@ public class RollingDiceData : MonoBehaviour
     {
         Vector3 diceVelocity = diceRb.linearVelocity;
         diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
+    }
+
+    private void LiveUpdateChosenFaceUi()
+    {
+        float[] vectorDotResultArray = new float[numberOfFaces];
+        float closestVectorDot = float.MinValue;
+        int closestIndex = 0;
+
+        for (int i = 0; i < numberOfFaces; i++)
+        {
+            vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
+            gameManager.diceFaces[i].transform.GetChild(0).GetComponent<Image>().color = gameManager.baseDiceFaceColor;
+            if (vectorDotResultArray[i] > closestVectorDot)
+            {
+                closestVectorDot = vectorDotResultArray[i];
+                closestIndex = i;
+            }
+        }
+
+        gameManager.diceFaces[closestIndex].transform.GetChild(0).GetComponent<Image>().color = Color.blue;
     }
 
     private string GetChosenFace()
