@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] diceFaces;
     public Color baseDiceFaceColor;
     public Material[] faceMaterials;
+    public int maxLockedTiles;
 
     public Dictionary<int, string> baseTileDictionary = new();
     public Dictionary<int, string> comboDictionary = new();

@@ -11260,6 +11260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441868374}
   - component: {fileID: 1441868373}
+  - component: {fileID: 1441868375}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -11332,6 +11333,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bd78bdf3d5735b44493f77f08b3ea08b, type: 2}
   - {fileID: 2100000, guid: baa0b6ffca1d3af448ec56da7b9e3d16, type: 2}
   - {fileID: 2100000, guid: 39552bace88bcef4b8076846b3252cbf, type: 2}
+  maxLockedTiles: 3
   diceMaxDisappearanceTimer: 1
   onlyReplacesClosestTile: 0
   dicesCanReplaceAllHexes: 1
@@ -11360,6 +11362,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1441868375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441868372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970751eb31f20fd4ca904539493f7ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiUnlockableTilesGO: []
+  test: 
 --- !u!4 &1447241845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}

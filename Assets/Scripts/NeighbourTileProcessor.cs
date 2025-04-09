@@ -191,20 +191,24 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T) && !transform.CompareTag("BaseHex"))
         {
-            //Debug.Log(GetComboTile());
-
-
             UpdateComboTile();
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log(transform.position);
             diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
         }
         if (Input.GetMouseButtonDown(1))
         {
+            ToggleLockTile();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             UpdateHex();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log(currentLockedTiles);
         }
     }
 
@@ -335,7 +339,15 @@ public class NeighbourTileProcessor : MonoBehaviour
             }
         }
     }
-
+    private void ToggleLockTile()
+    {
+        if (currentLockedTiles == gameManager.maxLockedTiles && !IsLocked)
+        {
+            return;
+        }
+        IsLocked = !IsLocked;
+        GetComponent<GlowingHexes>().glowMaterial = GetComponent<GlowingHexes>().lockedGlowMaterial;
+    }
     private void UpdateHex()
     {
         Vector3Int hexPosition = cellPosition;
