@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class GlowingHexes : MonoBehaviour
 {
+    [SerializeField]
     private Material[] originalMaterials;
+    [SerializeField]
     private Material[] glowMaterials;
     private static Dictionary<Color, Material> cachedGlowMaterial = new Dictionary<Color, Material>();
 
     public Material glowMaterial;
+    public Material lockedGlowMaterial;
+    [SerializeField]
     private Renderer objRenderer;
+    [SerializeField]
     private bool isGlowing;
 
     private Vector3 originalScale;
@@ -22,23 +27,39 @@ public class GlowingHexes : MonoBehaviour
         originalScale = transform.localScale;
     }
 
-    private void PrepareMaterials()
+    public void PrepareMaterials()
     {
-        if (objRenderer == null) return;
+        if (objRenderer == null)
+        {
+            return;
+        }
 
         originalMaterials = objRenderer.materials;
-        glowMaterials = new Material[originalMaterials.Length];
+        glowMaterials = new Material[originalMaterials.Length*2];
 
         for (int i = 0; i < originalMaterials.Length; i++)
         {
             if (!cachedGlowMaterial.TryGetValue(originalMaterials[i].color, out Material mat))
             {
+                Debug.Log(transform.GetComponent<GridCoordinates>().isLocked);
                 mat = new Material(glowMaterial);
                 mat.color = originalMaterials[i].color;
                 cachedGlowMaterial[originalMaterials[i].color] = mat;
             }
             glowMaterials[i] = mat;
         }
+        //for (int i = 0; i < originalMaterials.Length; i++)
+        //{
+        //    if (!cachedGlowMaterial.TryGetValue(originalMaterials[i].color, out Material mat))
+        //    {
+        //        Debug.Log(transform.GetComponent<GridCoordinates>().isLocked);
+        //        mat = new Material(lockedGlowMaterial);
+        //        mat.color = originalMaterials[i].color;
+        //        cachedGlowMaterial[originalMaterials[i].color] = mat;
+        //    }
+        //    glowMaterials[i] = mat;
+        //}
+
     }
 
     public void ToggleGlow()
@@ -52,7 +73,7 @@ public class GlowingHexes : MonoBehaviour
     private IEnumerator ScaleEffect()
     {
         Vector3 targetScale = originalScale * 0.8f;
-        float duration = 0.2f; 
+        float duration = 0.2f;
         float time = 0;
 
         while (time < duration)

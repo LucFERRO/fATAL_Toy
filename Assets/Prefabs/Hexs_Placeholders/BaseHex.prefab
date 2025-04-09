@@ -112,6 +112,7 @@ MonoBehaviour:
   cellPosition: {x: 0, y: 0, z: 0}
   tiletype: empty
   currentPrefab: {fileID: 0}
+  isLocked: 0
 --- !u!65 &2689517815992796764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -145,6 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae19c65673330f64d95b2937cd3a6e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  diceSpawner: {fileID: 0}
 --- !u!114 &1327107713026015923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,4 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalMaterials: []
+  glowMaterials: []
   glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
+  lockedGlowMaterial: {fileID: -876546973899608171, guid: 818376ca4cb9c9a47bd650cd1eab4378, type: 3}
+  objRenderer: {fileID: 0}
+  isGlowing: 0

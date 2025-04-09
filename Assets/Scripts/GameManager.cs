@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<int, string> baseTileDictionary = new();
     public Dictionary<int, string> comboDictionary = new();
     [Header("Variations")]
-    [Range(0,5)] public int diceMaxDisappearanceTimer = 1;
+    [Range(0, 5)] public int diceMaxDisappearanceTimer = 1;
     public bool onlyReplacesClosestTile;
     public bool dicesCanReplaceAllHexes;
     public int comboThreshold = 4;
@@ -30,13 +30,14 @@ public class GameManager : MonoBehaviour
     [Header("Debug")]
     public GameObject debugUIGameObject;
     public bool debugUI;
-    public bool DebugUI { 
-        get { return debugUI;} 
-        set 
-        { 
+    public bool DebugUI
+    {
+        get { return debugUI; }
+        set
+        {
             debugUI = value;
             debugUIGameObject.SetActive(value);
-        } 
+        }
     }
 
     public GameObject chosenPrefab;
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
     public void ChooseTileToSpawn(int tileTypeId)
     {
         bool[] newTypeBoolArray = new bool[tileTypes.Length];
-        for (int i = 0; i < tileTypes.Length; i++) 
+        for (int i = 0; i < tileTypes.Length; i++)
         {
             if (i == tileTypeId)
             {
