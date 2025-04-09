@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public bool onlyReplacesClosestTile;
     public bool dicesCanReplaceAllHexes;
     public int comboThreshold = 4;
-
+    public bool neighbourColorEnabled;
 
 
     [Header("Debug")]

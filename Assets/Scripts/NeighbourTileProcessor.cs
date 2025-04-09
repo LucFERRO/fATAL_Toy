@@ -245,8 +245,11 @@ public class NeighbourTileProcessor : MonoBehaviour
         Physics.Raycast(ray, out hit);
         Debug.Log(cellCoordinates);
         foundObject = hit.collider.gameObject;
-        foundObject.GetComponent<MeshRenderer>().material.color = debugColors[id];
-        Debug.Log($"{foundObject.name} : {foundObject.GetComponent<NeighbourTileProcessor>().tiletype} at coordinates {cellCoordinates}");
+        if (gameManager.neighbourColorEnabled)
+        {
+            foundObject.GetComponent<MeshRenderer>().material.color = debugColors[id];
+            Debug.Log($"{foundObject.name} : {foundObject.GetComponent<NeighbourTileProcessor>().tiletype} at coordinates {cellCoordinates}");
+        }
         return foundObject;
     }
 
