@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public string[] tileTypes;
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
+    public Color baseDiceFaceColor;
     public Material[] faceMaterials;
 
     public Dictionary<int, string> baseTileDictionary = new();
