@@ -158,7 +158,7 @@ public class RollingDiceData : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Untagged") )
+        if (collision.collider.CompareTag("Untagged") || collision.collider.GetComponent<GridCoordinates>().isLocked)
         {
             return;
         }
