@@ -7,7 +7,7 @@ public class init : MonoBehaviour
     // Start is called before the first frame update
     //Update 5 Février
 
-    //MERGE
+    //MERGE bidon
 
     /*
      * debut semaine: rolls pour recolte
