@@ -11338,6 +11338,7 @@ MonoBehaviour:
   onlyReplacesClosestTile: 0
   dicesCanReplaceAllHexes: 1
   comboThreshold: 4
+  neighbourColorEnabled: 0
   debugUIGameObject: {fileID: 121071784}
   debugUI: 0
   chosenPrefab: {fileID: 0}
@@ -13317,9 +13318,9 @@ MonoBehaviour:
   gameManagerGO: {fileID: 1441868372}
   diceToSpawn: {fileID: 6584360862380582654, guid: 93cb83f6212c35647b002d98184a9074, type: 3}
   diceSlider: {fileID: 2018882530}
-  diceSize: 100
-  minSize: 25
-  maxSize: 150
+  diceSize: 50
+  minSize: 12
+  maxSize: 75
   movementSpeed: 5
   spinForce: 10
   throwForce: 5
@@ -14821,7 +14822,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1826404928}
         m_TargetAssemblyTypeName: PhysicalDiceSpawner, Assembly-CSharp
         m_MethodName: ChangeDiceScale
         m_Mode: 1
