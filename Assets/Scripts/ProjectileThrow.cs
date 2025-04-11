@@ -7,6 +7,7 @@ public class ProjectileThrow : MonoBehaviour
     Camera cam;
 
     private PhysicalDiceSpawner diceSpawner;
+    private GameManager gameManager;
 
     [SerializeField]
     Rigidbody objectToThrow;
@@ -26,6 +27,10 @@ public class ProjectileThrow : MonoBehaviour
         {
             diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
         }
+        if (gameManager == null)
+        {
+            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        }
         cam = Camera.main;
 
         if (StartPosition == null)
@@ -39,7 +44,24 @@ public class ProjectileThrow : MonoBehaviour
 
     void Update()
     {
-        Predict();
+        trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
+        bool canThrowDice = gameManager.transform.childCount == 0;
+
+        if (Input.GetMouseButton(0) && canThrowDice)
+        {
+            gameManager.isPreviewing = true;
+            //diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
+        }
+        if (Input.GetMouseButtonUp(0) && canThrowDice)
+        {
+            gameManager.isPreviewing = true;
+            diceSpawner.SpawnDice(StartPosition.forward * force, transform);
+        }
+
+        if (gameManager.isPreviewing)
+        {
+            Predict();
+        }
     }
 
     void Predict()
@@ -65,12 +87,16 @@ public class ProjectileThrow : MonoBehaviour
     {
         //Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
         //thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
+
+
         //Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         //if (Physics.Raycast(ray, out RaycastHit hit))
         //{
-        //    Debug.Log(hit.collider.name+" "+hit.collider.transform.position);
-        //    Debug.Log("CAM: "+cam.transform.position);
-        //    diceSpawner.SpawnDice(hit.collider.gameObject.transform.position - cam.transform.position, cam.transform);
+        //if (Input.GetMouseButtonUp(1))
+        //{
+        //diceSpawner.SpawnDice(StartPosition.forward * force, transform);
+        //trajectoryPreview.SetTrajectoryVisible(false);
+        //}
         //}
     }
 }

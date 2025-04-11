@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public bool dicesCanReplaceAllHexes;
     public int comboThreshold = 4;
     public bool neighbourColorEnabled;
-
+    public bool isPreviewing;
 
     [Header("Debug")]
     public GameObject debugUIGameObject;

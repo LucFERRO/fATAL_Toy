@@ -195,10 +195,6 @@ public class NeighbourTileProcessor : MonoBehaviour
             UpdateComboTile();
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
-        }
         if (Input.GetMouseButtonDown(1))
         {
             ToggleLockTile();

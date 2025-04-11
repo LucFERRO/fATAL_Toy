@@ -70,18 +70,34 @@ public class PhysicalDiceSpawner : MonoBehaviour
     //    }
     //}
 
+    //OLD
+    //public void SpawnDice(Vector3 throwVector, Transform originTransform)
+    //{
+    //    if (gameManagerGO.transform.childCount != 0)
+    //    {
+    //        return;
+    //    }
+    //    GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position + originTransform.forward * 3, originTransform.rotation);
+    //    spawnedDice.transform.parent = gameManagerGO.transform;
+    //    spawnedDice.transform.localScale = Vector3.one * diceSize * 0.01f;
+
+    //    AssignFaceMaterials(spawnedDice);
+    //    ApplyRandomThrowForce(spawnedDice, throwVector);
+    //}    
+
+
     public void SpawnDice(Vector3 throwVector, Transform originTransform)
     {
         if (gameManagerGO.transform.childCount != 0)
         {
             return;
         }
-        GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position + originTransform.forward * 3, originTransform.rotation);
+        GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position, originTransform.rotation);
         spawnedDice.transform.parent = gameManagerGO.transform;
         spawnedDice.transform.localScale = Vector3.one * diceSize * 0.01f;
-
+        spawnedDice.GetComponent<Rigidbody>().AddForce(throwVector, ForceMode.Impulse);
         AssignFaceMaterials(spawnedDice);
-        ApplyRandomThrowForce(spawnedDice, throwVector);
+        ApplyRandomTorque(spawnedDice);
     }
 
     private void AssignFaceMaterials(GameObject spawnedDice)
@@ -111,6 +127,12 @@ public class PhysicalDiceSpawner : MonoBehaviour
         Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
         diceRb.AddForce(throwVector * throwForce, ForceMode.Impulse);
+        diceRb.AddTorque(randomSpinVector.normalized * spinForce, ForceMode.Impulse);
+    }    
+    private void ApplyRandomTorque(GameObject spawnedDice)
+    {
+        Rigidbody diceRb = spawnedDice.GetComponent<Rigidbody>();
+        Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         diceRb.AddTorque(randomSpinVector.normalized * spinForce, ForceMode.Impulse);
     }
 
