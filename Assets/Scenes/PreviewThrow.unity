@@ -15869,7 +15869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1691357262312982990, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3776625019277101260, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: hitMarker

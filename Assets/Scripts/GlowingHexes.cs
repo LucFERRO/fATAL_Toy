@@ -67,7 +67,15 @@ public class GlowingHexes : MonoBehaviour
         if (objRenderer == null) return;
         objRenderer.materials = isGlowing ? originalMaterials : glowMaterials;
         isGlowing = !isGlowing;
-        StartCoroutine(ScaleEffect());
+        //if (isGlowing)
+        //{
+            StartCoroutine(ScaleEffect());
+        //}
+        //else
+        //{
+        //    StopCoroutine(ScaleEffect());
+        //}
+        //isGlowing ? StartCoroutine(ScaleEffect()) : StopCoroutine(ScaleEffect());
     }
 
     private IEnumerator ScaleEffect()

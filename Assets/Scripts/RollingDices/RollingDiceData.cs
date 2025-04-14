@@ -43,7 +43,8 @@ public class RollingDiceData : MonoBehaviour
                 GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())];
                 if (gameManager.onlyReplacesClosestTile)
                 {
-                    UpdateSingleHex(traveledTilesGO[closestTileIndex], newHexPrefab);
+                    traveledTilesGO = new List<GameObject> { traveledTilesGO[closestTileIndex] };
+                    UpdateSingleHex(traveledTilesGO.LastOrDefault(), newHexPrefab);
                 }
                 else
                 {
@@ -119,15 +120,15 @@ public class RollingDiceData : MonoBehaviour
                 continue;
             }
             NeighbourTileProcessor newTileProcessor = UpdateSingleHex(tile, newHexPrefab);
-            Debug.Log("pre all ");
-            newTileProcessor.GetNeighbourTiles();
-            Debug.Log("post GetNeighbourTiles ");
-            newTileProcessor.UpdateCurrentNeighbourTiles();
-            Debug.Log("post UpdateCurrentNeighbourTiles ");
-            newTileProcessor.GetMajorTile();
-            Debug.Log("post GetMajorTile ");
-            newTileProcessor.UpdateComboTile();
-            Debug.Log("post UpdateComboTile ");
+            //Debug.Log("pre all ");
+            //newTileProcessor.GetNeighbourTiles();
+            //Debug.Log("post GetNeighbourTiles ");
+            //newTileProcessor.UpdateCurrentNeighbourTiles();
+            //Debug.Log("post UpdateCurrentNeighbourTiles ");
+            //newTileProcessor.GetMajorTile();
+            //Debug.Log("post GetMajorTile ");
+            //newTileProcessor.UpdateComboTile();
+            //Debug.Log("post UpdateComboTile ");
         }
     }
 
@@ -192,8 +193,22 @@ public class RollingDiceData : MonoBehaviour
             {
                 return;
             }
-            traveledTilesGO.Add(collision.gameObject);
-            collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+
+            //if (gameManager.onlyReplacesClosestTile)
+            //{
+            //    foreach (GameObject tile in traveledTilesGO)
+            //    {
+            //        tile.gameObject.GetComponent<GlowingHexes>().ToggleGlow(false);
+            //    }
+            //    traveledTilesGO.Clear();
+            //    traveledTilesGO.Add(collision.gameObject);
+            //    collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+            //}
+            //else
+            {
+                traveledTilesGO.Add(collision.gameObject);
+                collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+            }
         }
     }
 

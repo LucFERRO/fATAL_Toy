@@ -56,15 +56,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         Dictionary<string, int> neighbourSplitTypes = new Dictionary<string, int>();
         foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
         {
-            Debug.Log(kvp.Key);
             if (Regex.IsMatch(kvp.Key, "(?<!^)(?=[A-Z])"))
             {
                 string[] types = SplitAtUpperCase(kvp.Key).Split(" ");
-                Debug.Log("key needing split " + types.Length);
+                //Debug.Log("key needing split " + types.Length);
                 string type1 = types[1];
                 string type2 = FirstLetterToLower(types[2]);
-                Debug.Log($"Type 1 : {type1}");
-                Debug.Log($"Type 2 : {type2}");
+                //Debug.Log($"Type 1 : {type1}");
+                //Debug.Log($"Type 2 : {type2}");
 
                 if (!neighbourSplitTypes.ContainsKey(type1))
                 {
@@ -109,14 +108,21 @@ public class NeighbourTileProcessor : MonoBehaviour
         foreach (KeyValuePair<string, int> kvp in neighbourSplitTypes)
         {
             Debug.Log("Final types : " + kvp.Key + " " + kvp.Value);
-            if (kvp.Value >= gameManager.comboThreshold)
+            Debug.Log("Test Value: " + kvp.Value + " treshold " + gameManager.comboThreshold);
+            if (kvp.Value < gameManager.comboThreshold)
             {
-                majorTile = kvp.Key;
+                continue;
             }
             else
             {
-                Debug.LogWarning("No major Tiles determined");
+                majorTile = kvp.Key;
+                Debug.Log($"Majortile: {majorTile}");
+                break;
             }
+        }
+        if (majorTile == "empty")
+        {
+            majorTile = "";
         }
         return majorTile;
     }
@@ -184,7 +190,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log($"{transform.name}: {cellPosition}");
+            //Debug.Log($"{transform.name}: {cellPosition}");
             GetNeighbourTiles();
             UpdateCurrentNeighbourTiles();
             GetMajorTile();
@@ -244,7 +250,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         Ray ray = new Ray(coordinates, Vector3.down);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
-        Debug.Log(cellCoordinates);
+        //Debug.Log(cellCoordinates);
         foundObject = hit.collider.gameObject;
         if (gameManager.neighbourColorEnabled)
         {
@@ -280,12 +286,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         //FirstLetterToUpper(type2);
 
         typeValue3 = typeValue1 + typeValue2;
-
+        Debug.Log($"Type values: {typeValue1} / {typeValue2} / {typeValue3}");
         gameManager.comboDictionary.TryGetValue(typeValue3, out string comboTile);
 
+        Debug.Log($"Combo tile: {comboTile} ");
         string[] types = comboTile.Split("_");
         string type1 = types[0];
         string type2 = types[1];
+        Debug.Log($"{type1} / {type2} ");
 
         string[] involvedTypes = new string[2];
         involvedTypes[0] = type1;
@@ -329,6 +337,12 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     public void UpdateComboTile()
     {
+        Debug.Log("MAJORTILE:" + majorTile);
+
+        if (majorTile.Length == 0)
+        {
+            return;
+        }
         for (int i = 0; i < gameManager.tileTypes.Length; i++)
         {
             // array.sort GetComboTile dans gameManager.tiletype
