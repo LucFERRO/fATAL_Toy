@@ -54,7 +54,7 @@ public class ProjectileThrow : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0) && canThrowDice)
         {
-            gameManager.isPreviewing = true;
+            gameManager.isPreviewing = false;
             diceSpawner.SpawnDice(StartPosition.forward * force, transform);
         }
 

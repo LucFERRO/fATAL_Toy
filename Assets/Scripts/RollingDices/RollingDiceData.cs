@@ -47,8 +47,8 @@ public class RollingDiceData : MonoBehaviour
                 }
                 else
                 {
+                    //Debug.Log("NEWPREFAB "+newHexPrefab.name);
                     UpdateTraveledHexes(newHexPrefab);
-
                 }
                 Destroy(gameObject);
             }
@@ -114,17 +114,25 @@ public class RollingDiceData : MonoBehaviour
     {
         foreach (GameObject tile in traveledTilesGO)
         {
-            UpdateSingleHex(tile, newHexPrefab);
+            if (tile == null)
+            {
+                continue;
+            }
+            NeighbourTileProcessor newTileProcessor = UpdateSingleHex(tile, newHexPrefab);
+            Debug.Log("pre all ");
+            newTileProcessor.GetNeighbourTiles();
+            Debug.Log("post GetNeighbourTiles ");
+            newTileProcessor.UpdateCurrentNeighbourTiles();
+            Debug.Log("post UpdateCurrentNeighbourTiles ");
+            newTileProcessor.GetMajorTile();
+            Debug.Log("post GetMajorTile ");
+            newTileProcessor.UpdateComboTile();
+            Debug.Log("post UpdateComboTile ");
         }
     }
 
-    private void UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
+    private NeighbourTileProcessor UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
     {
-        if (hexToBeChanged == null)
-        {
-            return;
-        }
-
         Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.parent);
         newHex.transform.position = hexToBeChanged.transform.position;
@@ -132,8 +140,10 @@ public class RollingDiceData : MonoBehaviour
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
         newGridCoordinates.tiletype = GetChosenFace();
         newGridCoordinates.cellPosition = hexPosition;
-
+        Debug.Log("pre destroy");
         Destroy(hexToBeChanged.gameObject);
+        Debug.Log("post destroy");
+        return newGridCoordinates;
     }
 
     private void GetClosestHexTile()

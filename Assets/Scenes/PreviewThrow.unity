@@ -10952,6 +10952,7 @@ MonoBehaviour:
   dicesCanReplaceAllHexes: 1
   comboThreshold: 4
   neighbourColorEnabled: 0
+  isPreviewing: 0
   debugUIGameObject: {fileID: 121071784}
   debugUI: 0
   chosenPrefab: {fileID: 0}
@@ -15862,6 +15863,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1852280152}
     m_Modifications:
+    - target: {fileID: 1119520462916544504, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691357262312982990, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3776625019277101260, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: hitMarker
       value: 

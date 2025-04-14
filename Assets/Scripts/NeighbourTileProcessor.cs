@@ -15,6 +15,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     private GameObject chosenComboTile;
     public GameObject currentPrefab;
     public Dictionary<string, int> neighbourTilesDictionnary = new();
+    private List<GameObject> neighbourTiles;
     public string majorTile;
     [Header("Coordinates")]
     public Vector3Int cellPosition;
@@ -38,6 +39,7 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     void Start()
     {
+        neighbourTiles = new List<GameObject>();
         debugColors = new Color[] { Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.white };
         cam = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -161,12 +163,12 @@ public class NeighbourTileProcessor : MonoBehaviour
     }
 
 
-    public void UpdateCurrentNeighbourTiles(List<GameObject> neighbourList)
+    public void UpdateCurrentNeighbourTiles()
     {
         neighbourTilesDictionnary.Clear();
-        for (int i = 0; i < neighbourList.Count; i++)
+        for (int i = 0; i < neighbourTiles.Count; i++)
         {
-            string newTileTypeNeighbour = neighbourList[i].GetComponent<NeighbourTileProcessor>().tiletype;
+            string newTileTypeNeighbour = neighbourTiles[i].GetComponent<NeighbourTileProcessor>().tiletype;
             if (!neighbourTilesDictionnary.ContainsKey(newTileTypeNeighbour))
             {
                 neighbourTilesDictionnary.Add(newTileTypeNeighbour, 1);
@@ -183,7 +185,8 @@ public class NeighbourTileProcessor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log($"{transform.name}: {cellPosition}");
-            UpdateCurrentNeighbourTiles(GetNeighbourTiles(cellPosition.x == 0, cellPosition.x == 8, cellPosition.z == 0, cellPosition.z == 8, cellPosition.z % 2 == 0));
+            GetNeighbourTiles();
+            UpdateCurrentNeighbourTiles();
             GetMajorTile();
             foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
             {
@@ -209,9 +212,11 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
     }
 
-    private List<GameObject> GetNeighbourTiles(bool isLeft, bool isRight, bool isBot, bool isTop, bool isEvenColumn)
+    //private void GetNeighbourTiles(bool isLeft, bool isRight, bool isBot, bool isTop, bool isEvenColumn)
+    public void GetNeighbourTiles()
     {
-        List<GameObject> neighbourTiles = new List<GameObject>();
+        //List<GameObject> neighbourTiles = new List<GameObject>();
+        bool isLeft = cellPosition.x == 0, isRight = cellPosition.x == 8, isBot = cellPosition.z == 0, isTop = cellPosition.z == 8, isEvenColumn = cellPosition.z % 2 == 0;
 
         if (!isLeft)
         {
@@ -228,7 +233,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
 
 
-        return neighbourTiles;
+        //neighbourTiles = neighbourTiles;
     }
 
     private GameObject GetTileAtCoordinates(Vector3Int cellCoordinates, int id)
@@ -256,14 +261,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         int typeValue2 = 0;
         int typeValue3 = 0;
 
-        Debug.Log("GetComboTile launched" + gameManager.baseTileDictionary.Count);
+        //Debug.Log("GetComboTile launched" + gameManager.baseTileDictionary.Count);
         foreach (KeyValuePair<int, string> kvp in gameManager.baseTileDictionary)
         {
-            Debug.Log("ENTERING THE BOUUCLE");
+            //Debug.Log("ENTERING THE BOUUCLE");
             if (kvp.Value == tiletype)
             {
                 typeValue1 = kvp.Key * 10;
-                Debug.Log("Debug ligne 40" + kvp.Key);
+                //Debug.Log("Debug ligne 40" + kvp.Key);
             }
 
             if (kvp.Value == majorTile)
@@ -274,9 +279,7 @@ public class NeighbourTileProcessor : MonoBehaviour
 
         //FirstLetterToUpper(type2);
 
-        Debug.Log(typeValue1 + "," + typeValue2);
         typeValue3 = typeValue1 + typeValue2;
-        Debug.Log("typeValue3 : " + typeValue3);
 
         gameManager.comboDictionary.TryGetValue(typeValue3, out string comboTile);
 
@@ -324,7 +327,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         return comboTile;
     }
 
-    private void UpdateComboTile()
+    public void UpdateComboTile()
     {
         for (int i = 0; i < gameManager.tileTypes.Length; i++)
         {
