@@ -44,7 +44,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         cam = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
-        grid = transform.parent.GetComponent<Grid>();
+        grid = transform.parent.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
         //Debug.Log($"");
         //UpdateCurrentNeighbourTiles(GetNeighbourTiles(cellPosition.x == 0, cellPosition.x == 8, cellPosition.z == 0, cellPosition.z == 8));
@@ -203,6 +203,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             UpdateComboTile();
         }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            for (int i = 0; i < transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs.Length; i++)
+            {
+                Color randomColor = UnityEngine.Random.ColorHSV();
+                transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = randomColor;
+            }
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -212,7 +220,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             UpdateHex();
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             Debug.Log(currentLockedTiles);
         }

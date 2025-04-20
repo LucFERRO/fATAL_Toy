@@ -41,6 +41,7 @@ public class RollingDiceData : MonoBehaviour
             {
                 GetClosestHexTile();
                 GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())];
+                Destroy(gameObject);
                 if (gameManager.onlyReplacesClosestTile)
                 {
                     traveledTilesGO = new List<GameObject> { traveledTilesGO[closestTileIndex] };
@@ -48,10 +49,9 @@ public class RollingDiceData : MonoBehaviour
                 }
                 else
                 {
-                    //Debug.Log("NEWPREFAB "+newHexPrefab.name);
+                    Debug.Log("NEWPREFAB "+newHexPrefab.name);
                     UpdateTraveledHexes(newHexPrefab);
                 }
-                Destroy(gameObject);
             }
         }
     }
