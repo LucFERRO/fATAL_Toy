@@ -15,7 +15,10 @@ public class NeighbourTileProcessor : MonoBehaviour
     private GameObject chosenComboTile;
     public GameObject currentPrefab;
     public Dictionary<string, int> neighbourTilesDictionnary = new();
-    private List<GameObject> neighbourTiles;
+    //public static Dictionary<string, int> gridTileSplit = new();
+    //private List<GameObject> neighbourTiles;
+    private NeighbourTileProcessor[] neighbourTiles;
+    private int neighbourNumber;
     public string majorTile;
     [Header("Coordinates")]
     public Vector3Int cellPosition;
@@ -39,7 +42,14 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     void Start()
     {
-        neighbourTiles = new List<GameObject>();
+        neighbourNumber = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs.Length;
+        neighbourTiles = new NeighbourTileProcessor[neighbourNumber];
+
+        for (int i = 0; i < neighbourNumber; i++)
+        {
+            neighbourTiles[i] = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileProcessors[i];
+        }
+
         debugColors = new Color[] { Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.white };
         cam = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -169,14 +179,35 @@ public class NeighbourTileProcessor : MonoBehaviour
     }
 
 
+    //public void UpdateCurrentNeighbourTiles()
+    //{
+    //    neighbourTilesDictionnary.Clear();
+    //    for (int i = 0; i < neighbourTiles.Count; i++)
+    //    {
+    //        string newTileTypeNeighbour = neighbourTiles[i].GetComponent<NeighbourTileProcessor>().tiletype;
+    //        if (!neighbourTilesDictionnary.ContainsKey(newTileTypeNeighbour))
+    //        {
+    //            neighbourTilesDictionnary.Add(newTileTypeNeighbour, 1);
+    //        }
+    //        else
+    //        {
+    //            neighbourTilesDictionnary[newTileTypeNeighbour]++;
+    //        }
+    //    }
+    //}
     public void UpdateCurrentNeighbourTiles()
     {
+        Debug.Log("sadas");
+        //ISSUE HERE
+        Debug.Log(neighbourTiles.Length);
         neighbourTilesDictionnary.Clear();
-        for (int i = 0; i < neighbourTiles.Count; i++)
+        for (int i = 0; i < neighbourTiles.Length; i++)
         {
-            string newTileTypeNeighbour = neighbourTiles[i].GetComponent<NeighbourTileProcessor>().tiletype;
+            Debug.Log($"{neighbourTiles[i].name} {neighbourTiles[i].tiletype}");
+            string newTileTypeNeighbour = neighbourTiles[i].tiletype;
             if (!neighbourTilesDictionnary.ContainsKey(newTileTypeNeighbour))
             {
+                Debug.Log("new neighbour detected, +1");
                 neighbourTilesDictionnary.Add(newTileTypeNeighbour, 1);
             }
             else
@@ -220,34 +251,43 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             UpdateHex();
         }
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log(currentLockedTiles);
         }
     }
 
     //private void GetNeighbourTiles(bool isLeft, bool isRight, bool isBot, bool isTop, bool isEvenColumn)
+    //public void GetNeighbourTiles()
+    //{
+    //    //List<GameObject> neighbourTiles = new List<GameObject>();
+    //    bool isLeft = cellPosition.x == 0, isRight = cellPosition.x == 8, isBot = cellPosition.z == 0, isTop = cellPosition.z == 8, isEvenColumn = cellPosition.z % 2 == 0;
+
+    //    if (!isLeft)
+    //    {
+    //        neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x - (isEvenColumn ? 1 : 0), cellPosition.y, cellPosition.z), 0));
+    //        if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
+    //        if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
+    //    }
+
+    //    if (!isRight)
+    //    {
+    //        neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + (isEvenColumn ? 1 : 2), cellPosition.y, cellPosition.z), 4));
+    //        if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
+    //        if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
+    //    }
+
+
+    //    //neighbourTiles = neighbourTiles;
+    //}
+
+    //Post rework Grid
     public void GetNeighbourTiles()
     {
-        //List<GameObject> neighbourTiles = new List<GameObject>();
-        bool isLeft = cellPosition.x == 0, isRight = cellPosition.x == 8, isBot = cellPosition.z == 0, isTop = cellPosition.z == 8, isEvenColumn = cellPosition.z % 2 == 0;
-
-        if (!isLeft)
+        for (int i = 0; i < neighbourNumber; i++)
         {
-            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x - (isEvenColumn ? 1 : 0), cellPosition.y, cellPosition.z), 0));
-            if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
-            if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
+            neighbourTiles[i] = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].transform.GetChild(0).GetComponent<NeighbourTileProcessor>();
         }
-
-        if (!isRight)
-        {
-            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + (isEvenColumn ? 1 : 2), cellPosition.y, cellPosition.z), 4));
-            if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
-            if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
-        }
-
-
-        //neighbourTiles = neighbourTiles;
     }
 
     private GameObject GetTileAtCoordinates(Vector3Int cellCoordinates, int id)
@@ -294,14 +334,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         //FirstLetterToUpper(type2);
 
         typeValue3 = typeValue1 + typeValue2;
-        Debug.Log($"Type values: {typeValue1} / {typeValue2} / {typeValue3}");
+        //Debug.Log($"Type values: {typeValue1} / {typeValue2} / {typeValue3}");
         gameManager.comboDictionary.TryGetValue(typeValue3, out string comboTile);
 
-        Debug.Log($"Combo tile: {comboTile} ");
+        //Debug.Log($"Combo tile: {comboTile} ");
         string[] types = comboTile.Split("_");
         string type1 = types[0];
         string type2 = types[1];
-        Debug.Log($"{type1} / {type2} ");
+        //Debug.Log($"{type1} / {type2} ");
 
         string[] involvedTypes = new string[2];
         involvedTypes[0] = type1;

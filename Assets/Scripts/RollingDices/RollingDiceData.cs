@@ -42,16 +42,16 @@ public class RollingDiceData : MonoBehaviour
                 GetClosestHexTile();
                 GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())];
                 Destroy(gameObject);
-                if (gameManager.onlyReplacesClosestTile)
-                {
-                    traveledTilesGO = new List<GameObject> { traveledTilesGO[closestTileIndex] };
-                    UpdateSingleHex(traveledTilesGO.LastOrDefault(), newHexPrefab);
-                }
-                else
-                {
+                //if (gameManager.onlyReplacesClosestTile)
+                //{
+                //    traveledTilesGO = new List<GameObject> { traveledTilesGO[closestTileIndex] };
+                //    UpdateSingleHex(traveledTilesGO.LastOrDefault(), newHexPrefab);
+                //}
+                //else
+                //{
                     Debug.Log("NEWPREFAB "+newHexPrefab.name);
                     UpdateTraveledHexes(newHexPrefab);
-                }
+                //}
             }
         }
     }
@@ -141,9 +141,10 @@ public class RollingDiceData : MonoBehaviour
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
         newGridCoordinates.tiletype = GetChosenFace();
         newGridCoordinates.cellPosition = hexPosition;
-        Debug.Log("pre destroy");
+        newGridCoordinates.transform.parent.GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
+        //Debug.Log("pre destroy");
         Destroy(hexToBeChanged.gameObject);
-        Debug.Log("post destroy");
+        //Debug.Log("post destroy");
         return newGridCoordinates;
     }
 

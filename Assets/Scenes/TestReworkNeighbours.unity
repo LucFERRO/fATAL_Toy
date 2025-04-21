@@ -8944,6 +8944,7 @@ GameObject:
   - component: {fileID: 1394288963}
   - component: {fileID: 1394288964}
   - component: {fileID: 1394288965}
+  - component: {fileID: 1394288966}
   m_Layer: 0
   m_Name: HexMap
   m_TagString: Untagged
@@ -9073,6 +9074,19 @@ MonoBehaviour:
   gridCells: []
   gridCellsCoords: []
   gridObjects: []
+--- !u!114 &1394288966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394288962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e169fdbb5e3675e46bde6ca2fe02fb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTiles: 0
 --- !u!4 &1407444867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
