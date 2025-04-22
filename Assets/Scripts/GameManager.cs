@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 [Serializable]
 public class DebugVariableHolder
 {
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     public DebugVariableHolder instance = new DebugVariableHolder();
     void Start()
     {
+        baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
         TypeBools = new bool[tileTypes.Length];
         ChooseTileToSpawn(0);
         CreateBaseTileDictionary();

@@ -132,6 +132,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         if (majorTile == "empty")
         {
+            Debug.Log("Removed empty");
             majorTile = "";
         }
         return majorTile;
