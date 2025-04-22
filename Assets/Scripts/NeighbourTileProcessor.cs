@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class NeighbourTileProcessor : MonoBehaviour
 {
@@ -40,14 +41,13 @@ public class NeighbourTileProcessor : MonoBehaviour
     [Header("TRASH")]
     public Color[] debugColors;
 
-    void Start()
+    void Awake()
     {
         neighbourNumber = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs.Length;
         neighbourTiles = new NeighbourTileProcessor[neighbourNumber];
-
         for (int i = 0; i < neighbourNumber; i++)
         {
-            neighbourTiles[i] = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileProcessors[i];
+            neighbourTiles[i] = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].GetComponent<NeighbourTileProcessor>();
         }
 
         debugColors = new Color[] { Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.white };
@@ -117,8 +117,8 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         foreach (KeyValuePair<string, int> kvp in neighbourSplitTypes)
         {
-            Debug.Log("Final types : " + kvp.Key + " " + kvp.Value);
-            Debug.Log("Test Value: " + kvp.Value + " treshold " + gameManager.comboThreshold);
+            //Debug.Log("Final types : " + kvp.Key + " " + kvp.Value);
+            //Debug.Log("Test Value: " + kvp.Value + " treshold " + gameManager.comboThreshold);
             if (kvp.Value < gameManager.comboThreshold)
             {
                 continue;
@@ -137,46 +137,6 @@ public class NeighbourTileProcessor : MonoBehaviour
         return majorTile;
     }
 
-    public string SplitAtUpperCase(string str)
-    {
-        string res = "";
-        string[] split = Regex.Split(str, @"(?<!^)(?=[A-Z])");
-        for (int i = 0; i < split.Length; i++)
-        {
-            res += " " + split[i];
-        }
-        return res;
-    }
-
-    public string FirstLetterToUpper(string str)
-    {
-        if (str == null)
-        {
-            return null;
-        }
-
-        if (str.Length > 1)
-        {
-            return char.ToUpper(str[0]) + str.Substring(1);
-        }
-
-        return str.ToUpper();
-    }
-
-    public string FirstLetterToLower(string str)
-    {
-        if (str == null)
-        {
-            return null;
-        }
-
-        if (str.Length > 1)
-        {
-            return char.ToLower(str[0]) + str.Substring(1);
-        }
-
-        return str.ToLower();
-    }
 
 
     //public void UpdateCurrentNeighbourTiles()
@@ -197,17 +157,17 @@ public class NeighbourTileProcessor : MonoBehaviour
     //}
     public void UpdateCurrentNeighbourTiles()
     {
-        Debug.Log("sadas");
+        //Debug.Log("sadas");
         //ISSUE HERE
-        Debug.Log(neighbourTiles.Length);
+        //Debug.Log(neighbourTiles.Length);
         neighbourTilesDictionnary.Clear();
         for (int i = 0; i < neighbourTiles.Length; i++)
         {
-            Debug.Log($"{neighbourTiles[i].name} {neighbourTiles[i].tiletype}");
+            //Debug.Log($"{neighbourTiles[i].name} {neighbourTiles[i].tiletype}");
             string newTileTypeNeighbour = neighbourTiles[i].tiletype;
             if (!neighbourTilesDictionnary.ContainsKey(newTileTypeNeighbour))
             {
-                Debug.Log("new neighbour detected, +1");
+                //Debug.Log("new neighbour detected, +1");
                 neighbourTilesDictionnary.Add(newTileTypeNeighbour, 1);
             }
             else
@@ -337,7 +297,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         //Debug.Log($"Type values: {typeValue1} / {typeValue2} / {typeValue3}");
         gameManager.comboDictionary.TryGetValue(typeValue3, out string comboTile);
 
-        //Debug.Log($"Combo tile: {comboTile} ");
+        Debug.Log($"Combo tile: {comboTile} ");
         string[] types = comboTile.Split("_");
         string type1 = types[0];
         string type2 = types[1];
@@ -378,8 +338,6 @@ public class NeighbourTileProcessor : MonoBehaviour
                 }
             }
         }
-
-
         return comboTile;
     }
 
@@ -424,8 +382,8 @@ public class NeighbourTileProcessor : MonoBehaviour
         newGridCoordinates.cellPosition = hexPosition;
 
         Destroy(gameObject);
+        transform.parent.GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         Vector3Int hexPosition = cellPosition;
@@ -433,5 +391,43 @@ public class NeighbourTileProcessor : MonoBehaviour
 
         //gridCoordinates.tiletype = gameManager.chosenTileType;
         currentPrefab = gameManager.chosenPrefab;
+    }
+    public string SplitAtUpperCase(string str)
+    {
+        string res = "";
+        string[] split = Regex.Split(str, @"(?<!^)(?=[A-Z])");
+        for (int i = 0; i < split.Length; i++)
+        {
+            res += " " + split[i];
+        }
+        return res;
+    }
+    public string FirstLetterToUpper(string str)
+    {
+        if (str == null)
+        {
+            return null;
+        }
+
+        if (str.Length > 1)
+        {
+            return char.ToUpper(str[0]) + str.Substring(1);
+        }
+
+        return str.ToUpper();
+    }
+    public string FirstLetterToLower(string str)
+    {
+        if (str == null)
+        {
+            return null;
+        }
+
+        if (str.Length > 1)
+        {
+            return char.ToLower(str[0]) + str.Substring(1);
+        }
+
+        return str.ToLower();
     }
 }

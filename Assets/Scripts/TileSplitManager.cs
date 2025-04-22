@@ -7,78 +7,89 @@ public class TileSplitManager : MonoBehaviour
 {
     public int numberOfTiles;
     public Dictionary<string, int> gridTileSplitDictionary = new();
-    private string[] types;
+    private string[] baseTypes;
     private int[] values;
 
     void Start()
     {
         numberOfTiles = transform.childCount;
-        types = new string[] { "empty", "mountain", "lake", "plain", "forest" };
-        values = new int[types.Length];
-        CreateTileDictionary();
-        UpdateTileSplit();
+        baseTypes = new string[] { "empty", "mountain", "lake", "plain", "forest" };
+        values = new int[baseTypes.Length];
+        UpdateTileSplitDictionary();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            string test = "forestLake";
+            string test2 = "forest";
+            string test3 = "lake";
+            string test4 = "mountain";
+            Debug.Log(test.Contains(test2.Substring(1)));
+            Debug.Log(test.Contains(test3.Substring(1)));
+            Debug.Log(test.Contains(test4.Substring(1)));
+        }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            UpdateTileSplit();
-            //foreach (KeyValuePair<string, int> kvp in gridTileSplitDictionary)
-            //{
-            //    Debug.Log(kvp.Key + ": " + kvp.Value);
-            //}
-            for (int i = 0; i < types.Length; i++)
+            UpdateTileSplitDictionary();
+            foreach (KeyValuePair<string, int> kvp in gridTileSplitDictionary)
             {
-                Debug.Log($"{types[i]} : {values[i]} out of {values.Sum()} tiles => {Mathf.Round(values[i]/(float)values.Sum()*100)}%");
+                Debug.Log(kvp.Key + ": " + kvp.Value);
             }
-            Debug.Log($"Majority of : {types[Array.IndexOf(values, values.Max())]}");
+            //for (int i = 0; i < types.Length; i++)
+            //{
+            //    Debug.Log($"{types[i]} : {values[i]} out of {values.Sum()} tiles => {Mathf.Round(values[i] / (float)values.Sum() * 100)}%");
+            //}
+            //Debug.Log($"Majority of : {types[Array.IndexOf(values, values.Max())]}");
+        }
+    }
+
+    public void UpdateTileSplitDictionary()
+    {
+        CreateFreshTileDictionary();
+        for (int i = 0; i < numberOfTiles; i++)
+        {
+            string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tiletype;
+            transform.GetChild(i).GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
+            foreach (string baseType in baseTypes)
+            {
+                if (baseType.Contains(type.Substring(1)))
+                {
+                    gridTileSplitDictionary[baseType]++;
+                }
+            }
         }
     }
 
     public void UpdateTileSplit()
     {
-        //CreateTileDictionary();
-        values = new int[types.Length];
+        CreateFreshTileDictionary();
+        values = new int[baseTypes.Length];
         for (int i = 0; i < numberOfTiles; i++)
         {
             string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tiletype;
-            //    foreach (string tileType in gridTileSplitDictionary.Keys)
-            //    {
-            //        if (tileType.Contains(type.Substring(1)))
-            //        {
-            //            gridTileSplitDictionary[tileType]++;
-            //            continue;
-            //        }
-            //    }
-            //}
-            //gridTileSplitDictionary.Clear();
-            //foreach (var key in gridTileSplitDictionary.Keys)
-            //{
-            //    string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tiletype;
-            //    if (key.Contains(type.Substring(1)))
-            //    {
-            //        gridTileSplitDictionary[type]++;
-            //        continue;
-            //    }
-            for (int j = 0; j < types.Length; j++)
+            for (int j = 0; j < baseTypes.Length; j++)
             {
-                if (types[j].Contains(type.Substring(1)))
                 {
-                    values[j]++;
+                    if (baseTypes[j].Contains(type.Substring(1)))
+                    {
+                        values[j]++;
+                    }
                 }
             }
         }
     }
-    private void CreateTileDictionary()
+    private void CreateFreshTileDictionary()
     {
-        gridTileSplitDictionary.Clear();
-
-        gridTileSplitDictionary.Add("empty", 0);
-        gridTileSplitDictionary.Add("mountain", 0);
-        gridTileSplitDictionary.Add("lake", 0);
-        gridTileSplitDictionary.Add("plain", 0);
-        gridTileSplitDictionary.Add("forest", 0);
+        gridTileSplitDictionary = new Dictionary<string, int>()
+        {
+            { "empty", 0 },
+            { "mountain", 0 },
+            { "forest", 0 },
+            { "lake", 0 },
+            { "plain", 0 }
+        };
     }
 }
