@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ProjectileThrow : MonoBehaviour
 {
     TrajectoryPreview trajectoryPreview;
+    PhysicalDiceProperties properties;
     Camera cam;
 
     private PhysicalDiceSpawner diceSpawner;
@@ -15,8 +17,7 @@ public class ProjectileThrow : MonoBehaviour
     [SerializeField, Range(0.0f, 200.0f)]
     float force;
 
-    [SerializeField]
-    Transform StartPosition;
+    public Transform StartPosition { get; private set; }
 
     public InputAction fire;
 
@@ -38,8 +39,24 @@ public class ProjectileThrow : MonoBehaviour
             StartPosition = transform;
         }
 
+        properties = InitializeProjectileProperties();
+
+        // Pass the initialized properties to the TrajectoryPreview
+        trajectoryPreview.SetProjectileProperties(properties);
+
         fire.Enable();
         fire.performed += ThrowObject;
+    }
+
+    private PhysicalDiceProperties InitializeProjectileProperties()
+    {
+        Rigidbody r = objectToThrow.GetComponent<Rigidbody>();
+        properties.direction = StartPosition.forward;
+        properties.initialPosition = StartPosition.position;
+        properties.initialSpeed = force;
+        properties.mass = r.mass;
+        properties.drag = r.linearDamping;
+        return properties;
     }
 
     void Update()
@@ -50,12 +67,13 @@ public class ProjectileThrow : MonoBehaviour
         if (Input.GetMouseButton(0) && canThrowDice)
         {
             gameManager.isPreviewing = true;
-            //diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
         }
         if (Input.GetMouseButtonUp(0) && canThrowDice)
         {
             gameManager.isPreviewing = false;
-            diceSpawner.SpawnDice(StartPosition.forward * force, transform);
+            PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
+            Debug.Log(updatedProperties.initialPosition);
+            diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
         }
 
         if (gameManager.isPreviewing)
@@ -66,37 +84,11 @@ public class ProjectileThrow : MonoBehaviour
 
     void Predict()
     {
-        trajectoryPreview.PredictTrajectory(ProjectileData());
+        trajectoryPreview.PredictTrajectory();
     }
 
-    PhysicalDiceProperties ProjectileData()
+    void ThrowObject(InputAction.CallbackContext context)
     {
-        PhysicalDiceProperties properties = new PhysicalDiceProperties();
-        Rigidbody r = objectToThrow.GetComponent<Rigidbody>();
 
-        properties.direction = StartPosition.forward;
-        properties.initialPosition = StartPosition.position;
-        properties.initialSpeed = force;
-        properties.mass = r.mass;
-        properties.drag = r.linearDamping;
-
-        return properties;
-    }
-
-    void ThrowObject(InputAction.CallbackContext ctx)
-    {
-        //Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
-        //thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
-
-
-        //Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-        //if (Physics.Raycast(ray, out RaycastHit hit))
-        //{
-        //if (Input.GetMouseButtonUp(1))
-        //{
-        //diceSpawner.SpawnDice(StartPosition.forward * force, transform);
-        //trajectoryPreview.SetTrajectoryVisible(false);
-        //}
-        //}
     }
 }

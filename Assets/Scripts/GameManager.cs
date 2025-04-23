@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
-        Debug.Log("Received " + tiles.Count + " tiles for delayed update");
         StartCoroutine(UpdateNeighboursCoroutine(tiles));
     }
 
@@ -91,7 +90,6 @@ public class GameManager : MonoBehaviour
             processor.GetNeighbourTiles();
             processor.UpdateCurrentNeighbourTiles();
             processor.GetMajorTile();
-            Debug.Log(processor.GetMajorTile());
             processor.UpdateComboTile();
         }
     }
