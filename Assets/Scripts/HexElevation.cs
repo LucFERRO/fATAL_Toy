@@ -27,7 +27,7 @@ public class HexElevation : MonoBehaviour
         for (int i = 0; i < childCount; i++)
         {
             gridObjects[i] = transform.GetChild(i).gameObject;
-            gridCellsCoords[i] = gridObjects[i].GetComponent<NeighbourTileProcessor>();
+            gridCellsCoords[i] = gridObjects[i].transform.GetChild(0).GetComponent<NeighbourTileProcessor>();
             gridCells[i] = gridObjects[i].transform;
         }
 

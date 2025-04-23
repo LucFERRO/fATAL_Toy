@@ -6,7 +6,6 @@ public class UnlockManager : MonoBehaviour
     [SerializeField]
     GameObject[] uiUnlockableTilesGO;
     DraggableItem[] uiUnlockableTilesItems;
-
     string[] tileTypes;
 
     [SerializeField]
@@ -21,13 +20,13 @@ public class UnlockManager : MonoBehaviour
             uiUnlockableTilesItems[i] = uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>();
         }
 
-        tileTypes = new string[] {"forest", "forestForest", "forestLake", "forestMountain", "forestPlain", "lake", "lakeLake", "lakeMountain", "lakePlain", "mountain", "mountainMountain", "mountainPlain", "plain", "plainPlain" };
+        tileTypes = gameManager.tileTypes;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             HandleUnlockComboTile(test);
         }

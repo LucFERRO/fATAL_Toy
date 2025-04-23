@@ -41,16 +41,9 @@ public class RollingDiceData : MonoBehaviour
             {
                 GetClosestHexTile();
                 GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())];
-                if (gameManager.onlyReplacesClosestTile)
-                {
-                    UpdateSingleHex(traveledTilesGO[closestTileIndex], newHexPrefab);
-                }
-                else
-                {
-                    UpdateTraveledHexes(newHexPrefab);
-
-                }
                 Destroy(gameObject);
+
+                UpdateTraveledHexes(newHexPrefab);
             }
         }
     }
@@ -112,19 +105,21 @@ public class RollingDiceData : MonoBehaviour
 
     private void UpdateTraveledHexes(GameObject newHexPrefab)
     {
-        foreach (GameObject tile in traveledTilesGO)
+        List<GameObject> newTiles = new List<GameObject>();
+
+        foreach (GameObject tile in new List<GameObject>(traveledTilesGO))
         {
-            UpdateSingleHex(tile, newHexPrefab);
+            if (tile == null) continue;
+
+            NeighbourTileProcessor newTile = UpdateSingleHex(tile, newHexPrefab);
+            newTiles.Add(newTile.gameObject);
         }
+
+        gameManager.UpdateNeighboursAfterDiceDestroy(newTiles);
     }
 
-    private void UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
+    private NeighbourTileProcessor UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
     {
-        if (hexToBeChanged == null)
-        {
-            return;
-        }
-
         Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
         Quaternion randomRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.position, randomRotation);
@@ -134,10 +129,18 @@ public class RollingDiceData : MonoBehaviour
         newGridCoordinates.tiletype = GetChosenFace();
         newGridCoordinates.cellPosition = hexPosition;
 
+        // Replace the old tile in traveledTilesGO with the new one
+        int index = traveledTilesGO.IndexOf(hexToBeChanged);
+        if (index != -1)
+        {
+            traveledTilesGO[index] = newHex;
+        }
+
         Destroy(hexToBeChanged.gameObject);
+        return newGridCoordinates;
     }
 
-    private void GetClosestHexTile()
+        private void GetClosestHexTile()
     {
         float shortestTileDistance = float.MaxValue;
 
@@ -183,8 +186,22 @@ public class RollingDiceData : MonoBehaviour
             {
                 return;
             }
-            traveledTilesGO.Add(collision.gameObject);
-            collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+
+            //if (gameManager.onlyReplacesClosestTile)
+            //{
+            //    foreach (GameObject tile in traveledTilesGO)
+            //    {
+            //        tile.gameObject.GetComponent<GlowingHexes>().ToggleGlow(false);
+            //    }
+            //    traveledTilesGO.Clear();
+            //    traveledTilesGO.Add(collision.gameObject);
+            //    collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+            //}
+            //else
+            {
+                traveledTilesGO.Add(collision.gameObject);
+                collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+            }
         }
     }
 

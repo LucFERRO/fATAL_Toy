@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class MouseLook : MonoBehaviour
 {
     #region variables
-    Vector2 mouseFinal;
+    public Vector2 mouseFinal;
     Vector2 smoothMouse;
     Vector2 targetDirection;
     Vector2 targetCharacterDirection;

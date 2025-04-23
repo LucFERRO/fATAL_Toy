@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class NeighbourTileProcessor : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class NeighbourTileProcessor : MonoBehaviour
     private GameObject chosenComboTile;
     public GameObject currentPrefab;
     public Dictionary<string, int> neighbourTilesDictionnary = new();
+
+    private NeighbourTileProcessor[] neighbourTiles;
+    private int neighbourNumber;
     public string majorTile;
     [Header("Coordinates")]
     public Vector3Int cellPosition;
@@ -36,16 +40,21 @@ public class NeighbourTileProcessor : MonoBehaviour
     [Header("TRASH")]
     public Color[] debugColors;
 
-    void Start()
+    void Awake()
     {
+        neighbourNumber = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs.Length;
+        neighbourTiles = new NeighbourTileProcessor[neighbourNumber];
+        for (int i = 0; i < neighbourNumber; i++)
+        {
+            neighbourTiles[i] = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].GetComponent<NeighbourTileProcessor>();
+        }
+
         debugColors = new Color[] { Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.white };
         cam = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
-        grid = transform.parent.GetComponent<Grid>();
+        grid = transform.parent.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
-        //Debug.Log($"");
-        //UpdateCurrentNeighbourTiles(GetNeighbourTiles(cellPosition.x == 0, cellPosition.x == 8, cellPosition.z == 0, cellPosition.z == 8));
     }
 
 
@@ -54,15 +63,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         Dictionary<string, int> neighbourSplitTypes = new Dictionary<string, int>();
         foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
         {
-            Debug.Log(kvp.Key);
             if (Regex.IsMatch(kvp.Key, "(?<!^)(?=[A-Z])"))
             {
                 string[] types = SplitAtUpperCase(kvp.Key).Split(" ");
-                Debug.Log("key needing split " + types.Length);
+                //Debug.Log("key needing split " + types.Length);
                 string type1 = types[1];
                 string type2 = FirstLetterToLower(types[2]);
-                Debug.Log($"Type 1 : {type1}");
-                Debug.Log($"Type 2 : {type2}");
+                //Debug.Log($"Type 1 : {type1}");
+                //Debug.Log($"Type 2 : {type2}");
 
                 if (!neighbourSplitTypes.ContainsKey(type1))
                 {
@@ -106,67 +114,31 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         foreach (KeyValuePair<string, int> kvp in neighbourSplitTypes)
         {
-            Debug.Log("Final types : " + kvp.Key + " " + kvp.Value);
-            if (kvp.Value >= gameManager.comboThreshold)
+            if (kvp.Value < gameManager.comboThreshold)
             {
-                majorTile = kvp.Key;
+                continue;
             }
             else
             {
-                Debug.LogWarning("No major Tiles determined");
+                majorTile = kvp.Key;
+                Debug.Log($"Majortile: {majorTile}");
+                break;
             }
+        }
+        if (majorTile == "empty")
+        {
+            majorTile = "";
         }
         return majorTile;
     }
 
-    public string SplitAtUpperCase(string str)
+    public void UpdateCurrentNeighbourTiles()
     {
-        string res = "";
-        string[] split = Regex.Split(str, @"(?<!^)(?=[A-Z])");
-        for (int i = 0; i < split.Length; i++)
-        {
-            res += " " + split[i];
-        }
-        return res;
-    }
 
-    public string FirstLetterToUpper(string str)
-    {
-        if (str == null)
-        {
-            return null;
-        }
-
-        if (str.Length > 1)
-        {
-            return char.ToUpper(str[0]) + str.Substring(1);
-        }
-
-        return str.ToUpper();
-    }
-
-    public string FirstLetterToLower(string str)
-    {
-        if (str == null)
-        {
-            return null;
-        }
-
-        if (str.Length > 1)
-        {
-            return char.ToLower(str[0]) + str.Substring(1);
-        }
-
-        return str.ToLower();
-    }
-
-
-    public void UpdateCurrentNeighbourTiles(List<GameObject> neighbourList)
-    {
         neighbourTilesDictionnary.Clear();
-        for (int i = 0; i < neighbourList.Count; i++)
+        for (int i = 0; i < neighbourTiles.Length; i++)
         {
-            string newTileTypeNeighbour = neighbourList[i].GetComponent<NeighbourTileProcessor>().tiletype;
+            string newTileTypeNeighbour = neighbourTiles[i].tiletype;
             if (!neighbourTilesDictionnary.ContainsKey(newTileTypeNeighbour))
             {
                 neighbourTilesDictionnary.Add(newTileTypeNeighbour, 1);
@@ -182,8 +154,8 @@ public class NeighbourTileProcessor : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log($"{transform.name}: {cellPosition}");
-            UpdateCurrentNeighbourTiles(GetNeighbourTiles(cellPosition.x == 0, cellPosition.x == 8, cellPosition.z == 0, cellPosition.z == 8, cellPosition.z % 2 == 0));
+            GetNeighbourTiles();
+            UpdateCurrentNeighbourTiles();
             GetMajorTile();
             foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
             {
@@ -194,11 +166,15 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             UpdateComboTile();
         }
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
-            diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
+            for (int i = 0; i < transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs.Length; i++)
+            {
+                Color randomColor = UnityEngine.Random.ColorHSV();
+                transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = randomColor;
+            }
         }
+
         if (Input.GetMouseButtonDown(1))
         {
             ToggleLockTile();
@@ -207,32 +183,18 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             UpdateHex();
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log(currentLockedTiles);
         }
     }
 
-    private List<GameObject> GetNeighbourTiles(bool isLeft, bool isRight, bool isBot, bool isTop, bool isEvenColumn)
+    public void GetNeighbourTiles()
     {
-        List<GameObject> neighbourTiles = new List<GameObject>();
-
-        if (!isLeft)
+        for (int i = 0; i < neighbourNumber; i++)
         {
-            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x - (isEvenColumn ? 1 : 0), cellPosition.y, cellPosition.z), 0));
-            if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z + 1), 1));
-            if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z - 1), 2));
+            neighbourTiles[i] = transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].transform.GetChild(0).GetComponent<NeighbourTileProcessor>();
         }
-
-        if (!isRight)
-        {
-            neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + (isEvenColumn ? 1 : 2), cellPosition.y, cellPosition.z), 4));
-            if (!isTop) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z + 1), 3));
-            if (!isBot) neighbourTiles.Add(GetTileAtCoordinates(new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z - 1), 5));
-        }
-
-
-        return neighbourTiles;
     }
 
     private GameObject GetTileAtCoordinates(Vector3Int cellCoordinates, int id)
@@ -243,7 +205,6 @@ public class NeighbourTileProcessor : MonoBehaviour
         Ray ray = new Ray(coordinates, Vector3.down);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
-        Debug.Log(cellCoordinates);
         foundObject = hit.collider.gameObject;
         if (gameManager.neighbourColorEnabled)
         {
@@ -260,14 +221,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         int typeValue2 = 0;
         int typeValue3 = 0;
 
-        Debug.Log("GetComboTile launched" + gameManager.baseTileDictionary.Count);
+        //Debug.Log("GetComboTile launched" + gameManager.baseTileDictionary.Count);
         foreach (KeyValuePair<int, string> kvp in gameManager.baseTileDictionary)
         {
-            Debug.Log("ENTERING THE BOUUCLE");
+            //Debug.Log("ENTERING THE BOUUCLE");
             if (kvp.Value == tiletype)
             {
                 typeValue1 = kvp.Key * 10;
-                Debug.Log("Debug ligne 40" + kvp.Key);
+                //Debug.Log("Debug ligne 40" + kvp.Key);
             }
 
             if (kvp.Value == majorTile)
@@ -278,15 +239,15 @@ public class NeighbourTileProcessor : MonoBehaviour
 
         //FirstLetterToUpper(type2);
 
-        Debug.Log(typeValue1 + "," + typeValue2);
         typeValue3 = typeValue1 + typeValue2;
-        Debug.Log("typeValue3 : " + typeValue3);
-
+        //Debug.Log($"Type values: {typeValue1} / {typeValue2} / {typeValue3}");
         gameManager.comboDictionary.TryGetValue(typeValue3, out string comboTile);
 
+        Debug.Log($"Combo tile: {comboTile} ");
         string[] types = comboTile.Split("_");
         string type1 = types[0];
         string type2 = types[1];
+        //Debug.Log($"{type1} / {type2} ");
 
         string[] involvedTypes = new string[2];
         involvedTypes[0] = type1;
@@ -323,13 +284,17 @@ public class NeighbourTileProcessor : MonoBehaviour
                 }
             }
         }
-
-
         return comboTile;
     }
 
-    private void UpdateComboTile()
+    public void UpdateComboTile()
     {
+        Debug.Log("MAJORTILE:" + majorTile);
+
+        if (majorTile.Length == 0)
+        {
+            return;
+        }
         for (int i = 0; i < gameManager.tileTypes.Length; i++)
         {
             // array.sort GetComboTile dans gameManager.tiletype
@@ -363,8 +328,8 @@ public class NeighbourTileProcessor : MonoBehaviour
         newGridCoordinates.cellPosition = hexPosition;
 
         Destroy(gameObject);
+        transform.parent.GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         Vector3Int hexPosition = cellPosition;
@@ -372,5 +337,43 @@ public class NeighbourTileProcessor : MonoBehaviour
 
         //gridCoordinates.tiletype = gameManager.chosenTileType;
         currentPrefab = gameManager.chosenPrefab;
+    }
+    public string SplitAtUpperCase(string str)
+    {
+        string res = "";
+        string[] split = Regex.Split(str, @"(?<!^)(?=[A-Z])");
+        for (int i = 0; i < split.Length; i++)
+        {
+            res += " " + split[i];
+        }
+        return res;
+    }
+    public string FirstLetterToUpper(string str)
+    {
+        if (str == null)
+        {
+            return null;
+        }
+
+        if (str.Length > 1)
+        {
+            return char.ToUpper(str[0]) + str.Substring(1);
+        }
+
+        return str.ToUpper();
+    }
+    public string FirstLetterToLower(string str)
+    {
+        if (str == null)
+        {
+            return null;
+        }
+
+        if (str.Length > 1)
+        {
+            return char.ToLower(str[0]) + str.Substring(1);
+        }
+
+        return str.ToLower();
     }
 }

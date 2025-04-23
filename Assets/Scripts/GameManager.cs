@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 [Serializable]
 public class DebugVariableHolder
 {
@@ -16,7 +17,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] diceFaces;
     public Color baseDiceFaceColor;
     public Material[] faceMaterials;
+
+    [Header("LockedTiles")]
     public int maxLockedTiles;
+    public int currentlyLockedTiles;
 
     public Dictionary<int, string> baseTileDictionary = new();
     public Dictionary<int, string> comboDictionary = new();
@@ -26,7 +30,7 @@ public class GameManager : MonoBehaviour
     public bool dicesCanReplaceAllHexes;
     public int comboThreshold = 4;
     public bool neighbourColorEnabled;
-
+    public bool isPreviewing;
 
     [Header("Debug")]
     public GameObject debugUIGameObject;
@@ -57,10 +61,39 @@ public class GameManager : MonoBehaviour
     public DebugVariableHolder instance = new DebugVariableHolder();
     void Start()
     {
+        baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
         TypeBools = new bool[tileTypes.Length];
         ChooseTileToSpawn(0);
         CreateBaseTileDictionary();
         CreateComboTileDictionary();
+    }
+
+    public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
+    {
+        Debug.Log("Received " + tiles.Count + " tiles for delayed update");
+        StartCoroutine(UpdateNeighboursCoroutine(tiles));
+    }
+
+    private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        foreach (GameObject tile in tiles)
+        {
+            if (tile == null) {
+                continue;
+            }
+
+            GridNeighbourHandler gridNeighbourHandler = tile.transform.parent.GetComponent<GridNeighbourHandler>();
+            gridNeighbourHandler?.UpdateNeighbourTiles();
+
+            NeighbourTileProcessor processor = tile.GetComponent<NeighbourTileProcessor>();
+            processor.GetNeighbourTiles();
+            processor.UpdateCurrentNeighbourTiles();
+            processor.GetMajorTile();
+            Debug.Log(processor.GetMajorTile());
+            processor.UpdateComboTile();
+        }
     }
 
     public void ToggleDebugUI()

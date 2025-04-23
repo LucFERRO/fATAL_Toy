@@ -54,11 +54,7 @@ public class TrajectoryPreview : MonoBehaviour
             UpdateLineRender(maxPoints, (i, position)); //Unneccesary to set count here, but not harmful
         }
     }
-    /// <summary>
-    /// Allows us to set line count and an induvidual position at the same time
-    /// </summary>
-    /// <param name="count">Number of points in our line</param>
-    /// <param name="pointPos">The position of an induvidual point</param>
+
     private void UpdateLineRender(int count, (int point, Vector3 pos) pointPos)
     {
         trajectoryLine.positionCount = count;
