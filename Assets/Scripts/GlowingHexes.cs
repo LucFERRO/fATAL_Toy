@@ -6,76 +6,67 @@ using UnityEngine;
 public class GlowingHexes : MonoBehaviour
 {
     [SerializeField]
-    private Material[] originalMaterials;
-    [SerializeField]
-    private Material[] glowMaterials;
-    private static Dictionary<Color, Material> cachedGlowMaterial = new Dictionary<Color, Material>();
-
     public Material glowMaterial;
+    [SerializeField]
     public Material lockedGlowMaterial;
-    [SerializeField]
-    private Renderer objRenderer;
-    [SerializeField]
-    private bool isGlowing;
 
+    private bool isGlowing;
     private Vector3 originalScale;
+
+    private Renderer[] renderers;
+
+    private Dictionary<Renderer, Material[]> originalMaterials = new Dictionary<Renderer, Material[]>();
+    private Dictionary<Renderer, Material[]> glowMaterials = new Dictionary<Renderer, Material[]>();
+
+    private static Dictionary<Texture, Material> cachedGlowMaterial = new Dictionary<Texture, Material>();
 
     private void Awake()
     {
-        objRenderer = GetComponent<Renderer>();
-        PrepareMaterials();
+        renderers = GetComponentsInChildren<Renderer>();
         originalScale = transform.localScale;
+        PrepareMaterials();
     }
 
     public void PrepareMaterials()
     {
-        if (objRenderer == null)
+        foreach (Renderer r in renderers)
         {
-            return;
-        }
+            Material[] originalMats = r.materials;
+            Material[] glowMats = new Material[originalMats.Length];
 
-        originalMaterials = objRenderer.materials;
-        glowMaterials = new Material[originalMaterials.Length*2];
-
-        for (int i = 0; i < originalMaterials.Length; i++)
-        {
-            if (!cachedGlowMaterial.TryGetValue(originalMaterials[i].color, out Material mat))
+            for (int i = 0; i < originalMats.Length; i++)
             {
-                //Debug.Log(transform.GetComponent<NeighbourTileProcessor>().isLocked);
-                mat = new Material(glowMaterial);
-                mat.color = originalMaterials[i].color;
-                cachedGlowMaterial[originalMaterials[i].color] = mat;
+                if (!cachedGlowMaterial.TryGetValue(originalMats[i].GetTexture("_BaseMap"), out Material mat))
+                {
+                    mat = new Material(glowMaterial);
+                    Texture baseMap = originalMats[i].GetTexture("_BaseMap");
+                    mat.SetTexture("_BaseMap", baseMap);
+                    cachedGlowMaterial[baseMap] = mat;
+                }
+                glowMats[i] = mat;
             }
-            glowMaterials[i] = mat;
-        }
-        //for (int i = 0; i < originalMaterials.Length; i++)
-        //{
-        //    if (!cachedGlowMaterial.TryGetValue(originalMaterials[i].color, out Material mat))
-        //    {
-        //        Debug.Log(transform.GetComponent<GridCoordinates>().isLocked);
-        //        mat = new Material(lockedGlowMaterial);
-        //        mat.color = originalMaterials[i].color;
-        //        cachedGlowMaterial[originalMaterials[i].color] = mat;
-        //    }
-        //    glowMaterials[i] = mat;
-        //}
 
+            originalMaterials[r] = originalMats;
+            glowMaterials[r] = glowMats;
+        }
     }
 
     public void ToggleGlow()
     {
-        if (objRenderer == null) return;
-        objRenderer.materials = isGlowing ? originalMaterials : glowMaterials;
+        foreach (Renderer r in renderers)
+        {
+            if (r == null) continue;
+            r.materials = isGlowing ? originalMaterials[r] : glowMaterials[r];
+        }
+
         isGlowing = !isGlowing;
-        //if (isGlowing)
-        //{
-            StartCoroutine(ScaleEffect());
-        //}
-        //else
-        //{
-        //    StopCoroutine(ScaleEffect());
-        //}
-        //isGlowing ? StartCoroutine(ScaleEffect()) : StopCoroutine(ScaleEffect());
+        StartCoroutine(ScaleEffect());
+    }
+
+    public void ToggleGlow(bool state)
+    {
+        if (isGlowing == state) return;
+        ToggleGlow();
     }
 
     private IEnumerator ScaleEffect()
@@ -100,12 +91,5 @@ public class GlowingHexes : MonoBehaviour
         }
 
         transform.localScale = originalScale;
-    }
-
-    public void ToggleGlow(bool state)
-    {
-        if (isGlowing == state || objRenderer == null) return;
-        isGlowing = !state;
-        ToggleGlow();
     }
 }

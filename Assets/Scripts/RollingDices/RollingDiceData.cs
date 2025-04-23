@@ -121,7 +121,8 @@ public class RollingDiceData : MonoBehaviour
     private NeighbourTileProcessor UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
     {
         Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
-        GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.parent);
+        Quaternion randomRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
+        GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.position, randomRotation, hexToBeChanged.transform.parent);
         newHex.transform.position = hexToBeChanged.transform.position;
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();

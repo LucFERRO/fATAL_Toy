@@ -46,8 +46,10 @@ public class HexElevation : MonoBehaviour
             {
                 hexHeight = Mathf.PerlinNoise(perlinX, perlinY) * elevationStep;
             }
+            Quaternion randomRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
 
             gridCells[i].position = new Vector3(gridCells[i].position.x, hexHeight, gridCells[i].position.z);
+            gridCells[i].rotation = randomRotation;
         }
     }
     private float[] CreateRoundArray(int partNumber)
