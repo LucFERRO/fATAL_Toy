@@ -866,7 +866,7 @@ MonoBehaviour:
   RecenterTarget: 2
   PanAxis:
     Value: 0
-    Center: 1.74
+    Center: 1.7400055
     Range: {x: -180, y: 180}
     Wrap: 1
     Recentering:
@@ -3789,7 +3789,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9391,6 +9391,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: baa0b6ffca1d3af448ec56da7b9e3d16, type: 2}
   - {fileID: 2100000, guid: 39552bace88bcef4b8076846b3252cbf, type: 2}
   maxLockedTiles: 3
+  currentlyLockedTiles: 0
   diceMaxDisappearanceTimer: 1
   onlyReplacesClosestTile: 0
   dicesCanReplaceAllHexes: 1
