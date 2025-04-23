@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +17,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] diceFaces;
     public Color baseDiceFaceColor;
     public Material[] faceMaterials;
+
+    [Header("LockedTiles")]
     public int maxLockedTiles;
+    public int currentlyLockedTiles;
 
     public Dictionary<int, string> baseTileDictionary = new();
     public Dictionary<int, string> comboDictionary = new();
@@ -62,6 +66,34 @@ public class GameManager : MonoBehaviour
         ChooseTileToSpawn(0);
         CreateBaseTileDictionary();
         CreateComboTileDictionary();
+    }
+
+    public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
+    {
+        Debug.Log("Received " + tiles.Count + " tiles for delayed update");
+        StartCoroutine(UpdateNeighboursCoroutine(tiles));
+    }
+
+    private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        foreach (GameObject tile in tiles)
+        {
+            if (tile == null) {
+                continue;
+            }
+
+            GridNeighbourHandler gridNeighbourHandler = tile.transform.parent.GetComponent<GridNeighbourHandler>();
+            gridNeighbourHandler?.UpdateNeighbourTiles();
+
+            NeighbourTileProcessor processor = tile.GetComponent<NeighbourTileProcessor>();
+            processor.GetNeighbourTiles();
+            processor.UpdateCurrentNeighbourTiles();
+            processor.GetMajorTile();
+            Debug.Log(processor.GetMajorTile());
+            processor.UpdateComboTile();
+        }
     }
 
     public void ToggleDebugUI()

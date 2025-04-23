@@ -53,13 +53,7 @@ public class TileSplitManager : MonoBehaviour
         {
             string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tiletype;
             transform.GetChild(i).GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
-            foreach (string baseType in baseTypes)
-            {
-                if (baseType.Contains(type.Substring(1)))
-                {
-                    gridTileSplitDictionary[baseType]++;
-                }
-            }
+
         }
     }
 

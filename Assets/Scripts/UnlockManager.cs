@@ -6,7 +6,6 @@ public class UnlockManager : MonoBehaviour
     [SerializeField]
     GameObject[] uiUnlockableTilesGO;
     DraggableItem[] uiUnlockableTilesItems;
-
     string[] tileTypes;
 
     [SerializeField]
