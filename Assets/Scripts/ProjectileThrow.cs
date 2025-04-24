@@ -65,13 +65,13 @@ public class ProjectileThrow : MonoBehaviour
 
     void Update()
     {
-        bool canThrowDice = gameManager.transform.childCount == 0;
+        bool canThrowDice = gameManager.transform.childCount == 0 && !gameManager.isInventoryOpen;
 
         if (Input.GetMouseButton(0) && canThrowDice)
         {
             gameManager.isPreviewing = true;
         }
-        if (Input.GetMouseButtonUp(0) && canThrowDice)
+        if (Input.GetMouseButtonUp(0) && canThrowDice && gameManager.isPreviewing)
         {
             gameManager.isPreviewing = false;
             PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();

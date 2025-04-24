@@ -32,6 +32,18 @@ public class GameManager : MonoBehaviour
     public bool neighbourColorEnabled;
     public bool isPreviewing;
 
+    [Header("Inventory")]
+    public GameObject inventoryUiGO;
+    public bool isInventoryOpen;
+    public bool IsInventoryOpen
+    {
+        get { return isInventoryOpen; }
+        set
+        {
+            isInventoryOpen = value;
+            inventoryUiGO.SetActive(value);
+        }
+    }
     [Header("Debug")]
     public GameObject debugUIGameObject;
     public bool debugUI;
@@ -99,6 +111,11 @@ public class GameManager : MonoBehaviour
     public void ToggleDebugUI()
     {
         DebugUI = !DebugUI;
+    }    
+    
+    public void ToggleInventoryUI()
+    {
+        IsInventoryOpen = !IsInventoryOpen;
     }
 
     private void CreateBaseTileDictionary()

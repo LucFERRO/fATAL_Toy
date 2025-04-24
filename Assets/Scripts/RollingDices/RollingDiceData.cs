@@ -64,6 +64,10 @@ public class RollingDiceData : MonoBehaviour
     {
         if (transform.position.y <= -15)
         {
+            for (int i = 0; i < traveledTilesGO.Count; i++)
+            {
+                traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
+            }
             Destroy(gameObject);
         }
     }

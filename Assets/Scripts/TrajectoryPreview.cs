@@ -72,7 +72,7 @@ public class TrajectoryPreview : MonoBehaviour
         targetOrigin += mainCamera.transform.forward * -forwardOffset;
 
         // Smoothly interpolate the trajectory origin position
-        smoothedOrigin = Vector3.Lerp(smoothedOrigin, targetOrigin, Time.deltaTime * smoothingFactor);
+        smoothedOrigin = Vector3.Lerp(smoothedOrigin, targetOrigin, 1f - Mathf.Exp(-smoothingFactor * Time.deltaTime));
 
         // Update the projectile's initial position
         projectile.initialPosition = smoothedOrigin;
