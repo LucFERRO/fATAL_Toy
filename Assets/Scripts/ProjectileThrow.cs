@@ -17,8 +17,7 @@ public class ProjectileThrow : MonoBehaviour
     [SerializeField]
     Rigidbody objectToThrow;
 
-    [SerializeField, Range(0.0f, 200.0f)]
-    float force;
+    [SerializeField, Range(0.0f, 200.0f)] float force;
 
     public Transform StartPosition;
 

@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
         ChooseTileToSpawn(0);
         CreateBaseTileDictionary();
         CreateComboTileDictionary();
+        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
