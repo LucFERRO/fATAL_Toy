@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ProjectileThrow : MonoBehaviour
 {
     TrajectoryPreview trajectoryPreview;
+    PhysicalDiceProperties properties;
     Camera cam;
+    public Vector2 screenSpaceOffset; // Example: Slightly right and down
+
+    public GameObject bottomPlane;
 
     private PhysicalDiceSpawner diceSpawner;
     private GameManager gameManager;
@@ -12,11 +17,9 @@ public class ProjectileThrow : MonoBehaviour
     [SerializeField]
     Rigidbody objectToThrow;
 
-    [SerializeField, Range(0.0f, 200.0f)]
-    float force;
+    [SerializeField, Range(0.0f, 200.0f)] float force;
 
-    [SerializeField]
-    Transform StartPosition;
+    public Transform StartPosition;
 
     public InputAction fire;
 
@@ -38,40 +41,17 @@ public class ProjectileThrow : MonoBehaviour
             StartPosition = transform;
         }
 
+        properties = InitializeProjectileProperties();
+
+        // Pass the initialized properties to the TrajectoryPreview
+        trajectoryPreview.SetProjectileProperties(properties);
+        trajectoryPreview.SetScreenSpaceOffset(screenSpaceOffset);
         fire.Enable();
         fire.performed += ThrowObject;
     }
 
-    void Update()
+    private PhysicalDiceProperties InitializeProjectileProperties()
     {
-        trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
-        bool canThrowDice = gameManager.transform.childCount == 0;
-
-        if (Input.GetMouseButton(0) && canThrowDice)
-        {
-            gameManager.isPreviewing = true;
-            //diceSpawner.SpawnDice(transform.position - cam.transform.position, cam.transform);
-        }
-        if (Input.GetMouseButtonUp(0) && canThrowDice)
-        {
-            gameManager.isPreviewing = false;
-            diceSpawner.SpawnDice(StartPosition.forward * force, transform);
-        }
-
-        if (gameManager.isPreviewing)
-        {
-            Predict();
-        }
-    }
-
-    void Predict()
-    {
-        trajectoryPreview.PredictTrajectory(ProjectileData());
-    }
-
-    PhysicalDiceProperties ProjectileData()
-    {
-        PhysicalDiceProperties properties = new PhysicalDiceProperties();
         Rigidbody r = objectToThrow.GetComponent<Rigidbody>();
 
         properties.direction = StartPosition.forward;
@@ -83,20 +63,37 @@ public class ProjectileThrow : MonoBehaviour
         return properties;
     }
 
-    void ThrowObject(InputAction.CallbackContext ctx)
+    void Update()
     {
-        //Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
-        //thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
+        bool canThrowDice = gameManager.transform.childCount == 0;
 
+        if (Input.GetMouseButton(0) && canThrowDice)
+        {
+            gameManager.isPreviewing = true;
+        }
+        if (Input.GetMouseButtonUp(0) && canThrowDice)
+        {
+            gameManager.isPreviewing = false;
+            PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
 
-        //Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-        //if (Physics.Raycast(ray, out RaycastHit hit))
-        //{
-        //if (Input.GetMouseButtonUp(1))
-        //{
-        //diceSpawner.SpawnDice(StartPosition.forward * force, transform);
-        //trajectoryPreview.SetTrajectoryVisible(false);
-        //}
-        //}
+            // Spawn the dice at the camera's position and throw it towards the mouse position
+            diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
+        }
+
+        if (gameManager.isPreviewing)
+        {
+            Predict();
+        }
+        trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
+    }
+
+    void Predict()
+    {
+        trajectoryPreview.PredictTrajectory();
+    }
+
+    void ThrowObject(InputAction.CallbackContext context)
+    {
+
     }
 }

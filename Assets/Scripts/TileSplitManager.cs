@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Text.RegularExpressions;
 
 public class TileSplitManager : MonoBehaviour
 {
@@ -49,11 +50,29 @@ public class TileSplitManager : MonoBehaviour
     public void UpdateTileSplitDictionary()
     {
         CreateFreshTileDictionary();
+
         for (int i = 0; i < numberOfTiles; i++)
         {
             string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tiletype;
-            transform.GetChild(i).GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
 
+            string[] types = Regex.Split(type, @"(?<!^)(?=[A-Z])");
+            if (types.Length > 1) {
+                types[1] = types[1].ToLower();
+            }
+            HashSet<string> uniqueTypes = new HashSet<string>(types);
+            foreach (string subType in uniqueTypes)
+            {
+                if (gridTileSplitDictionary.ContainsKey(subType))
+                {
+                    gridTileSplitDictionary[subType]++;
+                }
+                else
+                {
+                    Debug.LogWarning($"Unexpected tile type: {subType}. Ensure all tile types are accounted for.");
+                }
+            }
+
+            //transform.GetChild(i).GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
         }
     }
 

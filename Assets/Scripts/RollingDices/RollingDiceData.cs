@@ -62,7 +62,7 @@ public class RollingDiceData : MonoBehaviour
 
     private void HandleSelfDestruct()
     {
-        if (transform.position.y <= -5)
+        if (transform.position.y <= -15)
         {
             Destroy(gameObject);
         }

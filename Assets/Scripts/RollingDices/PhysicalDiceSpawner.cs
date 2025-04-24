@@ -86,13 +86,13 @@ public class PhysicalDiceSpawner : MonoBehaviour
     //}    
 
 
-    public void SpawnDice(Vector3 throwVector, Transform originTransform)
+    public void SpawnDice(Vector3 throwVector, Vector3 originPosition)
     {
         if (gameManagerGO.transform.childCount != 0)
         {
             return;
         }
-        GameObject spawnedDice = Instantiate(diceToSpawn, originTransform.position, originTransform.rotation);
+        GameObject spawnedDice = Instantiate(diceToSpawn, originPosition, Quaternion.identity);
         spawnedDice.transform.parent = gameManagerGO.transform;
         spawnedDice.transform.localScale = Vector3.one * diceSize * 0.01f;
         spawnedDice.GetComponent<Rigidbody>().AddForce(throwVector, ForceMode.Impulse);

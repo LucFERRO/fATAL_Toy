@@ -66,11 +66,12 @@ public class GameManager : MonoBehaviour
         ChooseTileToSpawn(0);
         CreateBaseTileDictionary();
         CreateComboTileDictionary();
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
-        Debug.Log("Received " + tiles.Count + " tiles for delayed update");
         StartCoroutine(UpdateNeighboursCoroutine(tiles));
     }
 
@@ -91,7 +92,6 @@ public class GameManager : MonoBehaviour
             processor.GetNeighbourTiles();
             processor.UpdateCurrentNeighbourTiles();
             processor.GetMajorTile();
-            Debug.Log(processor.GetMajorTile());
             processor.UpdateComboTile();
         }
     }

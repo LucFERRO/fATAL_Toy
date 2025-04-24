@@ -121,7 +121,6 @@ public class NeighbourTileProcessor : MonoBehaviour
             else
             {
                 majorTile = kvp.Key;
-                Debug.Log($"Majortile: {majorTile}");
                 break;
             }
         }
@@ -209,7 +208,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         if (gameManager.neighbourColorEnabled)
         {
             foundObject.GetComponent<MeshRenderer>().material.color = debugColors[id];
-            Debug.Log($"{foundObject.name} : {foundObject.GetComponent<NeighbourTileProcessor>().tiletype} at coordinates {cellCoordinates}");
+            //Debug.Log($"{foundObject.name} : {foundObject.GetComponent<NeighbourTileProcessor>().tiletype} at coordinates {cellCoordinates}");
         }
         return foundObject;
     }
@@ -243,7 +242,6 @@ public class NeighbourTileProcessor : MonoBehaviour
         //Debug.Log($"Type values: {typeValue1} / {typeValue2} / {typeValue3}");
         gameManager.comboDictionary.TryGetValue(typeValue3, out string comboTile);
 
-        Debug.Log($"Combo tile: {comboTile} ");
         string[] types = comboTile.Split("_");
         string type1 = types[0];
         string type2 = types[1];
@@ -289,8 +287,6 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     public void UpdateComboTile()
     {
-        Debug.Log("MAJORTILE:" + majorTile);
-
         if (majorTile.Length == 0)
         {
             return;
@@ -301,7 +297,6 @@ public class NeighbourTileProcessor : MonoBehaviour
             if (gameManager.tileTypes[i] == GetComboTile())
             {
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
-                Debug.Log(gameManager.chosenPrefab);
                 UpdateHex();
                 gameManager.chosenPrefab = gameManager.tilePrefabs[0];
                 gameManager.chosenTileType = gameManager.tileTypes[0];
