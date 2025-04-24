@@ -310,7 +310,6 @@ public class NeighbourTileProcessor : MonoBehaviour
             return;
         }
         IsLocked = !IsLocked;
-        GetComponent<GlowingHexes>().glowMaterial = GetComponent<GlowingHexes>().lockedGlowMaterial;
     }
     private void UpdateHex()
     {

@@ -17,7 +17,7 @@ public class ProjectileThrow : MonoBehaviour
     [SerializeField, Range(0.0f, 200.0f)]
     float force;
 
-    public Transform StartPosition { get; private set; }
+    public Transform StartPosition;
 
     public InputAction fire;
 
@@ -72,7 +72,8 @@ public class ProjectileThrow : MonoBehaviour
         {
             gameManager.isPreviewing = false;
             PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
-            Debug.Log(updatedProperties.initialPosition);
+
+            // Spawn the dice at the camera's position and throw it towards the mouse position
             diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
         }
 

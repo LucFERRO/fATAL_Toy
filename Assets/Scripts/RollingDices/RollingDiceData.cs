@@ -170,6 +170,7 @@ public class RollingDiceData : MonoBehaviour
 
         if (collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
         {
+            collision.gameObject.GetComponent<GlowingHexes>().ToggleLock(true);
             return;
         }
 
