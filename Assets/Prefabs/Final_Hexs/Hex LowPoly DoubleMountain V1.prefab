@@ -141,9 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalMaterials: []
-  glowMaterials: []
   glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
-  lockedGlowMaterial: {fileID: 0}
-  objRenderer: {fileID: 0}
-  isGlowing: 0
+  lockedMaterial: {fileID: -876546973899608171, guid: 818376ca4cb9c9a47bd650cd1eab4378, type: 3}

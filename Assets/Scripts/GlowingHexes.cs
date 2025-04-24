@@ -8,7 +8,7 @@ public class GlowingHexes : MonoBehaviour
     [SerializeField]
     public Material glowMaterial;
     [SerializeField]
-    public Material lockedGlowMaterial;
+    public Material lockedMaterial;
 
     private bool isGlowing;
     private Vector3 originalScale;
@@ -17,8 +17,10 @@ public class GlowingHexes : MonoBehaviour
 
     private Dictionary<Renderer, Material[]> originalMaterials = new Dictionary<Renderer, Material[]>();
     private Dictionary<Renderer, Material[]> glowMaterials = new Dictionary<Renderer, Material[]>();
+    private Dictionary<Renderer, Material[]> lockedMaterials = new Dictionary<Renderer, Material[]>();
 
     private static Dictionary<Texture, Material> cachedGlowMaterial = new Dictionary<Texture, Material>();
+    private static Dictionary<Texture, Material> cachedLockedMaterial = new Dictionary<Texture, Material>();
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class GlowingHexes : MonoBehaviour
         {
             Material[] originalMats = r.materials;
             Material[] glowMats = new Material[originalMats.Length];
+            Material[] lockedMats = new Material[originalMats.Length];
 
             for (int i = 0; i < originalMats.Length; i++)
             {
@@ -44,10 +47,21 @@ public class GlowingHexes : MonoBehaviour
                     cachedGlowMaterial[baseMap] = mat;
                 }
                 glowMats[i] = mat;
+                if (!cachedLockedMaterial.TryGetValue(originalMats[i].GetTexture("_BaseMap"), out Material mat2))
+                {
+                    mat2 = new Material(lockedMaterial);
+                    Texture baseMap = originalMats[i].GetTexture("_BaseMap");
+                    mat2.SetTexture("_BaseMap", baseMap);
+                    cachedLockedMaterial[baseMap] = mat2;
+                }
+                lockedMats[i] = mat2;
             }
+
 
             originalMaterials[r] = originalMats;
             glowMaterials[r] = glowMats;
+            lockedMaterials[r] = lockedMats;
+
         }
     }
 
@@ -62,12 +76,28 @@ public class GlowingHexes : MonoBehaviour
         isGlowing = !isGlowing;
         StartCoroutine(ScaleEffect());
     }
-
     public void ToggleGlow(bool state)
     {
         if (isGlowing == state) return;
         ToggleGlow();
     }
+    public void ToggleLock()
+    {
+        foreach (Renderer r in renderers)
+        {
+            if (r == null) continue;
+            r.materials = isGlowing ? originalMaterials[r] : lockedMaterials[r];
+        }
+
+        isGlowing = !isGlowing;
+        //StartCoroutine(ScaleEffect());
+    }
+    public void ToggleLock(bool state)
+    {
+        if (isGlowing == state) return;
+        ToggleLock();
+    }
+
 
     private IEnumerator ScaleEffect()
     {

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
-  lockedGlowMaterial: {fileID: -876546973899608171, guid: 818376ca4cb9c9a47bd650cd1eab4378, type: 3}
+  lockedMaterial: {fileID: -876546973899608171, guid: 818376ca4cb9c9a47bd650cd1eab4378, type: 3}
 --- !u!65 &331523027437232713
 BoxCollider:
   m_ObjectHideFlags: 0
