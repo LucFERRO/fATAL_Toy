@@ -29,6 +29,21 @@ public class GlowingHexes : MonoBehaviour
         PrepareMaterials();
     }
 
+    private void Update()
+    {
+        foreach (Renderer r in renderers)
+        {
+            foreach (Material mat in r.materials)
+            {
+                if (mat.HasProperty("_WaveTime"))
+                {
+                    float t = mat.GetFloat("_WaveTime");
+                    mat.SetFloat("_WaveTime", t + Time.deltaTime);
+                }
+            }
+        }
+    }
+
     public void PrepareMaterials()
     {
         foreach (Renderer r in renderers)
@@ -97,6 +112,19 @@ public class GlowingHexes : MonoBehaviour
         if (isGlowing == state) return;
         ToggleLock();
     }
+
+    //public void TriggerWave(Vector3 hitPoint)
+    //{
+    //    foreach (Renderer r in renderers)
+    //    {
+    //        if (r.material.HasProperty("_WaveCenter"))
+    //        {
+    //            r.material.SetVector("_WaveCenter", hitPoint);
+    //            r.material.SetFloat("_WaveTime", 0f);
+    //        }
+    //        r.materials = isGlowing ? originalMaterials[r] : glowMaterials[r];
+    //    }
+    //}
 
 
     private IEnumerator ScaleEffect()

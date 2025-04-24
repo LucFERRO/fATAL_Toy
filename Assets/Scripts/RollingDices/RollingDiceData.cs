@@ -144,7 +144,7 @@ public class RollingDiceData : MonoBehaviour
         return newGridCoordinates;
     }
 
-        private void GetClosestHexTile()
+    private void GetClosestHexTile()
     {
         float shortestTileDistance = float.MaxValue;
 
@@ -174,7 +174,7 @@ public class RollingDiceData : MonoBehaviour
 
         if (collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
         {
-            collision.gameObject.GetComponent<GlowingHexes>().ToggleLock(true);
+
             return;
         }
 

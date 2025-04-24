@@ -310,6 +310,8 @@ public class NeighbourTileProcessor : MonoBehaviour
             return;
         }
         IsLocked = !IsLocked;
+        gameObject.GetComponent<GlowingHexes>().ToggleLock(IsLocked ? true : false);
+
     }
     private void UpdateHex()
     {
