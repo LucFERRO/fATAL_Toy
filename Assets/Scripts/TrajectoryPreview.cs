@@ -20,7 +20,7 @@ public class TrajectoryPreview : MonoBehaviour
     public Vector2 screenSpaceOffset;
 
     [SerializeField, Tooltip("Smoothing factor for the trajectory origin position")]
-    private float smoothingFactor = 2f;
+    private float smoothingFactor = 1f;
     float forwardOffset = 0.5f;
 
 
@@ -108,6 +108,11 @@ public class TrajectoryPreview : MonoBehaviour
 
             if (Physics.Raycast(position, velocity.normalized, out RaycastHit hit, overlap))
             {
+                if (hit.point.y < 0)
+                {
+                    hitMarker.gameObject.SetActive(false);
+                    return;
+                }
                 trajectoryLine.positionCount = i + 1;
                 trajectoryLine.SetPosition(i, hit.point);
                 MoveHitMarker(hit);

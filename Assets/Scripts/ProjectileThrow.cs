@@ -9,7 +9,7 @@ public class ProjectileThrow : MonoBehaviour
     Camera cam;
     public Vector2 screenSpaceOffset; // Example: Slightly right and down
 
-
+    public GameObject bottomPlane;
 
     private PhysicalDiceSpawner diceSpawner;
     private GameManager gameManager;
