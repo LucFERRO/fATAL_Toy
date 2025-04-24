@@ -7,8 +7,8 @@ public class ProjectileThrow : MonoBehaviour
     TrajectoryPreview trajectoryPreview;
     PhysicalDiceProperties properties;
     Camera cam;
-    [SerializeField, Tooltip("Offset for the throw origin relative to the player's view")]
-    Vector3 throwOffset = new Vector3(0.5f, 0, 0); // Example: Offset slightly to the right
+    public Vector2 screenSpaceOffset; // Example: Slightly right and down
+
 
 
     private PhysicalDiceSpawner diceSpawner;
@@ -46,7 +46,7 @@ public class ProjectileThrow : MonoBehaviour
 
         // Pass the initialized properties to the TrajectoryPreview
         trajectoryPreview.SetProjectileProperties(properties);
-        trajectoryPreview.SetThrowOffset(throwOffset);
+        trajectoryPreview.SetScreenSpaceOffset(screenSpaceOffset);
         fire.Enable();
         fire.performed += ThrowObject;
     }
@@ -55,11 +55,8 @@ public class ProjectileThrow : MonoBehaviour
     {
         Rigidbody r = objectToThrow.GetComponent<Rigidbody>();
 
-        // Apply the offset to the initial position
-        Vector3 offsetPosition = StartPosition.position + cam.transform.right * throwOffset.x + cam.transform.up * throwOffset.y + cam.transform.forward * throwOffset.z;
-
-        properties.direction = (offsetPosition - StartPosition.position).normalized;
-        properties.initialPosition = offsetPosition;
+        properties.direction = StartPosition.forward;
+        properties.initialPosition = StartPosition.position;
         properties.initialSpeed = force;
         properties.mass = r.mass;
         properties.drag = r.linearDamping;
@@ -69,7 +66,6 @@ public class ProjectileThrow : MonoBehaviour
 
     void Update()
     {
-        trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
         bool canThrowDice = gameManager.transform.childCount == 0;
 
         if (Input.GetMouseButton(0) && canThrowDice)
@@ -89,6 +85,7 @@ public class ProjectileThrow : MonoBehaviour
         {
             Predict();
         }
+        trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
     }
 
     void Predict()

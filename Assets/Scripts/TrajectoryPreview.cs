@@ -16,8 +16,15 @@ public class TrajectoryPreview : MonoBehaviour
     Camera mainCamera;
     [SerializeField, Tooltip("The projectile properties to use for trajectory prediction")]
     PhysicalDiceProperties projectile;
-    [SerializeField, Tooltip("Offset for the throw origin relative to the player's view")]
-    private Vector3 throwOffset;
+    [SerializeField, Tooltip("Screen-space offset for the trajectory origin (in pixels)")]
+    public Vector2 screenSpaceOffset;
+
+    [SerializeField, Tooltip("Smoothing factor for the trajectory origin position")]
+    private float smoothingFactor = 2f;
+    float forwardOffset = 0.5f;
+
+
+    private Vector3 smoothedOrigin; // Smoothed trajectory origin
     #endregion
 
     private void Start()
@@ -31,20 +38,18 @@ public class TrajectoryPreview : MonoBehaviour
             mainCamera = Camera.main;
             if (mainCamera == null)
             {
-                //Debug.LogError("Main camera is not assigned and no Camera.main found. Please assign a camera.");
                 enabled = false; // Disable the script to prevent further errors
                 return;
             }
         }
+
+        // Initialize the smoothed origin
+        smoothedOrigin = transform.position;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
-        // Only update trajectory if the mouse has moved
-        //if (Vector3.Distance(Input.mousePosition, lastMousePosition) > mouseMovementThreshold)
-        //{
-            UpdateTrajectoryToMousePosition();
-        //}
+        UpdateTrajectoryToMousePosition();
     }
 
     private void UpdateTrajectoryToMousePosition()
@@ -55,15 +60,28 @@ public class TrajectoryPreview : MonoBehaviour
             return;
         }
 
+
+        // Calculate the fixed screen-space position for the trajectory origin
+        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Vector3 fixedScreenPosition = screenCenter + new Vector3(screenSpaceOffset.x, screenSpaceOffset.y, 0);
+
+        // Convert the fixed screen-space position to world space
+        Vector3 targetOrigin = mainCamera.ScreenToWorldPoint(new Vector3(fixedScreenPosition.x, fixedScreenPosition.y, mainCamera.nearClipPlane + 1f));
+
+        // Apply an offset along the camera's -forward direction
+        targetOrigin += mainCamera.transform.forward * -forwardOffset;
+
+        // Smoothly interpolate the trajectory origin position
+        smoothedOrigin = Vector3.Lerp(smoothedOrigin, targetOrigin, Time.deltaTime * smoothingFactor);
+
+        // Update the projectile's initial position
+        projectile.initialPosition = smoothedOrigin;
+
         // Raycast from the camera to the mouse position
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            Vector3 offsetPosition = transform.position + mainCamera.transform.right * throwOffset.x + mainCamera.transform.up * throwOffset.y + mainCamera.transform.forward * throwOffset.z;
-
-            projectile.initialPosition = offsetPosition;
-
-            // Update the direction to point from the initial position to the hit point
+            // Update the direction to point from the smoothed origin to the hit point
             projectile.direction = (hit.point - projectile.initialPosition).normalized;
 
             // Recalculate the trajectory
@@ -113,6 +131,11 @@ public class TrajectoryPreview : MonoBehaviour
 
     private void MoveHitMarker(RaycastHit hit)
     {
+        if (!trajectoryLine.enabled)
+        {
+            return; // Ensure the marker is only updated if the LineRenderer is visible
+        }
+
         hitMarker.gameObject.SetActive(true);
 
         float offset = 0.025f;
@@ -125,14 +148,17 @@ public class TrajectoryPreview : MonoBehaviour
         trajectoryLine.enabled = visible;
         hitMarker.gameObject.SetActive(visible);
     }
+
     public void SetProjectileProperties(PhysicalDiceProperties properties)
     {
         projectile = properties;
     }
-    public void SetThrowOffset(Vector3 offset)
+
+    public void SetScreenSpaceOffset(Vector2 offset)
     {
-        throwOffset = offset;
+        screenSpaceOffset = offset;
     }
+
     public PhysicalDiceProperties GetProjectileProperties()
     {
         return projectile;

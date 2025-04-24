@@ -15280,6 +15280,14 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1852280151}
+    - target: {fileID: 3776625019277101260, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
+      propertyPath: screenSpaceOffset.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776625019277101260, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
+      propertyPath: screenSpaceOffset.y
+      value: -250
+      objectReference: {fileID: 0}
     - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: offset.x
       value: 3
@@ -15295,6 +15303,14 @@ PrefabInstance:
     - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: throwOffset.z
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
+      propertyPath: screenSpaceOffset.x
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
+      propertyPath: screenSpaceOffset.y
+      value: -800
       objectReference: {fileID: 0}
     - target: {fileID: 6694421644757409243, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: m_Name
