@@ -16,8 +16,8 @@ public class TrajectoryPreview : MonoBehaviour
     Camera mainCamera;
     [SerializeField, Tooltip("The projectile properties to use for trajectory prediction")]
     PhysicalDiceProperties projectile;
-    Vector3 lastMousePosition;
-    private float mouseMovementThreshold = 0.1f;
+    [SerializeField, Tooltip("Offset for the throw origin relative to the player's view")]
+    private Vector3 throwOffset;
     #endregion
 
     private void Start()
@@ -43,7 +43,6 @@ public class TrajectoryPreview : MonoBehaviour
         // Only update trajectory if the mouse has moved
         //if (Vector3.Distance(Input.mousePosition, lastMousePosition) > mouseMovementThreshold)
         //{
-            lastMousePosition = Input.mousePosition;
             UpdateTrajectoryToMousePosition();
         //}
     }
@@ -60,8 +59,9 @@ public class TrajectoryPreview : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            // Set the initial position of the projectile to the dice's spawn position
-            projectile.initialPosition = transform.position;
+            Vector3 offsetPosition = transform.position + mainCamera.transform.right * throwOffset.x + mainCamera.transform.up * throwOffset.y + mainCamera.transform.forward * throwOffset.z;
+
+            projectile.initialPosition = offsetPosition;
 
             // Update the direction to point from the initial position to the hit point
             projectile.direction = (hit.point - projectile.initialPosition).normalized;
@@ -128,6 +128,10 @@ public class TrajectoryPreview : MonoBehaviour
     public void SetProjectileProperties(PhysicalDiceProperties properties)
     {
         projectile = properties;
+    }
+    public void SetThrowOffset(Vector3 offset)
+    {
+        throwOffset = offset;
     }
     public PhysicalDiceProperties GetProjectileProperties()
     {

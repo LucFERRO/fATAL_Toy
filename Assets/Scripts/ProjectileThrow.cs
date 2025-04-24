@@ -7,6 +7,9 @@ public class ProjectileThrow : MonoBehaviour
     TrajectoryPreview trajectoryPreview;
     PhysicalDiceProperties properties;
     Camera cam;
+    [SerializeField, Tooltip("Offset for the throw origin relative to the player's view")]
+    Vector3 throwOffset = new Vector3(0.5f, 0, 0); // Example: Offset slightly to the right
+
 
     private PhysicalDiceSpawner diceSpawner;
     private GameManager gameManager;
@@ -43,7 +46,7 @@ public class ProjectileThrow : MonoBehaviour
 
         // Pass the initialized properties to the TrajectoryPreview
         trajectoryPreview.SetProjectileProperties(properties);
-
+        trajectoryPreview.SetThrowOffset(throwOffset);
         fire.Enable();
         fire.performed += ThrowObject;
     }
@@ -51,11 +54,16 @@ public class ProjectileThrow : MonoBehaviour
     private PhysicalDiceProperties InitializeProjectileProperties()
     {
         Rigidbody r = objectToThrow.GetComponent<Rigidbody>();
-        properties.direction = StartPosition.forward;
-        properties.initialPosition = StartPosition.position;
+
+        // Apply the offset to the initial position
+        Vector3 offsetPosition = StartPosition.position + cam.transform.right * throwOffset.x + cam.transform.up * throwOffset.y + cam.transform.forward * throwOffset.z;
+
+        properties.direction = (offsetPosition - StartPosition.position).normalized;
+        properties.initialPosition = offsetPosition;
         properties.initialSpeed = force;
         properties.mass = r.mass;
         properties.drag = r.linearDamping;
+
         return properties;
     }
 
