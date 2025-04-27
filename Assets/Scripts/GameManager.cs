@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public Material[] faceMaterials;
 
     [Header("LockedTiles")]
+    public GameObject[] testCascade;
     public int maxLockedTiles;
     public int currentlyLockedTiles;
 
@@ -82,9 +83,41 @@ public class GameManager : MonoBehaviour
         //Cursor.visible = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            UpdateNeighboursCascade(testCascade);
+        }
+    }
+
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
         StartCoroutine(UpdateNeighboursCoroutine(tiles));
+    }
+
+    public void UpdateNeighboursCascade(GameObject[] tiles)
+    {
+        foreach (GameObject tile in tiles)
+        {
+            if (tile == null)
+            {
+                continue;
+            }
+
+            //GridNeighbourHandler gridNeighbourHandler = tile.transform.parent.GetComponent<GridNeighbourHandler>();
+            //gridNeighbourHandler.UpdateNeighbourTiles();
+            ////A remettre si jamais? mais devrait pas
+            ////gridNeighbourHandler?.UpdateNeighbourTiles();
+
+            //NeighbourTileProcessor processor = tile.GetComponent<NeighbourTileProcessor>();
+            //processor.GetNeighbourTiles();
+            //processor.UpdateCurrentNeighbourTiles();
+            //processor.GetMajorTile();
+            //processor.UpdateComboTile();
+            Debug.Log(tile.name);
+            tile.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
     }
 
     private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles)
@@ -98,7 +131,9 @@ public class GameManager : MonoBehaviour
             }
 
             GridNeighbourHandler gridNeighbourHandler = tile.transform.parent.GetComponent<GridNeighbourHandler>();
-            gridNeighbourHandler?.UpdateNeighbourTiles();
+            gridNeighbourHandler.UpdateNeighbourTiles();
+            //A remettre si jamais? mais devrait pas
+            //gridNeighbourHandler?.UpdateNeighbourTiles();
 
             NeighbourTileProcessor processor = tile.GetComponent<NeighbourTileProcessor>();
             processor.GetNeighbourTiles();
