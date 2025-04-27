@@ -12663,6 +12663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lake Mountain
       objectReference: {fileID: 0}
+    - target: {fileID: 4226363791942459581, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: isAvailable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4364620562651950773, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

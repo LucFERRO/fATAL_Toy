@@ -96,7 +96,8 @@ public class GameManager : MonoBehaviour
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
         StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.2f));
-        StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.4f));
+        // Tweak le 0.2 en 0.4+ si needed
+        StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.2f));
     }
 
     public List<GameObject> UpdateNeighboursCascade(List<GameObject> traveledTiles)
