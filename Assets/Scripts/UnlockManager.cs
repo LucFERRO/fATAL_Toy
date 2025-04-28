@@ -7,6 +7,10 @@ public class UnlockManager : MonoBehaviour
     GameObject[] uiUnlockableTilesGO;
     DraggableItem[] uiUnlockableTilesItems;
     string[] tileTypes;
+    public GameObject diceFacesGO;
+    public GameObject baseBiomesGO;
+    public GameObject doubleBiomesGO;
+    public GameObject comboBiomesGO;
 
     [SerializeField]
     string test;
@@ -42,7 +46,7 @@ public class UnlockManager : MonoBehaviour
             }
             if (potentialNewCombo == tileTypes[i])
             {
-                Debug.Log($"New combo tile {tileTypes[i]} unlocked, Ui N`{i} now available!");
+                Debug.Log($"New combo tile {tileTypes[i]} unlocked, Ui N`{i} now available in {uiUnlockableTilesItems[i].name}");
                 uiUnlockableTilesItems[i].isAvailable = true;
                 uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
             }

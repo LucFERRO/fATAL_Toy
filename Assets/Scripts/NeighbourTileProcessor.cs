@@ -183,10 +183,6 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             UpdateHex();
         }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log(currentLockedTiles);
-        }
     }
 
     public void GetNeighbourTiles()

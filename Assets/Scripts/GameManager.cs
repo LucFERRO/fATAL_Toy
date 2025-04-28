@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 [Serializable]
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Material[] faceMaterials;
 
     [Header("LockedTiles")]
+    public GameObject[] testCascade;
     public int maxLockedTiles;
     public int currentlyLockedTiles;
 
@@ -32,18 +35,6 @@ public class GameManager : MonoBehaviour
     public bool neighbourColorEnabled;
     public bool isPreviewing;
 
-    [Header("Inventory")]
-    public GameObject inventoryUiGO;
-    public bool isInventoryOpen;
-    public bool IsInventoryOpen
-    {
-        get { return isInventoryOpen; }
-        set
-        {
-            isInventoryOpen = value;
-            inventoryUiGO.SetActive(value);
-        }
-    }
     [Header("Debug")]
     public GameObject debugUIGameObject;
     public bool debugUI;
@@ -84,12 +75,54 @@ public class GameManager : MonoBehaviour
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
-        StartCoroutine(UpdateNeighboursCoroutine(tiles));
+        StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.2f));
+        // Tweak le 0.2 en 0.4+ si needed
+        StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.2f));
     }
 
-    private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles)
+    public List<GameObject> UpdateNeighboursCascade(List<GameObject> traveledTiles)
     {
-        yield return new WaitForSeconds(0.2f);
+        List<GameObject> traveledTilesNeighbours= new List<GameObject>();
+
+        foreach (GameObject tile in traveledTiles)
+        {
+            if (tile == null)
+            {
+                continue;
+            }
+            //tile.GetComponent<MeshRenderer>().material.color = Color.red;
+
+            GridNeighbourHandler gridNeighbourHandler = tile.transform.parent.GetComponent<GridNeighbourHandler>();
+            foreach (GameObject neighbourTile in gridNeighbourHandler.neighbourTileGOs)
+            {
+                GameObject neighbourChild = neighbourTile.transform.GetChild(0).gameObject;
+                //if (Array.IndexOf(traveledTiles, neighbourChild) < 0 && !traveledTilesNeighbours.Contains(neighbourChild))
+                if (!traveledTiles.Contains(neighbourChild) && !traveledTilesNeighbours.Contains(neighbourChild))
+                {
+                    traveledTilesNeighbours.Add(neighbourChild);
+                }
+            }
+        }
+
+        foreach (GameObject surroundingTiles in traveledTilesNeighbours)
+        {
+            //surroundingTiles.GetComponent<MeshRenderer>().material.color = Color.blue;
+
+            GridNeighbourHandler gridNeighbourHandler = surroundingTiles.transform.parent.GetComponent<GridNeighbourHandler>();
+            gridNeighbourHandler.UpdateNeighbourTiles();
+
+            NeighbourTileProcessor processor = surroundingTiles.GetComponent<NeighbourTileProcessor>();
+            processor.GetNeighbourTiles();
+            processor.UpdateCurrentNeighbourTiles();
+            processor.GetMajorTile();
+            processor.UpdateComboTile();
+        }
+        return traveledTilesNeighbours;
+    }
+
+    private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles, float time)
+    {
+        yield return new WaitForSeconds(time);
 
         foreach (GameObject tile in tiles)
         {
@@ -98,7 +131,9 @@ public class GameManager : MonoBehaviour
             }
 
             GridNeighbourHandler gridNeighbourHandler = tile.transform.parent.GetComponent<GridNeighbourHandler>();
-            gridNeighbourHandler?.UpdateNeighbourTiles();
+            gridNeighbourHandler.UpdateNeighbourTiles();
+            //A remettre si jamais? mais devrait pas
+            //gridNeighbourHandler?.UpdateNeighbourTiles();
 
             NeighbourTileProcessor processor = tile.GetComponent<NeighbourTileProcessor>();
             processor.GetNeighbourTiles();
@@ -113,11 +148,6 @@ public class GameManager : MonoBehaviour
         DebugUI = !DebugUI;
     }    
     
-    public void ToggleInventoryUI()
-    {
-        IsInventoryOpen = !IsInventoryOpen;
-    }
-
     private void CreateBaseTileDictionary()
     {
         baseTileDictionary.Clear();
