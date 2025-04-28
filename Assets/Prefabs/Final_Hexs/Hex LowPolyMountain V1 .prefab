@@ -106,6 +106,7 @@ MonoBehaviour:
   majorTile: 
   cellPosition: {x: 0, y: 0, z: 0}
   isLocked: 0
+  sparks: {fileID: 1782757464389996052, guid: 7b6bba3d2bb57fb41a3730aac06f3105, type: 3}
   debugColors: []
 --- !u!64 &-5628136101593937254
 MeshCollider:

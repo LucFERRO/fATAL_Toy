@@ -26,6 +26,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     [Header("Locking")]
     static public int currentLockedTiles;
     public bool isLocked;
+    public GameObject sparks;
     public bool IsLocked
     {
         get { return isLocked; }
@@ -310,6 +311,21 @@ public class NeighbourTileProcessor : MonoBehaviour
             return;
         }
         IsLocked = !IsLocked;
+        if (isLocked)
+        {
+            GameObject spark = Instantiate(sparks, transform.parent);
+            Vector3 fixedHeight = spark.transform.position;
+            fixedHeight.y += 0.6f;
+            spark.transform.position = fixedHeight;
+            //Quaternion newRotation = Quaternion.Euler(spark.transform.rotation.x, spark.transform.rotation.y, spark.transform.rotation.z);
+            //newRotation.x = -90;
+            //spark.transform.rotation = newRotation;
+            Debug.Log(spark.transform.position);
+            Debug.Log(spark.transform.rotation);
+        }
+        else
+        {
+        }
         gameObject.GetComponent<GlowingHexes>().ToggleLock(IsLocked ? true : false);
 
     }
