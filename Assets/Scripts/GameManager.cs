@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 [Serializable]
@@ -76,6 +77,15 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         Cursor.visible = !isPreviewing;
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            TileType[] values = (TileType[])Enum.GetValues(typeof(TileType));
+            Debug.Log(values.Length);
+            foreach (TileType item in values)
+            {
+                Debug.Log($"{item} is number {(int)item}");
+            }
+        }
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
