@@ -34,7 +34,6 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             isLocked = value;
             currentLockedTiles += value ? 1 : -1;
-            Debug.Log($"CHANGED ISLOCKED : CURRENTLOCKEDTILES VALUE {(value ? 1 : -1)} TO {currentLockedTiles}");
         }
     }
 
@@ -306,21 +305,19 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             return;
         }
-        IsLocked = !IsLocked;
         if (isLocked)
+        {
+            Destroy(transform.parent.transform.GetChild(1).gameObject);
+        }
+        else
         {
             GameObject spark = Instantiate(sparks, transform.parent);
             Vector3 fixedHeight = spark.transform.position;
             fixedHeight.y += 0.6f;
             spark.transform.position = fixedHeight;
-            Debug.Log(spark.transform.position);
-            Debug.Log(spark.transform.rotation);
         }
-        else
-        {
-            Destroy(transform.parent.transform.GetChild(1).gameObject);
-        }
-        gameObject.GetComponent<GlowingHexes>().ToggleLock(IsLocked ? true : false);
+        IsLocked = !IsLocked;
+        gameObject.GetComponent<GlowingHexes>().ToggleLock(IsLocked);
 
     }
     private void UpdateHex()
@@ -328,6 +325,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         Vector3Int hexPosition = cellPosition;
         GameObject newHex = Instantiate(gameManager.chosenPrefab, transform.parent);
         newHex.transform.position = transform.position;
+        newHex.transform.SetAsFirstSibling();
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
         newGridCoordinates.tiletype = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tiletype;

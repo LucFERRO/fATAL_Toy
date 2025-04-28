@@ -73,6 +73,11 @@ public class GameManager : MonoBehaviour
         //Cursor.visible = false;
     }
 
+    private void Update()
+    {
+        Cursor.visible = !isPreviewing;
+    }
+
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
         StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.2f));
@@ -82,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> UpdateNeighboursCascade(List<GameObject> traveledTiles)
     {
-        List<GameObject> traveledTilesNeighbours= new List<GameObject>();
+        List<GameObject> traveledTilesNeighbours = new List<GameObject>();
 
         foreach (GameObject tile in traveledTiles)
         {
@@ -126,7 +131,8 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject tile in tiles)
         {
-            if (tile == null) {
+            if (tile == null)
+            {
                 continue;
             }
 
@@ -146,8 +152,8 @@ public class GameManager : MonoBehaviour
     public void ToggleDebugUI()
     {
         DebugUI = !DebugUI;
-    }    
-    
+    }
+
     private void CreateBaseTileDictionary()
     {
         baseTileDictionary.Clear();

@@ -75,20 +75,11 @@ public class ProjectileThrow : MonoBehaviour
     {
         bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen;
 
-        //if (Input.GetMouseButtonDown(0) && canThrowDice && !gameManager.isPreviewing)
         if (Input.GetMouseButtonDown(0) && canThrowDice && !gameManager.isPreviewing && !EventSystem.current.IsPointerOverGameObject())
 
         {
             StartCoroutine(SetTestPreviewAfterDelay(0.1f));
         }
-        //if (Input.GetMouseButtonUp(0) && canThrowDice && gameManager.isPreviewing)
-        //{
-        //gameManager.isPreviewing = false;
-        //PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
-
-        //// Spawn the dice at the camera's position and throw it towards the mouse position
-        //diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);        
-        //}
 
         if (gameManager.isPreviewing)
         {
@@ -100,7 +91,6 @@ public class ProjectileThrow : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
-                // Spawn the dice at the camera's position and throw it towards the mouse position
                 diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
                 gameManager.isPreviewing = false;
             }
@@ -119,7 +109,6 @@ public class ProjectileThrow : MonoBehaviour
     {
         trajectoryPreview.PredictTrajectory();
     }
-
     void ThrowObject(InputAction.CallbackContext context)
     {
 
