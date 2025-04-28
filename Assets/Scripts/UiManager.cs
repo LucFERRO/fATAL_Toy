@@ -26,10 +26,7 @@ public class UiManager : MonoBehaviour
     [Header("References")]
     public GameObject inventoryGO;
     public GameObject biomesUiGO;
-    public GameObject diceFacesGO;
-    public GameObject baseBiomesGO;
-    public GameObject doubleBiomesGO;
-    public GameObject comboBiomesGO;
+
     private void Start()
     {
         startingPosition = inventoryGO.transform.position;
