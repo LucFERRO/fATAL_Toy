@@ -317,14 +317,12 @@ public class NeighbourTileProcessor : MonoBehaviour
             Vector3 fixedHeight = spark.transform.position;
             fixedHeight.y += 0.6f;
             spark.transform.position = fixedHeight;
-            //Quaternion newRotation = Quaternion.Euler(spark.transform.rotation.x, spark.transform.rotation.y, spark.transform.rotation.z);
-            //newRotation.x = -90;
-            //spark.transform.rotation = newRotation;
             Debug.Log(spark.transform.position);
             Debug.Log(spark.transform.rotation);
         }
         else
         {
+            Destroy(transform.parent.transform.GetChild(1).gameObject);
         }
         gameObject.GetComponent<GlowingHexes>().ToggleLock(IsLocked ? true : false);
 
