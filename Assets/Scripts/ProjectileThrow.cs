@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ProjectileThrow : MonoBehaviour
@@ -34,7 +37,7 @@ public class ProjectileThrow : MonoBehaviour
         if (gameManager == null)
         {
             gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        }        
+        }
         if (uiManager == null)
         {
             uiManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UiManager>();
@@ -72,24 +75,44 @@ public class ProjectileThrow : MonoBehaviour
     {
         bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen;
 
-        if (Input.GetMouseButton(0) && canThrowDice)
-        {
-            gameManager.isPreviewing = true;
-        }
-        if (Input.GetMouseButtonUp(0) && canThrowDice && gameManager.isPreviewing)
-        {
-            gameManager.isPreviewing = false;
-            PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
+        //if (Input.GetMouseButtonDown(0) && canThrowDice && !gameManager.isPreviewing)
+        if (Input.GetMouseButtonDown(0) && canThrowDice && !gameManager.isPreviewing && !EventSystem.current.IsPointerOverGameObject())
 
-            // Spawn the dice at the camera's position and throw it towards the mouse position
-            diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
+        {
+            StartCoroutine(SetTestPreviewAfterDelay(0.1f));
         }
+        //if (Input.GetMouseButtonUp(0) && canThrowDice && gameManager.isPreviewing)
+        //{
+        //gameManager.isPreviewing = false;
+        //PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
+
+        //// Spawn the dice at the camera's position and throw it towards the mouse position
+        //diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);        
+        //}
 
         if (gameManager.isPreviewing)
         {
             Predict();
+            if (Input.GetMouseButtonDown(1))
+            {
+                gameManager.isPreviewing = false;
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
+                // Spawn the dice at the camera's position and throw it towards the mouse position
+                diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
+                gameManager.isPreviewing = false;
+            }
+
         }
         trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
+    }
+
+    private IEnumerator SetTestPreviewAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameManager.isPreviewing = true;
     }
 
     void Predict()
