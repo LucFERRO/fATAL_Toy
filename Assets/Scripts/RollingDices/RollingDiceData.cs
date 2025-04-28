@@ -174,7 +174,9 @@ public class RollingDiceData : MonoBehaviour
 
         if (collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
         {
-
+            GlowingHexes glowingHexes = new GlowingHexes();
+            glowingHexes = collision.gameObject.GetComponent<GlowingHexes>();
+            StartCoroutine(glowingHexes.ScaleEffect());
             return;
         }
 

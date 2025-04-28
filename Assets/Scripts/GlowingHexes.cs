@@ -127,7 +127,7 @@ public class GlowingHexes : MonoBehaviour
     //}
 
 
-    private IEnumerator ScaleEffect()
+    public IEnumerator ScaleEffect()
     {
         Vector3 targetScale = originalScale * 0.8f;
         float duration = 0.2f;
