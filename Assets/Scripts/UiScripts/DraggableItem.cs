@@ -41,8 +41,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.SetParent(parentAfterDrag);
-        Debug.Log("image local scale " + image.rectTransform.localScale);
-        Debug.Log("local scale " + transform.localScale);
         image.rectTransform.localScale = Vector3.one;
         group.alpha = 1f;
         image.raycastTarget = true;

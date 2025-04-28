@@ -13,6 +13,7 @@ public class ProjectileThrow : MonoBehaviour
 
     private PhysicalDiceSpawner diceSpawner;
     private GameManager gameManager;
+    private UiManager uiManager;
 
     [SerializeField]
     Rigidbody objectToThrow;
@@ -33,6 +34,10 @@ public class ProjectileThrow : MonoBehaviour
         if (gameManager == null)
         {
             gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        }        
+        if (uiManager == null)
+        {
+            uiManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UiManager>();
         }
         cam = Camera.main;
 
@@ -65,7 +70,7 @@ public class ProjectileThrow : MonoBehaviour
 
     void Update()
     {
-        bool canThrowDice = gameManager.transform.childCount == 0 && !gameManager.isInventoryOpen;
+        bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen;
 
         if (Input.GetMouseButton(0) && canThrowDice)
         {
