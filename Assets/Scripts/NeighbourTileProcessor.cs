@@ -302,6 +302,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     }
     private void ToggleLockTile()
     {
+        GlowingHexes glowingHexe = gameObject.GetComponent<GlowingHexes>();
         if (currentLockedTiles == gameManager.maxLockedTiles && !IsLocked)
         {
             return;
@@ -310,7 +311,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             GameObject particles = transform.parent.transform.GetChild(1).gameObject;
             particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            StartCoroutine(ClearParticlesCoroutine(particles, 3f));
+            StartCoroutine(glowingHexe.ClearParticlesCoroutine(particles, 3f));
         }
         else
         {
@@ -320,17 +321,10 @@ public class NeighbourTileProcessor : MonoBehaviour
             spark.transform.position = fixedHeight;
         }
         IsLocked = !IsLocked;
-        gameObject.GetComponent<GlowingHexes>().ToggleLock(IsLocked);
-
+        glowingHexe.ToggleLock(IsLocked);
     }
 
-    private IEnumerator ClearParticlesCoroutine(GameObject particles, float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(particles);
-        Debug.Log("particle destroyed");
 
-    }
     private void UpdateHex()
     {
         Vector3Int hexPosition = cellPosition;
