@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class NeighbourTileProcessor : MonoBehaviour
 {
@@ -307,7 +308,9 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         if (isLocked)
         {
-            Destroy(transform.parent.transform.GetChild(1).gameObject);
+            GameObject particles = transform.parent.transform.GetChild(1).gameObject;
+            particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            StartCoroutine(ClearParticlesCoroutine(particles, 3f));
         }
         else
         {
@@ -318,6 +321,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         IsLocked = !IsLocked;
         gameObject.GetComponent<GlowingHexes>().ToggleLock(IsLocked);
+
+    }
+
+    private IEnumerator ClearParticlesCoroutine(GameObject particles, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(particles);
+        Debug.Log("particle destroyed");
 
     }
     private void UpdateHex()
