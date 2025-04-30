@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiletype: mountain
+  tileType: mountainMountain
   currentPrefab: {fileID: 0}
   majorTile: 
   cellPosition: {x: 0, y: 0, z: 0}

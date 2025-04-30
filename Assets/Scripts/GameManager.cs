@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+
 [Serializable]
 public class DebugVariableHolder
 {
@@ -15,7 +16,7 @@ public class DebugVariableHolder
 }
 public class GameManager : MonoBehaviour
 {
-    public string[] tileTypes;
+    //public string[] tileTypes;
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
     public Color baseDiceFaceColor;
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
-        TypeBools = new bool[tileTypes.Length];
+        TypeBools = new bool[Enum.GetNames(typeof(TileType)).Length];
         ChooseTileToSpawn(0);
         CreateBaseTileDictionary();
         CreateComboTileDictionary();
@@ -81,9 +82,13 @@ public class GameManager : MonoBehaviour
         {
             TileType[] values = (TileType[])Enum.GetValues(typeof(TileType));
             Debug.Log(values.Length);
-            foreach (TileType item in values)
+            //foreach (TileType item in values)
+            //{
+            //    Debug.Log($"{item} is number {(int)item}");
+            //}
+            for (int i = 0; i < Enum.GetNames(typeof(TileType)).Length; i++)
             {
-                Debug.Log($"{item} is number {(int)item}");
+                Debug.Log(Enum.GetNames(typeof(TileType))[i]);
             }
         }
     }
@@ -155,6 +160,7 @@ public class GameManager : MonoBehaviour
             processor.GetNeighbourTiles();
             processor.UpdateCurrentNeighbourTiles();
             processor.GetMajorTile();
+            //Debug.Log($"name {tile.name},tileType: {tile.GetComponent<NeighbourTileProcessor>().tileType}, majorTile: {tile.GetComponent<NeighbourTileProcessor>().majorTile}");
             processor.UpdateComboTile();
         }
     }
@@ -197,8 +203,8 @@ public class GameManager : MonoBehaviour
 
     public void ChooseTileToSpawn(int tileTypeId)
     {
-        bool[] newTypeBoolArray = new bool[tileTypes.Length];
-        for (int i = 0; i < tileTypes.Length; i++)
+        bool[] newTypeBoolArray = new bool[Enum.GetNames(typeof(TileType)).Length];
+        for (int i = 0; i < Enum.GetNames(typeof(TileType)).Length; i++)
         {
             if (i == tileTypeId)
             {
@@ -215,11 +221,11 @@ public class GameManager : MonoBehaviour
 
     private void UpdateChosenTile()
     {
-        for (int i = 0; i < tileTypes.Length; i++)
+        for (int i = 0; i < Enum.GetNames(typeof(TileType)).Length; i++)
         {
             if (TypeBools[i])
             {
-                chosenTileType = tileTypes[i];
+                chosenTileType = Enum.GetNames(typeof(TileType))[i];
                 chosenPrefab = tilePrefabs[i];
             }
         }
