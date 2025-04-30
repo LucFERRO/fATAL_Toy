@@ -5729,6 +5729,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2940350454919129231, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940350454919129231, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: isAvailable
       value: 1
       objectReference: {fileID: 0}
@@ -5827,6 +5831,10 @@ PrefabInstance:
     - target: {fileID: 3206106720362538080, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245834065471394867, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3245834065471394867, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: isAvailable
@@ -6395,6 +6403,10 @@ PrefabInstance:
     - target: {fileID: 6554858862359009093, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807613619207428995, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6807613619207428995, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: isAvailable
@@ -13218,6 +13230,10 @@ PrefabInstance:
       value: MountainPlain
       objectReference: {fileID: 0}
     - target: {fileID: 183835031655990089, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 183835031655990089, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: isAvailable
       value: 0
       objectReference: {fileID: 0}
@@ -13926,6 +13942,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4044909203101540954, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044909203101540954, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: isAvailable
       value: 0
       objectReference: {fileID: 0}
@@ -14232,6 +14252,10 @@ PrefabInstance:
     - target: {fileID: 5448086226475438257, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544020792294413511, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5544020792294413511, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: isAvailable
