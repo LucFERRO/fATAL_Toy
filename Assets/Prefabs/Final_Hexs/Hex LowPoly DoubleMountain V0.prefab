@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5628136101593937254}
   - component: {fileID: 3315175765533672779}
   m_Layer: 0
-  m_Name: Hex LowPoly DoubleMountain V1
+  m_Name: Hex LowPoly DoubleMountain V0
   m_TagString: Hex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
