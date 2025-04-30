@@ -3949,7 +3949,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 170360086944599908, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
       propertyPath: biomeId
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170360086944599908, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
       propertyPath: isOnDice
@@ -19839,6 +19839,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5351775777085832357, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5444309247392112499, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -19910,6 +19914,10 @@ PrefabInstance:
     - target: {fileID: 5689466406367850570, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704694814015691870, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6187942968942638674, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -20054,6 +20062,10 @@ PrefabInstance:
     - target: {fileID: 6554858862359009093, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935479562925865655, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
+      propertyPath: biomeId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7114555885717189864, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_AnchorMax.y
