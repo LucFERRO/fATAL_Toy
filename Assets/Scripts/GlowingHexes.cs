@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class GlowingHexes : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class GlowingHexes : MonoBehaviour
 
     private static Dictionary<Texture, Material> cachedGlowMaterial = new Dictionary<Texture, Material>();
     private static Dictionary<Texture, Material> cachedLockedMaterial = new Dictionary<Texture, Material>();
+
+    public GameObject splashParticule;
+
 
     private void Awake()
     {
@@ -113,19 +117,21 @@ public class GlowingHexes : MonoBehaviour
         ToggleLock();
     }
 
-    //public void TriggerWave(Vector3 hitPoint)
-    //{
-    //    foreach (Renderer r in renderers)
-    //    {
-    //        if (r.material.HasProperty("_WaveCenter"))
-    //        {
-    //            r.material.SetVector("_WaveCenter", hitPoint);
-    //            r.material.SetFloat("_WaveTime", 0f);
-    //        }
-    //        r.materials = isGlowing ? originalMaterials[r] : glowMaterials[r];
-    //    }
-    //}
+    public IEnumerator ClearParticlesCoroutine(GameObject particles, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(particles);
+        Debug.Log("particle destroyed");
 
+    }
+
+    public void SplashEffect()
+    {
+        GameObject splashParticuleSpawned = Instantiate(splashParticule, transform.parent);
+        Debug.Log("SPLASH!");
+        splashParticuleSpawned.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        StartCoroutine(ClearParticlesCoroutine(splashParticuleSpawned, 1f));
+    }
 
     public IEnumerator ScaleEffect()
     {
