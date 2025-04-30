@@ -3,23 +3,25 @@ using UnityEngine;
 
 public class UnlockManager : MonoBehaviour
 {
-    GameManager gameManager;
-    [SerializeField]
-    GameObject[] uiUnlockableTilesGO;
-    DraggableItem[] uiUnlockableTilesItems;
+    [SerializeField] TileType test;
     string[] tileTypes;
-    public GameObject diceFacesGO;
-    public GameObject baseBiomesGO;
-    public GameObject doubleBiomesGO;
-    public GameObject comboBiomesGO;
 
-    [SerializeField]
-    string test;
+    GameManager gameManager;
+    [Header("References")]
+    [SerializeField] GameObject biomeUiContainer;
+    [SerializeField] DraggableItem[] uiUnlockableTilesItems;
+    [SerializeField] GameObject diceFacesGO;
+    [SerializeField] GameObject baseBiomesGO;
+    [SerializeField] GameObject doubleBiomesGO;
+    [SerializeField] GameObject comboBiomesGO;
+    [SerializeField] GameObject[] uiUnlockableTilesGO;
+
 
     void Start()
     {
-        uiUnlockableTilesItems = new DraggableItem[uiUnlockableTilesGO.Length];
         gameManager = GetComponent<GameManager>();
+
+        uiUnlockableTilesItems = new DraggableItem[uiUnlockableTilesGO.Length];
         for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
         {
             uiUnlockableTilesItems[i] = uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>();
@@ -33,21 +35,20 @@ public class UnlockManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log($"{TileType.forestMountain} : {(int)TileType.forestMountain}");
-            Debug.Log($"{44} : {(TileType)44}");
             HandleUnlockComboTile(test);
         }
     }
 
-    public void HandleUnlockComboTile(string potentialNewCombo)
+    public void HandleUnlockComboTile(TileType potentialNewCombo)
     {
         for (int i = 0; i < tileTypes.Length; i++)
         {
-            if (potentialNewCombo == "forest" || potentialNewCombo == "lake" || potentialNewCombo == "mountain" || potentialNewCombo == "plain")
+            if((int)potentialNewCombo < 10)
             {
+                Debug.Log($"Tile {potentialNewCombo} {(int)potentialNewCombo} is a base tile, no combo available");
                 return;
             }
-            if (potentialNewCombo == tileTypes[i])
+            if (potentialNewCombo.ToString() == tileTypes[i])
             {
                 Debug.Log($"New combo tile {tileTypes[i]} unlocked, Ui N`{i} now available in {uiUnlockableTilesItems[i].name}");
                 uiUnlockableTilesItems[i].isAvailable = true;
