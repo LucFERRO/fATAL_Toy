@@ -53,7 +53,7 @@ public class TileSplitManager : MonoBehaviour
 
         for (int i = 0; i < numberOfTiles; i++)
         {
-            string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tiletype;
+            string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tileType;
 
             string[] types = Regex.Split(type, @"(?<!^)(?=[A-Z])");
             if (types.Length > 1) {
@@ -82,7 +82,7 @@ public class TileSplitManager : MonoBehaviour
         values = new int[baseTypes.Length];
         for (int i = 0; i < numberOfTiles; i++)
         {
-            string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tiletype;
+            string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tileType;
             for (int j = 0; j < baseTypes.Length; j++)
             {
                 {

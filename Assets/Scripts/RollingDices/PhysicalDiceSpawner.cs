@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -110,7 +111,7 @@ public class PhysicalDiceSpawner : MonoBehaviour
             FaceComponent faceComponent = face.GetComponent<FaceComponent>();
             MeshRenderer meshRenderer = face.GetComponent<MeshRenderer>();
 
-            faceComponent.faceType = gameManager.tileTypes[biomeId];
+            faceComponent.faceType = Enum.GetNames(typeof(TileType))[biomeId];
             meshRenderer.material = gameManager.faceMaterials[biomeId];
             //test
         }
@@ -120,11 +121,11 @@ public class PhysicalDiceSpawner : MonoBehaviour
     {
         if (throwVector.magnitude == 0)
         {
-            throwVector = new Vector3(Random.Range(-5f, 5f), Random.Range(-1f, 0), Random.Range(-5f, 5f));
+            throwVector = new Vector3(UnityEngine.Random.Range(-5f, 5f), UnityEngine.Random.Range(-1f, 0), UnityEngine.Random.Range(-5f, 5f));
         }
 
         Rigidbody diceRb = spawnedDice.GetComponent<Rigidbody>();
-        Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        Vector3 randomSpinVector = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
 
         diceRb.AddForce(throwVector * throwForce, ForceMode.Impulse);
         diceRb.AddTorque(randomSpinVector.normalized * spinForce, ForceMode.Impulse);
@@ -132,7 +133,7 @@ public class PhysicalDiceSpawner : MonoBehaviour
     private void ApplyRandomTorque(GameObject spawnedDice)
     {
         Rigidbody diceRb = spawnedDice.GetComponent<Rigidbody>();
-        Vector3 randomSpinVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        Vector3 randomSpinVector = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
         diceRb.AddTorque(randomSpinVector.normalized * spinForce, ForceMode.Impulse);
     }
 

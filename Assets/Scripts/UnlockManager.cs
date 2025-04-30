@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UnlockManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class UnlockManager : MonoBehaviour
             uiUnlockableTilesItems[i] = uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>();
         }
 
-        tileTypes = gameManager.tileTypes;
+        tileTypes = Enum.GetNames(typeof(TileType));
     }
 
     // Update is called once per frame
@@ -32,6 +33,8 @@ public class UnlockManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            Debug.Log($"{TileType.forestMountain} : {(int)TileType.forestMountain}");
+            Debug.Log($"{44} : {(TileType)44}");
             HandleUnlockComboTile(test);
         }
     }

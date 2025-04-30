@@ -13,7 +13,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     private PhysicalDiceSpawner diceSpawner;
     private Camera cam;
     [Header("Combo")]
-    public string tiletype;
+    public string tileType;
     private GameObject chosenComboTile;
     public GameObject currentPrefab;
     public Dictionary<string, int> neighbourTilesDictionnary = new();
@@ -62,73 +62,46 @@ public class NeighbourTileProcessor : MonoBehaviour
     public string GetMajorTile()
     {
         Dictionary<string, int> neighbourSplitTypes = new Dictionary<string, int>();
-        foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
+
+        foreach (KeyValuePair<string,int> kvp in neighbourTilesDictionnary)
         {
-            if (Regex.IsMatch(kvp.Key, "(?<!^)(?=[A-Z])"))
-            {
-                string[] types = SplitAtUpperCase(kvp.Key).Split(" ");
-                //Debug.Log("key needing split " + types.Length);
-                string type1 = types[1];
-                string type2 = FirstLetterToLower(types[2]);
-                //Debug.Log($"Type 1 : {type1}");
-                //Debug.Log($"Type 2 : {type2}");
+            string[] splitTypes = Regex.Split(kvp.Key, @"(?<!^)(?=[A-Z])");
 
-                if (!neighbourSplitTypes.ContainsKey(type1))
+            HashSet<string> uniqueTypes = new HashSet<string>(splitTypes);
+
+            foreach (string type in uniqueTypes)
+            {
+                if (neighbourSplitTypes.ContainsKey(type))
                 {
-                    neighbourSplitTypes.Add(type1, kvp.Value);
+                    neighbourSplitTypes[type] += kvp.Value;
                 }
                 else
                 {
-                    neighbourSplitTypes[type1] += kvp.Value;
-                }
-
-                //if (type1 == type2)
-                //{
-                //    return;
-                //}
-                //else
-                if (type1 != type2)
-                {
-                    if (!neighbourSplitTypes.ContainsKey(type2))
-                    {
-                        neighbourSplitTypes.Add(type2, kvp.Value);
-                    }
-                    else
-                    {
-                        neighbourSplitTypes[type2] += kvp.Value;
-                    }
-                }
-
-            }
-            else
-            {
-                if (!neighbourSplitTypes.ContainsKey(kvp.Key))
-                {
-                    neighbourSplitTypes.Add(kvp.Key, kvp.Value);
-                }
-                else
-                {
-                    neighbourSplitTypes[kvp.Key] += kvp.Value;
+                    neighbourSplitTypes[type] = kvp.Value;
                 }
             }
-
         }
-        foreach (KeyValuePair<string, int> kvp in neighbourSplitTypes)
+
+        string potentialMajorTile = null;
+        int maxCount = 0;
+        foreach (KeyValuePair<string, int> entry in neighbourSplitTypes)
         {
-            if (kvp.Value < gameManager.comboThreshold)
+            if (entry.Value < gameManager.comboThreshold)
             {
                 continue;
             }
-            else
+            if (entry.Value > maxCount)
             {
-                majorTile = kvp.Key;
-                break;
+                potentialMajorTile = entry.Key;
+                maxCount = entry.Value;
             }
         }
-        if (majorTile == "empty")
+        if (potentialMajorTile == "empty")
         {
-            majorTile = "";
+            potentialMajorTile = null;
         }
+        majorTile = potentialMajorTile ?? "";
+
         return majorTile;
     }
 
@@ -138,7 +111,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         neighbourTilesDictionnary.Clear();
         for (int i = 0; i < neighbourTiles.Length; i++)
         {
-            string newTileTypeNeighbour = neighbourTiles[i].tiletype;
+            string newTileTypeNeighbour = neighbourTiles[i].tileType;
             if (!neighbourTilesDictionnary.ContainsKey(newTileTypeNeighbour))
             {
                 neighbourTilesDictionnary.Add(newTileTypeNeighbour, 1);
@@ -210,7 +183,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         return foundObject;
     }
 
-    private string GetComboTile()
+    private string GetComboTilev0()
     {
 
         int typeValue1 = 0;
@@ -221,7 +194,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         foreach (KeyValuePair<int, string> kvp in gameManager.baseTileDictionary)
         {
             //Debug.Log("ENTERING THE BOUUCLE");
-            if (kvp.Value == tiletype)
+            if (kvp.Value == tileType)
             {
                 typeValue1 = kvp.Key * 10;
                 //Debug.Log("Debug ligne 40" + kvp.Key);
@@ -282,21 +255,34 @@ public class NeighbourTileProcessor : MonoBehaviour
         return comboTile;
     }
 
+    public string GetComboTile()
+    {
+        if (string.IsNullOrEmpty(majorTile))
+        {
+            return tileType;
+        }
+
+        string[] tiles = new string[] { tileType, majorTile };
+        Array.Sort(tiles, StringComparer.Ordinal);
+
+        return tiles[0] + FirstLetterToUpper(tiles[1]);
+    }
+
     public void UpdateComboTile()
     {
         if (majorTile.Length == 0)
         {
             return;
         }
-        for (int i = 0; i < gameManager.tileTypes.Length; i++)
+        for (int i = 0; i < Enum.GetNames(typeof(TileType)).Length; i++)
         {
             // array.sort GetComboTile dans gameManager.tiletype
-            if (gameManager.tileTypes[i] == GetComboTile())
+            if (Enum.GetNames(typeof(TileType))[i] == GetComboTile())
             {
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
                 UpdateHex();
                 gameManager.chosenPrefab = gameManager.tilePrefabs[0];
-                gameManager.chosenTileType = gameManager.tileTypes[0];
+                gameManager.chosenTileType = Enum.GetNames(typeof(TileType))[0];
             }
         }
     }
@@ -333,7 +319,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         newHex.transform.SetAsFirstSibling();
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
-        newGridCoordinates.tiletype = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tiletype;
+        newGridCoordinates.tileType = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tileType;
         newGridCoordinates.cellPosition = hexPosition;
 
         Destroy(gameObject);

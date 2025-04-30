@@ -40,9 +40,11 @@ public class RollingDiceData : MonoBehaviour
             if (value <= 0.1f)
             {
                 GetClosestHexTile();
-                GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())];
+                //Debug.Log(gameManager.tilePrefabs.Length);
+                //Debug.Log(Array.IndexOf(gameManager.tileTypes, GetChosenFace()));
+                //Debug.Log(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())].name);
+                GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), GetChosenFace())];
                 Destroy(gameObject);
-
                 UpdateTraveledHexes(newHexPrefab);
             }
         }
@@ -130,7 +132,7 @@ public class RollingDiceData : MonoBehaviour
         newHex.transform.position = hexToBeChanged.transform.position;
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
-        newGridCoordinates.tiletype = GetChosenFace();
+        newGridCoordinates.tileType = GetChosenFace();
         newGridCoordinates.cellPosition = hexPosition;
 
         // Replace the old tile in traveledTilesGO with the new one
@@ -181,7 +183,7 @@ public class RollingDiceData : MonoBehaviour
             return;
         }
 
-        string tileType = collision.collider.GetComponent<NeighbourTileProcessor>().tiletype;
+        string tileType = collision.collider.GetComponent<NeighbourTileProcessor>().tileType;
 
         //if (tileType == gameManager.tileTypes[0]) // mountain
         //{

@@ -17046,34 +17046,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ac0d8e99c927f48ae313734ccb06dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTypes:
-  - forest
-  - forestForest
-  - forestLake
-  - forestMountain
-  - forestPlain
-  - lake
-  - lakeLake
-  - lakeMountain
-  - lakePlain
-  - mountain
-  - mountainMountain
-  - mountainPlain
-  - plain
-  - plainPlain
   tilePrefabs:
   - {fileID: 6651949917212000444, guid: 72b5d55711dd2bc40b74838b569831ef, type: 3}
-  - {fileID: 7447567842121034607, guid: 15783a5c25894c04fa87c3eca5ecf87d, type: 3}
+  - {fileID: 2159603174663806685, guid: c5e3abba24b3df74ab11a5d5c7ae5b73, type: 3}
   - {fileID: 6217919605794673499, guid: 38fe9c08699a4be4693f84d814803077, type: 3}
   - {fileID: 6651949917212000444, guid: c5bd51b131baf234896f5bddb172380f, type: 3}
   - {fileID: 6651949917212000444, guid: c531d02bac4e09940869df6c9dd1ab77, type: 3}
   - {fileID: 2816769562290278656, guid: 59c46de5bcb89be4da3c761727bfe1a4, type: 3}
   - {fileID: 3838344401963516737, guid: 2830e2626625ea848bb94b07935e08eb, type: 3}
   - {fileID: 6651949917212000444, guid: 1f41423d3581e8645bac543d52e7f74e, type: 3}
-  - {fileID: 138524213291624677, guid: 0c9a0595a5bc7024fba5f317af02051a, type: 3}
+  - {fileID: 6651949917212000444, guid: 1574a79d96b11e44aa86af6fe8c54a2c, type: 3}
   - {fileID: 3838344401963516737, guid: a84e8e3165d77ef42b37bc582d17ae1e, type: 3}
   - {fileID: 2159603174663806685, guid: a054a45d4b4668940981e7df306480be, type: 3}
-  - {fileID: 7802830881318874777, guid: 6bd6ba9b9a5bc994781bfb87017a69db, type: 3}
+  - {fileID: 6217919605794673499, guid: 56b0c9295dfef1f4c9364e0dd612596c, type: 3}
   - {fileID: 3838344401963516737, guid: bd27b951e71a7bd48b7a9f6870000b53, type: 3}
   - {fileID: 6651949917212000444, guid: f4f0ca35907674d45b91265876944800, type: 3}
   diceFaces:
@@ -17755,6 +17740,112 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+--- !u!1001 &1534778617
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 896762191}
+    m_Modifications:
+    - target: {fileID: 170360086944599908, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: biomeId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527552376748633305, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+      propertyPath: m_Name
+      value: Dice Face Lake
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+--- !u!224 &1534778618 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 499166884958274443, guid: 7b5a46d8974f4f04ea9bdfcb407ba1de, type: 3}
+  m_PrefabInstance: {fileID: 1534778617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1547497663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4418021450742210011, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
@@ -20447,7 +20538,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6554858862359009093, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1175822423}
+      addedObject: {fileID: 1534778618}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
 --- !u!224 &1802769542 stripped
