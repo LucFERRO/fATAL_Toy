@@ -10,12 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 732242995747590069, guid: 7ca53cf9132344647a584c5b3d62ea6b, type: 3}
       propertyPath: m_Name
-      value: Dice Face Variant
+      value: Dice Face Lake
       objectReference: {fileID: 0}
     - target: {fileID: 2749860469278024102, guid: 7ca53cf9132344647a584c5b3d62ea6b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 75bd64fa5933feb4287651e44a027cfb, type: 3}
+      objectReference: {fileID: 21300000, guid: 57c87ccb8ced0774aaecb4847a2058ae, type: 3}
     - target: {fileID: 4071303037956566024, guid: 7ca53cf9132344647a584c5b3d62ea6b, type: 3}
       propertyPath: biomeId
       value: 1

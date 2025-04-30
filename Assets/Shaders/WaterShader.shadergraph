@@ -1092,8 +1092,8 @@
     "m_ObjectId": "14259a0280f84806a1889de736452fff",
     "m_Title": "Low Poly Normal",
     "m_Position": {
-        "x": -1529.599853515625,
-        "y": 1367.19970703125
+        "x": -1529.5999755859375,
+        "y": 1367.199951171875
     }
 }
 
@@ -1413,8 +1413,8 @@
     "m_ObjectId": "2123104635c041e8afe9bb43b711764a",
     "m_Title": "VertexDisplacement",
     "m_Position": {
-        "x": -1355.1998291015625,
-        "y": -129.60000610351563
+        "x": -1355.199951171875,
+        "y": -129.60003662109376
     }
 }
 
@@ -2089,7 +2089,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 1.0,
+    "m_Value": 0.000009999999747378752,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -2848,8 +2848,8 @@
     "m_ObjectId": "801cb86824d14c2c8637eacface3a753",
     "m_Title": "Color",
     "m_Position": {
-        "x": -1411.1998291015625,
-        "y": 634.3999633789063
+        "x": -1411.199951171875,
+        "y": 634.4000244140625
     }
 }
 
