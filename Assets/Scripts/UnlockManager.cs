@@ -45,12 +45,10 @@ public class UnlockManager : MonoBehaviour
         {
             if((int)potentialNewCombo < 10)
             {
-                Debug.Log($"Tile {potentialNewCombo} {(int)potentialNewCombo} is a base tile, no combo available");
                 return;
             }
             if (potentialNewCombo.ToString() == tileTypes[i])
             {
-                Debug.Log($"New combo tile {tileTypes[i]} unlocked, Ui N`{i} now available in {uiUnlockableTilesItems[i].name}");
                 uiUnlockableTilesItems[i].isAvailable = true;
                 uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
             }
