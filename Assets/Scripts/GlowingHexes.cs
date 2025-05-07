@@ -121,8 +121,6 @@ public class GlowingHexes : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Destroy(particles);
-        Debug.Log("particle destroyed");
-
     }
 
     public void SplashEffect()

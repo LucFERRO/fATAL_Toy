@@ -13260,7 +13260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 183835031655990089, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: biomeId
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 183835031655990089, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: isAvailable
@@ -17066,16 +17066,16 @@ MonoBehaviour:
   - {fileID: 1927105558}
   - {fileID: 1770674409}
   - {fileID: 79296560}
-  - {fileID: 448853443}
   - {fileID: 1132343259}
-  - {fileID: 1151182996}
-  - {fileID: 1547497663}
   - {fileID: 732670626}
   - {fileID: 495566478}
   - {fileID: 44031569}
+  - {fileID: 1547497663}
   - {fileID: 12843359}
   - {fileID: 129841418}
+  - {fileID: 1151182996}
   - {fileID: 1033931701}
+  - {fileID: 448853443}
 --- !u!114 &1441868376
 MonoBehaviour:
   m_ObjectHideFlags: 0

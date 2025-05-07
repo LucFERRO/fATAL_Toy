@@ -128,6 +128,11 @@ public class RollingDiceData : MonoBehaviour
     {
         Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
         Quaternion randomRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
+        if (newHexPrefab == null)
+        {
+            Debug.LogError("newHexPrefab is null. Ensure the prefab is assigned correctly in the GameManager.");
+            return null;
+        }
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.position, randomRotation, hexToBeChanged.transform.parent);
         newHex.transform.position = hexToBeChanged.transform.position;
 
