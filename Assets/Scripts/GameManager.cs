@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Color baseDiceFaceColor;
     public Material[] faceMaterials;
 
-    public UnlockManager unlockManager;
+    [HideInInspector] public UnlockManager unlockManager;
 
     [Header("LockedTiles")]
     public GameObject[] testCascade;

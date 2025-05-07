@@ -1470,11 +1470,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101364424}
   m_CullTransparentMesh: 1
---- !u!1 &103487729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9079368621780684504, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
-  m_PrefabInstance: {fileID: 1137089211}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &103487730 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1728270118908091590, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
@@ -10951,11 +10946,6 @@ MonoBehaviour:
   - {fileID: 266252813}
   - {fileID: 388497878}
   - {fileID: 410228139}
---- !u!1 &980994565 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9079368621780684504, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
-  m_PrefabInstance: {fileID: 331071987}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &980994566 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1728270118908091590, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
@@ -16714,11 +16704,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
   m_PrefabInstance: {fileID: 1843679802}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1417624314 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9079368621780684504, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
-  m_PrefabInstance: {fileID: 164467861}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1417624315 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1728270118908091590, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
@@ -17055,12 +17040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   test: 0
-  biomeUiContainer: {fileID: 0}
-  uiUnlockableTilesItems: []
-  diceFacesGO: {fileID: 2125573828}
-  baseBiomesGO: {fileID: 980994565}
-  doubleBiomesGO: {fileID: 103487729}
-  comboBiomesGO: {fileID: 1417624314}
+  tileComboTitleGO: {fileID: 101364424}
   uiUnlockableTilesGO:
   - {fileID: 1562676670}
   - {fileID: 1927105558}
@@ -24898,11 +24878,6 @@ MonoBehaviour:
   - {fileID: 1323090582}
   - {fileID: 1353999847}
   - {fileID: 956406728}
---- !u!1 &2125573828 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9079368621780684504, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
-  m_PrefabInstance: {fileID: 1802769541}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2129407032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}

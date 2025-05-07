@@ -7,22 +7,22 @@ public class UnlockManager : MonoBehaviour
     [SerializeField] TileType test;
     string[] tileTypes;
     private Dictionary<TileType, bool> unlockStatus;
-
+    private bool hasUnlockedATile;
     GameManager gameManager;
     [Header("References")]
-    [SerializeField] GameObject biomeUiContainer;
-    [SerializeField] DraggableItem[] uiUnlockableTilesItems;
-    [SerializeField] GameObject diceFacesGO;
-    [SerializeField] GameObject baseBiomesGO;
-    [SerializeField] GameObject doubleBiomesGO;
-    [SerializeField] GameObject comboBiomesGO;
+    [SerializeField] GameObject tileComboTitleGO;
+    DraggableItem[] uiUnlockableTilesItems;
+    //[SerializeField] GameObject diceFacesGO;
+    //[SerializeField] GameObject baseBiomesGO;
+    //[SerializeField] GameObject doubleBiomesGO;
+    //[SerializeField] GameObject comboBiomesGO;
     [SerializeField] GameObject[] uiUnlockableTilesGO;
 
 
     void Start()
     {
         gameManager = GetComponent<GameManager>();
-
+        tileComboTitleGO.SetActive(hasUnlockedATile);
         uiUnlockableTilesItems = new DraggableItem[uiUnlockableTilesGO.Length];
         for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
         {
@@ -44,7 +44,7 @@ public class UnlockManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             HandleUnlockComboTile(test);
-        }        
+        }
         if (Input.GetKeyDown(KeyCode.L))
         {
             //foreach (var item in unlockStatus)
@@ -63,12 +63,16 @@ public class UnlockManager : MonoBehaviour
     {
         for (int i = 0; i < tileTypes.Length; i++)
         {
-            if((int)potentialNewCombo < 10)
+            if ((int)potentialNewCombo < 10)
             {
                 return false;
             }
             if (potentialNewCombo.ToString() == tileTypes[i])
             {
+                if (!hasUnlockedATile) {
+                    hasUnlockedATile = true;
+                    tileComboTitleGO.SetActive(hasUnlockedATile);
+                }
                 Debug.Log($"Combo tile: {potentialNewCombo.ToString()} / {i} / {tileTypes[i]}");
                 uiUnlockableTilesItems[i].isAvailable = true;
                 uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
