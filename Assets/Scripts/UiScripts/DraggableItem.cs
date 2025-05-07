@@ -11,6 +11,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public int biomeId;
     public bool isOnDice;
     public bool isAvailable;
+    public bool isCombo;
 
     private void Start()
     {
@@ -25,14 +26,15 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetAsLastSibling();
         if (isOnDice)
         {
-            group.alpha = .5f;
+            return;
+            //group.alpha = .5f;
         }
         image.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isOnDice)
+        if (!isOnDice)
         {
             transform.position = Input.mousePosition;
         }
@@ -40,6 +42,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (isOnDice)
+        {
+            return;
+            //group.alpha = .5f;
+        }
         transform.SetParent(parentAfterDrag);
         image.rectTransform.localScale = Vector3.one;
         group.alpha = 1f;

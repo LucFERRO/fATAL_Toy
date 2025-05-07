@@ -129,6 +129,7 @@ public class TrajectoryPreview : MonoBehaviour
 
     private Vector3 CalculateNewVelocity(Vector3 velocity, float drag, float increment)
     {
+        //Physics.gravity = -Vector3.up * 20f;
         velocity += Physics.gravity * increment;
         velocity *= Mathf.Clamp01(1f - drag * increment);
         return velocity;

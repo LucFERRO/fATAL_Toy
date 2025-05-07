@@ -51,10 +51,17 @@ public class UnlockManager : MonoBehaviour
             //{
             //    Debug.Log(item.Key +" "+ item.Value);
             //}
+            //for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
+            //{
+            //    Debug.Log(i + " biomeID " + uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>().biomeId);
+            //    Debug.Log(" tileType " + tileTypes[i]);
+            //}
+            hasUnlockedATile = true;
+            tileComboTitleGO.SetActive(hasUnlockedATile);
             for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
             {
-                Debug.Log(i + " biomeID " + uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>().biomeId);
-                Debug.Log(" tileType " + tileTypes[i]);
+                uiUnlockableTilesItems[i].isAvailable = true;
+                uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
             }
         }
     }
@@ -69,7 +76,8 @@ public class UnlockManager : MonoBehaviour
             }
             if (potentialNewCombo.ToString() == tileTypes[i])
             {
-                if (!hasUnlockedATile) {
+                if (!hasUnlockedATile)
+                {
                     hasUnlockedATile = true;
                     tileComboTitleGO.SetActive(hasUnlockedATile);
                 }
