@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using System.Collections;
+using System.Linq;
 
 public class NeighbourTileProcessor : MonoBehaviour
 {
@@ -264,8 +265,8 @@ public class NeighbourTileProcessor : MonoBehaviour
 
         string[] tiles = new string[] { tileType, majorTile };
         Array.Sort(tiles, StringComparer.Ordinal);
-
-        return tiles[0] + FirstLetterToUpper(tiles[1]);
+        string newCombo = tiles[0] + FirstLetterToUpper(tiles[1]);
+        return newCombo;
     }
 
     public void UpdateComboTile()
@@ -279,6 +280,8 @@ public class NeighbourTileProcessor : MonoBehaviour
             // array.sort GetComboTile dans gameManager.tiletype
             if (Enum.GetNames(typeof(TileType))[i] == GetComboTile())
             {
+                Enum.TryParse(Enum.GetNames(typeof(TileType))[i], out TileType tileType);
+                gameManager.maxLockedTiles += gameManager.unlockManager.HandleUnlockComboTile(tileType) ? 1 : 0;
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
                 UpdateHex();
                 gameManager.chosenPrefab = gameManager.tilePrefabs[0];

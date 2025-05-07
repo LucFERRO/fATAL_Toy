@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public Color baseDiceFaceColor;
     public Material[] faceMaterials;
 
+    [HideInInspector] public UnlockManager unlockManager;
+
     [Header("LockedTiles")]
     public GameObject[] testCascade;
     public int maxLockedTiles;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
     public DebugVariableHolder instance = new DebugVariableHolder();
     void Start()
     {
+        unlockManager = GetComponent<UnlockManager>();
         baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
         TypeBools = new bool[Enum.GetNames(typeof(TileType)).Length];
         ChooseTileToSpawn(0);

@@ -1,31 +1,41 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnlockManager : MonoBehaviour
 {
-    GameManager gameManager;
-    [SerializeField]
-    GameObject[] uiUnlockableTilesGO;
-    DraggableItem[] uiUnlockableTilesItems;
+    [SerializeField] TileType test;
     string[] tileTypes;
-    public GameObject diceFacesGO;
-    public GameObject baseBiomesGO;
-    public GameObject doubleBiomesGO;
-    public GameObject comboBiomesGO;
+    private Dictionary<TileType, bool> unlockStatus;
+    private bool hasUnlockedATile;
+    GameManager gameManager;
+    [Header("References")]
+    [SerializeField] GameObject tileComboTitleGO;
+    DraggableItem[] uiUnlockableTilesItems;
+    //[SerializeField] GameObject diceFacesGO;
+    //[SerializeField] GameObject baseBiomesGO;
+    //[SerializeField] GameObject doubleBiomesGO;
+    //[SerializeField] GameObject comboBiomesGO;
+    [SerializeField] GameObject[] uiUnlockableTilesGO;
 
-    [SerializeField]
-    string test;
 
     void Start()
     {
-        uiUnlockableTilesItems = new DraggableItem[uiUnlockableTilesGO.Length];
         gameManager = GetComponent<GameManager>();
+        tileComboTitleGO.SetActive(hasUnlockedATile);
+        uiUnlockableTilesItems = new DraggableItem[uiUnlockableTilesGO.Length];
         for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
         {
             uiUnlockableTilesItems[i] = uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>();
         }
 
         tileTypes = Enum.GetNames(typeof(TileType));
+
+        unlockStatus = new Dictionary<TileType, bool>();
+        foreach (TileType tileType in Enum.GetValues(typeof(TileType)))
+        {
+            unlockStatus[tileType] = false;
+        }
     }
 
     // Update is called once per frame
@@ -33,26 +43,48 @@ public class UnlockManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log($"{TileType.forestMountain} : {(int)TileType.forestMountain}");
-            Debug.Log($"{44} : {(TileType)44}");
             HandleUnlockComboTile(test);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            //foreach (var item in unlockStatus)
+            //{
+            //    Debug.Log(item.Key +" "+ item.Value);
+            //}
+            for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
+            {
+                Debug.Log(i + " biomeID " + uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>().biomeId);
+                Debug.Log(" tileType " + tileTypes[i]);
+            }
         }
     }
 
-    public void HandleUnlockComboTile(string potentialNewCombo)
+    public bool HandleUnlockComboTile(TileType potentialNewCombo)
     {
         for (int i = 0; i < tileTypes.Length; i++)
         {
-            if (potentialNewCombo == "forest" || potentialNewCombo == "lake" || potentialNewCombo == "mountain" || potentialNewCombo == "plain")
+            if ((int)potentialNewCombo < 10)
             {
-                return;
+                return false;
             }
-            if (potentialNewCombo == tileTypes[i])
+            if (potentialNewCombo.ToString() == tileTypes[i])
             {
-                Debug.Log($"New combo tile {tileTypes[i]} unlocked, Ui N`{i} now available in {uiUnlockableTilesItems[i].name}");
+                if (!hasUnlockedATile) {
+                    hasUnlockedATile = true;
+                    tileComboTitleGO.SetActive(hasUnlockedATile);
+                }
+                Debug.Log($"Combo tile: {potentialNewCombo.ToString()} / {i} / {tileTypes[i]}");
                 uiUnlockableTilesItems[i].isAvailable = true;
                 uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
+
+                if (!unlockStatus[potentialNewCombo])
+                {
+                    unlockStatus[potentialNewCombo] = true;
+                    Debug.Log($"TileType {potentialNewCombo} {i} unlocked.");
+                    return true;
+                }
             }
         }
+        return false;
     }
 }

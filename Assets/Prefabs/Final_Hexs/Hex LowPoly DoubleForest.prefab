@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: foretForest
+  tileType: forestForest
   currentPrefab: {fileID: 0}
   majorTile: 
   cellPosition: {x: 0, y: 0, z: 0}
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
   lockedMaterial: {fileID: -876546973899608171, guid: de8835edb6778d84788113ad383e50e1, type: 3}
+  splashParticule: {fileID: 0}
 --- !u!65 &4333914019122966004
 BoxCollider:
   m_ObjectHideFlags: 0
