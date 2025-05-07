@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1327107713026015923}
   - component: {fileID: 4333914019122966004}
   m_Layer: 0
-  m_Name: Hex LowPoly DoubleForest
+  m_Name: LP_DoubleForest
   m_TagString: Hex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

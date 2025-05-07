@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -449060636189294712}
   - component: {fileID: 7828976265506502286}
   m_Layer: 0
-  m_Name: Hex LowPoly Lake
+  m_Name: LP_LakePlain
   m_TagString: Hex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: lake
+  tileType: lakePlain
   currentPrefab: {fileID: 0}
   majorTile: 
   cellPosition: {x: 0, y: 0, z: 0}
@@ -157,7 +157,7 @@ PrefabInstance:
     - target: {fileID: 4700289331083221283, guid: 590ce04a46903e8488356ecae040f013, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 33f69049b75c57942b4e063919e1fc25, type: 2}
+      objectReference: {fileID: 2100000, guid: 9a15aebf678060e4b976e0d7832c044b, type: 2}
     - target: {fileID: 5868723452996346444, guid: 590ce04a46903e8488356ecae040f013, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
