@@ -235,7 +235,9 @@ public class RollingDiceData : MonoBehaviour
         for (int i = 0; i < numberOfFaces; i++)
         {
             vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
-            gameManager.diceFaces[i].transform.GetChild(0).GetComponent<Image>().color = gameManager.baseDiceFaceColor;
+            //gameManager.diceFaces[i].transform.GetChild(0).GetComponent<Image>().color = gameManager.baseDiceFaceColor;
+            gameManager.diceFaces[i].transform.GetComponent<Outline>().effectDistance = new Vector2(2,2);
+            gameManager.diceFaces[i].transform.GetComponent<Outline>().effectColor = Color.black;
             if (vectorDotResultArray[i] > closestVectorDot)
             {
                 closestVectorDot = vectorDotResultArray[i];
@@ -243,7 +245,9 @@ public class RollingDiceData : MonoBehaviour
             }
         }
 
-        gameManager.diceFaces[closestIndex].transform.GetChild(0).GetComponent<Image>().color = Color.blue;
+        //gameManager.diceFaces[closestIndex].transform.GetChild(0).GetComponent<Image>().color = Color.blue;
+        gameManager.diceFaces[closestIndex].transform.GetComponent<Outline>().effectDistance = new Vector2(3, 3);
+        gameManager.diceFaces[closestIndex].transform.GetComponent<Outline>().effectColor = Color.yellow;
     }
 
     private string GetChosenFace()
