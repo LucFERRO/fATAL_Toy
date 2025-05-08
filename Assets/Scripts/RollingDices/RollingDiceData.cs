@@ -146,7 +146,6 @@ public class RollingDiceData : MonoBehaviour
         {
             traveledTilesGO[index] = newHex;
         }
-
         StartCoroutine(hexToBeChanged.GetComponent<GlowingHexes>().TransitionEffect());
 
         //Destroy(hexToBeChanged.gameObject);

@@ -47,6 +47,22 @@ public class GlowingHexes : MonoBehaviour
         }
     }
 
+    private void OnMouseOver()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            DissolveTest();
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            foreach (Renderer r in renderers)
+            {
+                r.materials[0].SetFloat("_Dissolve", 0.5f);
+                //r.materials = glowMaterials[r];
+            }
+        }
+    }
+
     public void PrepareMaterials()
     {
         foreach (Renderer r in renderers)
@@ -86,6 +102,7 @@ public class GlowingHexes : MonoBehaviour
 
         }
     }
+
 
     public void ToggleGlow()
     {
@@ -163,23 +180,44 @@ public class GlowingHexes : MonoBehaviour
     {
         float duration = 0.2f;
         float time = 0;
-        foreach (Renderer r in renderers)
-        {
-            Debug.Log(glowMaterials[r][0].GetFloat("_IsDissolving"));
-            glowMaterials[r][0].SetInt("_IsDissolving", 1);
-            Debug.Log(glowMaterials[r][0].GetFloat("_IsDissolving"));
-            Debug.Log("_IsDissolvingTrue");
-
-        }
-
+        //foreach (Renderer r in renderers)
+        //{
+        //    Debug.Log(glowMaterials[r][0].GetFloat("_IsDissolving"));
+        //    glowMaterials[r][0].SetFloat("_IsDissolving", 1);
+        //    Debug.Log(glowMaterials[r][0].GetFloat("_IsDissolving"));
+        //    Debug.Log("_IsDissolvingTrue");
+        //}
         while (time < duration)
         {
-            glowMaterial.SetFloat("_Dissolve", Mathf.Lerp(0, 1, time / duration));
+            Debug.Log("Dissolving_1");
+            float dissolveValue = Mathf.Lerp(0f, 1f, time / duration);
+
+            foreach (Renderer r in renderers)
+            {
+                Debug.Log("Dissolving_2 " + dissolveValue);
+                r.materials[0].SetFloat("_Dissolve", dissolveValue);
+                
+                //r.materials = glowMaterials[r];
+                Debug.Log("Dissolving_3 " + r.materials[0].GetFloat("_Dissolve"));
+            }
             time += Time.deltaTime;
-            yield return null;
         }
 
+        Debug.Log("Dissolving_4");
         Destroy(gameObject);
+        Debug.Log("Dissolving_5");
+        yield return null;
 
     }
+
+    public void DissolveTest()
+    {
+        Debug.Log("DissolveTest_1");
+        foreach (Renderer r in renderers)
+        {
+            //glowMaterials[r][0].SetFloat("_Dissolve", 0.5f);
+            r.materials = glowMaterials[r];
+        }
+    }
+
 }
