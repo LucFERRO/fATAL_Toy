@@ -147,7 +147,9 @@ public class RollingDiceData : MonoBehaviour
             traveledTilesGO[index] = newHex;
         }
 
-        Destroy(hexToBeChanged.gameObject);
+        StartCoroutine(hexToBeChanged.GetComponent<GlowingHexes>().TransitionEffect());
+
+        //Destroy(hexToBeChanged.gameObject);
         return newGridCoordinates;
     }
 
