@@ -81,14 +81,12 @@ public class UnlockManager : MonoBehaviour
                     hasUnlockedATile = true;
                     tileComboTitleGO.SetActive(hasUnlockedATile);
                 }
-                Debug.Log($"Combo tile: {potentialNewCombo.ToString()} / {i} / {tileTypes[i]}");
                 uiUnlockableTilesItems[i].isAvailable = true;
                 uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
 
                 if (!unlockStatus[potentialNewCombo])
                 {
                     unlockStatus[potentialNewCombo] = true;
-                    Debug.Log($"TileType {potentialNewCombo} {i} unlocked.");
                     return true;
                 }
             }

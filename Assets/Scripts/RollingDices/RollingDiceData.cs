@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class RollingDiceData : MonoBehaviour
     public string diceColor;
     public string diceRarity;
     public int chosenFaceIndex;
+    public string chosenFaceString;
     public Vector2[] diceVectorArray;
 
     [Header("State")]
@@ -43,9 +45,9 @@ public class RollingDiceData : MonoBehaviour
                 //Debug.Log(gameManager.tilePrefabs.Length);
                 //Debug.Log(Array.IndexOf(gameManager.tileTypes, GetChosenFace()));
                 //Debug.Log(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())].name);
-                GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), GetChosenFace())];
+                chosenFaceString = GetChosenFace();
                 Destroy(gameObject);
-                UpdateTraveledHexes(newHexPrefab);
+                UpdateTraveledHexes(chosenFaceString);
             }
         }
     }
@@ -60,6 +62,7 @@ public class RollingDiceData : MonoBehaviour
         HandleDisappearanceTimer();
         HandleSelfDestruct();
         LiveUpdateChosenFaceUi();
+        //Debug.Log(diceRb.linearVelocity.magnitude);
     }
 
     private void HandleSelfDestruct()
@@ -108,23 +111,76 @@ public class RollingDiceData : MonoBehaviour
             }
         }
     }
+    private string[] ProcessTileType(string tileType)
+    {
+        //string[] res = tileType.Split(new[] { "Forest", "Lake", "Mountain", "Plain" }, StringSplitOptions.RemoveEmptyEntries)
+        //               .Select(word => word.ToLower())
+        //               .Distinct()
+        //               .ToArray();        
+        string[] res = System.Text.RegularExpressions.Regex
+        .Matches(tileType, @"[A-Z]?[a-z]+|[A-Z]+(?![a-z])")
+        .Cast<System.Text.RegularExpressions.Match>()
+        .Select(m => m.Value.ToLower())
+        //.Distinct()
+        .ToArray();
+        return res;
+    }
 
-    private void UpdateTraveledHexes(GameObject newHexPrefab)
+    private void UpdateTraveledHexes(string tileType)
     {
         List<GameObject> newTiles = new List<GameObject>();
+        string[] tiles = ProcessTileType(tileType);
+        GameObject newHexPrefab = gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), tileType)];
 
-        foreach (GameObject tile in new List<GameObject>(traveledTilesGO))
+        if (tiles.Length == 1)
         {
-            if (tile == null) continue;
+            foreach (GameObject tile in new List<GameObject>(traveledTilesGO))
+            {
+                if (tile == null)
+                {
+                    continue;
+                }
 
-            NeighbourTileProcessor newTile = UpdateSingleHex(tile, newHexPrefab);
-            newTiles.Add(newTile.gameObject);
+                NeighbourTileProcessor newTile = UpdateSingleHex(tile, newHexPrefab, tileType);
+                newTiles.Add(newTile.gameObject);
+            }
+        }
+        else
+        {
+            GameObject[] closestNeighbourTilesGOs = traveledTilesGO[closestTileIndex].transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs;
+            int randomRingTile = UnityEngine.Random.Range(0, tiles.Length);
+            foreach (GameObject tile in new List<GameObject>(traveledTilesGO))
+            {
+                if (tile == null)
+                {
+                    continue;
+                }
+                if (tile == traveledTilesGO[closestTileIndex])
+                {
+                    UpdateSingleHex(tile, gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), tileType)], tileType);
+                    continue;
+                }
+                if (closestNeighbourTilesGOs.Contains(tile.transform.parent.gameObject))
+                {
+                    continue;
+                }
+                string fittingTileType = gameManager.tilePatternRandom ? tiles[UnityEngine.Random.Range(0, tiles.Length)] : tiles[(int)Mathf.Repeat(randomRingTile + 1, tiles.Length)];
+                NeighbourTileProcessor newTile = UpdateSingleHex(tile, gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), fittingTileType)], fittingTileType);
+                newTiles.Add(newTile.gameObject);
+            }
+
+            foreach (GameObject tile in closestNeighbourTilesGOs)
+            {
+                NeighbourTileProcessor newTileRing = UpdateSingleHex(tile.transform.GetChild(0).gameObject, gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), tiles[randomRingTile])], tiles[randomRingTile]);
+                newTiles.Add(newTileRing.gameObject);
+            }
         }
 
+        Debug.Log(newTiles.Count);
         gameManager.UpdateNeighboursAfterDiceDestroy(newTiles);
     }
 
-    private NeighbourTileProcessor UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab)
+    private NeighbourTileProcessor UpdateSingleHex(GameObject hexToBeChanged, GameObject newHexPrefab, string newTileType)
     {
         Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
         Quaternion randomRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
@@ -137,7 +193,7 @@ public class RollingDiceData : MonoBehaviour
         newHex.transform.position = hexToBeChanged.transform.position;
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
-        newGridCoordinates.tileType = GetChosenFace();
+        newGridCoordinates.tileType = newTileType;
         newGridCoordinates.cellPosition = hexPosition;
 
         // Replace the old tile in traveledTilesGO with the new one
@@ -236,7 +292,7 @@ public class RollingDiceData : MonoBehaviour
         {
             vectorDotResultArray[i] = Vector3.Dot(faceComponentArray[i].transform.up, Vector3.up);
             //gameManager.diceFaces[i].transform.GetChild(0).GetComponent<Image>().color = gameManager.baseDiceFaceColor;
-            gameManager.diceFaces[i].transform.GetComponent<Outline>().effectDistance = new Vector2(2,2);
+            gameManager.diceFaces[i].transform.GetComponent<Outline>().effectDistance = new Vector2(2, 2);
             gameManager.diceFaces[i].transform.GetComponent<Outline>().effectColor = Color.black;
             if (vectorDotResultArray[i] > closestVectorDot)
             {

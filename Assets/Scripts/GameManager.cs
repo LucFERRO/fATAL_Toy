@@ -17,6 +17,8 @@ public class DebugVariableHolder
 public class GameManager : MonoBehaviour
 {
     //public string[] tileTypes;
+    public bool tilePatternRandom;
+
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
     public Color baseDiceFaceColor;

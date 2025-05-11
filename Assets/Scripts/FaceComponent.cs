@@ -5,5 +5,5 @@ using UnityEngine;
 public class FaceComponent : MonoBehaviour
 {
     public string faceType;
-    public string faceColor;
+    //public string faceColor;
 }
