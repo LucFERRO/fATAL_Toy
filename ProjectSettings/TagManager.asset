@@ -15,6 +15,7 @@ TagManager:
   - BaseHex
   - DiceSlot
   - DiceSpawner
+  - WaterPlane
   layers:
   - Default
   - TransparentFX

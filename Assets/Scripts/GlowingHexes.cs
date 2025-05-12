@@ -13,6 +13,7 @@ public class GlowingHexes : MonoBehaviour
     [SerializeField]
     public Material materializeMaterial;
     private bool isGlowing;
+    private bool isLocked;
     private bool isMaterializing;
     private Vector3 originalScale;
 
@@ -38,21 +39,6 @@ public class GlowingHexes : MonoBehaviour
         PrepareMaterials();
     }
 
-    private void Update()
-    {
-        foreach (Renderer r in renderers)
-        {
-            foreach (Material mat in r.materials)
-            {
-                if (mat.HasProperty("_WaveTime"))
-                {
-                    float t = mat.GetFloat("_WaveTime");
-                    mat.SetFloat("_WaveTime", t + Time.deltaTime);
-                }
-            }
-        }
-    }
-
     public void PrepareMaterials()
     {
         foreach (Renderer r in renderers)
@@ -63,7 +49,7 @@ public class GlowingHexes : MonoBehaviour
             Material[] materializeMats = new Material[originalMats.Length];
             for (int i = 0; i < originalMats.Length; i++)
             {
-                if (!originalMats[i].GetTexture("_BaseMap"))
+                if (!originalMats[i].GetTexture("_BaseMap") || transform.CompareTag("WaterPlane"))
                 {
                     continue;
                 }
@@ -109,7 +95,7 @@ public class GlowingHexes : MonoBehaviour
     {
         foreach (Renderer r in renderers)
         {
-            if (r == null) continue;
+            if (r == null || r.transform.CompareTag("WaterPlane")) continue;
             //if (originalMaterials[r][0].GetTexture("_BaseMap"))
             r.materials = isGlowing ? originalMaterials[r] : glowMaterials[r];
         }
@@ -126,12 +112,11 @@ public class GlowingHexes : MonoBehaviour
     {
         foreach (Renderer r in renderers)
         {
-            if (r == null) continue;
-            r.materials = isGlowing ? originalMaterials[r] : lockedMaterials[r];
+            if (r == null || r.transform.CompareTag("WaterPlane")) continue;
+            r.materials = isLocked ? originalMaterials[r] : lockedMaterials[r];
         }
 
-        isGlowing = !isGlowing;
-        //StartCoroutine(ScaleEffect());
+        isLocked = !isLocked;
     }
     public void ToggleLock(bool state)
     {
@@ -142,12 +127,11 @@ public class GlowingHexes : MonoBehaviour
     {
         foreach (Renderer r in renderers)
         {
-            if (r == null) continue;
+            if (r == null || r.transform.CompareTag("WaterPlane")) continue;
             r.materials = isMaterializing ? originalMaterials[r] : materializeMaterials[r];
         }
 
-        isGlowing = !isGlowing;
-        //StartCoroutine(ScaleEffect());
+        isMaterializing = !isMaterializing;
     }
     public void ToggleMaterialize(bool state)
     {
@@ -195,7 +179,7 @@ public class GlowingHexes : MonoBehaviour
 
     public IEnumerator TransitionDisappear()
     {
-        float duration = 0.2f;
+        float duration = 0.5f;
         float time = 0;
         while (time < duration)
         {
@@ -203,6 +187,10 @@ public class GlowingHexes : MonoBehaviour
 
             foreach (Renderer r in renderers)
             {
+                if (r.gameObject.CompareTag("WaterPlane"))
+                {
+                    r.material.SetInteger("_isDissolving", 1);
+                }                
                 r.materials[0].SetFloat("_Dissolve", dissolveValue);
             }
             time += Time.deltaTime;
@@ -213,7 +201,7 @@ public class GlowingHexes : MonoBehaviour
     }
     public IEnumerator TransitionAppear()
     {
-        float duration = 0.2f;
+        float duration = 0.5f;
         float time = 0;
         while (time < duration)
         {
@@ -221,12 +209,22 @@ public class GlowingHexes : MonoBehaviour
 
             foreach (Renderer r in renderers)
             {
+                if (r.gameObject.CompareTag("WaterPlane"))
+                {
+                    r.material.SetInteger("_isDissolving", 1);
+                }
                 r.materials[0].SetFloat("_Dissolve", dissolveValue);
             }
             time += Time.deltaTime;
             yield return null;
         }
 
-        Destroy(gameObject);
+        ToggleMaterialize(false);
+        GameObject gameManagerGO = GetComponent<NeighbourTileProcessor>().gameManager.gameObject;
+        if (gameManagerGO.transform.childCount != 0)
+        {
+            Destroy(gameManagerGO.transform.GetChild(0).gameObject);
+        }
+
     }
 }

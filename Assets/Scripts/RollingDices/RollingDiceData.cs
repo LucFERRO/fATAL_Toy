@@ -199,6 +199,8 @@ public class RollingDiceData : MonoBehaviour
             return null;
         }
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.position, randomRotation, hexToBeChanged.transform.parent);
+        newHex.GetComponent<GlowingHexes>().ToggleMaterialize(true);
+        StartCoroutine(newHex.GetComponent<GlowingHexes>().TransitionAppear());
         newHex.transform.position = hexToBeChanged.transform.position;
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();

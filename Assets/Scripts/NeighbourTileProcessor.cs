@@ -10,7 +10,7 @@ using System.Linq;
 public class NeighbourTileProcessor : MonoBehaviour
 {
     [Header("References")]
-    private GameManager gameManager;
+    public GameManager gameManager;
     private PhysicalDiceSpawner diceSpawner;
     private Camera cam;
     [Header("Combo")]

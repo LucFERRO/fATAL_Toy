@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
   lockedMaterial: {fileID: -876546973899608171, guid: de8835edb6778d84788113ad383e50e1, type: 3}
+  materializeMaterial: {fileID: -876546973899608171, guid: 1dbfb67cf0db31843bd1df5c1b26ced3, type: 3}
   splashParticule: {fileID: 6758210726971208643, guid: 89bddcac60d18d74a917f51980757507, type: 3}
 --- !u!1001 &4307176156617174614
 PrefabInstance:
