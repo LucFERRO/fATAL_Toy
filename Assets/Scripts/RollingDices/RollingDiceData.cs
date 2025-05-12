@@ -16,6 +16,7 @@ public class RollingDiceData : MonoBehaviour
     public int chosenFaceIndex;
     public string chosenFaceString;
     public Vector2[] diceVectorArray;
+    private bool hasChanged;
 
     [Header("State")]
     public bool isInUse;
@@ -39,15 +40,23 @@ public class RollingDiceData : MonoBehaviour
         {
             velocityWatcher = value;
 
-            if (value <= 0.1f)
+            if (value <= 0.1f && !hasChanged)
             {
                 GetClosestHexTile();
                 //Debug.Log(gameManager.tilePrefabs.Length);
                 //Debug.Log(Array.IndexOf(gameManager.tileTypes, GetChosenFace()));
                 //Debug.Log(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())].name);
                 chosenFaceString = GetChosenFace();
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                diceRb.isKinematic = true;
+                gameObject.GetComponent<MeshCollider>().enabled = false;
+                for (int i = 0; i < transform.childCount; ++i)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
                 UpdateTraveledHexes(chosenFaceString);
+                hasChanged = true;
             }
         }
     }
@@ -202,9 +211,7 @@ public class RollingDiceData : MonoBehaviour
         {
             traveledTilesGO[index] = newHex;
         }
-        StartCoroutine(hexToBeChanged.GetComponent<GlowingHexes>().TransitionEffect());
-
-        //Destroy(hexToBeChanged.gameObject);
+        StartCoroutine(hexToBeChanged.GetComponent<GlowingHexes>().TransitionDisappear());
         return newGridCoordinates;
     }
 

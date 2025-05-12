@@ -10,7 +10,10 @@ public class GlowingHexes : MonoBehaviour
     public Material glowMaterial;
     [SerializeField]
     public Material lockedMaterial;
+    [SerializeField]
+    public Material materializeMaterial;
     private bool isGlowing;
+    private bool isMaterializing;
     private Vector3 originalScale;
 
     private Renderer[] renderers;
@@ -18,9 +21,12 @@ public class GlowingHexes : MonoBehaviour
     private Dictionary<Renderer, Material[]> originalMaterials = new Dictionary<Renderer, Material[]>();
     private Dictionary<Renderer, Material[]> glowMaterials = new Dictionary<Renderer, Material[]>();
     private Dictionary<Renderer, Material[]> lockedMaterials = new Dictionary<Renderer, Material[]>();
+    private Dictionary<Renderer, Material[]> materializeMaterials = new Dictionary<Renderer, Material[]>();
+
 
     private static Dictionary<Texture, Material> cachedGlowMaterial = new Dictionary<Texture, Material>();
     private static Dictionary<Texture, Material> cachedLockedMaterial = new Dictionary<Texture, Material>();
+    private static Dictionary<Texture, Material> cachedMaterializeMaterial = new Dictionary<Texture, Material>();
 
     public GameObject splashParticule;
 
@@ -47,22 +53,6 @@ public class GlowingHexes : MonoBehaviour
         }
     }
 
-    private void OnMouseOver()
-    {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            DissolveTest();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            foreach (Renderer r in renderers)
-            {
-                r.materials[0].SetFloat("_Dissolve", 0.5f);
-                //r.materials = glowMaterials[r];
-            }
-        }
-    }
-
     public void PrepareMaterials()
     {
         foreach (Renderer r in renderers)
@@ -70,11 +60,11 @@ public class GlowingHexes : MonoBehaviour
             Material[] originalMats = r.materials;
             Material[] glowMats = new Material[originalMats.Length];
             Material[] lockedMats = new Material[originalMats.Length];
+            Material[] materializeMats = new Material[originalMats.Length];
             for (int i = 0; i < originalMats.Length; i++)
             {
                 if (!originalMats[i].GetTexture("_BaseMap"))
                 {
-
                     continue;
                 }
                 if (!cachedGlowMaterial.TryGetValue(originalMats[i].GetTexture("_BaseMap"), out Material mat))
@@ -85,6 +75,7 @@ public class GlowingHexes : MonoBehaviour
                     cachedGlowMaterial[baseMap] = mat;
                 }
                 glowMats[i] = mat;
+
                 if (!cachedLockedMaterial.TryGetValue(originalMats[i].GetTexture("_BaseMap"), out Material mat2))
                 {
                     mat2 = new Material(lockedMaterial);
@@ -93,12 +84,22 @@ public class GlowingHexes : MonoBehaviour
                     cachedLockedMaterial[baseMap] = mat2;
                 }
                 lockedMats[i] = mat2;
+                
+                if (!cachedMaterializeMaterial.TryGetValue(originalMats[i].GetTexture("_BaseMap"), out Material mat3))
+                {
+                    mat3 = new Material(materializeMaterial);
+                    Texture baseMap = originalMats[i].GetTexture("_BaseMap");
+                    mat3.SetTexture("_BaseMap", baseMap);
+                    cachedMaterializeMaterial[baseMap] = mat3;
+                }
+                materializeMats[i] = mat3;
             }
 
 
             originalMaterials[r] = originalMats;
             glowMaterials[r] = glowMats;
             lockedMaterials[r] = lockedMats;
+            materializeMaterials[r] = materializeMats;
 
         }
     }
@@ -136,6 +137,22 @@ public class GlowingHexes : MonoBehaviour
     {
         if (isGlowing == state) return;
         ToggleLock();
+    }    
+    public void ToggleMaterialize()
+    {
+        foreach (Renderer r in renderers)
+        {
+            if (r == null) continue;
+            r.materials = isMaterializing ? originalMaterials[r] : materializeMaterials[r];
+        }
+
+        isGlowing = !isGlowing;
+        //StartCoroutine(ScaleEffect());
+    }
+    public void ToggleMaterialize(bool state)
+    {
+        if (isMaterializing == state) return;
+        ToggleMaterialize();
     }
 
     public IEnumerator ClearParticlesCoroutine(GameObject particles, float time)
@@ -176,48 +193,40 @@ public class GlowingHexes : MonoBehaviour
         transform.localScale = originalScale;
     }
 
-    public IEnumerator TransitionEffect()
+    public IEnumerator TransitionDisappear()
     {
         float duration = 0.2f;
         float time = 0;
-        //foreach (Renderer r in renderers)
-        //{
-        //    Debug.Log(glowMaterials[r][0].GetFloat("_IsDissolving"));
-        //    glowMaterials[r][0].SetFloat("_IsDissolving", 1);
-        //    Debug.Log(glowMaterials[r][0].GetFloat("_IsDissolving"));
-        //    Debug.Log("_IsDissolvingTrue");
-        //}
         while (time < duration)
         {
-            Debug.Log("Dissolving_1");
             float dissolveValue = Mathf.Lerp(0f, 1f, time / duration);
 
             foreach (Renderer r in renderers)
             {
-                Debug.Log("Dissolving_2 " + dissolveValue);
                 r.materials[0].SetFloat("_Dissolve", dissolveValue);
-                
-                //r.materials = glowMaterials[r];
-                Debug.Log("Dissolving_3 " + r.materials[0].GetFloat("_Dissolve"));
             }
             time += Time.deltaTime;
+            yield return null;
         }
 
-        Debug.Log("Dissolving_4");
         Destroy(gameObject);
-        Debug.Log("Dissolving_5");
-        yield return null;
-
     }
-
-    public void DissolveTest()
+    public IEnumerator TransitionAppear()
     {
-        Debug.Log("DissolveTest_1");
-        foreach (Renderer r in renderers)
+        float duration = 0.2f;
+        float time = 0;
+        while (time < duration)
         {
-            //glowMaterials[r][0].SetFloat("_Dissolve", 0.5f);
-            r.materials = glowMaterials[r];
-        }
-    }
+            float dissolveValue = Mathf.Lerp(1f, 0f, time / duration);
 
+            foreach (Renderer r in renderers)
+            {
+                r.materials[0].SetFloat("_Dissolve", dissolveValue);
+            }
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
 }
