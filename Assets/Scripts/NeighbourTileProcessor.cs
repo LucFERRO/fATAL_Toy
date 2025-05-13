@@ -29,6 +29,9 @@ public class NeighbourTileProcessor : MonoBehaviour
     static public int currentLockedTiles;
     public bool isLocked;
     public GameObject sparks;
+    [Header("FMOD")]
+    private FMOD.Studio.EventInstance lockStatusEventInstance;
+
     public bool IsLocked
     {
         get { return isLocked; }
@@ -57,6 +60,8 @@ public class NeighbourTileProcessor : MonoBehaviour
         diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
         grid = transform.parent.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
+        lockStatusEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Lock");
+        lockStatusEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
 
@@ -298,12 +303,20 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         if (isLocked)
         {
+            lockStatusEventInstance.setParameterByName("LockStatus", 1);
+            lockStatusEventInstance.start();
+            //lockStatusEventInstance.release();
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
             GameObject particles = transform.parent.transform.GetChild(1).gameObject;
             particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
             StartCoroutine(glowingHexe.ClearParticlesCoroutine(particles, 3f));
         }
         else
         {
+            lockStatusEventInstance.setParameterByName("LockStatus", 0);
+            lockStatusEventInstance.start();
+            //lockStatusEventInstance.release();
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
             GameObject spark = Instantiate(sparks, transform.parent);
             Vector3 fixedHeight = spark.transform.position;
             fixedHeight.y += 0.6f;

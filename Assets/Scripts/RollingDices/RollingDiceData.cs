@@ -29,6 +29,10 @@ public class RollingDiceData : MonoBehaviour
     public int maxDisappearanceTimer;
     public float currentDisappearanceTimer;
 
+    [Header("FMOD")]
+    private FMOD.Studio.EventInstance diceEventInstance;
+    private int numberOfBounces;
+
     [Header("Velocity Watcher")]
     public float velocityWatcher;
     public List<GameObject> traveledTilesGO = new List<GameObject>();
@@ -83,6 +87,8 @@ public class RollingDiceData : MonoBehaviour
                 traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
             }
             Destroy(gameObject);
+            diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            diceEventInstance.release();
         }
     }
 
@@ -100,6 +106,7 @@ public class RollingDiceData : MonoBehaviour
         }
 
         isInUse = true;
+        diceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-all TIMELINE");
     }
 
     private void HandleDisappearanceTimer()
@@ -114,6 +121,17 @@ public class RollingDiceData : MonoBehaviour
                 {
                     Debug.Log("EARLY DESTROY");
                     Destroy(gameObject);
+                    print("StopMusic");
+                    var result = diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    if (result != FMOD.RESULT.OK)
+                    {
+                        Debug.Log($"Failed to stop event with result: {result}");
+                    }
+                    result = diceEventInstance.release();
+                    if (result != FMOD.RESULT.OK)
+                    {
+                        Debug.Log($"Failed to stop event with result: {result}");
+                    }
                     return;
                 }
                 VelocityWatcher = diceRb.linearVelocity.magnitude;
@@ -268,21 +286,13 @@ public class RollingDiceData : MonoBehaviour
                 return;
             }
 
-            //if (gameManager.onlyReplacesClosestTile)
-            //{
-            //    foreach (GameObject tile in traveledTilesGO)
-            //    {
-            //        tile.gameObject.GetComponent<GlowingHexes>().ToggleGlow(false);
-            //    }
-            //    traveledTilesGO.Clear();
-            //    traveledTilesGO.Add(collision.gameObject);
-            //    collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
-            //}
-            //else
-            {
-                traveledTilesGO.Add(collision.gameObject);
-                collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
-            }
+            diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            diceEventInstance.setParameterByName("numberOfTiles", numberOfBounces);
+            diceEventInstance.start();
+            numberOfBounces += 1;
+            traveledTilesGO.Add(collision.gameObject);
+            collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+
         }
     }
 

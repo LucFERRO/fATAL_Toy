@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 31357686}
   - component: {fileID: 31357685}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: AudioMainSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,11 +801,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -2005460998
-      Data2: 1295818898
-      Data3: 776865155
-      Data4: -1862121755
-    Path: event:/swoosh
+      Data1: 574605485
+      Data2: 1186654476
+      Data3: -1122018371
+      Data4: -1709118462
+    Path: event:/Music
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 0
@@ -922,8 +922,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31357684}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0.3753227, z: 6.927997}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8, y: 0.37532377, z: 6.9279966}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
