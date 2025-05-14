@@ -31,7 +31,7 @@ public class RollingDiceData : MonoBehaviour
 
     [Header("FMOD")]
     private FMOD.Studio.EventInstance diceEventInstance;
-    private int numberOfBounces;
+    public int numberOfBounces;
 
     [Header("Velocity Watcher")]
     public float velocityWatcher;
@@ -290,6 +290,7 @@ public class RollingDiceData : MonoBehaviour
             diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
             diceEventInstance.setParameterByName("numberOfTiles", numberOfBounces);
             diceEventInstance.start();
+            //collision.gameObject.GetComponent<NeighbourTileProcessor>().PlayTileBounceSound(numberOfBounces);
             numberOfBounces += 1;
             traveledTilesGO.Add(collision.gameObject);
             collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);

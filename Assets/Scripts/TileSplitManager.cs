@@ -22,16 +22,6 @@ public class TileSplitManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            string test = "forestLake";
-            string test2 = "forest";
-            string test3 = "lake";
-            string test4 = "mountain";
-            Debug.Log(test.Contains(test2.Substring(1)));
-            Debug.Log(test.Contains(test3.Substring(1)));
-            Debug.Log(test.Contains(test4.Substring(1)));
-        }
         if (Input.GetKeyDown(KeyCode.U))
         {
             UpdateTileSplitDictionary();
