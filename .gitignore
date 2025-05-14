@@ -30,6 +30,7 @@
 
 # Log-files
 fmod.log
+fmod_editor
 fmod_editor.log
 
 # FMOD 1.10.x (Legacy)
