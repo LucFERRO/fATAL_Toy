@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6647767915782146692}
   - component: {fileID: -1607324818679250762}
   - component: {fileID: 9111852601901749607}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LP_ForestMountain
   m_TagString: Hex
   m_Icon: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   tileType: forestMountain
   currentPrefab: {fileID: 0}
   majorTile: 
@@ -165,6 +166,10 @@ PrefabInstance:
     - target: {fileID: 6259249480430077466, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
       propertyPath: m_Name
       value: Sapin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259249480430077466, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6743721054723972256, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
       propertyPath: m_LocalScale.x
@@ -248,6 +253,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sapin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6259249480430077466, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6743721054723972256, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
@@ -330,6 +339,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sapin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6259249480430077466, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6743721054723972256, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
@@ -411,6 +424,10 @@ PrefabInstance:
     - target: {fileID: 6259249480430077466, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
       propertyPath: m_Name
       value: Sapin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259249480430077466, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6743721054723972256, guid: 5c4932a901f557847b24df3902c0fc1d, type: 3}
       propertyPath: m_LocalScale.x

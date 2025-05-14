@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5142719965375526212}
   - component: {fileID: -5628136101593937254}
   - component: {fileID: 3315175765533672779}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LP_Mountain
   m_TagString: Hex
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   tileType: mountain
   currentPrefab: {fileID: 0}
   majorTile: 

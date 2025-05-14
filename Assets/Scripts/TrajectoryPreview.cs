@@ -123,7 +123,6 @@ public class TrajectoryPreview : MonoBehaviour
             trajectoryLine.positionCount = i + 1;
             trajectoryLine.SetPosition(i, position);
         }
-
         hitMarker.gameObject.SetActive(false);
     }
 
