@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7926cc0247200f4c971e110b526357b, type: 2}
+  - {fileID: 2100000, guid: 9cefb329b68c63d40ad297611d07a8bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,7 +187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceType: forest
-  faceColor: 
 --- !u!1 &1686780358798675472
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +251,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7926cc0247200f4c971e110b526357b, type: 2}
+  - {fileID: 2100000, guid: 9cefb329b68c63d40ad297611d07a8bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -338,7 +337,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7926cc0247200f4c971e110b526357b, type: 2}
+  - {fileID: 2100000, guid: 9cefb329b68c63d40ad297611d07a8bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -461,7 +460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceType: plain
-  faceColor: 
 --- !u!1 &2983286161506934475
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +524,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7926cc0247200f4c971e110b526357b, type: 2}
+  - {fileID: 2100000, guid: 9cefb329b68c63d40ad297611d07a8bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -649,7 +647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceType: forest
-  faceColor: 
 --- !u!1 &6584360862380582654
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +706,7 @@ MonoBehaviour:
   diceColor: 
   diceRarity: 
   chosenFaceIndex: 0
+  chosenFaceString: 
   diceVectorArray: []
   isInUse: 0
   hasLanded: 0
@@ -882,7 +880,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7926cc0247200f4c971e110b526357b, type: 2}
+  - {fileID: 2100000, guid: 9cefb329b68c63d40ad297611d07a8bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1005,7 +1003,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceType: plain
-  faceColor: 
 --- !u!1 &8150916348543643332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceType: mountain
-  faceColor: 
 --- !u!1 &8837951106382210116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,7 +1205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceType: mountain
-  faceColor: 
 --- !u!1 &8890930846630750204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,7 +1269,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7926cc0247200f4c971e110b526357b, type: 2}
+  - {fileID: 2100000, guid: 9cefb329b68c63d40ad297611d07a8bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

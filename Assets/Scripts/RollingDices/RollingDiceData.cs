@@ -122,6 +122,7 @@ public class RollingDiceData : MonoBehaviour
                     Debug.Log("EARLY DESTROY");
                     Destroy(gameObject);
                     print("StopMusic");
+                    diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
                     var result = diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     if (result != FMOD.RESULT.OK)
                     {
