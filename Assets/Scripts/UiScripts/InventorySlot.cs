@@ -45,7 +45,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             }
             else if (!targetFaceIsOnDice && heldFaceIsOnDice)
             {
-                Destroy(eventData.pointerDrag);
+                //Destroy(eventData.pointerDrag);
                 return;
             }
             else

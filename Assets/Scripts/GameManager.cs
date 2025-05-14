@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<int, string> baseTileDictionary = new();
     public Dictionary<int, string> comboDictionary = new();
     [Header("Variations")]
+    public float gravity = -9.81f;
     [Range(0, 5)] public int diceMaxDisappearanceTimer = 1;
     public bool onlyReplacesClosestTile;
     public bool dicesCanReplaceAllHexes;
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
         CreateComboTileDictionary();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
+        Physics.gravity = new Vector3(0, gravity, 0 );
     }
 
     private void Update()
@@ -100,9 +102,9 @@ public class GameManager : MonoBehaviour
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
-        StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.2f));
+        StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f));
         // Tweak le 0.2 en 0.4+ si needed
-        StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.2f));
+        StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.6f));
     }
 
     public List<GameObject> UpdateNeighboursCascade(List<GameObject> traveledTiles)
