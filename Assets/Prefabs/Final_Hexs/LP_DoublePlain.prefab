@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8360481078308758039}
   - component: {fileID: 1327107713026015923}
   - component: {fileID: 7571330589057086932}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LP_DoublePlain
   m_TagString: Hex
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   tileType: plainPlain
   currentPrefab: {fileID: 0}
   majorTile: 
