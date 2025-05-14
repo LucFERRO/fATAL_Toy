@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1731856639617371631}
   - component: {fileID: 7589883273440846103}
   - component: {fileID: 7287391094542532512}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LP_DoubleMountain
   m_TagString: Hex
   m_Icon: {fileID: 0}

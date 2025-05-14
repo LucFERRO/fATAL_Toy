@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2755028743029872527}
   - component: {fileID: 1225483986525816834}
   - component: {fileID: 919668092779381672}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LP_MountainLake
   m_TagString: Hex
   m_Icon: {fileID: 0}

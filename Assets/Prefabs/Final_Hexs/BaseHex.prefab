@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8360481078308758039}
   - component: {fileID: 1327107713026015923}
   - component: {fileID: 382047100018867855}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BaseHex
   m_TagString: BaseHex
   m_Icon: {fileID: 0}

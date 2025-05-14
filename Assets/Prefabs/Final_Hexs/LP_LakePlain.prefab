@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3818240458057622061}
   - component: {fileID: -449060636189294712}
   - component: {fileID: 7828976265506502286}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LP_LakePlain
   m_TagString: Hex
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6501566523393030390, guid: 590ce04a46903e8488356ecae040f013, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
