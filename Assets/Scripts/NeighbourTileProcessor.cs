@@ -331,6 +331,8 @@ public class NeighbourTileProcessor : MonoBehaviour
     {
         Vector3Int hexPosition = cellPosition;
         GameObject newHex = Instantiate(gameManager.chosenPrefab, transform.parent);
+        newHex.GetComponent<GlowingHexes>().ToggleMaterialize(true);
+        StartCoroutine(newHex.GetComponent<GlowingHexes>().TransitionAppear());
         newHex.transform.position = transform.position;
         newHex.transform.SetAsFirstSibling();
 
@@ -338,7 +340,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         newGridCoordinates.tileType = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tileType;
         newGridCoordinates.cellPosition = hexPosition;
 
-        Destroy(gameObject);
+        StartCoroutine(GetComponent<GlowingHexes>().TransitionDisappear());
         transform.parent.GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
     }
     public void OnPointerDown(PointerEventData eventData)

@@ -34,19 +34,16 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!isOnDice)
-        {
-            transform.position = Input.mousePosition;
-        }
+        transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isOnDice)
-        {
-            return;
-            //group.alpha = .5f;
-        }
+        //if (isOnDice)
+        //{
+        //    return;
+        //    //group.alpha = .5f;
+        //}
         transform.SetParent(parentAfterDrag);
         image.rectTransform.localScale = Vector3.one;
         group.alpha = 1f;

@@ -86,9 +86,9 @@ public class RollingDiceData : MonoBehaviour
             {
                 traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
             }
-            Destroy(gameObject);
             diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             diceEventInstance.release();
+            Destroy(gameObject);
         }
     }
 
@@ -106,7 +106,8 @@ public class RollingDiceData : MonoBehaviour
         }
 
         isInUse = true;
-        diceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-all TIMELINE");
+        diceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing");
+        diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
     private void HandleDisappearanceTimer()
@@ -120,7 +121,6 @@ public class RollingDiceData : MonoBehaviour
                 if (traveledTilesGO.Count == 0)
                 {
                     Debug.Log("EARLY DESTROY");
-                    Destroy(gameObject);
                     print("StopMusic");
                     diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
                     var result = diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -133,6 +133,7 @@ public class RollingDiceData : MonoBehaviour
                     {
                         Debug.Log($"Failed to stop event with result: {result}");
                     }
+                    Destroy(gameObject);
                     return;
                 }
                 VelocityWatcher = diceRb.linearVelocity.magnitude;
@@ -204,7 +205,6 @@ public class RollingDiceData : MonoBehaviour
             }
         }
 
-        Debug.Log(newTiles.Count);
         gameManager.UpdateNeighboursAfterDiceDestroy(newTiles);
     }
 
