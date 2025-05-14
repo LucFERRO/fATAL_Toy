@@ -17694,6 +17694,7 @@ MonoBehaviour:
   - {fileID: 1771798131}
   maxLockedTiles: 3
   currentlyLockedTiles: 0
+  gravity: -13
   diceMaxDisappearanceTimer: 1
   onlyReplacesClosestTile: 0
   dicesCanReplaceAllHexes: 1
