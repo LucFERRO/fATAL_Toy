@@ -31,6 +31,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     public GameObject sparks;
     [Header("FMOD")]
     private FMOD.Studio.EventInstance lockStatusEventInstance;
+    private FMOD.Studio.EventInstance tileBounceEventInstance;
 
     public bool IsLocked
     {
@@ -60,16 +61,34 @@ public class NeighbourTileProcessor : MonoBehaviour
         diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
         grid = transform.parent.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
+        InitiateSoundInstances();
+    }
+    private void InitiateSoundInstances()
+    {
         lockStatusEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Lock");
         lockStatusEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        if (tileType == TileType.forest.ToString() || tileType == TileType.mountain.ToString())
+        {
+            tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Glockenspiel");
+        }
+        else
+        {
+            tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Cello");
+        }
+        tileBounceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
+    public void PlayTileBounceSound(int nbOfBounces)
+    {
+        tileBounceEventInstance.setParameterByName("numberOfTiles", nbOfBounces);
+        tileBounceEventInstance.start();
+    }
 
     public string GetMajorTile()
     {
         Dictionary<string, int> neighbourSplitTypes = new Dictionary<string, int>();
 
-        foreach (KeyValuePair<string,int> kvp in neighbourTilesDictionnary)
+        foreach (KeyValuePair<string, int> kvp in neighbourTilesDictionnary)
         {
             string[] splitTypes = Regex.Split(kvp.Key, @"(?<!^)(?=[A-Z])");
 
@@ -131,6 +150,7 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     private void OnMouseOver()
     {
+        Debug.Log(gameObject.name);
         if (Input.GetKeyDown(KeyCode.R))
         {
             GetNeighbourTiles();
@@ -158,8 +178,9 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             ToggleLockTile();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.K))
         {
+            Debug.Log("Key pressed");
             UpdateHex();
         }
     }
@@ -339,18 +360,17 @@ public class NeighbourTileProcessor : MonoBehaviour
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
         newGridCoordinates.tileType = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tileType;
         newGridCoordinates.cellPosition = hexPosition;
-
         StartCoroutine(GetComponent<GlowingHexes>().TransitionDisappear());
         transform.parent.GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
     }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Vector3Int hexPosition = cellPosition;
-        //Debug.Log("Hex Coordinates:" + hexPosition);
+    //public void OnPointerDown(PointerEventData eventData)
+    //{
+    //    Vector3Int hexPosition = cellPosition;
+    //    //Debug.Log("Hex Coordinates:" + hexPosition);
 
-        //gridCoordinates.tiletype = gameManager.chosenTileType;
-        currentPrefab = gameManager.chosenPrefab;
-    }
+    //    //gridCoordinates.tiletype = gameManager.chosenTileType;
+    //    currentPrefab = gameManager.chosenPrefab;
+    //}
     public string SplitAtUpperCase(string str)
     {
         string res = "";

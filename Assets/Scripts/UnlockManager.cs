@@ -43,7 +43,7 @@ public class UnlockManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            HandleUnlockComboTile(test);
+            //Debug.Log(LayerMask.GetMask("Ignore Raycast"));
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
