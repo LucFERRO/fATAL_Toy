@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TrajectoryPreview : MonoBehaviour
@@ -167,5 +168,33 @@ public class TrajectoryPreview : MonoBehaviour
     public PhysicalDiceProperties GetProjectileProperties()
     {
         return projectile;
+    }
+
+    public IEnumerator VisibilityTransition(bool isAppearing)
+    {
+        float duration = 0.5f;
+        float time = 0;
+        float dissolveValue;
+
+        float appearingValue = Mathf.Lerp(1f, 0f, time / duration);
+        float disappearingValue = Mathf.Lerp(0f, 1f, time / duration);
+
+        if (isAppearing)
+        {
+            dissolveValue = appearingValue;
+        }
+        else
+        {
+            dissolveValue = disappearingValue;
+        }
+
+        while (time < duration)
+        {
+
+            trajectoryLine.material.SetFloat("_TransitionDissolve", dissolveValue);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
 }

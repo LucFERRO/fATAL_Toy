@@ -6144,7 +6144,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 4cdc477a913ef814fad1c22fcd8870aa, type: 3}
     - target: {fileID: 2592041773749928406, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_Color.a
-      value: 0.6509804
+      value: 0.48235294
       objectReference: {fileID: 0}
     - target: {fileID: 2592041773749928406, guid: 6030f0c568da2c8468f09155b4a087c5, type: 3}
       propertyPath: m_Color.b
@@ -17799,6 +17799,7 @@ GameObject:
   - component: {fileID: 1441868373}
   - component: {fileID: 1441868375}
   - component: {fileID: 1441868376}
+  - component: {fileID: 1441868377}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -17826,7 +17827,7 @@ MonoBehaviour:
   - {fileID: 6651949917212000444, guid: c5bd51b131baf234896f5bddb172380f, type: 3}
   - {fileID: 1648299407801140935, guid: f9c8035a9c5a2bf448ba9c4be2382f4d, type: 3}
   - {fileID: 7447567842121034607, guid: 953a2d21160cfdd4fb584b4cbe614274, type: 3}
-  - {fileID: 4921064983803158892, guid: 2d91df3d50c24d74bae50a66e44c6ce9, type: 3}
+  - {fileID: 4828813754562573643, guid: 2596abae16234114e84ef8acc72eb476, type: 3}
   - {fileID: 6651949917212000444, guid: 1f41423d3581e8645bac543d52e7f74e, type: 3}
   - {fileID: 7774538231205726013, guid: 5e218cfdc13d18647a5bee1a3668de7b, type: 3}
   - {fileID: 6097704569861082255, guid: 14f75544b89262c4a91c318442291235, type: 3}
@@ -17945,6 +17946,19 @@ MonoBehaviour:
   snapThreshold: 0.5
   inventoryGO: {fileID: 1630499325}
   biomesUiGO: {fileID: 499223911}
+--- !u!114 &1441868377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441868372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f88210e19fefd64a81a165b2e259510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0.5
 --- !u!1 &1446694281
 GameObject:
   m_ObjectHideFlags: 0
