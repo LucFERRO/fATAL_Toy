@@ -106,7 +106,7 @@ public class RollingDiceData : MonoBehaviour
         }
 
         isInUse = true;
-        diceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing");
+        diceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/DiceOnTile");
         diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
@@ -288,6 +288,7 @@ public class RollingDiceData : MonoBehaviour
             }
 
             diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            // Timer pour pas skip des notes
             diceEventInstance.setParameterByName("numberOfTiles", numberOfBounces);
             diceEventInstance.start();
             //collision.gameObject.GetComponent<NeighbourTileProcessor>().PlayTileBounceSound(numberOfBounces);
