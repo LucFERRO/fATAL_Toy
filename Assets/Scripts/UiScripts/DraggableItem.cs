@@ -23,7 +23,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
-        if (isOnDice)
+        if (isOnDice || !isAvailable)
         {
             return;
             //group.alpha = .5f;
@@ -33,6 +33,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isOnDice || !isAvailable)
+        {
+            return;
+            //group.alpha = .5f;
+        }
         transform.position = Input.mousePosition;
     }
 
@@ -43,6 +48,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         //    return;
         //    //group.alpha = .5f;
         //}
+        if (isOnDice || !isAvailable)
+        {
+            return;
+            //group.alpha = .5f;
+        }
         transform.SetParent(parentAfterDrag);
         image.rectTransform.localScale = Vector3.one;
         group.alpha = 1f;
