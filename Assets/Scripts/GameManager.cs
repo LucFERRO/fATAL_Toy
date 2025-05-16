@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
@@ -25,6 +27,14 @@ public class GameManager : MonoBehaviour
     public Material[] faceMaterials;
 
     [HideInInspector] public UnlockManager unlockManager;
+
+    [Header("Objectives")]
+    public Canvas mainCanvas;
+    public Canvas winCanvas;
+    public GameObject objectiveListGo;
+    public bool[] objectiveBools;
+    public string[] objectiveStrings;
+
 
     [Header("LockedTiles")]
     public GameObject[] testCascade;
@@ -80,6 +90,13 @@ public class GameManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
         Physics.gravity = new Vector3(0, gravity, 0 );
+        int objectiveNumber = objectiveListGo.transform.childCount;
+        objectiveBools = new bool[objectiveNumber];
+        objectiveStrings = new string[objectiveNumber];
+        for (int i = 0; i < objectiveNumber; i++)
+        {
+            objectiveStrings[i] = objectiveListGo.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        }
     }
 
     private void Update()
@@ -87,17 +104,41 @@ public class GameManager : MonoBehaviour
         Cursor.visible = !isPreviewing;
         if (Input.GetKeyDown(KeyCode.M))
         {
-            TileType[] values = (TileType[])Enum.GetValues(typeof(TileType));
-            Debug.Log(values.Length);
-            //foreach (TileType item in values)
-            //{
-            //    Debug.Log($"{item} is number {(int)item}");
-            //}
-            for (int i = 0; i < Enum.GetNames(typeof(TileType)).Length; i++)
+            UpdateObjectives();
+        }
+    }
+
+    private void UpdateObjectives()
+    {
+        for (int i = 0; i < objectiveBools.Length; i++)
+        {
+            TextMeshProUGUI textMeshProElement = objectiveListGo.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
+            if (objectiveBools[i])
             {
-                Debug.Log(Enum.GetNames(typeof(TileType))[i]);
+                Debug.Log($"Objective N{i+1} is done!");
+                textMeshProElement.color = Color.green;
+                textMeshProElement.fontStyle = FontStyles.Strikethrough;
+            } else
+            {
+                textMeshProElement.color = Color.white;
+                textMeshProElement.fontStyle = FontStyles.Normal;
             }
         }
+
+        if (!objectiveBools.All(b => b))
+        {
+            return;
+        }
+
+        Debug.Log("All objectives are done!");
+        mainCanvas.gameObject.SetActive(false);
+        winCanvas.gameObject.SetActive(true);
+        Invoke("ReloadScene", 3f);
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
