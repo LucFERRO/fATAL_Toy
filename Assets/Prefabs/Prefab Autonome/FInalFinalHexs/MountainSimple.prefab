@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1438700596578722624}
   - component: {fileID: 939971286892480861}
   m_Layer: 0
-  m_Name: 'Hex LowPolyMountain V3 '
+  m_Name: MountainSimple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
