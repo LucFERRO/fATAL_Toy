@@ -150,7 +150,6 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     private void OnMouseOver()
     {
-        Debug.Log(gameObject.name);
         if (Input.GetKeyDown(KeyCode.R))
         {
             GetNeighbourTiles();
