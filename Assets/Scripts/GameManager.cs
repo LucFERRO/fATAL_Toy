@@ -33,6 +33,15 @@ public class GameManager : MonoBehaviour
     public Canvas winCanvas;
     public GameObject objectiveListGo;
     public bool[] objectiveBools;
+    public bool[] ObjectiveBools
+    {
+        get { return objectiveBools; }
+        set
+        {
+            objectiveBools = value;
+            UpdateObjectives();
+        }
+    }
     public string[] objectiveStrings;
 
 
@@ -89,7 +98,7 @@ public class GameManager : MonoBehaviour
         CreateComboTileDictionary();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
-        Physics.gravity = new Vector3(0, gravity, 0 );
+        Physics.gravity = new Vector3(0, gravity, 0);
         int objectiveNumber = objectiveListGo.transform.childCount;
         objectiveBools = new bool[objectiveNumber];
         objectiveStrings = new string[objectiveNumber];
@@ -108,6 +117,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //public void ChooseTileToSpawn(int tileTypeId)
+    //{
+    //    bool[] newTypeBoolArray = new bool[Enum.GetNames(typeof(TileType)).Length];
+    //    for (int i = 0; i < Enum.GetNames(typeof(TileType)).Length; i++)
+    //    {
+    //        if (i == tileTypeId)
+    //        {
+    //            newTypeBoolArray[i] = true;
+    //        }
+
+    //        else
+    //        {
+    //            newTypeBoolArray[i] = false;
+    //        }
+    //    }
+    //    TypeBools = newTypeBoolArray;
+    //}
+
     private void UpdateObjectives()
     {
         for (int i = 0; i < objectiveBools.Length; i++)
@@ -115,10 +142,11 @@ public class GameManager : MonoBehaviour
             TextMeshProUGUI textMeshProElement = objectiveListGo.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
             if (objectiveBools[i])
             {
-                Debug.Log($"Objective N{i+1} is done!");
+                Debug.Log($"Objective N{i + 1} is done!");
                 textMeshProElement.color = Color.green;
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
-            } else
+            }
+            else
             {
                 textMeshProElement.color = Color.white;
                 textMeshProElement.fontStyle = FontStyles.Normal;
