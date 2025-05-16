@@ -21,6 +21,9 @@ public class UnlockManager : MonoBehaviour
 
     void Start()
     {
+        //Vu que combos hidden visibles
+        hasUnlockedATile = true;
+
         gameManager = GetComponent<GameManager>();
         tileComboTitleGO.SetActive(hasUnlockedATile);
         uiUnlockableTilesItems = new DraggableItem[uiUnlockableTilesGO.Length];

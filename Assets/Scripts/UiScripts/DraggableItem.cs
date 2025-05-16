@@ -11,7 +11,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public int biomeId;
     public bool isOnDice;
     public bool isAvailable;
-    public bool isCombo;
 
     private void Start()
     {

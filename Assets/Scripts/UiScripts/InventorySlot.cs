@@ -6,22 +6,41 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 {
     private DraggableItem draggableItem;
     private Image inventoryImage;
+    private Image inventoryImageLocked;
     private Image biomeImage;
+    private Image biomeImageLocked;
+    private GameObject biomeGo;
+    private GameObject hiddenBiomeGo;
+
+    public bool isCombo;
     private void Start()
     {
         draggableItem = transform.GetChild(0).GetComponent<DraggableItem>();
         inventoryImage = GetComponent<Image>();
         biomeImage = transform.GetChild(0).GetComponent<Image>();
+        biomeGo = transform.GetChild(0).gameObject;
         if (!draggableItem.isOnDice)
         {
+            if (isCombo)
+            {
+                hiddenBiomeGo = transform.GetChild(1).gameObject;
+                //    biomeImageLocked = transform.GetChild(1).GetComponent<Image>();
+            }
             EnableInventorySlot();
         }
     }
 
     public void EnableInventorySlot()
     {
-        inventoryImage.enabled = draggableItem.isAvailable;
+        //inventoryImage.enabled = draggableItem.isAvailable;
         biomeImage.enabled = draggableItem.isAvailable;
+        if (!draggableItem.isOnDice && isCombo)
+        {
+            //biomeImageLocked.enabled = draggableItem.isAvailable;
+            //biomeImage.enabled = !draggableItem.isAvailable;
+            biomeGo.SetActive(draggableItem.isAvailable);
+            hiddenBiomeGo.SetActive(!draggableItem.isAvailable);
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
