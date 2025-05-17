@@ -160,7 +160,8 @@ public class NeighbourTileProcessor : MonoBehaviour
                 Debug.Log(kvp.Key + ": " + kvp.Value);
             }
         }
-        if (Input.GetKeyDown(KeyCode.T) && !transform.CompareTag("BaseHex"))
+        //if (Input.GetKeyDown(KeyCode.T) && !transform.CompareTag("BaseHex"))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             UpdateComboTile();
         }
@@ -173,13 +174,12 @@ public class NeighbourTileProcessor : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !gameManager.isPreviewing)
         {
             ToggleLockTile();
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Key pressed");
             UpdateHex();
         }
     }
@@ -290,6 +290,10 @@ public class NeighbourTileProcessor : MonoBehaviour
 
         string[] tiles = new string[] { tileType, majorTile };
         Array.Sort(tiles, StringComparer.Ordinal);
+        if (tileType == "empty")
+        {
+            tiles[0] = tiles[1];
+        }
         string newCombo = tiles[0] + FirstLetterToUpper(tiles[1]);
         return newCombo;
     }
