@@ -16,6 +16,7 @@ TagManager:
   - DiceSlot
   - DiceSpawner
   - WaterPlane
+  - Lakitu
   layers:
   - Default
   - TransparentFX

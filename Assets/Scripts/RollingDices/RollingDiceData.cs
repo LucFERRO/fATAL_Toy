@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class RollingDiceData : MonoBehaviour
 {
+    public Transform respawnTransform;
     [Header("Dice Configuration")]
     [HideInInspector] public int numberOfFaces = 6;
     [HideInInspector] public FaceComponent[] faceComponentArray;
@@ -80,15 +81,24 @@ public class RollingDiceData : MonoBehaviour
 
     private void HandleSelfDestruct()
     {
-        if (transform.position.y <= -15)
+        if (transform.position.y <= -gameManager.lakituTreshold)
         {
-            for (int i = 0; i < traveledTilesGO.Count; i++)
+            //transform.position = respawnTransform.position;
+            //for (int i = 0; i < traveledTilesGO.Count; i++)
+            //{
+            //    traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
+            //}
+            //diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            //diceEventInstance.release();
+            //Destroy(gameObject);
+            Debug.Log(diceRb.linearVelocity);
+            Debug.Log(diceRb.linearVelocity.magnitude);
+            diceRb.linearVelocity = -gameManager.lakitu * diceRb.linearVelocity;
+            if (diceRb.linearVelocity.magnitude > 15)
             {
-                traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
+                diceRb.linearVelocity = diceRb.linearVelocity.normalized * 15f;
             }
-            diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            diceEventInstance.release();
-            Destroy(gameObject);
+            diceRb.angularVelocity = - diceRb.angularVelocity;
         }
     }
 
@@ -98,7 +108,7 @@ public class RollingDiceData : MonoBehaviour
         diceRb = GetComponent<Rigidbody>();
         maxDisappearanceTimer = gameManager.diceMaxDisappearanceTimer;
         currentDisappearanceTimer = maxDisappearanceTimer;
-
+        respawnTransform = GameObject.FindWithTag("Lakitu").transform;
         faceComponentArray = new FaceComponent[numberOfFaces];
         for (int i = 0; i < numberOfFaces; i++)
         {

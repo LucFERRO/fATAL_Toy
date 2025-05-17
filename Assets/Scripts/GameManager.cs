@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 {
     //public string[] tileTypes;
     public bool tilePatternRandom;
+    public float lakitu;
+    public float lakituTreshold;
 
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
