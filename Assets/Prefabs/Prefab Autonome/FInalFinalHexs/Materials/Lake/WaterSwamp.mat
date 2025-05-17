@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterShaderDirt 1
+  m_Name: WaterSwamp
   m_Shader: {fileID: -6465566751694194690, guid: 7a908697653968e4491937cefad8cb45, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -123,9 +123,9 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.05495903, g: 0.3509434, b: 0.16584364, a: 0}
+    - _Deep_Color: {r: 0.013709675, g: 0.085, b: 0.041129034, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Shallow_Color: {r: 0.37092432, g: 0.6226415, b: 0.3495016, a: 0}
+    - _Shallow_Color: {r: 0.21908571, g: 0.426, b: 0.29617143, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WaveDirection: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
