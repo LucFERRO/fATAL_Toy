@@ -174,7 +174,7 @@ public class NeighbourTileProcessor : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1) && !gameManager.isPreviewing)
+        if (Input.GetMouseButtonDown(1) && !gameManager.isPreviewing && gameManager.transform.childCount == 0)
         {
             ToggleLockTile();
         }
