@@ -91,9 +91,12 @@ public class RollingDiceData : MonoBehaviour
             //diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             //diceEventInstance.release();
             //Destroy(gameObject);
-            Debug.Log(diceRb.linearVelocity);
-            Debug.Log(diceRb.linearVelocity.magnitude);
-            diceRb.linearVelocity = -gameManager.lakitu * diceRb.linearVelocity;
+
+
+            //
+            Vector3 lakituVelocity = (respawnTransform.position - transform.position).normalized;
+            lakituVelocity.y *= 2f;
+            diceRb.linearVelocity = gameManager.lakitu * diceRb.linearVelocity.magnitude * lakituVelocity;
             if (diceRb.linearVelocity.magnitude > 15)
             {
                 diceRb.linearVelocity = diceRb.linearVelocity.normalized * 15f;
