@@ -120,9 +120,6 @@ public class GameManager : MonoBehaviour
 
     public void ChooseObjectiveToComplete(int objectiveId)
     {
-        Debug.Log($"Button pressed for objectiveId: {objectiveId}");
-        Debug.Log($"objectiveBools.Length: {objectiveBools.Length}");
-        Debug.Log($"objectiveListGo child count: {objectiveListGo.transform.childCount}");
         bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];
         for (int i = 0; i < objectiveBools.Length; i++)
         {
@@ -146,7 +143,6 @@ public class GameManager : MonoBehaviour
             TextMeshProUGUI textMeshProElement = objectiveListGo.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
             if (objectiveBools[i])
             {
-                Debug.Log($"Objective N{i + 1} is done!");
                 textMeshProElement.color = Color.green;
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
             }
@@ -165,7 +161,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("All objectives are done!");
         //mainCanvas.gameObject.SetActive(false);
         winCanvas.gameObject.SetActive(true);
-        Invoke("ReloadScene", 3f);
+        Invoke("ReloadScene", 2f);
     }
 
     public void ReloadScene()
