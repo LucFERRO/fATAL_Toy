@@ -168,9 +168,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 210860615202836985}
+  - component: {fileID: 8460233973906128724}
+  - component: {fileID: 5196023315860571726}
+  - component: {fileID: 2418541741343891103}
   m_Layer: 0
   m_Name: MountainForest
-  m_TagString: Untagged
+  m_TagString: Hex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,6 +195,64 @@ Transform:
   - {fileID: 3609279967249467826}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8460233973906128724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828813754562573643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  tileType: forestMountain
+  currentPrefab: {fileID: 0}
+  majorTile: 
+  cellPosition: {x: 0, y: 0, z: 0}
+  isLocked: 0
+  sparks: {fileID: 1782757464389996052, guid: 7b6bba3d2bb57fb41a3730aac06f3105, type: 3}
+  debugColors: []
+--- !u!114 &5196023315860571726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828813754562573643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
+  lockedMaterial: {fileID: -876546973899608171, guid: de8835edb6778d84788113ad383e50e1, type: 3}
+  materializeMaterial: {fileID: -876546973899608171, guid: 1dbfb67cf0db31843bd1df5c1b26ced3, type: 3}
+  splashParticule: {fileID: 0}
+--- !u!64 &2418541741343891103
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828813754562573643}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8718436446085392881, guid: 8b9a7cdbb6d2ee548874526e629629e6, type: 3}
 --- !u!1001 &196952850353221768
 PrefabInstance:
   m_ObjectHideFlags: 0

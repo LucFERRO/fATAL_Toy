@@ -95,9 +95,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8906369174781925725}
+  - component: {fileID: 6403101605174453470}
+  - component: {fileID: 2861511255832102340}
+  - component: {fileID: 6784222449740315843}
   m_Layer: 0
   m_Name: ForestDouble
-  m_TagString: Untagged
+  m_TagString: Hex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,6 +122,63 @@ Transform:
   - {fileID: 159362897192922572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6403101605174453470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648299407801140935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e053c851252a773448267a727d836a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  tileType: forestForest
+  currentPrefab: {fileID: 0}
+  majorTile: 
+  cellPosition: {x: 0, y: 0, z: 0}
+  isLocked: 0
+  sparks: {fileID: 1782757464389996052, guid: 7b6bba3d2bb57fb41a3730aac06f3105, type: 3}
+  debugColors: []
+--- !u!114 &2861511255832102340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648299407801140935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885426ac229885a4fb0746695b8aff2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: -876546973899608171, guid: 3f81cc324fd33214785d2aadb9ff454b, type: 3}
+  lockedMaterial: {fileID: -876546973899608171, guid: de8835edb6778d84788113ad383e50e1, type: 3}
+  materializeMaterial: {fileID: -876546973899608171, guid: 1dbfb67cf0db31843bd1df5c1b26ced3, type: 3}
+  splashParticule: {fileID: 0}
+--- !u!65 &6784222449740315843
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648299407801140935}
+  m_Material: {fileID: 13400000, guid: 775b21a06b979e547bff4de2461b9816, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5595476524031935424
 GameObject:
   m_ObjectHideFlags: 0
