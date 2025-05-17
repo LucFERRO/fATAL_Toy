@@ -101,10 +101,11 @@ public class GameManager : MonoBehaviour
         Physics.gravity = new Vector3(0, gravity, 0);
         int objectiveNumber = objectiveListGo.transform.childCount;
         objectiveBools = new bool[objectiveNumber];
+        ObjectiveBools = new bool[objectiveNumber];
         objectiveStrings = new string[objectiveNumber];
         for (int i = 0; i < objectiveNumber; i++)
         {
-            objectiveStrings[i] = objectiveListGo.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text;
+            objectiveStrings[i] = objectiveListGo.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text;
         }
     }
 
@@ -117,23 +118,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void ChooseTileToSpawn(int tileTypeId)
-    //{
-    //    bool[] newTypeBoolArray = new bool[Enum.GetNames(typeof(TileType)).Length];
-    //    for (int i = 0; i < Enum.GetNames(typeof(TileType)).Length; i++)
-    //    {
-    //        if (i == tileTypeId)
-    //        {
-    //            newTypeBoolArray[i] = true;
-    //        }
+    public void ChooseObjectiveToComplete(int objectiveId)
+    {
+        Debug.Log($"Button pressed for objectiveId: {objectiveId}");
+        Debug.Log($"objectiveBools.Length: {objectiveBools.Length}");
+        Debug.Log($"objectiveListGo child count: {objectiveListGo.transform.childCount}");
+        bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];
+        for (int i = 0; i < objectiveBools.Length; i++)
+        {
+            if (i == objectiveId)
+            {
+                newObjectiveBoolArray[i] = !objectiveBools[i];
+            }
 
-    //        else
-    //        {
-    //            newTypeBoolArray[i] = false;
-    //        }
-    //    }
-    //    TypeBools = newTypeBoolArray;
-    //}
+            else
+            {
+                newObjectiveBoolArray[i] = objectiveBools[i];
+            }
+        }
+        ObjectiveBools = newObjectiveBoolArray;
+    }
 
     private void UpdateObjectives()
     {
@@ -159,7 +163,7 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("All objectives are done!");
-        mainCanvas.gameObject.SetActive(false);
+        //mainCanvas.gameObject.SetActive(false);
         winCanvas.gameObject.SetActive(true);
         Invoke("ReloadScene", 3f);
     }
