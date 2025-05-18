@@ -210,9 +210,9 @@ public class TileSplitManager : MonoBehaviour
         for (int i = 0; i < numberOfTiles; i++)
         {
             Transform tileTransform = transform.GetChild(i).GetChild(0);
-            if (tileTransform.childCount > 1)
+            if (tileTransform.parent.childCount > 1)
             {
-                Destroy(tileTransform.GetChild(1).gameObject);
+                Destroy(tileTransform.parent.GetChild(1).gameObject);
             }
             string type = tileTransform.GetComponent<NeighbourTileProcessor>().tileType;
 
