@@ -1525,8 +1525,8 @@
     "m_ObjectId": "13ce2887dcac458f8cbf64aaf3c947c9",
     "m_Title": "Object Texture",
     "m_Position": {
-        "x": 1579.19970703125,
-        "y": 1174.3997802734375
+        "x": 1580.0,
+        "y": 1175.0
     }
 }
 
@@ -2908,8 +2908,8 @@
     "m_ObjectId": "3f6b7a453f544f0ca5d5fd726d249280",
     "m_Title": "Ripple Normal",
     "m_Position": {
-        "x": 968.7998046875,
-        "y": 1211.2003173828125
+        "x": 969.0,
+        "y": 1212.0
     }
 }
 
@@ -3439,8 +3439,8 @@
     "m_ObjectId": "561d2efc59604d03be0f17530f54d2f8",
     "m_Title": "Glow Effect",
     "m_Position": {
-        "x": -1702.4000244140625,
-        "y": -1906.4000244140625
+        "x": -1702.0,
+        "y": -1905.0
     }
 }
 
@@ -3992,8 +3992,8 @@
     "m_ObjectId": "6a0d6ee46ab5425fb92b6d0eb0df2df9",
     "m_Title": "Ripple Creation",
     "m_Position": {
-        "x": -353.5999755859375,
-        "y": 1361.6002197265625
+        "x": -353.0,
+        "y": 1363.0
     }
 }
 
@@ -4066,8 +4066,8 @@
     "m_ObjectId": "7067e1d8240a4787b0b952083e2b0f10",
     "m_Title": "Ripple Speed",
     "m_Position": {
-        "x": -1440.0,
-        "y": 1674.3997802734375
+        "x": -1439.0,
+        "y": 1675.0
     }
 }
 
@@ -5295,7 +5295,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 0.5,
+    "m_Value": 0.20000000298023225,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
@@ -6532,8 +6532,8 @@
     "m_ObjectId": "c85cb338b455493db1d30dd055373363",
     "m_Title": "Ripple Center",
     "m_Position": {
-        "x": -1891.199951171875,
-        "y": 1122.39990234375
+        "x": -1891.0,
+        "y": 1123.0
     }
 }
 

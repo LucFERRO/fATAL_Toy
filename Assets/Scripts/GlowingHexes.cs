@@ -184,14 +184,18 @@ public class GlowingHexes : MonoBehaviour
         while (time < duration)
         {
             float dissolveValue = Mathf.Lerp(0f, 1f, time / duration);
+            float dissolveValue2 = Mathf.Lerp(1f, 0f, time / duration);
 
             foreach (Renderer r in renderers)
             {
                 if (r.gameObject.CompareTag("WaterPlane"))
                 {
-                    r.material.SetInteger("_isDissolving", 1);
+                    r.materials[0].SetFloat("_Dissolve", dissolveValue2);
+                }
+                else
+                {
+                    r.materials[0].SetFloat("_Dissolve", dissolveValue);
                 }                
-                r.materials[0].SetFloat("_Dissolve", dissolveValue);
             }
             time += Time.deltaTime;
             yield return null;
@@ -206,14 +210,18 @@ public class GlowingHexes : MonoBehaviour
         while (time < duration)
         {
             float dissolveValue = Mathf.Lerp(1f, 0f, time / duration);
+            float dissolveValue2 = Mathf.Lerp(0f, 1f, time / duration);
 
             foreach (Renderer r in renderers)
             {
                 if (r.gameObject.CompareTag("WaterPlane"))
                 {
-                    r.material.SetInteger("_isDissolving", 1);
+                    r.materials[0].SetFloat("_Dissolve", dissolveValue2);
                 }
-                r.materials[0].SetFloat("_Dissolve", dissolveValue);
+                else
+                {
+                    r.materials[0].SetFloat("_Dissolve", dissolveValue);
+                }
             }
             time += Time.deltaTime;
             yield return null;

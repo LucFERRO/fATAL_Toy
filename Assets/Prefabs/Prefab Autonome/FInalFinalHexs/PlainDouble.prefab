@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2207459335612218686}
   m_Layer: 0
   m_Name: Grass BX 2
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 55bf733495e9b76489f7bbb0f327fdf9, type: 3}
+  - {fileID: 2100000, guid: eed25afdf44e2ea4ca7b361b82b3df55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4332080727970482750}
   m_Layer: 0
   m_Name: Grass BX 3
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 55bf733495e9b76489f7bbb0f327fdf9, type: 3}
+  - {fileID: 2100000, guid: eed25afdf44e2ea4ca7b361b82b3df55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 734389535629518631}
   m_Layer: 0
   m_Name: Grass BX 1
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 55bf733495e9b76489f7bbb0f327fdf9, type: 3}
+  - {fileID: 2100000, guid: eed25afdf44e2ea4ca7b361b82b3df55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 7218638834048104549}
   m_Layer: 0
   m_Name: Grass BX 4
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,7 +504,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 55bf733495e9b76489f7bbb0f327fdf9, type: 3}
+  - {fileID: 2100000, guid: eed25afdf44e2ea4ca7b361b82b3df55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3477914533912238281}
   m_Layer: 0
   m_Name: Roseau 1
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 1a81fb3f7c30ee044bf33037a6bb5e62, type: 3}
+  - {fileID: 2100000, guid: 7a66403831740c441babf25df310c5df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 8303502766277311569}
   m_Layer: 0
   m_Name: Roseau 2
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 1a81fb3f7c30ee044bf33037a6bb5e62, type: 3}
+  - {fileID: 2100000, guid: 7a66403831740c441babf25df310c5df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 8804367005210772429}
   m_Layer: 0
   m_Name: Roseau 4
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +408,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 1a81fb3f7c30ee044bf33037a6bb5e62, type: 3}
+  - {fileID: 2100000, guid: 7a66403831740c441babf25df310c5df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 2995847209409952824}
   m_Layer: 0
   m_Name: Roseau 3
-  m_TagString: Untagged
+  m_TagString: WaterPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -529,7 +529,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 1a81fb3f7c30ee044bf33037a6bb5e62, type: 3}
+  - {fileID: 2100000, guid: 7a66403831740c441babf25df310c5df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
