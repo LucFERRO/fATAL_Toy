@@ -29,26 +29,9 @@ public class GameManager : MonoBehaviour
     public Material[] faceMaterials;
 
     [HideInInspector] public UnlockManager unlockManager;
-
-    [Header("Objectives")]
-    public Canvas mainCanvas;
-    public Canvas winCanvas;
-    public GameObject objectiveListGo;
-    public bool[] objectiveBools;
-    public bool[] ObjectiveBools
-    {
-        get { return objectiveBools; }
-        set
-        {
-            objectiveBools = value;
-            UpdateObjectives();
-        }
-    }
-    public string[] objectiveStrings;
-
+    [HideInInspector] public TileSplitManager tileSplitManager;
 
     [Header("LockedTiles")]
-    public GameObject[] testCascade;
     public int maxLockedTiles;
     public int currentlyLockedTiles;
 
@@ -101,74 +84,11 @@ public class GameManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
         Physics.gravity = new Vector3(0, gravity, 0);
-        int objectiveNumber = objectiveListGo.transform.childCount;
-        objectiveBools = new bool[objectiveNumber];
-        ObjectiveBools = new bool[objectiveNumber];
-        objectiveStrings = new string[objectiveNumber];
-        for (int i = 0; i < objectiveNumber; i++)
-        {
-            objectiveStrings[i] = objectiveListGo.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text;
-        }
     }
 
     private void Update()
     {
         Cursor.visible = !isPreviewing;
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            UpdateObjectives();
-        }
-    }
-
-    public void ChooseObjectiveToComplete(int objectiveId)
-    {
-        bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];
-        for (int i = 0; i < objectiveBools.Length; i++)
-        {
-            if (i == objectiveId)
-            {
-                newObjectiveBoolArray[i] = !objectiveBools[i];
-            }
-
-            else
-            {
-                newObjectiveBoolArray[i] = objectiveBools[i];
-            }
-        }
-        ObjectiveBools = newObjectiveBoolArray;
-    }
-
-    private void UpdateObjectives()
-    {
-        for (int i = 0; i < objectiveBools.Length; i++)
-        {
-            TextMeshProUGUI textMeshProElement = objectiveListGo.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
-            if (objectiveBools[i])
-            {
-                textMeshProElement.color = Color.green;
-                textMeshProElement.fontStyle = FontStyles.Strikethrough;
-            }
-            else
-            {
-                textMeshProElement.color = Color.white;
-                textMeshProElement.fontStyle = FontStyles.Normal;
-            }
-        }
-
-        if (!objectiveBools.All(b => b))
-        {
-            return;
-        }
-
-        Debug.Log("All objectives are done!");
-        //mainCanvas.gameObject.SetActive(false);
-        winCanvas.gameObject.SetActive(true);
-        Invoke("ReloadScene", 2f);
-    }
-
-    public void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
@@ -176,6 +96,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f));
         // Tweak le 0.2 en 0.4+ si needed
         StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.6f));
+        StartCoroutine(GlobalGridUpdateCoroutine(1f));
+    }
+
+    public IEnumerator GlobalGridUpdateCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        tileSplitManager.UpdateObjectivePackage();
     }
 
     public List<GameObject> UpdateNeighboursCascade(List<GameObject> traveledTiles)

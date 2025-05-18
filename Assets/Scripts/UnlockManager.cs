@@ -44,10 +44,10 @@ public class UnlockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            //Debug.Log(LayerMask.GetMask("Ignore Raycast"));
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Debug.Log(LayerMask.GetMask("Ignore Raycast"));
+        //}
         if (Input.GetKeyDown(KeyCode.L))
         {
             //foreach (var item in unlockStatus)

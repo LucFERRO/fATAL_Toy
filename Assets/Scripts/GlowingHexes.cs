@@ -17,6 +17,7 @@ public class GlowingHexes : MonoBehaviour
     private bool isMaterializing;
     private Vector3 originalScale;
 
+    private GameManager gameManager;
     private Renderer[] renderers;
 
     private Dictionary<Renderer, Material[]> originalMaterials = new Dictionary<Renderer, Material[]>();
@@ -35,6 +36,7 @@ public class GlowingHexes : MonoBehaviour
     private void Awake()
     {
         renderers = GetComponentsInChildren<Renderer>();
+        gameManager = GetComponent<NeighbourTileProcessor>().gameManager;
         originalScale = transform.localScale;
         PrepareMaterials();
     }
@@ -228,10 +230,9 @@ public class GlowingHexes : MonoBehaviour
         }
 
         ToggleMaterialize(false);
-        GameObject gameManagerGO = GetComponent<NeighbourTileProcessor>().gameManager.gameObject;
-        if (gameManagerGO.transform.childCount != 0)
+        if (gameManager.gameObject.transform.childCount != 0)
         {
-            Destroy(gameManagerGO.transform.GetChild(0).gameObject);
+            Destroy(gameManager.gameObject.transform.GetChild(0).gameObject);
         }
 
     }

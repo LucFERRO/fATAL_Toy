@@ -165,14 +165,14 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             UpdateComboTile();
         }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            for (int i = 0; i < transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs.Length; i++)
-            {
-                Color randomColor = UnityEngine.Random.ColorHSV();
-                transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = randomColor;
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //{
+        //    for (int i = 0; i < transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs.Length; i++)
+        //    {
+        //        Color randomColor = UnityEngine.Random.ColorHSV();
+        //        transform.parent.GetComponent<GridNeighbourHandler>().neighbourTileGOs[i].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = randomColor;
+        //    }
+        //}
 
         if (Input.GetMouseButtonDown(1) && !gameManager.isPreviewing && gameManager.transform.childCount == 0)
         {

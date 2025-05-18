@@ -3,39 +3,205 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Text.RegularExpressions;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TileSplitManager : MonoBehaviour
 {
     public int numberOfTiles;
     public Dictionary<string, int> gridTileSplitDictionary = new();
-    private string[] baseTypes;
-    private int[] values;
+    public Dictionary<string, int> comboTileSplitDictionary = new();
+
+    [Header("Objectives Numbers")]
+    //private string objectiveNumber1Target;
+    //private int objectiveNumber1Max;
+    //private int objectiveNumber1Current;    
+    //private string objectiveNumber2Target;
+    //private int objectiveNumber2Max;
+    //private int objectiveNumber2Current;    
+    //private string objectiveNumber3Target;
+    //private int objectiveNumber3Max;
+    //private int objectiveNumber3Current;
+
+    private string[] objectiveTargets;
+    private int[] objectiveMaxNumbers;
+    private int[] objectiveCurrentNumbers;
+
+    [Header("References")]
+    public Canvas mainCanvas;
+    public Canvas winCanvas;
+    public GameObject objectiveListGo;
+    public TextMeshProUGUI[] objectiveElements;
+    public bool[] objectiveBools;
+    public bool[] ObjectiveBools
+    {
+        get { return objectiveBools; }
+        set
+        {
+            objectiveBools = value;
+            CheckObjectives();
+        }
+    }
+    public string[] objectiveStrings;
+
 
     void Start()
     {
         numberOfTiles = transform.childCount;
-        baseTypes = new string[] { "empty", "mountain", "lake", "plain", "forest" };
-        values = new int[baseTypes.Length];
         UpdateTileSplitDictionary();
+        InitializeObjectives();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            UpdateObjectives();
+            CheckObjectives();
+        }
         if (Input.GetKeyDown(KeyCode.U))
         {
             UpdateTileSplitDictionary();
+            Debug.Log($"Base tiles:");
             foreach (KeyValuePair<string, int> kvp in gridTileSplitDictionary)
             {
-                Debug.Log(kvp.Key + ": " + kvp.Value);
+                Debug.Log($"{kvp.Key} : {kvp.Value}");
             }
-            //for (int i = 0; i < types.Length; i++)
-            //{
-            //    Debug.Log($"{types[i]} : {values[i]} out of {values.Sum()} tiles => {Mathf.Round(values[i] / (float)values.Sum() * 100)}%");
-            //}
-            //Debug.Log($"Majority of : {types[Array.IndexOf(values, values.Max())]}");
+            Debug.Log($"Combo tiles:");
+            foreach (KeyValuePair<string, int> kvp in comboTileSplitDictionary)
+            {
+                Debug.Log($"{kvp.Key} : {kvp.Value}");
+            }
         }
     }
+
+    public void UpdateObjectivePackage()
+    {
+        UpdateTileSplitDictionary();
+        UpdateObjectives();
+        CheckObjectives();
+    }
+
+    private void InitializeObjectives()
+    {
+        int objectiveNumber = objectiveListGo.transform.childCount;
+        objectiveBools = new bool[objectiveNumber];
+        ObjectiveBools = new bool[objectiveNumber];
+        objectiveTargets = new string[objectiveNumber];
+        objectiveMaxNumbers = new int[objectiveNumber];
+        objectiveCurrentNumbers = new int[objectiveNumber];
+        RandomObjectives(1);
+        for (int i = 0; i < objectiveNumber; i++)
+        {
+            TextMeshProUGUI targetObjectiveString = objectiveElements[i];
+            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} {objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+        }
+    }
+
+    private void RandomObjectives(int difficulty)
+    {
+        for (int i = 0; i < objectiveTargets.Length; i++)
+        {
+            if (i == 0)
+            {
+                objectiveTargets[i] = gridTileSplitDictionary.ElementAt(UnityEngine.Random.Range(1, gridTileSplitDictionary.Count)).Key;
+                objectiveMaxNumbers[i] = UnityEngine.Random.Range(3, 5 + difficulty * 2);
+            }
+            else
+            {
+                objectiveTargets[i] = comboTileSplitDictionary.ElementAt(UnityEngine.Random.Range(1, comboTileSplitDictionary.Count)).Key;
+                objectiveMaxNumbers[i] = UnityEngine.Random.Range(1, 2 + difficulty);
+            }
+        }
+    }
+
+    public void UpdateObjectives()
+    {
+        for (int i = 0; i < objectiveTargets.Length; i++)
+        {
+            if (objectiveBools[i])
+            {
+                continue;
+            }
+
+            if (i == 0)
+            {
+                Debug.Log($"Objective {i} : {objectiveTargets[i]}");
+                objectiveCurrentNumbers[i] = gridTileSplitDictionary[objectiveTargets[i]];
+            }
+            else
+            {
+                Debug.Log($"Objective {i} : {objectiveTargets[i]}");
+                objectiveCurrentNumbers[i] = comboTileSplitDictionary[objectiveTargets[i]];
+            }
+
+            if (objectiveCurrentNumbers[i] >= objectiveMaxNumbers[i])
+            {
+                Debug.Log($"Objective {i} : DONE with {objectiveCurrentNumbers[i]}");
+                objectiveBools[i] = true;
+            }
+            else
+            {
+                Debug.Log($"Objective {i} : NOT DONE with {objectiveCurrentNumbers[i]}");
+                objectiveBools[i] = false;
+            }
+
+            TextMeshProUGUI targetObjectiveString = objectiveElements[i];
+            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} {objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+        }
+    }
+
+    public void ChooseObjectiveToComplete(int objectiveId)
+    {
+        bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];
+        for (int i = 0; i < objectiveBools.Length; i++)
+        {
+            if (i == objectiveId)
+            {
+                newObjectiveBoolArray[i] = !objectiveBools[i];
+            }
+
+            else
+            {
+                newObjectiveBoolArray[i] = objectiveBools[i];
+            }
+        }
+        ObjectiveBools = newObjectiveBoolArray;
+    }
+
+    private void CheckObjectives()
+    {
+        for (int i = 0; i < objectiveBools.Length; i++)
+        {
+            TextMeshProUGUI textMeshProElement = objectiveElements[i];
+            if (objectiveBools[i])
+            {
+                textMeshProElement.color = Color.green;
+                textMeshProElement.fontStyle = FontStyles.Strikethrough;
+            }
+            else
+            {
+                textMeshProElement.color = Color.white;
+                textMeshProElement.fontStyle = FontStyles.Normal;
+            }
+        }
+
+        if (!objectiveBools.All(b => b))
+        {
+            return;
+        }
+
+        Debug.Log("All objectives are done!");
+        //mainCanvas.gameObject.SetActive(false);
+        winCanvas.gameObject.SetActive(true);
+        Invoke("ReloadScene", 2f);
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
     public void UpdateTileSplitDictionary()
     {
@@ -43,11 +209,18 @@ public class TileSplitManager : MonoBehaviour
 
         for (int i = 0; i < numberOfTiles; i++)
         {
-            string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tileType;
+            Transform tileTransform = transform.GetChild(i).GetChild(0);
+            if (tileTransform.childCount > 1)
+            {
+                Destroy(tileTransform.GetChild(1).gameObject);
+            }
+            string type = tileTransform.GetComponent<NeighbourTileProcessor>().tileType;
 
             string[] types = Regex.Split(type, @"(?<!^)(?=[A-Z])");
-            if (types.Length > 1) {
+            if (types.Length > 1)
+            {
                 types[1] = types[1].ToLower();
+                comboTileSplitDictionary[type]++;
             }
             HashSet<string> uniqueTypes = new HashSet<string>(types);
             foreach (string subType in uniqueTypes)
@@ -61,38 +234,27 @@ public class TileSplitManager : MonoBehaviour
                     Debug.LogWarning($"Unexpected tile type: {subType}. Ensure all tile types are accounted for.");
                 }
             }
-
-            //transform.GetChild(i).GetComponent<GridNeighbourHandler>().UpdateNeighbourTiles();
         }
     }
 
-    public void UpdateTileSplit()
-    {
-        CreateFreshTileDictionary();
-        values = new int[baseTypes.Length];
-        for (int i = 0; i < numberOfTiles; i++)
-        {
-            string type = transform.GetChild(i).GetChild(0).GetComponent<NeighbourTileProcessor>().tileType;
-            for (int j = 0; j < baseTypes.Length; j++)
-            {
-                {
-                    if (baseTypes[j].Contains(type.Substring(1)))
-                    {
-                        values[j]++;
-                    }
-                }
-            }
-        }
-    }
     private void CreateFreshTileDictionary()
     {
         gridTileSplitDictionary = new Dictionary<string, int>()
         {
-            { "empty", 0 },
-            { "mountain", 0 },
-            { "forest", 0 },
-            { "lake", 0 },
-            { "plain", 0 }
+            { "empty", 0 }
         };
+        comboTileSplitDictionary = new Dictionary<string, int>();
+
+        foreach (TileType tileType in Enum.GetValues(typeof(TileType)))
+        {
+            if ((int)tileType < 10)
+            {
+                gridTileSplitDictionary.Add(tileType.ToString(), 0);
+            }
+            else
+            {
+                comboTileSplitDictionary.Add(tileType.ToString(), 0);
+            }
+        }
     }
 }
