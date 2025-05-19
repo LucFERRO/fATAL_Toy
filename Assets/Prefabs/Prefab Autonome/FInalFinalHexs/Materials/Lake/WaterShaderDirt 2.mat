@@ -93,7 +93,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Depth_Color_Fade: 1
+    - _Depth_Color_Fade: 0.1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Dissolve: 1
@@ -127,10 +127,10 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.04152808, g: 0.264, b: 0.124584235, a: 0}
+    - _Deep_Color: {r: 0.6313726, g: 0.7058824, b: 0.43137255, a: 0}
     - _EdgeColor: {r: 2.996078, g: 1.568627, b: 0.4862745, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Shallow_Color: {r: 0.33877358, g: 0.56700003, b: 0.31737736, a: 0}
+    - _Shallow_Color: {r: 0.41960785, g: 0.7294118, b: 0.5294118, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WaveDirection: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
