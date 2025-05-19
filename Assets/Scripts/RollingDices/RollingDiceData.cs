@@ -297,7 +297,6 @@ public class RollingDiceData : MonoBehaviour
             GlowingHexes glowingHexes = new GlowingHexes();
             glowingHexes = collision.gameObject.GetComponent<GlowingHexes>();
             StartCoroutine(glowingHexes.ScaleEffect());
-            glowingHexes.SplashEffect();
             return;
         }
 

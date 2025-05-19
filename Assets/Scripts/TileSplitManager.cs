@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -6,13 +7,14 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Drawing;
 
 public class TileSplitManager : MonoBehaviour
 {
     public int numberOfTiles;
     public Dictionary<string, int> gridTileSplitDictionary = new();
     public Dictionary<string, int> comboTileSplitDictionary = new();
-
+    public UnityEngine.Color objectiveColor;
     [Header("Objectives Numbers")]
     //private string objectiveNumber1Target;
     //private int objectiveNumber1Max;
@@ -27,6 +29,10 @@ public class TileSplitManager : MonoBehaviour
     private string[] objectiveTargets;
     private int[] objectiveMaxNumbers;
     private int[] objectiveCurrentNumbers;
+
+    [Header("UI Properties")]
+    [SerializeField] private float lerpSpeed;
+    [SerializeField] private UnityEngine.Color[] biomeNameColors;
 
     [Header("Objective Positions")]
     private Vector3[] startingPositions;
@@ -82,6 +88,23 @@ public class TileSplitManager : MonoBehaviour
             }
         }
         HandleObjectivePositions();
+        HandleObjectiveKeyWordColor();
+    }
+    private void HandleObjectiveKeyWordColor()
+    {
+        for (int i = 1; i < objectiveElements.Length; i++)
+        {
+            UnityEngine.Color[] gradientColors = GetFittingGradientColors(objectiveTargets[i]);
+            // Calculate the lerp value using Mathf.Sin
+            float t = (Mathf.Sin(Time.time * lerpSpeed) + 1f) / 2f;
+            UnityEngine.Color lerpedColor = UnityEngine.Color.Lerp(gradientColors[0], gradientColors[1], t);
+
+            // Convert the color to a hex string
+            string colorHex = ColorUtility.ToHtmlStringRGB(lerpedColor);
+
+            // Update the text with the animated color for the target word
+            objectiveElements[i].text = $"Create {objectiveMaxNumbers[i]} <sprite name={objectiveTargets[i]}> <color=#{colorHex}>{objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}</color>. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+        }
     }
 
     private void HandleObjectivePositions()
@@ -97,6 +120,13 @@ public class TileSplitManager : MonoBehaviour
         //Handle the position of each objective
         for (int i = 0; i < startingPositions.Length; i++)
         {
+            if (objectiveBools[i])
+            {
+                Image leafImage = objectiveListGo.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>();
+                UnityEngine.Color targetColor = leafImage.color;
+                targetColor.a = Mathf.Lerp(targetColor.a, 1f, lerpSpeed * Time.deltaTime);
+                leafImage.color = targetColor;
+            }
             objectiveListGo.transform.GetChild(i).transform.position = Vector3.Lerp(objectiveListGo.transform.GetChild(i).transform.position, targetPositions[i], Time.deltaTime * speed);
         }
 
@@ -108,6 +138,28 @@ public class TileSplitManager : MonoBehaviour
                 objectiveListGo.transform.GetChild(i).transform.position = targetPositions[i];
             }
         }
+    }
+    private string[] ProcessTileType(string tileType)
+    {
+        //string[] res = tileType.Split(new[] { "Forest", "Lake", "Mountain", "Plain" }, StringSplitOptions.RemoveEmptyEntries)
+        //               .Select(word => word.ToLower())
+        //               .Distinct()
+        //               .ToArray();        
+        string[] res = System.Text.RegularExpressions.Regex
+        .Matches(tileType, @"[A-Z]?[a-z]+|[A-Z]+(?![a-z])")
+        .Cast<System.Text.RegularExpressions.Match>()
+        .Select(m => m.Value.ToLower())
+        //.Distinct()
+        .ToArray();
+        return res;
+    }
+
+    private UnityEngine.Color[] GetFittingGradientColors(string biomeObjective)
+    {
+        string[] biomeArray = ProcessTileType(biomeObjective);
+        UnityEngine.Color fittingColor1 = biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), biomeArray[0])];
+        UnityEngine.Color fittingColor2 = biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), biomeArray[1])];
+        return new UnityEngine.Color[] { fittingColor1, fittingColor2 };
     }
 
     public void UpdateObjectivePackage()
@@ -131,9 +183,20 @@ public class TileSplitManager : MonoBehaviour
         for (int i = 0; i < objectiveNumber; i++)
         {
             startingPositions[i] = objectiveListGo.transform.GetChild(i).position;
+            string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
-            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} {objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} <sprite name={objectiveTargets[i]}> <color=#{fittingColor}>{objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}</color>. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
         }
+    }
+
+    private TileType GhettoTileTypeToColor(string type)
+    {
+        TileType res;
+        if (Enum.TryParse(type, out res))
+        {
+            return res;
+        }
+        return TileType.forest;
     }
 
     private void RandomObjectives(int difficulty)
@@ -150,6 +213,10 @@ public class TileSplitManager : MonoBehaviour
                 objectiveTargets[i] = comboTileSplitDictionary.ElementAt(UnityEngine.Random.Range(1, comboTileSplitDictionary.Count)).Key;
                 objectiveMaxNumbers[i] = UnityEngine.Random.Range(1, 2 + difficulty);
             }
+        }
+        while (objectiveTargets[1] == objectiveTargets[2])
+        {
+            objectiveTargets[2] = comboTileSplitDictionary.ElementAt(UnityEngine.Random.Range(1, comboTileSplitDictionary.Count)).Key;
         }
     }
 
@@ -186,7 +253,8 @@ public class TileSplitManager : MonoBehaviour
             }
 
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
-            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} {objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+            string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
+            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} <sprite name={objectiveTargets[i]}> <color=#{fittingColor}>{objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}</color>. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
         }
     }
     public IEnumerator CompletedObjective(Transform objectiveTransform, float time)
@@ -195,7 +263,7 @@ public class TileSplitManager : MonoBehaviour
         Vector3 targetPos = objectiveTransform.position;
         targetPos.x -= 50;
         objectiveTransform.position = Vector3.Lerp(objectiveTransform.position, targetPos, Time.deltaTime);
-    }
+    }    
     public void ChooseObjectiveToComplete(int objectiveId)
     {
         bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];
@@ -221,12 +289,12 @@ public class TileSplitManager : MonoBehaviour
             TextMeshProUGUI textMeshProElement = objectiveElements[i];
             if (objectiveBools[i])
             {
-                textMeshProElement.color = Color.green;
+                textMeshProElement.color = UnityEngine.Color.green;
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
             }
             else
             {
-                textMeshProElement.color = Color.white;
+                textMeshProElement.color = objectiveColor;
                 textMeshProElement.fontStyle = FontStyles.Normal;
             }
         }

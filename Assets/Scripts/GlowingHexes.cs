@@ -146,15 +146,6 @@ public class GlowingHexes : MonoBehaviour
         yield return new WaitForSeconds(time);
         Destroy(particles);
     }
-
-    public void SplashEffect()
-    {
-        GameObject splashParticuleSpawned = Instantiate(splashParticule, transform.parent);
-        Debug.Log("SPLASH!");
-        splashParticuleSpawned.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        StartCoroutine(ClearParticlesCoroutine(splashParticuleSpawned, 1f));
-    }
-
     public IEnumerator ScaleEffect()
     {
         Vector3 targetScale = originalScale * 0.8f;
