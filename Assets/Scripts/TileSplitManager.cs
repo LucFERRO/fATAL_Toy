@@ -5,6 +5,8 @@ using System;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngineInternal;
 
 public class TileSplitManager : MonoBehaviour
 {
@@ -26,6 +28,13 @@ public class TileSplitManager : MonoBehaviour
     private string[] objectiveTargets;
     private int[] objectiveMaxNumbers;
     private int[] objectiveCurrentNumbers;
+
+    [Header("Objective Positions")]
+    private Vector3[] startingPositions;
+    [SerializeField] private int speed;
+    [SerializeField] private Vector3[] targetPositions;
+    [SerializeField] private float moveOffset = 5f;
+    [SerializeField] private float snapThreshold;
 
     [Header("References")]
     public Canvas mainCanvas;
@@ -73,6 +82,7 @@ public class TileSplitManager : MonoBehaviour
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
             }
         }
+        HandleObjectivePositions();
     }
 
     public void UpdateObjectivePackage()
@@ -91,8 +101,11 @@ public class TileSplitManager : MonoBehaviour
         objectiveMaxNumbers = new int[objectiveNumber];
         objectiveCurrentNumbers = new int[objectiveNumber];
         RandomObjectives(1);
+        startingPositions = new Vector3[objectiveNumber];
+        targetPositions = new Vector3[objectiveNumber];
         for (int i = 0; i < objectiveNumber; i++)
         {
+            startingPositions[i] = objectiveListGo.transform.GetChild(i).position;
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
             targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} {objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
         }
@@ -126,23 +139,24 @@ public class TileSplitManager : MonoBehaviour
 
             if (i == 0)
             {
-                Debug.Log($"Objective {i} : {objectiveTargets[i]}");
+                //Debug.Log($"Objective {i} : {objectiveTargets[i]}");
                 objectiveCurrentNumbers[i] = gridTileSplitDictionary[objectiveTargets[i]];
             }
             else
             {
-                Debug.Log($"Objective {i} : {objectiveTargets[i]}");
+                //Debug.Log($"Objective {i} : {objectiveTargets[i]}");
                 objectiveCurrentNumbers[i] = comboTileSplitDictionary[objectiveTargets[i]];
             }
 
             if (objectiveCurrentNumbers[i] >= objectiveMaxNumbers[i])
             {
-                Debug.Log($"Objective {i} : DONE with {objectiveCurrentNumbers[i]}");
+                //Debug.Log($"Objective {i} : DONE with {objectiveCurrentNumbers[i]}");
                 objectiveBools[i] = true;
+                //StartCoroutine(CompletedObjective(objectiveListGo.transform.GetChild(i), 0.2f));
             }
             else
             {
-                Debug.Log($"Objective {i} : NOT DONE with {objectiveCurrentNumbers[i]}");
+                //Debug.Log($"Objective {i} : NOT DONE with {objectiveCurrentNumbers[i]}");
                 objectiveBools[i] = false;
             }
 
@@ -150,7 +164,13 @@ public class TileSplitManager : MonoBehaviour
             targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} {objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
         }
     }
-
+    public IEnumerator CompletedObjective(Transform objectiveTransform, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Vector3 targetPos = objectiveTransform.position;
+        targetPos.x -= 50;
+        objectiveTransform.position = Vector3.Lerp(objectiveTransform.position, targetPos, Time.deltaTime);
+    }
     public void ChooseObjectiveToComplete(int objectiveId)
     {
         bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];

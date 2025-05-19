@@ -238,10 +238,11 @@ public class RollingDiceData : MonoBehaviour
             for (int i = 0; i < newHex.transform.GetChild(1).childCount; i++)
             {
                 Transform prop = newHex.transform.GetChild(1).GetChild(i);
-                if (prop.CompareTag("RotatedProp"))
+                if (prop.CompareTag("RotateImmuneProp"))
                 {
-                    prop.rotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
+                    continue;
                 }
+                prop.rotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
             }
         }
 

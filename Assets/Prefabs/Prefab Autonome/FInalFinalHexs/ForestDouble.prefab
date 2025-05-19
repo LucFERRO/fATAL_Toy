@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159362897192922572}
   m_Layer: 0
-  m_Name: Sapins
+  m_Name: Props
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
