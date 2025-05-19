@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f));
         // Tweak le 0.2 en 0.4+ si needed
         StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.6f));
-        StartCoroutine(GlobalGridUpdateCoroutine(1f));
+        StartCoroutine(GlobalGridUpdateCoroutine(1.2f));
     }
 
     public IEnumerator GlobalGridUpdateCoroutine(float time)
