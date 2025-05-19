@@ -310,7 +310,7 @@ public class NeighbourTileProcessor : MonoBehaviour
             if (Enum.GetNames(typeof(TileType))[i] == GetComboTile())
             {
                 Enum.TryParse(Enum.GetNames(typeof(TileType))[i], out TileType tileType);
-                gameManager.maxLockedTiles += gameManager.unlockManager.HandleUnlockComboTile(tileType) ? 1 : 0;
+                gameManager.unlockManager.HandleUnlockComboTile(tileType);
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
                 UpdateHex();
                 gameManager.chosenPrefab = gameManager.tilePrefabs[0];

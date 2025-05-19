@@ -230,7 +230,7 @@ public class RollingDiceData : MonoBehaviour
         }
         Vector3Int hexPosition = hexToBeChanged.GetComponent<NeighbourTileProcessor>().cellPosition;
         Quaternion randomRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
-        GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.position, randomRotation, hexToBeChanged.transform.parent);
+        GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.position, (newTileType == "plain" || newTileType == "plainPlain") ? Quaternion.identity : randomRotation, hexToBeChanged.transform.parent);
 
         //Props rotate
         if (newHex.transform.childCount > 1)

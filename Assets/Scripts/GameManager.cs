@@ -9,13 +9,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[Serializable]
-public class DebugVariableHolder
-{
-    public bool var1;
-    public float var2 = 150f;
-    public float var3 = 25f;
-}
 public class GameManager : MonoBehaviour
 {
     //public string[] tileTypes;
@@ -71,8 +64,6 @@ public class GameManager : MonoBehaviour
         }
     }
     public string chosenTileType;
-
-    public DebugVariableHolder instance = new DebugVariableHolder();
     void Start()
     {
         unlockManager = GetComponent<UnlockManager>();
