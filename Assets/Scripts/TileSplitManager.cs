@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using UnityEngineInternal;
 
 public class TileSplitManager : MonoBehaviour
 {
@@ -83,6 +82,32 @@ public class TileSplitManager : MonoBehaviour
             }
         }
         HandleObjectivePositions();
+    }
+
+    private void HandleObjectivePositions()
+    {
+        Vector3 offset = new Vector3(-moveOffset, 0, 0);
+
+        //Set the target positions depending on completed objectives
+        for (int i = 0; i < startingPositions.Length; i++)
+        {
+            targetPositions[i] = objectiveBools[i] ? startingPositions[i] + offset : startingPositions[i];
+        }
+
+        //Handle the position of each objective
+        for (int i = 0; i < startingPositions.Length; i++)
+        {
+            objectiveListGo.transform.GetChild(i).transform.position = Vector3.Lerp(objectiveListGo.transform.GetChild(i).transform.position, targetPositions[i], Time.deltaTime * speed);
+        }
+
+        //Snap to the position if close enough
+        for (int i = 0; i < startingPositions.Length; i++)
+        {
+            if (Vector3.Distance(objectiveListGo.transform.GetChild(i).transform.position, targetPositions[i]) < snapThreshold)
+            {
+                objectiveListGo.transform.GetChild(i).transform.position = targetPositions[i];
+            }
+        }
     }
 
     public void UpdateObjectivePackage()
