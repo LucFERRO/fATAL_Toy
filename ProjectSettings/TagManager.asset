@@ -17,6 +17,7 @@ TagManager:
   - DiceSpawner
   - WaterPlane
   - Lakitu
+  - RotatedProp
   layers:
   - Default
   - TransparentFX
