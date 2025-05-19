@@ -72,7 +72,7 @@ public class GlowingHexes : MonoBehaviour
                     cachedLockedMaterial[baseMap] = mat2;
                 }
                 lockedMats[i] = mat2;
-                
+
                 if (!cachedMaterializeMaterial.TryGetValue(originalMats[i].GetTexture("_BaseMap"), out Material mat3))
                 {
                     mat3 = new Material(materializeMaterial);
@@ -124,7 +124,7 @@ public class GlowingHexes : MonoBehaviour
     {
         if (isGlowing == state) return;
         ToggleLock();
-    }    
+    }
     public void ToggleMaterialize()
     {
         foreach (Renderer r in renderers)
@@ -197,10 +197,21 @@ public class GlowingHexes : MonoBehaviour
                 else
                 {
                     r.materials[0].SetFloat("_Dissolve", dissolveValue);
-                }                
+                }
             }
             time += Time.deltaTime;
             yield return null;
+        }
+        foreach (Renderer r in renderers)
+        {
+            if (r.gameObject.CompareTag("WaterPlane"))
+            {
+                r.materials[0].SetFloat("_Dissolve", 0f);
+            }
+            else
+            {
+                r.materials[0].SetFloat("_Dissolve", 1f);
+            }
         }
 
         Destroy(gameObject);
