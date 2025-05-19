@@ -701,6 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2b912448dbc81489ded9a179e826a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnTransform: {fileID: 0}
   numberOfFaces: 6
   faceComponentArray: []
   diceColor: 
@@ -776,7 +777,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6584360862380582654}
   serializedVersion: 4
-  m_Mass: 4
+  m_Mass: 8
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

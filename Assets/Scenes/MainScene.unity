@@ -19800,7 +19800,7 @@ MonoBehaviour:
   tileSplitManager: {fileID: 1394288966}
   maxLockedTiles: 3
   currentlyLockedTiles: 0
-  gravity: -9.81
+  gravity: -10
   diceMaxDisappearanceTimer: 1
   onlyReplacesClosestTile: 0
   dicesCanReplaceAllHexes: 1
@@ -33869,7 +33869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: force
-      value: 75
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: offset.x
