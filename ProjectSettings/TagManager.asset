@@ -18,6 +18,7 @@ TagManager:
   - WaterPlane
   - Lakitu
   - RotateImmuneProp
+  - Particles
   layers:
   - Default
   - TransparentFX

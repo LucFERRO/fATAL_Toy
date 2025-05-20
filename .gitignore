@@ -13,6 +13,9 @@
 # Never ignore DLLs in the FMOD subfolder, so make sure that the FMOD-folder is in the correct path.
 !/[Aa]ssets/Plugins/FMOD/**/*.dll
 
+Assets/Fonts/Neon SDF.asset
+Assets/Materials/Skybox.mat
+
 # Don't ignore images and gizmos used by FMOD in the Unity Editor
 !/[Aa}ssets/Gizmos/FMOD/*
 !/[Aa}ssets/Editor Default Resources/FMOD/*
