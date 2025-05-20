@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public float lakitu;
     public float lakituTreshold;
 
+    public Texture2D cursor;
+
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
     public Color baseDiceFaceColor;
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
         Physics.gravity = new Vector3(0, gravity, 0);
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
     private void Update()

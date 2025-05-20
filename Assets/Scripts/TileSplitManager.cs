@@ -30,6 +30,9 @@ public class TileSplitManager : MonoBehaviour
     private int[] objectiveMaxNumbers;
     private int[] objectiveCurrentNumbers;
 
+    public AmbientSoundsManager ambientSoundsManager;
+    private FMOD.Studio.EventInstance wildlifeEventInstance;
+
     [Header("UI Properties")]
     [SerializeField] private float lerpSpeed;
     [SerializeField] private UnityEngine.Color[] biomeNameColors;
@@ -64,6 +67,7 @@ public class TileSplitManager : MonoBehaviour
         numberOfTiles = transform.childCount;
         UpdateTileSplitDictionary();
         InitializeObjectives();
+        wildlifeEventInstance = ambientSoundsManager.wildlifeEventInstance;
     }
 
     void Update()
@@ -90,6 +94,20 @@ public class TileSplitManager : MonoBehaviour
         HandleObjectivePositions();
         HandleObjectiveKeyWordColor();
     }
+
+    private void UpdateWildlife()
+    {
+        if (gridTileSplitDictionary["empty"] >= 30 && gridTileSplitDictionary["empty"] <= 60)
+        {
+            Debug.Log("Wildlife firste stage");
+            ambientSoundsManager.wildlifeEventInstance.setParameterByName("AmbianceBalance", 4);
+        }
+        if (gridTileSplitDictionary["empty"] < 30)
+        {
+            ambientSoundsManager.wildlifeEventInstance.setParameterByName("AmbianceBalance", 7);
+        }
+    }
+
     private void HandleObjectiveKeyWordColor()
     {
         for (int i = 1; i < objectiveElements.Length; i++)
@@ -167,6 +185,7 @@ public class TileSplitManager : MonoBehaviour
         UpdateTileSplitDictionary();
         UpdateObjectives();
         CheckObjectives();
+        UpdateWildlife();
     }
 
     private void InitializeObjectives()
@@ -313,6 +332,7 @@ public class TileSplitManager : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ambientSoundsManager.wildlifeEventInstance.setParameterByName("AmbianceBalance", 0);
     }
 
 

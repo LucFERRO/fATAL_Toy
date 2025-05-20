@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class ProjectileThrow : MonoBehaviour
-{
+public class ProjectileThrow : MonoBehaviour {
     TrajectoryPreview trajectoryPreview;
     PhysicalDiceProperties properties;
     Camera cam;
@@ -17,6 +16,7 @@ public class ProjectileThrow : MonoBehaviour
     private PhysicalDiceSpawner diceSpawner;
     private GameManager gameManager;
     private UiManager uiManager;
+    public bool isOverUI = false;
 
     [SerializeField]
     Rigidbody objectToThrow;
@@ -26,6 +26,9 @@ public class ProjectileThrow : MonoBehaviour
     public Transform StartPosition;
 
     public InputAction fire;
+
+    private FMOD.Studio.EventInstance PreviewEventInstance;
+    private FMOD.Studio.EventInstance DiceThrowEventInstance;
 
     void OnEnable()
     {
@@ -56,6 +59,9 @@ public class ProjectileThrow : MonoBehaviour
         trajectoryPreview.SetScreenSpaceOffset(screenSpaceOffset);
         fire.Enable();
         fire.performed += ThrowObject;
+
+        PreviewEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Preview");
+        DiceThrowEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Throw");
     }
 
     private PhysicalDiceProperties InitializeProjectileProperties()
@@ -74,7 +80,10 @@ public class ProjectileThrow : MonoBehaviour
     void Update()
     {
         bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen;
-
+        if (Input.GetMouseButtonDown(0) && uiManager.isInventoryOpen && !isOverUI)
+        {
+            uiManager.isInventoryOpen = false;
+        }
         if (Input.GetMouseButtonDown(0) && canThrowDice && !gameManager.isPreviewing && !EventSystem.current.IsPointerOverGameObject())
 
         {
@@ -87,9 +96,12 @@ public class ProjectileThrow : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 gameManager.isPreviewing = false;
+                PreviewEventInstance.setParameterByName("PreviewState", 1);
+                PreviewEventInstance.start();
             }
             if (Input.GetMouseButtonDown(0))
             {
+                DiceThrowEventInstance.start();
                 PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
                 diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
                 gameManager.isPreviewing = false;
@@ -103,6 +115,8 @@ public class ProjectileThrow : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         gameManager.isPreviewing = true;
+        PreviewEventInstance.setParameterByName("PreviewState", 0);
+        PreviewEventInstance.start();
     }
 
     void Predict()

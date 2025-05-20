@@ -67,14 +67,14 @@ public class NeighbourTileProcessor : MonoBehaviour
     {
         lockStatusEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Lock");
         lockStatusEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        if (tileType == TileType.forest.ToString() || tileType == TileType.mountain.ToString())
-        {
-            tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Glockenspiel");
-        }
-        else
-        {
-            tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Cello");
-        }
+        //if (tileType == TileType.forest.ToString() || tileType == TileType.mountain.ToString())
+        //{
+        //    tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Glockenspiel");
+        //}
+        //else
+        //{
+        //    tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Cello");
+        //}
         tileBounceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
@@ -327,7 +327,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         if (isLocked)
         {
-            lockStatusEventInstance.setParameterByName("LockStatus", 1);
+            lockStatusEventInstance.setParameterByName("LockState", 1);
             lockStatusEventInstance.start();
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
@@ -337,7 +337,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         else
         {
-            lockStatusEventInstance.setParameterByName("LockStatus", 0);
+            lockStatusEventInstance.setParameterByName("LockState", 0);
             lockStatusEventInstance.start();
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);

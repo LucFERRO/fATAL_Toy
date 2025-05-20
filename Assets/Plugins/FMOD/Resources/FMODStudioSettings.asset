@@ -602,7 +602,7 @@ MonoBehaviour:
   sourceProjectPath: ../../Users/aymag/OneDrive/Documents/ICAN/Projet fATAL/SD/FMOD_Hexes/FMOD_Hexes.fspro
   sourceBankPath: Assets/Sounds
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
