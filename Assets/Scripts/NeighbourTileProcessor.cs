@@ -12,6 +12,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     [Header("References")]
     public GameManager gameManager;
     private PhysicalDiceSpawner diceSpawner;
+    private UnlockManager unlockManager;
     private Camera cam;
     [Header("Combo")]
     public string tileType;
@@ -58,6 +59,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         debugColors = new Color[] { Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.white };
         cam = Camera.main;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        unlockManager = gameManager.GetComponent<UnlockManager>();
         diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
         grid = transform.parent.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
@@ -310,7 +312,7 @@ public class NeighbourTileProcessor : MonoBehaviour
             if (Enum.GetNames(typeof(TileType))[i] == GetComboTile())
             {
                 Enum.TryParse(Enum.GetNames(typeof(TileType))[i], out TileType tileType);
-                gameManager.maxLockedTiles += gameManager.unlockManager.HandleUnlockComboTile(tileType) ? 1 : 0;
+                gameManager.unlockManager.HandleUnlockComboTile(tileType);
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
                 UpdateHex();
                 gameManager.chosenPrefab = gameManager.tilePrefabs[0];
@@ -347,6 +349,7 @@ public class NeighbourTileProcessor : MonoBehaviour
             spark.transform.position = fixedHeight;
         }
         IsLocked = !IsLocked;
+        unlockManager.HandleLockIconUnlocks(gameManager.maxLockedTiles);
         glowingHexe.ToggleLock(IsLocked);
     }
 

@@ -11,6 +11,10 @@ public class UiManager : MonoBehaviour
         set
         {
             isInventoryOpen = value;
+            if (isInventoryOpen)
+            {
+                unlockManager.ResolveUnlockStatus();
+            }
             //biomesUiGO.SetActive(value);
             //baseBiomesGO.SetActive(value);
             //doubleBiomesGO.SetActive(value);
@@ -24,12 +28,14 @@ public class UiManager : MonoBehaviour
     [SerializeField] private float snapThreshold;
 
     [Header("References")]
+    private UnlockManager unlockManager;
     public GameObject inventoryGO;
     public GameObject biomesUiGO;
 
     private void Start()
     {
         startingPosition = inventoryGO.transform.position;
+        unlockManager = GetComponent<UnlockManager>();
     }
     void Update()
     {
