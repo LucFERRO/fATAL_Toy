@@ -20749,7 +20749,6 @@ MonoBehaviour:
   unlockManager: {fileID: 0}
   tileSplitManager: {fileID: 1394288966}
   maxLockedTiles: 0
-  currentlyLockedTiles: 0
   gravity: -10
   diceMaxDisappearanceTimer: 1
   onlyReplacesClosestTile: 0
@@ -20813,8 +20812,8 @@ MonoBehaviour:
   - {fileID: 906024694}
   - {fileID: 1504504549}
   lockedSprite: {fileID: 21300000, guid: da5eea9f137b16a4c8402b31d4ff7707, type: 3}
-  unusedSprite: {fileID: 21300000, guid: 280617c0867b42d4caa35d968339821e, type: 3}
-  usedSprite: {fileID: 21300000, guid: 58835712919eb30449aefcebd66f7338, type: 3}
+  unusedSprite: {fileID: 21300000, guid: 58835712919eb30449aefcebd66f7338, type: 3}
+  usedSprite: {fileID: 21300000, guid: 280617c0867b42d4caa35d968339821e, type: 3}
 --- !u!114 &1441868376
 MonoBehaviour:
   m_ObjectHideFlags: 0

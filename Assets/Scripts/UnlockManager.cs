@@ -60,16 +60,19 @@ public class UnlockManager : MonoBehaviour
         }
     }
 
-    private void HandleLockIconUnlocks(int maxLocks)
+    public void HandleLockIconUnlocks(int maxLocks)
     {
+        int currentLocks = NeighbourTileProcessor.currentLockedTiles;
         for (int i = 0; i < lockIcons.Length; i++)
         {
-            // Update the sprite of the first `maxLocks` elements to `unusedSprite`
-            if (i < maxLocks)
+            if (i < currentLocks)
+            {
+                lockIcons[i].sprite = usedSprite;
+            }
+            else if (i < maxLocks)
             {
                 lockIcons[i].sprite = unusedSprite;
             }
-            // Update the remaining elements to `lockedSprite`
             else
             {
                 lockIcons[i].sprite = lockedSprite;

@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 
     [Header("LockedTiles")]
     public int maxLockedTiles;
-    public int currentlyLockedTiles;
 
     public Dictionary<int, string> baseTileDictionary = new();
     public Dictionary<int, string> comboDictionary = new();
