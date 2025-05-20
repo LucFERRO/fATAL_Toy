@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public float lakitu;
     public float lakituTreshold;
 
+    public SplineSwitcher splineSwitcher;
+
     public Texture2D cursor;
 
     public GameObject[] tilePrefabs;
@@ -77,11 +79,6 @@ public class GameManager : MonoBehaviour
         //Cursor.visible = false;
         Physics.gravity = new Vector3(0, gravity, 0);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
-    }
-
-    private void Update()
-    {
-        Cursor.visible = !isPreviewing;
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)

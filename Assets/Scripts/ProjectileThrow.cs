@@ -27,6 +27,8 @@ public class ProjectileThrow : MonoBehaviour {
 
     public InputAction fire;
 
+    public SplineSwitcher splineSwitcher;
+
     private FMOD.Studio.EventInstance PreviewEventInstance;
     private FMOD.Studio.EventInstance DiceThrowEventInstance;
 
@@ -79,7 +81,7 @@ public class ProjectileThrow : MonoBehaviour {
 
     void Update()
     {
-        bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen;
+        bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen && !splineSwitcher.isIdle;
         if (Input.GetMouseButtonDown(0) && uiManager.isInventoryOpen && !isOverUI)
         {
             uiManager.isInventoryOpen = false;
@@ -96,12 +98,14 @@ public class ProjectileThrow : MonoBehaviour {
             if (Input.GetMouseButtonDown(1))
             {
                 gameManager.isPreviewing = false;
+                Cursor.visible = true;
                 PreviewEventInstance.setParameterByName("PreviewState", 1);
                 PreviewEventInstance.start();
             }
             if (Input.GetMouseButtonDown(0))
             {
                 DiceThrowEventInstance.start();
+                Cursor.visible = false;
                 PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
                 diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
                 gameManager.isPreviewing = false;

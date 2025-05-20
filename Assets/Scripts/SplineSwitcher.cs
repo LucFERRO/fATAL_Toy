@@ -11,7 +11,7 @@ public class SplineSwitcher : MonoBehaviour
 
     private CinemachineSplineDolly[] cinemachineSplineDollies;
 
-    private bool isIdle = false;
+    public bool isIdle = false;
 
     private int currentIndex = 0;
     float time = 0f;
@@ -48,6 +48,8 @@ public class SplineSwitcher : MonoBehaviour
                 splinesArray[currentIndex].gameObject.SetActive(false);
                 domeCamera.gameObject.SetActive(true);
                 isIdle = false;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 time = 0f;
             }
         }
@@ -66,6 +68,8 @@ public class SplineSwitcher : MonoBehaviour
     private void SwitchToIdle()
     {
         isIdle = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         domeCamera.gameObject.SetActive(false);
         SetActiveSplineAndCamera(currentIndex);
     }
