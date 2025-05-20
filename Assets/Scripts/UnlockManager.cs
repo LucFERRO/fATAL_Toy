@@ -9,8 +9,10 @@ public class UnlockManager : MonoBehaviour
     [SerializeField] TileType test;
     string[] tileTypes;
     private Dictionary<TileType, bool> unlockStatus;
+    public bool[] pendingUnlockedStatus;
     GameManager gameManager;
     [Header("References")]
+    Animator[] tileComboAnimators;
     [SerializeField] GameObject tileComboTitleGO;
     DraggableItem[] uiUnlockableTilesItems;
     [SerializeField] GameObject[] uiUnlockableTilesGO;
@@ -19,14 +21,32 @@ public class UnlockManager : MonoBehaviour
     [SerializeField] Sprite unusedSprite;
     [SerializeField] Sprite usedSprite;
 
-
     void Start()
+    {
+        InitializeUnlockManager();
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            UnlockEveryComboTile();
+        }
+    }
+
+    private void InitializeUnlockManager()
     {
         gameManager = GetComponent<GameManager>();
         uiUnlockableTilesItems = new DraggableItem[uiUnlockableTilesGO.Length];
+        tileComboAnimators = new Animator[uiUnlockableTilesGO.Length - 4];
+        pendingUnlockedStatus = new bool[uiUnlockableTilesGO.Length - 4];
         for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
         {
-            uiUnlockableTilesItems[i] = uiUnlockableTilesGO[i].transform.GetChild(0).GetComponent<DraggableItem>();
+            Transform inventorySlotChildBiome = uiUnlockableTilesGO[i].transform.GetChild(0);
+            uiUnlockableTilesItems[i] = inventorySlotChildBiome.GetComponent<DraggableItem>();
+            if (i > 3)
+            {
+                tileComboAnimators[i - 4] = uiUnlockableTilesGO[i].transform.GetComponent<Animator>();
+            }
         }
 
         tileTypes = Enum.GetNames(typeof(TileType));
@@ -37,26 +57,49 @@ public class UnlockManager : MonoBehaviour
             unlockStatus[tileType] = (int)tileType < 10;
         }
     }
-    void Update()
+
+    private void UnlockEveryComboTile()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
         {
-            for (int i = 0; i < uiUnlockableTilesGO.Length; i++)
+            uiUnlockableTilesItems[i].isAvailable = true;
+            if (i > 3)
             {
-                uiUnlockableTilesItems[i].isAvailable = true;
-                if (i > 3)
-                {
-                    unlockStatus[unlockStatus.Keys.ElementAt(i)] = true;
-                }
-                uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
+                unlockStatus[unlockStatus.Keys.ElementAt(i)] = true;
             }
+            uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
+        }
 
-            int maxLockedTiles = unlockStatus.Values.Count(value => value);
+        int maxLockedTiles = unlockStatus.Values.Count(value => value);
+        PendingUnlockStatus();
+        if (GetComponent<UiManager>().isInventoryOpen)
+        {
+            ResolveUnlockStatus();
+        }
+        //Do not count the base tiles
+        int newMaxLockedTiles = (maxLockedTiles - 4) / 2;
+        gameManager.maxLockedTiles = newMaxLockedTiles;
+        HandleLockIconUnlocks(newMaxLockedTiles);
+    }
 
-            //Do not count the base tiles
-            int newMaxLockedTiles = (maxLockedTiles - 4) / 2;
-            gameManager.maxLockedTiles = newMaxLockedTiles;
-            HandleLockIconUnlocks(newMaxLockedTiles);
+    public void PendingUnlockStatus()
+    {
+        for (int i = 0; i < pendingUnlockedStatus.Length; i++)
+        {
+            if (!pendingUnlockedStatus[i] && unlockStatus[unlockStatus.Keys.ToArray()[i + 4]])
+            {
+                pendingUnlockedStatus[i] = true;
+            }
+        }
+    }    
+    public void ResolveUnlockStatus()
+    {
+        for (int i = 0; i < pendingUnlockedStatus.Length; i++)
+        {
+            if (pendingUnlockedStatus[i] && unlockStatus[unlockStatus.Keys.ToArray()[i + 4]])
+            {
+                tileComboAnimators[i].SetTrigger("UnlockTile");
+            }
         }
     }
 
@@ -79,7 +122,6 @@ public class UnlockManager : MonoBehaviour
             }
         }
     }
-
     public bool HandleUnlockComboTile(TileType potentialNewCombo)
     {
         for (int i = 0; i < tileTypes.Length; i++)
