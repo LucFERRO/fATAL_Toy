@@ -336,9 +336,13 @@ public class NeighbourTileProcessor : MonoBehaviour
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
             if (transform.parent.childCount > 1)
             {
-                GameObject particles = transform.parent.transform.GetChild(1).gameObject;
-                particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                StartCoroutine(glowingHex.ClearParticlesCoroutine(particles, 3f));
+                for (int i = 1; i < transform.parent.childCount; i++)
+                {
+                    GameObject particles = transform.parent.transform.GetChild(i).gameObject;
+                    particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                    particles.GetComponent<ParticlesToBeDestroyed>().isToBeDestroyed = true;
+                }
+                StartCoroutine(glowingHex.ClearParticlesCoroutine(3f));
             }
         }
         else
@@ -354,6 +358,29 @@ public class NeighbourTileProcessor : MonoBehaviour
                 Vector3 fixedHeight = spark.transform.position;
                 fixedHeight.y += 0.6f;
                 spark.transform.position = fixedHeight;
+                GameObject particles = transform.parent.transform.GetChild(1).gameObject;
+                particles.GetComponent<ParticleSystem>().Play(true);
+            }
+            else if (transform.parent.childCount > 1)
+            {
+                int destroyedParts = 0;
+                for (int i = 1; i < transform.parent.childCount; i++)
+                {
+                    if (transform.parent.transform.GetChild(i).GetComponent<ParticlesToBeDestroyed>().isToBeDestroyed)
+                    {
+                        destroyedParts++;
+                    }
+                    ;
+                }
+                if (destroyedParts > 0)
+                {
+                    GameObject spark = Instantiate(sparks, transform.parent);
+                    Vector3 fixedHeight = spark.transform.position;
+                    fixedHeight.y += 0.6f;
+                    spark.transform.position = fixedHeight;
+                    GameObject particles = transform.parent.transform.GetChild(1).gameObject;
+                    particles.GetComponent<ParticleSystem>().Play(true);
+                }
             }
         }
         IsLocked = !IsLocked;
