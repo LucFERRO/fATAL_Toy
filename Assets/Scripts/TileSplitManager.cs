@@ -282,7 +282,7 @@ public class TileSplitManager : MonoBehaviour
         Vector3 targetPos = objectiveTransform.position;
         targetPos.x -= 50;
         objectiveTransform.position = Vector3.Lerp(objectiveTransform.position, targetPos, Time.deltaTime);
-    }    
+    }
     public void ChooseObjectiveToComplete(int objectiveId)
     {
         bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];
@@ -345,7 +345,13 @@ public class TileSplitManager : MonoBehaviour
             Transform tileTransform = transform.GetChild(i).GetChild(0);
             if (tileTransform.parent.childCount > 1)
             {
-                Destroy(tileTransform.parent.GetChild(1).gameObject);
+                for (int j = 1; j < tileTransform.parent.childCount; j++)
+                {
+                    if (!tileTransform.parent.GetChild(j).CompareTag("Particles"))
+                    {
+                        Destroy(tileTransform.parent.GetChild(j).gameObject);
+                    }
+                }
             }
             string type = tileTransform.GetComponent<NeighbourTileProcessor>().tileType;
 
