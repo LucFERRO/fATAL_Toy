@@ -105,7 +105,7 @@ public class ProjectileThrow : MonoBehaviour {
             if (Input.GetMouseButtonDown(0))
             {
                 DiceThrowEventInstance.start();
-                Cursor.visible = false;
+                Cursor.visible = true;
                 PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
                 diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
                 gameManager.isPreviewing = false;
@@ -119,6 +119,7 @@ public class ProjectileThrow : MonoBehaviour {
     {
         yield return new WaitForSeconds(delay);
         gameManager.isPreviewing = true;
+        Cursor.visible = false;
         PreviewEventInstance.setParameterByName("PreviewState", 0);
         PreviewEventInstance.start();
     }
