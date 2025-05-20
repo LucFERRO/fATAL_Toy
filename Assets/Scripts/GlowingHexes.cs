@@ -143,8 +143,14 @@ public class GlowingHexes : MonoBehaviour
 
     public IEnumerator ClearParticlesCoroutine(GameObject particles, float time)
     {
+        Debug.Log("Clearing particles");
         yield return new WaitForSeconds(time);
-        Destroy(particles);
+
+        for (int i = 1; i < transform.parent.childCount; i++)
+        {
+            Destroy(transform.parent.GetChild(i).gameObject);
+        }
+        //Destroy(particles);
     }
     public IEnumerator ScaleEffect()
     {

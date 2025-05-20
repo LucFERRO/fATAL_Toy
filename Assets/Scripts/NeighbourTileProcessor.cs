@@ -334,9 +334,12 @@ public class NeighbourTileProcessor : MonoBehaviour
             Debug.Log("Lock released");
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
-            GameObject particles = transform.parent.transform.GetChild(1).gameObject;
-            particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            StartCoroutine(glowingHex.ClearParticlesCoroutine(particles, 3f));
+            if (transform.parent.childCount > 1)
+            {
+                GameObject particles = transform.parent.transform.GetChild(1).gameObject;
+                particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                StartCoroutine(glowingHex.ClearParticlesCoroutine(particles, 3f));
+            }
         }
         else
         {
@@ -345,10 +348,13 @@ public class NeighbourTileProcessor : MonoBehaviour
             Debug.Log("Lock acquired");
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
-            GameObject spark = Instantiate(sparks, transform.parent);
-            Vector3 fixedHeight = spark.transform.position;
-            fixedHeight.y += 0.6f;
-            spark.transform.position = fixedHeight;
+            if (transform.parent.childCount == 1)
+            {
+                GameObject spark = Instantiate(sparks, transform.parent);
+                Vector3 fixedHeight = spark.transform.position;
+                fixedHeight.y += 0.6f;
+                spark.transform.position = fixedHeight;
+            }
         }
         IsLocked = !IsLocked;
         unlockManager.HandleLockIconUnlocks(gameManager.maxLockedTiles);
