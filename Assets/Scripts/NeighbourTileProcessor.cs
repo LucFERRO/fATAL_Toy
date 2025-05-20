@@ -322,7 +322,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     }
     private void ToggleLockTile()
     {
-        GlowingHexes glowingHexe = gameObject.GetComponent<GlowingHexes>();
+        GlowingHexes glowingHex = gameObject.GetComponent<GlowingHexes>();
         if (currentLockedTiles == gameManager.maxLockedTiles && !IsLocked)
         {
             return;
@@ -331,16 +331,18 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             lockStatusEventInstance.setParameterByName("LockState", 1);
             lockStatusEventInstance.start();
+            Debug.Log("Lock released");
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
             GameObject particles = transform.parent.transform.GetChild(1).gameObject;
             particles.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            StartCoroutine(glowingHexe.ClearParticlesCoroutine(particles, 3f));
+            StartCoroutine(glowingHex.ClearParticlesCoroutine(particles, 3f));
         }
         else
         {
             lockStatusEventInstance.setParameterByName("LockState", 0);
             lockStatusEventInstance.start();
+            Debug.Log("Lock acquired");
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
             GameObject spark = Instantiate(sparks, transform.parent);
@@ -350,7 +352,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         IsLocked = !IsLocked;
         unlockManager.HandleLockIconUnlocks(gameManager.maxLockedTiles);
-        glowingHexe.ToggleLock(IsLocked);
+        glowingHex.ToggleLock(IsLocked);
     }
 
 

@@ -122,7 +122,7 @@ public class GlowingHexes : MonoBehaviour
     }
     public void ToggleLock(bool state)
     {
-        if (isGlowing == state) return;
+        if (isLocked == state) return;
         ToggleLock();
     }
     public void ToggleMaterialize()
