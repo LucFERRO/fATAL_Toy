@@ -45,6 +45,7 @@ public class TileSplitManager : MonoBehaviour
     [SerializeField] private float snapThreshold;
 
     [Header("References")]
+    public Animator endUiAnimator;
     public Canvas mainCanvas;
     public Canvas winCanvas;
     public GameObject objectiveListGo;
@@ -325,6 +326,11 @@ public class TileSplitManager : MonoBehaviour
 
         Debug.Log("All objectives are done!");
         //mainCanvas.gameObject.SetActive(false);
+        endUiAnimator.gameObject.SetActive(true);
+        endUiAnimator.SetTrigger("ToggleTrigger");
+    }
+    public void RestartGameButton()
+    {
         winCanvas.gameObject.SetActive(true);
         Invoke("ReloadScene", 2f);
     }
@@ -334,7 +340,6 @@ public class TileSplitManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         ambientSoundsManager.wildlifeEventInstance.setParameterByName("AmbianceBalance", 0);
     }
-
 
     public void UpdateTileSplitDictionary()
     {
