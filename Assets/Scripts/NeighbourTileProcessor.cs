@@ -153,7 +153,6 @@ public class NeighbourTileProcessor : MonoBehaviour
 
     private void OnMouseOver()
     {
-        Debug.Log($"over {transform.name}, {gameManager.isPreviewing}, {gameManager.transform.childCount == 0}");
         if (Input.GetKeyDown(KeyCode.R))
         {
             GetNeighbourTiles();
