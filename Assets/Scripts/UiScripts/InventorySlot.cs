@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IDropHandler
+public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public bool isDicePanelSlot;
     public Sprite unlockedBiome;
@@ -27,32 +27,32 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         childTransform.GetComponent<DraggableItem>().isDraggable = true;
     }
 
-    public void OnMouseOver()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(transform.name);
-        if (!isDicePanelSlot)
-        {
-            return;
-        }
-        if (currentlyDraggedItem == null)
-        {
-            return;
-        }
+        if (!isDicePanelSlot) return;
+
+        DraggableItem draggedItem = eventData.pointerDrag?.GetComponent<DraggableItem>();
+        if (draggedItem == null) return;
+
+        currentlyDraggedItem = draggedItem;
         animator.SetBool("isMouseDraggingOver", true);
+
+        Debug.Log($"Dragging over dice slot: {transform.name}");
     }
-    public void OnMouseExit()
+
+    public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("exited " + transform.name);
-        if (!isDicePanelSlot)
-        {
-            return;
-        }
-        if (currentlyDraggedItem == null)
-        {
-            return;
-        }
+        if (!isDicePanelSlot) return;
+
+        DraggableItem draggedItem = eventData.pointerDrag?.GetComponent<DraggableItem>();
+        if (draggedItem == null) return;
+
+        currentlyDraggedItem = null;
         animator.SetBool("isMouseDraggingOver", false);
+
+        Debug.Log($"Exited dice slot: {transform.name}");
     }
+
     public void OnDrop(PointerEventData eventData)
     {
         DraggableItem draggedItem = eventData.pointerDrag.GetComponent<DraggableItem>();
@@ -76,7 +76,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             // If there are already 2 or more items with the same biomeId, reject the drop
             if (sameBiomeCount >= 2)
             {
-                //Debug.Log("Cannot add more items with the same biomeId to the dice panel.");
+                Debug.Log("Cannot add more items with the same biomeId to the dice panel.");
                 return;
             }
 
