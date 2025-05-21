@@ -5766,11 +5766,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+--- !u!1 &519232464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4796933929170776865, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+  m_PrefabInstance: {fileID: 1483047158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &519232465 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5592450905269682776, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
   m_PrefabInstance: {fileID: 1483047158}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &519232468
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519232464}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 980cf02002bdb2d4097cf0255c6413b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &522651596
 GameObject:
   m_ObjectHideFlags: 0
@@ -6104,7 +6131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 150.7, y: -25}
+  m_AnchoredPosition: {x: 156.49995, y: -25}
   m_SizeDelta: {x: -298.3636, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &560634372
@@ -6151,16 +6178,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1394288966}
-        m_TargetAssemblyTypeName: TileSplitManager, Assembly-CSharp
-        m_MethodName: ChooseObjectiveToComplete
-        m_Mode: 3
+      - m_Target: {fileID: 777480519}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ToggleTrigger
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &560634373
@@ -8841,11 +8868,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
+--- !u!1 &777480515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7634233689709721464, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+  m_PrefabInstance: {fileID: 1483047158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &777480516 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2483417436093508944, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
   m_PrefabInstance: {fileID: 1483047158}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &777480519
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777480515}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 980cf02002bdb2d4097cf0255c6413b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &784177148
 GameObject:
   m_ObjectHideFlags: 0
@@ -13630,7 +13684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 150.7, y: -25}
+  m_AnchoredPosition: {x: 156.49995, y: -25}
   m_SizeDelta: {x: -298.3636, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395431279
@@ -13776,16 +13830,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1394288966}
-        m_TargetAssemblyTypeName: TileSplitManager, Assembly-CSharp
-        m_MethodName: ChooseObjectiveToComplete
-        m_Mode: 3
+      - m_Target: {fileID: 1502545546}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ToggleTrigger
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!4 &1407444867 stripped
@@ -14539,11 +14593,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 688759732525707806, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 159.70003
+      value: 165.49998
       objectReference: {fileID: 0}
     - target: {fileID: 1246994013598225501, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 159.70006
+      value: 165.5
       objectReference: {fileID: 0}
     - target: {fileID: 1479342596130216152, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       propertyPath: m_Name
@@ -14564,6 +14618,30 @@ PrefabInstance:
     - target: {fileID: 2314851402697950259, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483417436093508944, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483417436093508944, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 195
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282112785241544549, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282112785241544549, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 195
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592450905269682776, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592450905269682776, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 195
       objectReference: {fileID: 0}
     - target: {fileID: 6206986398438545151, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       propertyPath: m_Pivot.x
@@ -14679,7 +14757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119285516650456783, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 159.7
+      value: 165.49995
       objectReference: {fileID: 0}
     - target: {fileID: 8307777500604506798, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       propertyPath: m_spriteAsset
@@ -14705,6 +14783,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1479342596130216152, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1674260178}
+    - targetCorrespondingSourceObject: {fileID: 7634233689709721464, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 777480519}
+    - targetCorrespondingSourceObject: {fileID: 4796933929170776865, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 519232468}
+    - targetCorrespondingSourceObject: {fileID: 1370115567407954811, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1502545546}
   m_SourcePrefab: {fileID: 100100000, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
 --- !u!1 &1485954741
 GameObject:
@@ -14971,11 +15058,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1113308433}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+--- !u!1 &1502545542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1370115567407954811, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
+  m_PrefabInstance: {fileID: 1483047158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1502545543 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4282112785241544549, guid: 86517c35102976148a2f95e9ed0d9958, type: 3}
   m_PrefabInstance: {fileID: 1483047158}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1502545546
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502545542}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 980cf02002bdb2d4097cf0255c6413b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1514613796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -17512,7 +17626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 150.7, y: -25}
+  m_AnchoredPosition: {x: 156.49995, y: -25}
   m_SizeDelta: {x: -298.3636, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1940999896
@@ -17658,16 +17772,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1394288966}
-        m_TargetAssemblyTypeName: TileSplitManager, Assembly-CSharp
-        m_MethodName: ChooseObjectiveToComplete
-        m_Mode: 3
+      - m_Target: {fileID: 519232468}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ToggleTrigger
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1947693263
