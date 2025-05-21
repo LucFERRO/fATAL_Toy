@@ -14217,7 +14217,7 @@ MonoBehaviour:
   lakitu: 1.1
   lakituTreshold: 5
   splineSwitcher: {fileID: 0}
-  cursor: {fileID: 2800000, guid: 5d0637cf1babdea49a52592eb50c601a, type: 3}
+  cursor: {fileID: 2800000, guid: e97e9893596c7e044af37bfe98331bb7, type: 3}
   tilePrefabs:
   - {fileID: 1288182441797037738, guid: 7cac2a0ccbecb384dbb200fe0915d21f, type: 3}
   - {fileID: 227067191129096981, guid: 620affba4c0088847ab1c2eebc9c533a, type: 3}
