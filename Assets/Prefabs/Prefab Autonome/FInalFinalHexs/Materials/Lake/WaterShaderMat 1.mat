@@ -96,7 +96,7 @@ Material:
     - _Depth_Color_Fade: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Dissolve: 0
+    - _Dissolve: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EdgeWidth: 0.1
