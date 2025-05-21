@@ -322,7 +322,6 @@ public class NeighbourTileProcessor : MonoBehaviour
     }
     private void ToggleLockTile()
     {
-        Debug.Log("try lock");
         GlowingHexes glowingHex = gameObject.GetComponent<GlowingHexes>();
         if (currentLockedTiles == gameManager.maxLockedTiles && !IsLocked)
         {
@@ -348,7 +347,6 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
         else
         {
-        Debug.Log("try lock on unlocked");
             lockStatusEventInstance.setParameterByName("LockState", 0);
             lockStatusEventInstance.start();
             //Debug.Log("Lock acquired");
