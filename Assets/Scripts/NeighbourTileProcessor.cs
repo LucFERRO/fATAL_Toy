@@ -69,6 +69,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     {
         lockStatusEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Lock");
         lockStatusEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/DiceOnTile");
         //if (tileType == TileType.forest.ToString() || tileType == TileType.mountain.ToString())
         //{
         //    tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Glockenspiel");
@@ -180,7 +181,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             ToggleLockTile();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             UpdateHex();
         }
