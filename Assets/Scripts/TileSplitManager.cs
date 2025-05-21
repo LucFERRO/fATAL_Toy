@@ -352,6 +352,7 @@ public class TileSplitManager : MonoBehaviour
             return;
         }
 
+
         Debug.Log("All objectives are done!");
         //mainCanvas.gameObject.SetActive(false);
         endUiAnimator.gameObject.SetActive(true);

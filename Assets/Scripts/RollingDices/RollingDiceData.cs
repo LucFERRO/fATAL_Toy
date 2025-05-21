@@ -23,6 +23,7 @@ public class RollingDiceData : MonoBehaviour
     public bool isInUse;
     public bool hasLanded;
     private GameManager gameManager;
+    private DefeatManager defeatManager;
     private Rigidbody diceRb;
     private int closestTileIndex;
 
@@ -90,24 +91,26 @@ public class RollingDiceData : MonoBehaviour
             //}
             //diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             //diceEventInstance.release();
-            //Destroy(gameObject);
+            defeatManager.HandleRollCount();
+            Destroy(gameObject);
 
 
             //
-            Vector3 lakituVelocity = (respawnTransform.position - transform.position).normalized;
-            lakituVelocity.y *= 2f;
-            diceRb.linearVelocity = gameManager.lakitu * diceRb.linearVelocity.magnitude * lakituVelocity;
-            if (diceRb.linearVelocity.magnitude > 15)
-            {
-                diceRb.linearVelocity = diceRb.linearVelocity.normalized * 15f;
-            }
-            diceRb.angularVelocity = -diceRb.angularVelocity;
+            //Vector3 lakituVelocity = (respawnTransform.position - transform.position).normalized;
+            //lakituVelocity.y *= 2f;
+            //diceRb.linearVelocity = gameManager.lakitu * diceRb.linearVelocity.magnitude * lakituVelocity;
+            //if (diceRb.linearVelocity.magnitude > 15)
+            //{
+            //    diceRb.linearVelocity = diceRb.linearVelocity.normalized * 15f;
+            //}
+            //diceRb.angularVelocity = -diceRb.angularVelocity;
         }
     }
 
     private void Initialize()
     {
         gameManager = transform.parent.GetComponent<GameManager>();
+        defeatManager = transform.parent.GetComponent<DefeatManager>(); 
         diceRb = GetComponent<Rigidbody>();
         maxDisappearanceTimer = gameManager.diceMaxDisappearanceTimer;
         currentDisappearanceTimer = maxDisappearanceTimer;
