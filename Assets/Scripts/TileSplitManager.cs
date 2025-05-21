@@ -299,7 +299,7 @@ public class TileSplitManager : MonoBehaviour
 
     private void UpdateObjectiveShortVersion(Transform objectiveTransform, string target, int current, int max)
     {
-        TextMeshProUGUI objectiveShortText = objectiveTransform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI objectiveShortText = objectiveTransform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
         objectiveShortText.text = $"<size=32>{current}</size>/{max}<size=32><sprite name={target}>";
     }
 
