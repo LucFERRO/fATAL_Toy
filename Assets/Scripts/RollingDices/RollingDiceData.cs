@@ -85,12 +85,12 @@ public class RollingDiceData : MonoBehaviour
         if (transform.position.y <= -gameManager.lakituTreshold)
         {
             //transform.position = respawnTransform.position;
-            //for (int i = 0; i < traveledTilesGO.Count; i++)
-            //{
-            //    traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
-            //}
-            //diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            //diceEventInstance.release();
+            for (int i = 0; i < traveledTilesGO.Count; i++)
+            {
+                traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
+            }
+            diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            diceEventInstance.release();
             defeatManager.HandleRollCount();
             Destroy(gameObject);
 

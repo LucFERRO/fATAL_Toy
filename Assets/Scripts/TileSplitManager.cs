@@ -16,15 +16,6 @@ public class TileSplitManager : MonoBehaviour
     public Dictionary<string, int> comboTileSplitDictionary = new();
     public UnityEngine.Color objectiveColor;
     [Header("Objectives Numbers")]
-    //private string objectiveNumber1Target;
-    //private int objectiveNumber1Max;
-    //private int objectiveNumber1Current;    
-    //private string objectiveNumber2Target;
-    //private int objectiveNumber2Max;
-    //private int objectiveNumber2Current;    
-    //private string objectiveNumber3Target;
-    //private int objectiveNumber3Max;
-    //private int objectiveNumber3Current;
 
     private string[] objectiveTargets;
     private int[] objectiveMaxNumbers;
@@ -192,17 +183,18 @@ public class TileSplitManager : MonoBehaviour
     private void InitializeObjectives()
     {
         int objectiveNumber = objectiveListGo.transform.childCount;
+        areObjectiveOpenBools = new bool[objectiveNumber];
         objectiveBools = new bool[objectiveNumber];
         ObjectiveBools = new bool[objectiveNumber];
         objectiveTargets = new string[objectiveNumber];
         objectiveMaxNumbers = new int[objectiveNumber];
         objectiveCurrentNumbers = new int[objectiveNumber];
-        //areObjectiveOpenBools = new bool[objectiveNumber];
         RandomObjectives(1);
         startingPositions = new Vector3[objectiveNumber];
         targetPositions = new Vector3[objectiveNumber];
         for (int i = 0; i < objectiveNumber; i++)
         {
+            areObjectiveOpenBools[i] = true;
             startingPositions[i] = objectiveListGo.transform.GetChild(i).position;
             string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
@@ -321,7 +313,7 @@ public class TileSplitManager : MonoBehaviour
 
     public void ToggleOpenTargetObjective(int objectiveId)
     {
-        //areObjectiveOpenBools[objectiveId] = !areObjectiveOpenBools[objectiveId];
+        areObjectiveOpenBools[objectiveId] = !areObjectiveOpenBools[objectiveId];
         objectiveElements[objectiveId].transform.parent.GetComponent<Animator>().SetTrigger("ToggleTrigger");
     }
 
@@ -334,16 +326,20 @@ public class TileSplitManager : MonoBehaviour
             {
                 //textMeshProElement.color = UnityEngine.Color.green;
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
+                if (!textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().GetBool("DoneBool"))
+                {
+                    textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", true);
+                }
+                if (areObjectiveOpenBools[i])
+                {
+                    ToggleOpenTargetObjective(i);
+                }
             }
             else
             {
                 //textMeshProElement.color = objectiveColor;
                 textMeshProElement.fontStyle = FontStyles.Normal;
             }
-            //if (areObjectiveOpenBools[i])
-            //{
-            //    ToggleOpenTargetObjective(i);
-            //}
             //SwitchCompleteObjectiveAlpha(objectiveElements[i].transform.parent, objectiveBools[i]);
         }
 
