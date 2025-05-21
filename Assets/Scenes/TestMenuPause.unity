@@ -567,6 +567,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545878287}
+  - component: {fileID: 545878288}
+  - component: {fileID: 545878289}
   m_Layer: 0
   m_Name: Pause
   m_TagString: Untagged
@@ -590,6 +592,40 @@ Transform:
   - {fileID: 10522511}
   m_Father: {fileID: 987399753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &545878288
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545878286}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 411dabad00a6d0449a499d815f2ec94a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &545878289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545878286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1015d32a09bdb6241ba1f6175db8fa1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &973808133
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +638,7 @@ GameObject:
   - component: {fileID: 973808137}
   - component: {fileID: 973808136}
   - component: {fileID: 973808135}
+  - component: {fileID: 973808138}
   m_Layer: 5
   m_Name: Home
   m_TagString: Untagged
@@ -672,6 +709,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 973808138}
+        m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
+        m_MethodName: SwapTheScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 334917605}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
         m_MethodName: set_interactable
@@ -722,6 +771,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973808133}
   m_CullTransparentMesh: 1
+--- !u!114 &973808138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973808133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0736899ec76255f44bae3c721c0df8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainSceneExactName: TitleScreen
 --- !u!1 &987399749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1098,7 @@ GameObject:
   - component: {fileID: 1675137790}
   - component: {fileID: 1675137789}
   - component: {fileID: 1675137788}
+  - component: {fileID: 1675137791}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -1107,6 +1170,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1675137791}
+        m_TargetAssemblyTypeName: ResumeButton, Assembly-CSharp
+        m_MethodName: resumeIsPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1675137788}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
         m_MethodName: set_interactable
@@ -1157,6 +1232,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675137786}
   m_CullTransparentMesh: 1
+--- !u!114 &1675137791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675137786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7de5635d68d0b74f8587d057b0b269c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResumeButt: {fileID: 545878286}
 --- !u!1 &2128635764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1257,7 @@ GameObject:
   - component: {fileID: 2128635768}
   - component: {fileID: 2128635767}
   - component: {fileID: 2128635766}
+  - component: {fileID: 2128635769}
   m_Layer: 5
   m_Name: Reload
   m_TagString: Untagged
@@ -1239,6 +1328,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2128635769}
+        m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
+        m_MethodName: SwapTheScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 334917605}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
         m_MethodName: set_interactable
@@ -1289,6 +1390,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128635764}
   m_CullTransparentMesh: 1
+--- !u!114 &2128635769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128635764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0736899ec76255f44bae3c721c0df8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainSceneExactName: MainScene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
