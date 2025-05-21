@@ -67,7 +67,7 @@ public class UnlockManager : MonoBehaviour
             {
                 unlockStatus[unlockStatus.Keys.ElementAt(i)] = true;
             }
-            uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
+            //uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
         }
 
         int maxLockedTiles = unlockStatus.Values.Count(value => value);
@@ -133,15 +133,21 @@ public class UnlockManager : MonoBehaviour
             if (potentialNewCombo.ToString() == tileTypes[i])
             {
                 uiUnlockableTilesItems[i].isAvailable = true;
-                uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
+                //uiUnlockableTilesGO[i].GetComponent<InventorySlot>().EnableInventorySlot();
 
                 if (!unlockStatus[potentialNewCombo])
                 {
                     unlockStatus[potentialNewCombo] = true;
                     int maxLockedTiles = unlockStatus.Values.Count(value => value);
+                    unlockStatus[unlockStatus.Keys.ElementAt(i)] = true;
+                    pendingUnlockedStatus[i-4] = true;
                     int newMaxLockedTiles = (maxLockedTiles - 4) / 2;
                     gameManager.maxLockedTiles = newMaxLockedTiles;
                     HandleLockIconUnlocks(newMaxLockedTiles);
+                    if (GetComponent<UiManager>().isInventoryOpen)
+                    {
+                        ResolveUnlockStatus();
+                    }
                     return true;
                 }
             }
