@@ -325,6 +325,7 @@ public class TileSplitManager : MonoBehaviour
             if (objectiveBools[i])
             {
                 //textMeshProElement.color = UnityEngine.Color.green;
+                objectiveElements[i].transform.parent.GetComponent<Animator>().SetTrigger("ToggleTrigger");
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
             }
             else
