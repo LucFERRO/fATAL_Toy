@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         unlockManager = GetComponent<UnlockManager>();
         baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
         TypeBools = new bool[Enum.GetNames(typeof(TileType)).Length];
-        ChooseTileToSpawn(0);
+        ChooseTileToSpawn(1);
         CreateBaseTileDictionary();
         CreateComboTileDictionary();
         Cursor.lockState = CursorLockMode.Confined;
