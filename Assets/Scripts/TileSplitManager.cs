@@ -50,6 +50,7 @@ public class TileSplitManager : MonoBehaviour
     public Canvas winCanvas;
     public GameObject objectiveListGo;
     public TextMeshProUGUI[] objectiveElements;
+    public bool[] areObjectiveOpenBools;
     public bool[] objectiveBools;
     public bool[] ObjectiveBools
     {
@@ -196,6 +197,7 @@ public class TileSplitManager : MonoBehaviour
         objectiveTargets = new string[objectiveNumber];
         objectiveMaxNumbers = new int[objectiveNumber];
         objectiveCurrentNumbers = new int[objectiveNumber];
+        //areObjectiveOpenBools = new bool[objectiveNumber];
         RandomObjectives(1);
         startingPositions = new Vector3[objectiveNumber];
         targetPositions = new Vector3[objectiveNumber];
@@ -317,6 +319,12 @@ public class TileSplitManager : MonoBehaviour
         objectiveShortText.color = newDetailsColor;
     }
 
+    public void ToggleOpenTargetObjective(int objectiveId)
+    {
+        //areObjectiveOpenBools[objectiveId] = !areObjectiveOpenBools[objectiveId];
+        objectiveElements[objectiveId].transform.parent.GetComponent<Animator>().SetTrigger("ToggleTrigger");
+    }
+
     private void CheckObjectives()
     {
         for (int i = 0; i < objectiveBools.Length; i++)
@@ -325,7 +333,6 @@ public class TileSplitManager : MonoBehaviour
             if (objectiveBools[i])
             {
                 //textMeshProElement.color = UnityEngine.Color.green;
-                objectiveElements[i].transform.parent.GetComponent<Animator>().SetTrigger("ToggleTrigger");
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
             }
             else
@@ -333,6 +340,10 @@ public class TileSplitManager : MonoBehaviour
                 //textMeshProElement.color = objectiveColor;
                 textMeshProElement.fontStyle = FontStyles.Normal;
             }
+            //if (areObjectiveOpenBools[i])
+            //{
+            //    ToggleOpenTargetObjective(i);
+            //}
             //SwitchCompleteObjectiveAlpha(objectiveElements[i].transform.parent, objectiveBools[i]);
         }
 

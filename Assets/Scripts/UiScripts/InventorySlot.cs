@@ -100,8 +100,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     //    }
     //}
 
-    public void EnableInventorySlot()
-    {
+    //public void EnableInventorySlot()
+    //{
         //    //inventoryImage.enabled = draggableItem.isAvailable;
         //    //biomeImage.enabled = draggableItem.isAvailable;
         //    //if (!draggableItem.isOnDice && isCombo)
@@ -111,7 +111,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         //    //    biomeGo.SetActive(draggableItem.isAvailable);
         //    //    hiddenBiomeGo.SetActive(!draggableItem.isAvailable);
         //    //}
-    }
+    //}
 
     public void UnlockChildBiomeIcon()
     {
