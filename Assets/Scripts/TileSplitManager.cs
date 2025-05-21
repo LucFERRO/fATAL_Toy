@@ -16,15 +16,6 @@ public class TileSplitManager : MonoBehaviour
     public Dictionary<string, int> comboTileSplitDictionary = new();
     public UnityEngine.Color objectiveColor;
     [Header("Objectives Numbers")]
-    //private string objectiveNumber1Target;
-    //private int objectiveNumber1Max;
-    //private int objectiveNumber1Current;    
-    //private string objectiveNumber2Target;
-    //private int objectiveNumber2Max;
-    //private int objectiveNumber2Current;    
-    //private string objectiveNumber3Target;
-    //private int objectiveNumber3Max;
-    //private int objectiveNumber3Current;
 
     private string[] objectiveTargets;
     private int[] objectiveMaxNumbers;
@@ -36,13 +27,6 @@ public class TileSplitManager : MonoBehaviour
     [Header("UI Properties")]
     [SerializeField] private float lerpSpeed;
     [SerializeField] private UnityEngine.Color[] biomeNameColors;
-
-    [Header("Objective Positions")]
-    private Vector3[] startingPositions;
-    [SerializeField] private int speed;
-    [SerializeField] private Vector3[] targetPositions;
-    [SerializeField] private float moveOffset = 5f;
-    [SerializeField] private float snapThreshold;
 
     [Header("References")]
     public Animator endUiAnimator;
@@ -62,7 +46,6 @@ public class TileSplitManager : MonoBehaviour
         }
     }
     public string[] objectiveStrings;
-
 
     void Start()
     {
@@ -93,7 +76,6 @@ public class TileSplitManager : MonoBehaviour
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
             }
         }
-        //HandleObjectivePositions();
         HandleObjectiveKeyWordColor();
     }
 
@@ -126,44 +108,8 @@ public class TileSplitManager : MonoBehaviour
         }
     }
 
-    private void HandleObjectivePositions()
-    {
-        Vector3 offset = new Vector3(-moveOffset, 0, 0);
-
-        //Set the target positions depending on completed objectives
-        for (int i = 0; i < startingPositions.Length; i++)
-        {
-            targetPositions[i] = objectiveBools[i] ? startingPositions[i] + offset : startingPositions[i];
-        }
-
-        //Handle the position of each objective
-        for (int i = 0; i < startingPositions.Length; i++)
-        {
-            if (objectiveBools[i])
-            {
-                Image leafImage = objectiveListGo.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>();
-                UnityEngine.Color targetColor = leafImage.color;
-                targetColor.a = Mathf.Lerp(targetColor.a, 1f, lerpSpeed * Time.deltaTime);
-                leafImage.color = targetColor;
-            }
-            objectiveListGo.transform.GetChild(i).transform.position = Vector3.Lerp(objectiveListGo.transform.GetChild(i).transform.position, targetPositions[i], Time.deltaTime * speed);
-        }
-
-        //Snap to the position if close enough
-        for (int i = 0; i < startingPositions.Length; i++)
-        {
-            if (Vector3.Distance(objectiveListGo.transform.GetChild(i).transform.position, targetPositions[i]) < snapThreshold)
-            {
-                objectiveListGo.transform.GetChild(i).transform.position = targetPositions[i];
-            }
-        }
-    }
     private string[] ProcessTileType(string tileType)
     {
-        //string[] res = tileType.Split(new[] { "Forest", "Lake", "Mountain", "Plain" }, StringSplitOptions.RemoveEmptyEntries)
-        //               .Select(word => word.ToLower())
-        //               .Distinct()
-        //               .ToArray();        
         string[] res = System.Text.RegularExpressions.Regex
         .Matches(tileType, @"[A-Z]?[a-z]+|[A-Z]+(?![a-z])")
         .Cast<System.Text.RegularExpressions.Match>()
@@ -192,32 +138,20 @@ public class TileSplitManager : MonoBehaviour
     private void InitializeObjectives()
     {
         int objectiveNumber = objectiveListGo.transform.childCount;
+        areObjectiveOpenBools = new bool[objectiveNumber];
         objectiveBools = new bool[objectiveNumber];
         ObjectiveBools = new bool[objectiveNumber];
         objectiveTargets = new string[objectiveNumber];
         objectiveMaxNumbers = new int[objectiveNumber];
         objectiveCurrentNumbers = new int[objectiveNumber];
-        //areObjectiveOpenBools = new bool[objectiveNumber];
         RandomObjectives(1);
-        startingPositions = new Vector3[objectiveNumber];
-        targetPositions = new Vector3[objectiveNumber];
         for (int i = 0; i < objectiveNumber; i++)
         {
-            startingPositions[i] = objectiveListGo.transform.GetChild(i).position;
+            areObjectiveOpenBools[i] = true;
             string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
             targetObjectiveString.text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
         }
-    }
-
-    private TileType GhettoTileTypeToColor(string type)
-    {
-        TileType res;
-        if (Enum.TryParse(type, out res))
-        {
-            return res;
-        }
-        return TileType.forest;
     }
 
     private void RandomObjectives(int difficulty)
@@ -290,7 +224,6 @@ public class TileSplitManager : MonoBehaviour
             {
                 newObjectiveBoolArray[i] = !objectiveBools[i];
             }
-
             else
             {
                 newObjectiveBoolArray[i] = objectiveBools[i];
@@ -305,23 +238,9 @@ public class TileSplitManager : MonoBehaviour
         objectiveShortText.text = $"<size=25>{current}</size>/{max}<size=30><sprite name={target}>";
     }
 
-    private void SwitchCompleteObjectiveAlpha(Transform objectiveTransform, bool objectiveBool)
-    {
-        Image leafImage = objectiveTransform.GetChild(1).GetComponent<Image>();
-        TextMeshProUGUI objectiveShortText = objectiveTransform.GetChild(2).GetComponent<TextMeshProUGUI>();
-
-        UnityEngine.Color newLeafColor = leafImage.color;
-        newLeafColor.a = objectiveBool ? 1f : 0f;
-        leafImage.color = newLeafColor;
-
-        UnityEngine.Color newDetailsColor = objectiveShortText.color;
-        newDetailsColor.a = objectiveBool ? 0f : 1f;
-        objectiveShortText.color = newDetailsColor;
-    }
-
     public void ToggleOpenTargetObjective(int objectiveId)
     {
-        //areObjectiveOpenBools[objectiveId] = !areObjectiveOpenBools[objectiveId];
+        areObjectiveOpenBools[objectiveId] = !areObjectiveOpenBools[objectiveId];
         objectiveElements[objectiveId].transform.parent.GetComponent<Animator>().SetTrigger("ToggleTrigger");
     }
 
@@ -334,17 +253,19 @@ public class TileSplitManager : MonoBehaviour
             {
                 //textMeshProElement.color = UnityEngine.Color.green;
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
+                if (!textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().GetBool("DoneBool"))
+                {
+                    textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", true);
+                }
+                if (areObjectiveOpenBools[i])
+                {
+                    ToggleOpenTargetObjective(i);
+                }
             }
-            else
-            {
-                //textMeshProElement.color = objectiveColor;
-                textMeshProElement.fontStyle = FontStyles.Normal;
-            }
-            //if (areObjectiveOpenBools[i])
+            //else
             //{
-            //    ToggleOpenTargetObjective(i);
+            //    textMeshProElement.fontStyle = FontStyles.Normal;
             //}
-            //SwitchCompleteObjectiveAlpha(objectiveElements[i].transform.parent, objectiveBools[i]);
         }
 
         if (!objectiveBools.All(b => b))
@@ -368,7 +289,6 @@ public class TileSplitManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         ambientSoundsManager.wildlifeEventInstance.setParameterByName("AmbianceBalance", 0);
     }
-
     public void UpdateTileSplitDictionary()
     {
         CreateFreshTileDictionary();

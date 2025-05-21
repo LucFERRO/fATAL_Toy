@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class ProjectileThrow : MonoBehaviour {
+public class ProjectileThrow : MonoBehaviour
+{
     TrajectoryPreview trajectoryPreview;
     PhysicalDiceProperties properties;
     Camera cam;
@@ -16,6 +17,7 @@ public class ProjectileThrow : MonoBehaviour {
     private PhysicalDiceSpawner diceSpawner;
     private GameManager gameManager;
     private UiManager uiManager;
+    private DefeatManager defeatManager;
     public bool isOverUI = false;
 
     [SerializeField]
@@ -39,14 +41,10 @@ public class ProjectileThrow : MonoBehaviour {
         {
             diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
         }
-        if (gameManager == null)
-        {
-            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        }
-        if (uiManager == null)
-        {
-            uiManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UiManager>();
-        }
+        GameObject gameManagerGO = GameObject.FindGameObjectWithTag("GameManager");
+        gameManager = gameManagerGO.GetComponent<GameManager>();
+        uiManager = gameManagerGO.GetComponent<UiManager>();
+        defeatManager = gameManagerGO.GetComponent<DefeatManager>();
         cam = Camera.main;
 
         if (StartPosition == null)
@@ -81,7 +79,7 @@ public class ProjectileThrow : MonoBehaviour {
 
     void Update()
     {
-        bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen && !splineSwitcher.isIdle;
+        bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen && !splineSwitcher.isIdle && defeatManager.canRoll;
         if (Input.GetMouseButtonDown(0) && uiManager.isInventoryOpen && !isOverUI)
         {
             uiManager.IsInventoryOpen = false;
