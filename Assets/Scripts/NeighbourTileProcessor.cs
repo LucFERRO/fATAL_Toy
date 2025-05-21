@@ -331,7 +331,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             lockStatusEventInstance.setParameterByName("LockState", 1);
             lockStatusEventInstance.start();
-            Debug.Log("Lock released");
+            //Debug.Log("Lock released");
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
             if (transform.parent.childCount > 1)
@@ -349,7 +349,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         {
             lockStatusEventInstance.setParameterByName("LockState", 0);
             lockStatusEventInstance.start();
-            Debug.Log("Lock acquired");
+            //Debug.Log("Lock acquired");
             //lockStatusEventInstance.release();
             //FMODUnity.RuntimeManager.PlayOneShot("event:/Lock", transform.position);
             if (transform.parent.childCount == 1)

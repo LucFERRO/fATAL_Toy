@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         ChooseTileToSpawn(0);
         CreateBaseTileDictionary();
         CreateComboTileDictionary();
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
         //Cursor.visible = false;
         Physics.gravity = new Vector3(0, gravity, 0);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);

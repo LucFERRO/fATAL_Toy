@@ -84,7 +84,6 @@ public class TrajectoryPreview : MonoBehaviour
         {
             // Update the direction to point from the smoothed origin to the hit point
             projectile.direction = (hit.point - projectile.initialPosition).normalized;
-
             // Recalculate the trajectory
             PredictTrajectory();
         }
