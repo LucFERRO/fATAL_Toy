@@ -14,6 +14,13 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         animator = GetComponent<Animator>();
     }
 
+    public void UnlockChildBiomeIcon()
+    {
+        Transform childTransform = transform.GetChild(0);
+        childTransform.GetComponent<Image>().sprite = unlockedBiome;
+        childTransform.GetComponent<DraggableItem>().isDraggable = true;
+    }
+
     public void OnMouseOver()
     {
         Debug.Log(transform.name);
