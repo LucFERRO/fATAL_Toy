@@ -10,10 +10,10 @@ using System.Linq;
 public class NeighbourTileProcessor : MonoBehaviour
 {
     [Header("References")]
-    public GameManager gameManager;
-    private PhysicalDiceSpawner diceSpawner;
-    private UnlockManager unlockManager;
-    private Camera cam;
+    public static GameManager gameManager;
+    private static PhysicalDiceSpawner diceSpawner;
+    private static UnlockManager unlockManager;
+    private static Camera cam;
     [Header("Combo")]
     public string tileType;
     private GameObject chosenComboTile;
@@ -57,10 +57,20 @@ public class NeighbourTileProcessor : MonoBehaviour
         }
 
         debugColors = new Color[] { Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.white };
-        cam = Camera.main;
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        unlockManager = gameManager.GetComponent<UnlockManager>();
-        diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
+        if (cam == null)
+        {
+            cam = Camera.main;
+        }
+        if (gameManager == null)
+        {
+            GameObject gameManagerGO = GameObject.FindGameObjectWithTag("GameManager");
+            gameManager = gameManagerGO.GetComponent<GameManager>();
+            unlockManager = gameManager.GetComponent<UnlockManager>();
+        }
+        if (diceSpawner == null)
+        {
+            diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
+        }
         grid = transform.parent.parent.GetComponent<Grid>();
         cellPosition = grid.WorldToCell(transform.position);
         InitiateSoundInstances();

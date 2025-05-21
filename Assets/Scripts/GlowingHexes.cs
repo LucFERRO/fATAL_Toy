@@ -36,7 +36,7 @@ public class GlowingHexes : MonoBehaviour
     private void Awake()
     {
         renderers = GetComponentsInChildren<Renderer>();
-        gameManager = GetComponent<NeighbourTileProcessor>().gameManager;
+        gameManager = NeighbourTileProcessor.gameManager;
         originalScale = transform.localScale;
         PrepareMaterials();
     }

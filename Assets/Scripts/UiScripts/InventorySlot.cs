@@ -7,11 +7,17 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public bool isDicePanelSlot;
     public Sprite unlockedBiome;
     public DraggableItem currentlyDraggedItem;
+    private static GameManager gameManager;
     Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        if (gameManager == null)
+        {
+            GameObject gameManagerGO = GameObject.FindGameObjectWithTag("GameManager");
+            gameManager = gameManagerGO.GetComponent<GameManager>();
+        }
     }
 
     public void UnlockChildBiomeIcon()
@@ -36,7 +42,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     }
     public void OnMouseExit()
     {
-        Debug.Log("exited " +transform.name);
+        Debug.Log("exited " + transform.name);
         if (!isDicePanelSlot)
         {
             return;
@@ -58,7 +64,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         if (isDicePanelSlot)
         {
             int sameBiomeCount = 0;
-            foreach (Transform child in transform.parent) 
+            foreach (Transform child in transform.parent)
             {
                 DraggableItem childItem = child.GetComponentInChildren<DraggableItem>();
                 if (childItem != null && childItem.biomeId == draggedItem.biomeId)
