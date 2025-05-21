@@ -92,7 +92,7 @@ public class TileSplitManager : MonoBehaviour
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
             }
         }
-        HandleObjectivePositions();
+        //HandleObjectivePositions();
         HandleObjectiveKeyWordColor();
     }
 
@@ -100,7 +100,6 @@ public class TileSplitManager : MonoBehaviour
     {
         if (gridTileSplitDictionary["empty"] >= 30 && gridTileSplitDictionary["empty"] <= 60)
         {
-            Debug.Log("Wildlife firste stage");
             ambientSoundsManager.wildlifeEventInstance.setParameterByName("AmbianceBalance", 4);
         }
         if (gridTileSplitDictionary["empty"] < 30)
@@ -122,7 +121,7 @@ public class TileSplitManager : MonoBehaviour
             string colorHex = ColorUtility.ToHtmlStringRGB(lerpedColor);
 
             // Update the text with the animated color for the target word
-            objectiveElements[i].text = $"Create {objectiveMaxNumbers[i]} <sprite name={objectiveTargets[i]}> <color=#{colorHex}>{objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}</color>. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+            objectiveElements[i].text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], colorHex);
         }
     }
 
@@ -205,7 +204,7 @@ public class TileSplitManager : MonoBehaviour
             startingPositions[i] = objectiveListGo.transform.GetChild(i).position;
             string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
-            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} <sprite name={objectiveTargets[i]}> <color=#{fittingColor}>{objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}</color>. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+            targetObjectiveString.text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
         }
     }
 
@@ -226,12 +225,12 @@ public class TileSplitManager : MonoBehaviour
             if (i == 0)
             {
                 objectiveTargets[i] = gridTileSplitDictionary.ElementAt(UnityEngine.Random.Range(1, gridTileSplitDictionary.Count)).Key;
-                objectiveMaxNumbers[i] = UnityEngine.Random.Range(3, 5 + difficulty * 2);
+                objectiveMaxNumbers[i] = UnityEngine.Random.Range(8, 12 + difficulty * 3);
             }
             else
             {
                 objectiveTargets[i] = comboTileSplitDictionary.ElementAt(UnityEngine.Random.Range(1, comboTileSplitDictionary.Count)).Key;
-                objectiveMaxNumbers[i] = UnityEngine.Random.Range(1, 2 + difficulty);
+                objectiveMaxNumbers[i] = UnityEngine.Random.Range(3, 5 + difficulty);
             }
         }
         while (objectiveTargets[1] == objectiveTargets[2])
@@ -251,39 +250,35 @@ public class TileSplitManager : MonoBehaviour
 
             if (i == 0)
             {
-                //Debug.Log($"Objective {i} : {objectiveTargets[i]}");
                 objectiveCurrentNumbers[i] = gridTileSplitDictionary[objectiveTargets[i]];
             }
             else
             {
-                //Debug.Log($"Objective {i} : {objectiveTargets[i]}");
                 objectiveCurrentNumbers[i] = comboTileSplitDictionary[objectiveTargets[i]];
             }
 
             if (objectiveCurrentNumbers[i] >= objectiveMaxNumbers[i])
             {
-                //Debug.Log($"Objective {i} : DONE with {objectiveCurrentNumbers[i]}");
                 objectiveBools[i] = true;
-                //StartCoroutine(CompletedObjective(objectiveListGo.transform.GetChild(i), 0.2f));
             }
             else
             {
-                //Debug.Log($"Objective {i} : NOT DONE with {objectiveCurrentNumbers[i]}");
                 objectiveBools[i] = false;
             }
 
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
             string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
-            targetObjectiveString.text = $"Create {objectiveMaxNumbers[i]} <sprite name={objectiveTargets[i]}> <color=#{fittingColor}>{objectiveTargets[i]}{(objectiveMaxNumbers[i] > 1 ? "s" : "")}</color>. Currently: {objectiveCurrentNumbers[i]}/{objectiveMaxNumbers[i]}.";
+            targetObjectiveString.text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
         }
     }
-    public IEnumerator CompletedObjective(Transform objectiveTransform, float time)
+
+    private string GetObjectiveString(int objectiveId, string objectiveTarget, int objectiveCurrentNumber, int objectiveMaxNumber, string objectiveColor)
     {
-        yield return new WaitForSeconds(time);
-        Vector3 targetPos = objectiveTransform.position;
-        targetPos.x -= 50;
-        objectiveTransform.position = Vector3.Lerp(objectiveTransform.position, targetPos, Time.deltaTime);
+        UpdateObjectiveShortVersion(objectiveElements[objectiveId].transform.parent, objectiveTarget, objectiveCurrentNumber, objectiveMaxNumber);
+        string message = $"Create {objectiveMaxNumber} <sprite name={objectiveTarget}> <color=#{objectiveColor}>{objectiveTarget}{(objectiveMaxNumber > 1 ? "s" : "")}</color>.";
+        return message;
     }
+
     public void ChooseObjectiveToComplete(int objectiveId)
     {
         bool[] newObjectiveBoolArray = new bool[objectiveBools.Length];
@@ -302,6 +297,26 @@ public class TileSplitManager : MonoBehaviour
         ObjectiveBools = newObjectiveBoolArray;
     }
 
+    private void UpdateObjectiveShortVersion(Transform objectiveTransform, string target, int current, int max)
+    {
+        TextMeshProUGUI objectiveShortText = objectiveTransform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        objectiveShortText.text = $"<size=32>{current}</size>/{max}<size=32><sprite name={target}>";
+    }
+
+    private void SwitchCompleteObjectiveAlpha(Transform objectiveTransform, bool objectiveBool)
+    {
+        Image leafImage = objectiveTransform.GetChild(1).GetComponent<Image>();
+        TextMeshProUGUI objectiveShortText = objectiveTransform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+        UnityEngine.Color newLeafColor = leafImage.color;
+        newLeafColor.a = objectiveBool ? 1f : 0f;
+        leafImage.color = newLeafColor;
+
+        UnityEngine.Color newDetailsColor = objectiveShortText.color;
+        newDetailsColor.a = objectiveBool ? 0f : 1f;
+        objectiveShortText.color = newDetailsColor;
+    }
+
     private void CheckObjectives()
     {
         for (int i = 0; i < objectiveBools.Length; i++)
@@ -309,14 +324,15 @@ public class TileSplitManager : MonoBehaviour
             TextMeshProUGUI textMeshProElement = objectiveElements[i];
             if (objectiveBools[i])
             {
-                textMeshProElement.color = UnityEngine.Color.green;
+                //textMeshProElement.color = UnityEngine.Color.green;
                 textMeshProElement.fontStyle = FontStyles.Strikethrough;
             }
             else
             {
-                textMeshProElement.color = objectiveColor;
+                //textMeshProElement.color = objectiveColor;
                 textMeshProElement.fontStyle = FontStyles.Normal;
             }
+            //SwitchCompleteObjectiveAlpha(objectiveElements[i].transform.parent, objectiveBools[i]);
         }
 
         if (!objectiveBools.All(b => b))
