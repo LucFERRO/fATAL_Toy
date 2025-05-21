@@ -59,6 +59,25 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
         if (isDicePanelSlot)
         {
+
+            int sameBiomeCount = 0;
+            foreach (Transform child in transform.parent) // Assuming all dice slots share the same parent
+            {
+                DraggableItem childItem = child.GetComponentInChildren<DraggableItem>();
+                if (childItem != null && childItem.biomeId == draggedItem.biomeId)
+                {
+                    sameBiomeCount++;
+                }
+            }
+
+            // If there are already 2 or more items with the same biomeId, reject the drop
+            if (sameBiomeCount >= 2)
+            {
+                //Debug.Log("Cannot add more items with the same biomeId to the dice panel.");
+                return;
+            }
+
+
             if (transform.childCount > 0)
             {
                 Destroy(transform.GetChild(0).gameObject);
