@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 608c139968e2ed54d86df1e019602850
+  - enabled: 1
+    path: Assets/Scenes/TiltleScreen.unity
+    guid: 9fdec4ff8ad636f4c9830cd6aefbb89c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
