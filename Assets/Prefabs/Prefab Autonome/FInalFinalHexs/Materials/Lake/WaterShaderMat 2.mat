@@ -96,7 +96,7 @@ Material:
     - _Depth_Color_Fade: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Dissolve: 0
+    - _Dissolve: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EdgeWidth: 0.1
@@ -105,21 +105,21 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _IsDissolving: 0
-    - _MeshHeight: 5
+    - _MeshHeight: 10
     - _Metallic: 0
-    - _Occlusion: 0.5
+    - _Occlusion: 0.3
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.8
+    - _Smoothness: 0.85
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WaveHeight: 10
+    - _WaveHeight: 0.4
     - _WaveSpeed: 0.1
     - _WaveStrenght: 10
     - _WorkflowMode: 1
