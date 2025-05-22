@@ -45,9 +45,13 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
         {
             if (transform.GetChild(0).GetComponent<DraggableItem>().isAvailable && draggedItem == null)
             {
-                interfaceEventInstance.setParameterByName("UIState", 2);
-                interfaceEventInstance.setParameterByName("IsInInventory", 0);
                 interfaceEventInstance.start();
+                interfaceEventInstance.setParameterByName("UIState", 2);
+                var result = interfaceEventInstance.setParameterByName("IsInInventory", 0);
+                interfaceEventInstance.getParameterByName("UIState", out float value);
+                interfaceEventInstance.getParameterByName("IsInInventory", out float value2);
+                //Debug.Log($"UIState: {value}, {result}");
+                Debug.Log($"IsInInventory: {value2}, {result}");
                 Debug.Log("HoverOnInventory");
             }
             return;

@@ -6,10 +6,11 @@ public class Inventory : MonoBehaviour
     public FMOD.Studio.EventInstance interfaceEventInstance;
     //public int isObjectivePanel = 1;
 
-    void Start()
+    void Awake()
     {
         // Setting Interface instances
         interfaceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/UI");
+        interfaceEventInstance.setParameterByName("IsInInventory", 0);
     }
 
     public void PlaySound(int state)
