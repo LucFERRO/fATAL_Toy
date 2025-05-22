@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public UnlockManager unlockManager;
     [HideInInspector] public TileSplitManager tileSplitManager;
 
+    private FMOD.Studio.EventInstance transitionEventInstance;
+
     [Header("LockedTiles")]
     public int maxLockedTiles;
 
@@ -79,14 +81,49 @@ public class GameManager : MonoBehaviour
         //Cursor.visible = false;
         Physics.gravity = new Vector3(0, gravity, 0);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+
+        transitionEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Transition");
+    }
+
+    private Vector3 AverageClusterCenter(List<GameObject> tiles)
+    {
+        Vector3 average = Vector3.zero;
+        foreach (GameObject tile in tiles)
+        {
+            if (tile == null)
+            {
+                continue;
+            }
+            average += tile.transform.position;
+        }
+        average /= tiles.Count;
+        return average;
+    }
+
+    public IEnumerator TransitionSoundsCoroutine(List<GameObject> tiles, float time, int transitionLevel)
+    {
+        Vector3 center = AverageClusterCenter(tiles);
+
+        yield return new WaitForSeconds(time);
+        Debug.Log($"center: {center}, transition level: {transitionLevel}");
+        transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
+        transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
+        transitionEventInstance.start();
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
-        StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f));
+        List<GameObject> NeighbourCascade = UpdateNeighboursCascade(tiles);
+        StartCoroutine(TransitionSoundsCoroutine(tiles, 0f, 0));
+        StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f, 0));
         // Tweak le 0.2 en 0.4+ si needed
-        StartCoroutine(UpdateNeighboursCoroutine(UpdateNeighboursCascade(tiles), 0.6f));
-        StartCoroutine(GlobalGridUpdateCoroutine(1.2f));
+        if (NeighbourCascade.Count != 0)
+        {
+            StartCoroutine(TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1));
+            StartCoroutine(UpdateNeighboursCoroutine(NeighbourCascade, 0.7f, 1));
+        }
+        StartCoroutine(GlobalGridUpdateCoroutine(2f));
+
     }
 
     public IEnumerator GlobalGridUpdateCoroutine(float time)
@@ -136,8 +173,9 @@ public class GameManager : MonoBehaviour
         return traveledTilesNeighbours;
     }
 
-    private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles, float time)
+    private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles, float time, int transitionLevel)
     {
+        Debug.Log(tiles.Count + ", " + transitionLevel);
         yield return new WaitForSeconds(time);
 
         foreach (GameObject tile in tiles)
@@ -158,6 +196,8 @@ public class GameManager : MonoBehaviour
             processor.GetMajorTile();
             //Debug.Log($"name {tile.name},tileType: {tile.GetComponent<NeighbourTileProcessor>().tileType}, majorTile: {tile.GetComponent<NeighbourTileProcessor>().majorTile}");
             processor.UpdateComboTile();
+            //Debug.Log($"name {tile.name} Update {boo}");
+
         }
     }
 

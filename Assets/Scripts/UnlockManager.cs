@@ -21,6 +21,8 @@ public class UnlockManager : MonoBehaviour
     [SerializeField] Sprite unusedSprite;
     [SerializeField] Sprite usedSprite;
 
+    FMOD.Studio.EventInstance newLockEventInstance;
+
     void Start()
     {
         InitializeUnlockManager();
@@ -56,6 +58,8 @@ public class UnlockManager : MonoBehaviour
         {
             unlockStatus[tileType] = (int)tileType < 10;
         }
+
+        newLockEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/UnlockLock");
     }
 
     private void UnlockEveryComboTile()
@@ -91,7 +95,7 @@ public class UnlockManager : MonoBehaviour
                 pendingUnlockedStatus[i] = true;
             }
         }
-    }    
+    }
     public void ResolveUnlockStatus()
     {
         for (int i = 0; i < pendingUnlockedStatus.Length; i++)
@@ -140,8 +144,14 @@ public class UnlockManager : MonoBehaviour
                     unlockStatus[potentialNewCombo] = true;
                     int maxLockedTiles = unlockStatus.Values.Count(value => value);
                     unlockStatus[unlockStatus.Keys.ElementAt(i)] = true;
-                    pendingUnlockedStatus[i-4] = true;
+                    pendingUnlockedStatus[i - 4] = true;
                     int newMaxLockedTiles = (maxLockedTiles - 4) / 2;
+                    Debug.Log(newMaxLockedTiles);
+                    if (maxLockedTiles %2 == 0 && maxLockedTiles > 4)
+                    {
+                        newLockEventInstance.setParameterByName("UnlockLockedLevel", newMaxLockedTiles);
+                        newLockEventInstance.start();
+                    }
                     gameManager.maxLockedTiles = newMaxLockedTiles;
                     HandleLockIconUnlocks(newMaxLockedTiles);
                     if (GetComponent<UiManager>().isInventoryOpen)

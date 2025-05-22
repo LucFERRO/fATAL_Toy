@@ -7,7 +7,8 @@ public class CustomizableDiceMenuToggle : MonoBehaviour
     public GameManager gameManager;
     public int uiDistance;
     private Vector3[] startingPositions;
-    private bool isInventoryHidden;
+    public bool isInventoryHidden;
+
     private bool IsInventoryHidden
     {
         get { return isInventoryHidden; }

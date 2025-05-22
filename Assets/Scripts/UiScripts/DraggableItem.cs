@@ -14,11 +14,17 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private GameObject placeholderClone;
 
+    FMOD.Studio.EventInstance interfaceEventInstance;
+
     private void Start()
     {
         image = GetComponent<Image>();
         group = GetComponent<CanvasGroup>();
         childBackground = transform.GetChild(0).gameObject;
+        if (!transform.parent.GetComponent<InventorySlot>().isDicePanelSlot)
+        {
+            interfaceEventInstance = transform.parent.parent.parent.parent.parent.GetComponent<Inventory>().interfaceEventInstance;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -34,6 +40,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = false; // Disable raycast to avoid blocking drop detection
         childBackground.SetActive(true);
         childBackground.GetComponent<Image>().raycastTarget = false;
+        interfaceEventInstance.setParameterByName("UIState", 3);
+        interfaceEventInstance.start();
     }
 
     public void OnDrag(PointerEventData eventData)

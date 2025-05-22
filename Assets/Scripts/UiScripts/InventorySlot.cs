@@ -9,6 +9,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
     public DraggableItem currentlyDraggedItem;
     private static GameManager gameManager;
     Animator animator;
+    FMOD.Studio.EventInstance interfaceEventInstance;
 
     private void Start()
     {
@@ -17,7 +18,17 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
         {
             GameObject gameManagerGO = GameObject.FindGameObjectWithTag("GameManager");
             gameManager = gameManagerGO.GetComponent<GameManager>();
+
         }
+        if (isDicePanelSlot)
+        {
+            interfaceEventInstance = transform.parent.parent.GetComponent<Inventory>().interfaceEventInstance;
+        }
+        else
+        {
+            interfaceEventInstance = transform.parent.parent.parent.parent.GetComponent<Inventory>().interfaceEventInstance;
+        }
+        //interfaceEventInstance.setParameterByName("IsObjectivePanel", 1);
     }
 
     public void UnlockChildBiomeIcon()
@@ -29,15 +40,29 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!isDicePanelSlot) return;
-
         DraggableItem draggedItem = eventData.pointerDrag?.GetComponent<DraggableItem>();
+        if (!isDicePanelSlot)
+        {
+            if (transform.GetChild(0).GetComponent<DraggableItem>().isAvailable && draggedItem == null)
+            {
+                interfaceEventInstance.setParameterByName("UIState", 2);
+                interfaceEventInstance.setParameterByName("IsInInventory", 0);
+                interfaceEventInstance.start();
+                Debug.Log("HoverOnInventory");
+            }
+            return;
+        }
+
         if (draggedItem == null) return;
 
         currentlyDraggedItem = draggedItem;
-        animator.SetBool("isMouseDraggingOver", true);
+        animator.SetBool("IsMouseDraggingOver", true);
 
         Debug.Log($"Dragging over dice slot: {transform.name}");
+        interfaceEventInstance.setParameterByName("UIState", 2);
+        interfaceEventInstance.setParameterByName("IsInInventory", 1);
+        interfaceEventInstance.start();
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -77,6 +102,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
             if (sameBiomeCount >= 2)
             {
                 Debug.Log("Cannot add more items with the same biomeId to the dice panel.");
+                interfaceEventInstance.setParameterByName("UIState", 5);
+                interfaceEventInstance.start();
                 return;
             }
 
@@ -95,6 +122,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
             {
                 clonedGroup.alpha = 1f;
             }
+            interfaceEventInstance.setParameterByName("UIState", 4);
+            interfaceEventInstance.start();
+            Debug.Log("Dropped");
         }
         else
         {
