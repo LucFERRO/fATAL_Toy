@@ -4,7 +4,7 @@ public class HexElevation : MonoBehaviour
 {
     public float elevationStep = 3f; // difference between highs and lows
     public float terrainScale = 5f; // level of details
-    [Range(0,20)] public int elevationRoundNumber;
+    [Range(0, 20)] public int elevationRoundNumber;
     private float hexHeight;
 
     public Transform[] gridCells;
@@ -54,8 +54,8 @@ public class HexElevation : MonoBehaviour
     }
     private float[] CreateRoundArray(int partNumber)
     {
-        float[] roundArray = new float[partNumber+1];
-        for (int i = 0; i < partNumber+1; i++)
+        float[] roundArray = new float[partNumber + 1];
+        for (int i = 0; i < partNumber + 1; i++)
         {
             roundArray[i] = (float)i / partNumber;
         }
