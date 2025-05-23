@@ -254,16 +254,8 @@ public class TileSplitManager : MonoBehaviour
 
     private void UpdatePreviousDictionaries()
     {
-        foreach (KeyValuePair<string, int> kvp in previousGridTileSplitDictionary)
-        {
-    Debug.Log($"Previous grid tile: {kvp.Key} : {kvp.Value}");
-        }        
         previousGridTileSplitDictionary = gridTileSplitDictionary;
         previousComboTileSplitDictionary = comboTileSplitDictionary;
-        foreach (KeyValuePair<string, int> kvp in previousGridTileSplitDictionary)
-        {
-    Debug.Log($"Previous grid tile: {kvp.Key} : {kvp.Value}");
-        }
     }
 
     private void CreateNewObjectiveBatch()
