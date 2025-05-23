@@ -35,7 +35,7 @@ public class CreateBiomeObjective : TileObjective
 
     public override void Evaluate(TileSplitManager manager)
     {
-        Progress = manager.gridTileSplitDictionary.TryGetValue(Biome, out int count) ? count : 0;
+        Progress = manager.biomeTilesCreatedSinceReset(Biome);
         IsCompleted = Progress >= Target;
     }
 }
@@ -51,7 +51,7 @@ public class CreateComboObjective : TileObjective
 
     public override void Evaluate(TileSplitManager manager)
     {
-        Progress = manager.comboTileSplitDictionary.TryGetValue(Biome, out int count) ? count : 0;
+        Progress = manager.comboTilesCreatedSinceReset(Biome);
         IsCompleted = Progress >= Target;
     }
 }
@@ -81,7 +81,7 @@ public class ChangeLessTilesInOneRoll : TileObjective
     {
         Biome = "";
         Target = target;
-        Description = $"Roll over less than TARGET tiles with the same roll";
+        Description = $"Roll over TARGET or less tiles with the same roll";
     }
 
     public override void Evaluate(TileSplitManager manager)

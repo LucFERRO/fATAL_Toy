@@ -12,13 +12,13 @@ public static class TileTypeUtils
         { "plain", "Plain" },
         { "forestForest", "Thicket" },
         { "forestLake", "Marsh" },
-        { "forestMountain", "Highland" },
+        { "forestMountain", "Pine Hill" },
         { "forestPlain", "Glade" },
         { "lakeLake", "Basin" },
         { "lakeMountain", "Caldera" },
         { "lakePlain", "Bog" },
         { "mountainMountain", "Summit" },
-        { "mountainPlain", "Plateau" },
+        { "mountainPlain", "Highland" },
         { "plainPlain", "Cropfield" }
     };
 

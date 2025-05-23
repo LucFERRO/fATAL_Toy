@@ -14371,7 +14371,7 @@ MonoBehaviour:
   numberOfTiles: 0
   objectiveColor: {r: 0.6745098, g: 0.43137255, b: 0.105882354, a: 1}
   finishedBatchCount: 0
-  lvlDifficulty: 2
+  lvlDifficulty: 5
   objectiveStrings: []
   objectiveBools: 
   lerpSpeed: 2
@@ -14972,6 +14972,9 @@ MonoBehaviour:
   unlockManager: {fileID: 0}
   tileSplitManager: {fileID: 1394288966}
   maxLockedTiles: 0
+  minTilesRolled: 2147483647
+  maxTilesRolled: -2147483648
+  faceTypes: []
   gravity: -10
   diceMaxDisappearanceTimer: 1
   onlyReplacesClosestTile: 0
@@ -15079,7 +15082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b9ac5aae6deca4fa932285c3e8b23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumberOfRolls: 3
+  maxNumberOfRolls: 10
   currentNumberOfRolls: 0
   defeatCanvas: {fileID: 1720491928}
   rollCountGo: {fileID: 912871567}

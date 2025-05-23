@@ -14,6 +14,8 @@ public class TileSplitManager : MonoBehaviour
     public int numberOfTiles;
     public Dictionary<string, int> gridTileSplitDictionary = new();
     public Dictionary<string, int> comboTileSplitDictionary = new();
+    public Dictionary<string, int> previousGridTileSplitDictionary = new();
+    public Dictionary<string, int> previousComboTileSplitDictionary = new();
     public UnityEngine.Color objectiveColor;
 
     [Header("REWORKED Objectives")]
@@ -59,6 +61,7 @@ public class TileSplitManager : MonoBehaviour
     {
         numberOfTiles = transform.childCount;
         UpdateTileSplitDictionary();
+        UpdatePreviousDictionaries();
         InitializeObjectives();
         wildlifeEventInstance = ambientSoundsManager.wildlifeEventInstance;
     }
@@ -92,18 +95,22 @@ public class TileSplitManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            UpdateTileSplitDictionary();
+            //UpdateTileSplitDictionary();
             Debug.Log($"Base tiles:");
             //Debug.Log(tileTypeToString[forest]);
             foreach (KeyValuePair<string, int> kvp in gridTileSplitDictionary)
             {
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
-            }
-            Debug.Log($"Combo tiles:");
-            foreach (KeyValuePair<string, int> kvp in comboTileSplitDictionary)
+            }            
+            foreach (KeyValuePair<string, int> kvp in previousGridTileSplitDictionary)
             {
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
             }
+            //Debug.Log($"Combo tiles:");
+            //foreach (KeyValuePair<string, int> kvp in comboTileSplitDictionary)
+            //{
+            //    Debug.Log($"{kvp.Key} : {kvp.Value}");
+            //}
         }
         HandleObjectiveKeyWordColor();
     }
@@ -221,7 +228,7 @@ public class TileSplitManager : MonoBehaviour
             TileObjective obj = ObjectiveFactory.GenerateRandomObjective(objTypes[i], this);
             if (i == 1 || i == 4)
             {
-                obj= ObjectiveFactory.GenerateRandomObjective(objTypes[i], this, objectives[0].Biome);
+                obj = ObjectiveFactory.GenerateRandomObjective(objTypes[i], this, objectives[0].Biome);
             }
             objectives.Add(obj);
             UpdateObjectiveUI(i, obj);
@@ -245,10 +252,28 @@ public class TileSplitManager : MonoBehaviour
         }
     }
 
+    private void UpdatePreviousDictionaries()
+    {
+        foreach (KeyValuePair<string, int> kvp in previousGridTileSplitDictionary)
+        {
+    Debug.Log($"Previous grid tile: {kvp.Key} : {kvp.Value}");
+        }        
+        previousGridTileSplitDictionary = gridTileSplitDictionary;
+        previousComboTileSplitDictionary = comboTileSplitDictionary;
+        foreach (KeyValuePair<string, int> kvp in previousGridTileSplitDictionary)
+        {
+    Debug.Log($"Previous grid tile: {kvp.Key} : {kvp.Value}");
+        }
+    }
+
     private void CreateNewObjectiveBatch()
     {
 
         InitializeObjectives();
+        UpdatePreviousDictionaries();
+        CreateFreshTileDictionary();
+        gameManager.minTilesRolled = int.MaxValue;
+        gameManager.maxTilesRolled = int.MinValue;
 
         for (int i = 0; i < objectives.Count; i++)
         {
@@ -296,10 +321,22 @@ public class TileSplitManager : MonoBehaviour
         CheckObjectives();
     }
 
+    public int biomeTilesCreatedSinceReset(string tile)
+    {
+        int res = gridTileSplitDictionary[tile] - previousGridTileSplitDictionary[tile];
+        return Mathf.Max(res, 0);
+    }
+
+    public int comboTilesCreatedSinceReset(string combo)
+    {
+        int res = comboTileSplitDictionary[combo] - previousComboTileSplitDictionary[combo];
+        return Mathf.Max(res, 0);
+    }
+
     public int WhatIsMaxRoll()
     {
         return gameManager.MaxTilesRolled;
-    }    
+    }
     public int WhatIsMinRoll()
     {
         return gameManager.MinTilesRolled;

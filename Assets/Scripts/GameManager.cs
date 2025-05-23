@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
 
     [Header("LockedTiles")]
     public int maxLockedTiles;
-    private int minTilesRolled = int.MaxValue;
-    private int maxTilesRolled = int.MinValue;
+    public int minTilesRolled = int.MaxValue;
+    public int maxTilesRolled = int.MinValue;
     public string[] faceTypes;
 
     public int MinTilesRolled => minTilesRolled == int.MaxValue ? 0 : minTilesRolled;
@@ -112,10 +112,10 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        if (tiles.All(tile => tile.GetComponent<NeighbourTileProcessor>().isLocked))
-        {
-            yield break;
-        }
+        //if (tiles.All(tile => tile.GetComponent<NeighbourTileProcessor>().isLocked))
+        //{
+        //    yield break;
+        //}
 
         transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
         transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
     public bool IsDiceMadeOfOneBiome(string targetBiome)
     {
         {
-            if (string.IsNullOrEmpty(targetBiome))
+            if (string.IsNullOrEmpty(targetBiome) || faceTypes.Length == 0)
             {
                 return false;
             }
