@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 public class FileDataHandler
 {
@@ -10,7 +11,6 @@ public class FileDataHandler
     public FileDataHandler(string dataDirPath, string dataFileName)
     {
         this.dataDirPath = dataDirPath;
-        this.dataFileName = dataFileName;
     }
 
     public GameData Load()
@@ -42,6 +42,8 @@ public class FileDataHandler
 
     public void Save(GameData data)
     {
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string dataFileName = $"gameData_{timestamp}.json";
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         try
         {
@@ -61,5 +63,25 @@ public class FileDataHandler
             string json = JsonUtility.ToJson(data, true);
             File.WriteAllText(fullPath, json);
         }
+    }
+
+    public List<string> GetAllSaveFiles()
+    {
+        List<string> saveFiles = new List<string>();
+
+        if (Directory.Exists(dataDirPath))
+        {
+            string[] files = Directory.GetFiles(dataDirPath, "Save_*.json");
+            foreach (string file in files)
+            {
+                saveFiles.Add(Path.GetFileName(file));
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Save directory does not exist: {dataDirPath}");
+        }
+
+        return saveFiles;
     }
 }

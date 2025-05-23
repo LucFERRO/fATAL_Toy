@@ -79,7 +79,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(ref gameData);
         }
 
-        Debug.Log("Saved game data: " + gameData.currentNumberOfRolls);
+        Debug.Log("Saved game data: ");
 
         dataHandler.Save(gameData);
     }
