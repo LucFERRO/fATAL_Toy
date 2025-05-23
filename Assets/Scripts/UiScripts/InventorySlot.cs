@@ -47,12 +47,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
             {
                 interfaceEventInstance.start();
                 interfaceEventInstance.setParameterByName("UIState", 2);
-                var result = interfaceEventInstance.setParameterByName("IsInInventory", 0);
+                interfaceEventInstance.setParameterByName("IsInInventory", 0);
                 interfaceEventInstance.getParameterByName("UIState", out float value);
                 interfaceEventInstance.getParameterByName("IsInInventory", out float value2);
-                //Debug.Log($"UIState: {value}, {result}");
-                Debug.Log($"IsInInventory: {value2}, {result}");
-                Debug.Log("HoverOnInventory");
             }
             return;
         }
@@ -62,7 +59,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
         currentlyDraggedItem = draggedItem;
         animator.SetBool("IsMouseDraggingOver", true);
 
-        Debug.Log($"Dragging over dice slot: {transform.name}");
         interfaceEventInstance.setParameterByName("UIState", 2);
         interfaceEventInstance.setParameterByName("IsInInventory", 1);
         interfaceEventInstance.start();
@@ -77,9 +73,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
         if (draggedItem == null) return;
 
         currentlyDraggedItem = null;
-        animator.SetBool("isMouseDraggingOver", false);
-
-        Debug.Log($"Exited dice slot: {transform.name}");
+        animator.SetBool("IsMouseDraggingOver", false);
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -128,7 +122,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
             }
             interfaceEventInstance.setParameterByName("UIState", 4);
             interfaceEventInstance.start();
-            Debug.Log("Dropped");
         }
         else
         {
