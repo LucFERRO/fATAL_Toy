@@ -8,12 +8,12 @@ public class GameData
 
     public SerializableDictionary<string, Vector3> mapElevationDict;
 
-    public SerializableDictionary<string, GameObject> mapTypesDict;
+    public SerializableDictionary<string, string> mapTypesDict;
 
     public GameData()
     {
         currentNumberOfRolls = 3;
         mapElevationDict = new SerializableDictionary<string, Vector3>();
-        mapTypesDict = new SerializableDictionary<string, GameObject>();
+        mapTypesDict = new SerializableDictionary<string, string>();
     }
 }

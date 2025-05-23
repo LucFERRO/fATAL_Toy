@@ -22,18 +22,31 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         instance = this;
-    }
-
-    private void Start()
-    {
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+        NewGame();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            dataPersistenceObjects = FindAllDataPersistenceObjects();
+            Debug.Log("Loading last save.");
+            LoadGame();
+        }
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            SaveGame();
+            Debug.Log("Saving game.");
+        }
     }
 
     public void NewGame()
     {
         this.gameData = new GameData();
+        Debug.Log("New game started.");
     }
 
     public void LoadGame()
@@ -55,6 +68,12 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+        if (dataHandler == null)
+        {
+            Debug.LogError("DataHandler is not initialized. Cannot save game.");
+            return;
+        }
+
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.SaveData(ref gameData);
@@ -65,14 +84,14 @@ public class DataPersistenceManager : MonoBehaviour
         dataHandler.Save(gameData);
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    SaveGame();
+    //}
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
-        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistenceObjects);
     }

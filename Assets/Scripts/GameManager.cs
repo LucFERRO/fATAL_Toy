@@ -112,11 +112,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        if (tiles.All(tile => tile.GetComponent<NeighbourTileProcessor>().isLocked))
-        {
-            yield break;
-        }
-
         transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
         transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
         transitionEventInstance.start();
