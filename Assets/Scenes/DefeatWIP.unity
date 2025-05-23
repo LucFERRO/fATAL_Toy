@@ -7396,6 +7396,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1483375029928463147, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 27.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1523676956161524908, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7571,6 +7575,10 @@ PrefabInstance:
     - target: {fileID: 2071125967198705034, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087752688862131172, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 231.4
       objectReference: {fileID: 0}
     - target: {fileID: 2174021063149152875, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7870,7 +7878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4958712139575619919, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 152
+      value: -229.4
       objectReference: {fileID: 0}
     - target: {fileID: 5009192775255063630, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10171,7 +10179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -108.00009, y: 254}
+  m_AnchoredPosition: {x: -108.00009, y: -127.39999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &913914905 stripped
@@ -14371,7 +14379,7 @@ MonoBehaviour:
   numberOfTiles: 0
   objectiveColor: {r: 0.6745098, g: 0.43137255, b: 0.105882354, a: 1}
   finishedBatchCount: 0
-  lvlDifficulty: 5
+  lvlDifficulty: 3
   objectiveStrings: []
   objectiveBools: 
   lerpSpeed: 2
@@ -14604,7 +14612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
   m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
@@ -15082,7 +15090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b9ac5aae6deca4fa932285c3e8b23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumberOfRolls: 10
+  maxNumberOfRolls: 5
   currentNumberOfRolls: 0
   defeatCanvas: {fileID: 1720491928}
   rollCountGo: {fileID: 912871567}
