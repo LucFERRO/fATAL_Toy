@@ -15,26 +15,17 @@ public class TileSplitManager : MonoBehaviour
     public Dictionary<string, int> gridTileSplitDictionary = new();
     public Dictionary<string, int> comboTileSplitDictionary = new();
     public UnityEngine.Color objectiveColor;
-    [Header("Objectives Numbers")]
 
+    [Header("REWORKED Objectives")]
+    private List<TileObjective> objectives = new();
+    public int finishedBatchCount;
+    public int lvlDifficulty;
+
+    [Header("OLD Objectives")]
     private string[] objectiveTargets;
     private int[] objectiveMaxNumbers;
     private int[] objectiveCurrentNumbers;
-
-    public AmbientSoundsManager ambientSoundsManager;
-    private FMOD.Studio.EventInstance wildlifeEventInstance;
-
-    [Header("UI Properties")]
-    [SerializeField] private float lerpSpeed;
-    [SerializeField] private UnityEngine.Color[] biomeNameColors;
-
-    [Header("References")]
-    public Animator endUiAnimator;
-    public Canvas mainCanvas;
-    public Canvas winCanvas;
-    public GameObject objectiveListGo;
-    public TextMeshProUGUI[] objectiveElements;
-    public bool[] areObjectiveOpenBools;
+    public string[] objectiveStrings;
     public bool[] objectiveBools;
     public bool[] ObjectiveBools
     {
@@ -45,7 +36,23 @@ public class TileSplitManager : MonoBehaviour
             CheckObjectives();
         }
     }
-    public string[] objectiveStrings;
+
+
+    [Header("UI Properties")]
+    [SerializeField] private float lerpSpeed;
+    [SerializeField] private UnityEngine.Color[] biomeNameColors;
+
+    [Header("FMOD")]
+    public AmbientSoundsManager ambientSoundsManager;
+    private FMOD.Studio.EventInstance wildlifeEventInstance;
+
+    [Header("References")]
+    public Animator endUiAnimator;
+    public Canvas mainCanvas;
+    public Canvas winCanvas;
+    public GameObject objectiveListGo;
+    public TextMeshProUGUI[] objectiveElements;
+    public bool[] areObjectiveOpenBools;
 
     void Start()
     {
@@ -57,15 +64,36 @@ public class TileSplitManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            objectives[0].ForceComplete();
+            UpdateObjectives();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            objectives[1].ForceComplete();
+            UpdateObjectives();
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            objectives[2].ForceComplete();
+            UpdateObjectives();
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            CreateNewObjectiveBatch();
+            UpdateObjectives();
+        }
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             UpdateObjectives();
-            CheckObjectives();
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
             UpdateTileSplitDictionary();
             Debug.Log($"Base tiles:");
+            //Debug.Log(tileTypeToString[forest]);
             foreach (KeyValuePair<string, int> kvp in gridTileSplitDictionary)
             {
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
@@ -93,6 +121,23 @@ public class TileSplitManager : MonoBehaviour
 
     private void HandleObjectiveKeyWordColor()
     {
+        for (int i = 0; i < objectiveElements.Length; i++)
+        {
+            UnityEngine.Color[] gradientColors = GetFittingGradientColors(objectives[i].Biome);
+            // Calculate the lerp value using Mathf.Sin
+            float t = (Mathf.Sin(Time.time * lerpSpeed) + 1f) / 2f;
+            UnityEngine.Color lerpedColor = UnityEngine.Color.Lerp(gradientColors[0], gradientColors[1], t);
+
+            // Convert the color to a hex string
+            string colorHex = ColorUtility.ToHtmlStringRGB(lerpedColor);
+
+            // Update the text with the animated color for the target word
+            objectiveElements[i].text = GetObjectiveString(i, objectives[i], colorHex);
+        }
+    }
+
+    private void HandleObjectiveKeyWordColorOLD()
+    {
         for (int i = 1; i < objectiveElements.Length; i++)
         {
             UnityEngine.Color[] gradientColors = GetFittingGradientColors(objectiveTargets[i]);
@@ -104,7 +149,7 @@ public class TileSplitManager : MonoBehaviour
             string colorHex = ColorUtility.ToHtmlStringRGB(lerpedColor);
 
             // Update the text with the animated color for the target word
-            objectiveElements[i].text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], colorHex);
+            objectiveElements[i].text = GetObjectiveStringOLD(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], colorHex);
         }
     }
 
@@ -121,8 +166,16 @@ public class TileSplitManager : MonoBehaviour
 
     private UnityEngine.Color[] GetFittingGradientColors(string biomeObjective)
     {
+        if (string.IsNullOrEmpty(biomeObjective))
+        {
+            return new UnityEngine.Color[] { objectiveColor, objectiveColor };
+        }
         string[] biomeArray = ProcessTileType(biomeObjective);
         UnityEngine.Color fittingColor1 = biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), biomeArray[0])];
+        if (biomeArray.Length == 1)
+        {
+            return new UnityEngine.Color[] { fittingColor1, fittingColor1 };
+        }
         UnityEngine.Color fittingColor2 = biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), biomeArray[1])];
         return new UnityEngine.Color[] { fittingColor1, fittingColor2 };
     }
@@ -135,22 +188,160 @@ public class TileSplitManager : MonoBehaviour
         UpdateWildlife();
     }
 
+    private int[] RandomObjectiveTypes()
+    {
+        int objectiveCount = objectiveElements.Length;
+        List<int> possibleTypes = new List<int> { 1, 2, 3, 4 };
+
+        for (int i = possibleTypes.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            int temp = possibleTypes[i];
+            possibleTypes[i] = possibleTypes[j];
+            possibleTypes[j] = temp;
+        }
+
+        List<int> result = new List<int> { 0 };
+        result.AddRange(possibleTypes.Take(objectiveCount - 1));
+
+        return result
+            //.OrderBy(x => x)
+            .ToArray();
+    }
+
     private void InitializeObjectives()
     {
-        int objectiveNumber = objectiveListGo.transform.childCount;
-        areObjectiveOpenBools = new bool[objectiveNumber];
-        objectiveBools = new bool[objectiveNumber];
-        ObjectiveBools = new bool[objectiveNumber];
-        objectiveTargets = new string[objectiveNumber];
-        objectiveMaxNumbers = new int[objectiveNumber];
-        objectiveCurrentNumbers = new int[objectiveNumber];
-        RandomObjectives(1);
-        for (int i = 0; i < objectiveNumber; i++)
+        objectives = new List<TileObjective>();
+        int objectiveCount = objectiveElements.Length;
+        areObjectiveOpenBools = new bool[objectiveCount];
+        int[] objTypes = RandomObjectiveTypes();
+        for (int i = 0; i < objectiveCount; i++)
         {
+            TileObjective obj = ObjectiveFactory.GenerateRandomObjective(objTypes[i], this);
+            if (i == 1 || i == 4)
+            {
+                obj= ObjectiveFactory.GenerateRandomObjective(objTypes[i], this, objectives[0].Biome);
+            }
+            objectives.Add(obj);
+            UpdateObjectiveUI(i, obj);
             areObjectiveOpenBools[i] = true;
-            string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
-            TextMeshProUGUI targetObjectiveString = objectiveElements[i];
-            targetObjectiveString.text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
+            // OLD
+            //int objectiveNumber = objectiveListGo.transform.childCount;
+            //areObjectiveOpenBools = new bool[objectiveNumber];            
+            //objectiveBools = new bool[objectiveNumber];
+            //ObjectiveBools = new bool[objectiveNumber];
+            //objectiveTargets = new string[objectiveNumber];
+            //objectiveMaxNumbers = new int[objectiveNumber];
+            //objectiveCurrentNumbers = new int[objectiveNumber];
+            //RandomObjectives(1);
+            //for (int i = 0; i < objectiveNumber; i++)
+            //{
+            //    areObjectiveOpenBools[i] = true;
+            //    string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
+            //    TextMeshProUGUI targetObjectiveString = objectiveElements[i];
+            //    targetObjectiveString.text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
+            //}
+        }
+    }
+
+    private void CreateNewObjectiveBatch()
+    {
+
+        InitializeObjectives();
+
+        for (int i = 0; i < objectives.Count; i++)
+        {
+            TextMeshProUGUI textMeshProElement = objectiveElements[i];
+            Debug.Log("obj " + i);
+            Debug.Log(objectiveElements[i].fontStyle);
+            objectiveElements[i].fontStyle = FontStyles.Normal;
+            Debug.Log(objectiveElements[i].fontStyle);
+            // ... (rest of your animation/trigger logic)
+            textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", false);
+            if (!areObjectiveOpenBools[i])
+            {
+                Debug.Log($"force open obj {i + 1}");
+                ToggleOpenTargetObjective(i);
+            }
+        }
+    }
+
+    private string GetObjectiveString(int objectiveId, TileObjective objective, string objectiveColor)
+    {
+        UpdateObjectiveShortVersion(objectiveElements[objectiveId].transform.parent, objective.Biome, objective.Progress, objective.Target);
+        //string message = $"Create {objective.Target} <sprite name={objective.Biome}> <color=#{objectiveColor}>{(TileTypeUtils.TileTypeToString.TryGetValue(objective.Biome, out string result) ? result : "")}{(objective.Target > 1 ? "s" : "")}</color>.";
+        string properBiomeName = $"{(TileTypeUtils.TileTypeToString.TryGetValue(objective.Biome, out string result) ? result : "")}{(objective.Target > 1 ? (result == "Marsh" ? "es" : "s") : "")}";
+        string message = objective.Description.Replace("TARGET", objective.Target.ToString()).Replace("BIOME", $"<sprite name={objective.Biome}> <color=#{objectiveColor}>{properBiomeName}</color>");
+        return message;
+    }
+
+    private void UpdateObjectiveShortVersion(Transform objectiveTransform, string target, int current, int max)
+    {
+        TextMeshProUGUI objectiveShortText = objectiveTransform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
+        objectiveShortText.text = $"<size=25>{current}</size>/{max}{(string.IsNullOrEmpty(target) ? "" : $"<size=30><sprite name={target}>")}";
+    }
+
+    public void UpdateObjectives()
+    {
+        for (int i = 0; i < objectives.Count; i++)
+        {
+            if (objectives[i].IsCompleted)
+            {
+                continue;
+            }
+            objectives[i].Evaluate(this);
+            //UpdateObjectiveUI(i, objectives[i]);
+        }
+        CheckObjectives();
+    }
+
+    private void UpdateObjectiveUI(int index, TileObjective obj)
+    {
+        if (index < objectiveElements.Length)
+        {
+            objectiveElements[index].text = GetObjectiveString(index, obj, "ff0000") +
+                //$"\n<size=80%>{obj.GetProgressString()}</size>" +
+                $"";
+            // Optionally, update color/animation as before
+
+        }
+    }
+
+    private void CheckObjectives()
+    {
+        for (int i = 0; i < objectives.Count; i++)
+        {
+            TextMeshProUGUI textMeshProElement = objectiveElements[i];
+            if (objectives[i].IsCompleted)
+            {
+                objectiveElements[i].fontStyle = FontStyles.Strikethrough;
+                // ... (rest of your animation/trigger logic)
+                if (!textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().GetBool("DoneBool"))
+                {
+                    textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", true);
+                }
+                if (areObjectiveOpenBools[i])
+                {
+                    Debug.Log($"force close obj {i + 1}");
+                    ToggleOpenTargetObjective(i);
+                }
+            }
+        }
+
+        if (objectives.All(o => o.IsCompleted))
+        {
+            Debug.Log("All objectives are done!");
+            finishedBatchCount++;
+
+            if (finishedBatchCount >= lvlDifficulty)
+            {
+                endUiAnimator.gameObject.SetActive(true);
+                endUiAnimator.SetTrigger("ToggleTrigger");
+            }
+            else
+            {
+                CreateNewObjectiveBatch();
+            }
         }
     }
 
@@ -175,7 +366,7 @@ public class TileSplitManager : MonoBehaviour
         }
     }
 
-    public void UpdateObjectives()
+    public void UpdateObjectivesOLD()
     {
         for (int i = 0; i < objectiveTargets.Length; i++)
         {
@@ -204,14 +395,14 @@ public class TileSplitManager : MonoBehaviour
 
             TextMeshProUGUI targetObjectiveString = objectiveElements[i];
             string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
-            targetObjectiveString.text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
+            targetObjectiveString.text = GetObjectiveStringOLD(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
         }
     }
 
-    private string GetObjectiveString(int objectiveId, string objectiveTarget, int objectiveCurrentNumber, int objectiveMaxNumber, string objectiveColor)
+    private string GetObjectiveStringOLD(int objectiveId, string objectiveTarget, int objectiveCurrentNumber, int objectiveMaxNumber, string objectiveColor)
     {
-        UpdateObjectiveShortVersion(objectiveElements[objectiveId].transform.parent, objectiveTarget, objectiveCurrentNumber, objectiveMaxNumber);
-        string message = $"Create {objectiveMaxNumber} <sprite name={objectiveTarget}> <color=#{objectiveColor}>{objectiveTarget}{(objectiveMaxNumber > 1 ? "s" : "")}</color>.";
+        UpdateObjectiveShortVersionOLD(objectiveElements[objectiveId].transform.parent, objectiveTarget, objectiveCurrentNumber, objectiveMaxNumber);
+        string message = $"Create {objectiveMaxNumber} <sprite name={objectiveTarget}> <color=#{objectiveColor}>{TileTypeUtils.TileTypeToString[objectiveTarget]}{(objectiveMaxNumber > 1 ? "s" : "")}</color>.";
         return message;
     }
 
@@ -232,7 +423,7 @@ public class TileSplitManager : MonoBehaviour
         ObjectiveBools = newObjectiveBoolArray;
     }
 
-    private void UpdateObjectiveShortVersion(Transform objectiveTransform, string target, int current, int max)
+    private void UpdateObjectiveShortVersionOLD(Transform objectiveTransform, string target, int current, int max)
     {
         TextMeshProUGUI objectiveShortText = objectiveTransform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
         objectiveShortText.text = $"<size=25>{current}</size>/{max}<size=30><sprite name={target}>";
@@ -244,7 +435,7 @@ public class TileSplitManager : MonoBehaviour
         objectiveElements[objectiveId].transform.parent.GetComponent<Animator>().SetTrigger("ToggleTrigger");
     }
 
-    private void CheckObjectives()
+    private void CheckObjectivesOLD()
     {
         for (int i = 0; i < objectiveBools.Length; i++)
         {

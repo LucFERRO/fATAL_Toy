@@ -6425,7 +6425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <size=25>0</size>/11<size=30><sprite name=lake>
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
   m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
@@ -14370,7 +14370,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTiles: 0
   objectiveColor: {r: 0.6745098, g: 0.43137255, b: 0.105882354, a: 1}
-  ambientSoundsManager: {fileID: 31357688}
+  finishedBatchCount: 0
+  lvlDifficulty: 2
+  objectiveStrings: []
+  objectiveBools: 
   lerpSpeed: 2
   biomeNameColors:
   - {r: 0, g: 0.6901961, b: 0.29411766, a: 1}
@@ -14387,6 +14390,7 @@ MonoBehaviour:
   - {r: 0.7686275, g: 0.8980393, b: 0, a: 0}
   - {r: 0.7686275, g: 0.8980393, b: 0, a: 0}
   - {r: 0.7686275, g: 0.8980393, b: 0, a: 0}
+  ambientSoundsManager: {fileID: 31357688}
   endUiAnimator: {fileID: 1720491932}
   mainCanvas: {fileID: 293149564}
   winCanvas: {fileID: 1442645643}
@@ -14396,8 +14400,6 @@ MonoBehaviour:
   - {fileID: 1850108935415256891}
   - {fileID: 8307777499671437912}
   areObjectiveOpenBools: 
-  objectiveBools: 
-  objectiveStrings: []
 --- !u!1 &1395431277
 GameObject:
   m_ObjectHideFlags: 0
@@ -25688,8 +25690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 276.00006, y: 0}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 246.3261, y: 0}
+  m_SizeDelta: {x: 240.6521, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2589490851796952973
 CanvasRenderer:
@@ -25761,8 +25763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 276, y: 0}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 246.32607, y: 0}
+  m_SizeDelta: {x: 240.6521, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3042811561937130390
 GameObject:
@@ -25834,8 +25836,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 276.00006, y: 0}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 246.3261, y: 0}
+  m_SizeDelta: {x: 240.6521, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3667244131882097688
 CanvasRenderer:
@@ -26420,7 +26422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Objective 1 : '
+  m_text: 'Objective 1 :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
   m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}

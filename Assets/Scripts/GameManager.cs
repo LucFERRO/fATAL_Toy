@@ -105,7 +105,6 @@ public class GameManager : MonoBehaviour
         Vector3 center = AverageClusterCenter(tiles);
 
         yield return new WaitForSeconds(time);
-        Debug.Log($"center: {center}, transition level: {transitionLevel}");
         transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
         transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
         transitionEventInstance.start();
@@ -175,7 +174,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles, float time, int transitionLevel)
     {
-        Debug.Log(tiles.Count + ", " + transitionLevel);
         yield return new WaitForSeconds(time);
 
         foreach (GameObject tile in tiles)
