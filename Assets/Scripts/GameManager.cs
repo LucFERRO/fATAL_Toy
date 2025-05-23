@@ -111,6 +111,12 @@ public class GameManager : MonoBehaviour
         Vector3 center = AverageClusterCenter(tiles);
 
         yield return new WaitForSeconds(time);
+
+        if (tiles.All(tile => tile.GetComponent<NeighbourTileProcessor>().isLocked))
+        {
+            yield break;
+        }
+
         transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
         transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
         transitionEventInstance.start();
@@ -164,7 +170,7 @@ public class GameManager : MonoBehaviour
             {
                 GameObject neighbourChild = neighbourTile.transform.GetChild(0).gameObject;
                 //if (Array.IndexOf(traveledTiles, neighbourChild) < 0 && !traveledTilesNeighbours.Contains(neighbourChild))
-                if (!traveledTiles.Contains(neighbourChild) && !traveledTilesNeighbours.Contains(neighbourChild))
+                if (!traveledTiles.Contains(neighbourChild) && !traveledTilesNeighbours.Contains(neighbourChild) && !neighbourChild.GetComponent<NeighbourTileProcessor>().isLocked)
                 {
                     traveledTilesNeighbours.Add(neighbourChild);
                 }
@@ -174,6 +180,10 @@ public class GameManager : MonoBehaviour
         foreach (GameObject surroundingTiles in traveledTilesNeighbours)
         {
             //surroundingTiles.GetComponent<MeshRenderer>().material.color = Color.blue;
+            if (surroundingTiles.GetComponent<NeighbourTileProcessor>().isLocked)
+            {
+                continue;
+            }
 
             GridNeighbourHandler gridNeighbourHandler = surroundingTiles.transform.parent.GetComponent<GridNeighbourHandler>();
             gridNeighbourHandler.UpdateNeighbourTiles();
@@ -193,7 +203,7 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject tile in tiles)
         {
-            if (tile == null)
+            if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
             {
                 continue;
             }

@@ -183,9 +183,9 @@ public class RollingDiceData : MonoBehaviour
         {
             foreach (GameObject tile in new List<GameObject>(traveledTilesGO))
             {
-                if (tile == null)
+                if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
                 {
-                    continue;
+                    continue; // Ignorez les tuiles verrouillées
                 }
 
                 NeighbourTileProcessor newTile = UpdateSingleHex(tile, newHexPrefab, tileType);
@@ -198,9 +198,9 @@ public class RollingDiceData : MonoBehaviour
             int randomRingTile = UnityEngine.Random.Range(0, tiles.Length);
             foreach (GameObject tile in new List<GameObject>(traveledTilesGO))
             {
-                if (tile == null)
+                if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
                 {
-                    continue;
+                    continue; // Ignorez les tuiles verrouillées
                 }
                 if (tile == traveledTilesGO[closestTileIndex])
                 {
@@ -218,6 +218,10 @@ public class RollingDiceData : MonoBehaviour
 
             foreach (GameObject tile in closestNeighbourTilesGOs)
             {
+                if (tile.transform.GetChild(0).GetComponent<NeighbourTileProcessor>().isLocked)
+                {
+                    continue; // Ignorez les tuiles verrouillées
+                }
                 NeighbourTileProcessor newTileRing = UpdateSingleHex(tile.transform.GetChild(0).gameObject, gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), tiles[randomRingTile])], tiles[randomRingTile]);
                 newTiles.Add(newTileRing.gameObject);
             }
