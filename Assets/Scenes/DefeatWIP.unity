@@ -14391,6 +14391,7 @@ MonoBehaviour:
   - {r: 0.7686275, g: 0.8980393, b: 0, a: 0}
   - {r: 0.7686275, g: 0.8980393, b: 0, a: 0}
   ambientSoundsManager: {fileID: 31357688}
+  gameManager: {fileID: 1441868373}
   endUiAnimator: {fileID: 1720491932}
   mainCanvas: {fileID: 293149564}
   winCanvas: {fileID: 1442645643}

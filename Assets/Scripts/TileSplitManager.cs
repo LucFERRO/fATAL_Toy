@@ -47,6 +47,7 @@ public class TileSplitManager : MonoBehaviour
     private FMOD.Studio.EventInstance wildlifeEventInstance;
 
     [Header("References")]
+    public GameManager gameManager;
     public Animator endUiAnimator;
     public Canvas mainCanvas;
     public Canvas winCanvas;
@@ -293,6 +294,20 @@ public class TileSplitManager : MonoBehaviour
             //UpdateObjectiveUI(i, objectives[i]);
         }
         CheckObjectives();
+    }
+
+    public int WhatIsMaxRoll()
+    {
+        return gameManager.MaxTilesRolled;
+    }    
+    public int WhatIsMinRoll()
+    {
+        return gameManager.MinTilesRolled;
+    }
+
+    public bool IsDiceMadeOfOneBiome(string targetBiome)
+    {
+        return gameManager.IsDiceMadeOfOneBiome(targetBiome);
     }
 
     private void UpdateObjectiveUI(int index, TileObjective obj)

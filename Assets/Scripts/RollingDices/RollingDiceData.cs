@@ -110,6 +110,7 @@ public class RollingDiceData : MonoBehaviour
     private void Initialize()
     {
         gameManager = transform.parent.GetComponent<GameManager>();
+        gameManager.faceTypes = new string[numberOfFaces];
         defeatManager = transform.parent.GetComponent<DefeatManager>(); 
         diceRb = GetComponent<Rigidbody>();
         maxDisappearanceTimer = gameManager.diceMaxDisappearanceTimer;
@@ -119,6 +120,7 @@ public class RollingDiceData : MonoBehaviour
         for (int i = 0; i < numberOfFaces; i++)
         {
             faceComponentArray[i] = transform.GetChild(i).GetComponent<FaceComponent>();
+            gameManager.faceTypes[i] = faceComponentArray[i].faceType;
         }
 
         isInUse = true;

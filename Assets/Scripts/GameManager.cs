@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
 
     [Header("LockedTiles")]
     public int maxLockedTiles;
+    private int minTilesRolled = int.MaxValue;
+    private int maxTilesRolled = int.MinValue;
+    public string[] faceTypes;
+
+    public int MinTilesRolled => minTilesRolled == int.MaxValue ? 0 : minTilesRolled;
+    public int MaxTilesRolled => maxTilesRolled == int.MinValue ? 0 : maxTilesRolled;
 
     public Dictionary<int, string> baseTileDictionary = new();
     public Dictionary<int, string> comboDictionary = new();
@@ -112,17 +118,26 @@ public class GameManager : MonoBehaviour
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
     {
+        int count = tiles?.Count ?? 0;
+        if (count > 0)
+        {
+            if (count < minTilesRolled) minTilesRolled = count;
+            if (count > maxTilesRolled) maxTilesRolled = count;
+        }
+
+        Debug.Log($"minTilesRolled: {minTilesRolled}, maxTilesRolled: {maxTilesRolled}");
+
         List<GameObject> NeighbourCascade = UpdateNeighboursCascade(tiles);
         StartCoroutine(TransitionSoundsCoroutine(tiles, 0f, 0));
         StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f, 0));
-        // Tweak le 0.2 en 0.4+ si needed
+
+        //Fix 2e son always plays
         if (NeighbourCascade.Count != 0)
         {
             StartCoroutine(TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1));
             StartCoroutine(UpdateNeighboursCoroutine(NeighbourCascade, 0.7f, 1));
         }
         StartCoroutine(GlobalGridUpdateCoroutine(2f));
-
     }
 
     public IEnumerator GlobalGridUpdateCoroutine(float time)
@@ -202,6 +217,31 @@ public class GameManager : MonoBehaviour
     public void ToggleDebugUI()
     {
         DebugUI = !DebugUI;
+    }
+    public bool IsDiceMadeOfOneBiome(string targetBiome)
+    {
+        {
+            if (string.IsNullOrEmpty(targetBiome))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                if (faceTypes[i] == null)
+                {
+                    return false;
+                }
+
+                if (!faceTypes[i].Contains(targetBiome, StringComparison.OrdinalIgnoreCase))
+                {
+                    Debug.Log($"Tile type {faceTypes[i]} of face {i} does not match target biome {targetBiome}");
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
     private void CreateBaseTileDictionary()

@@ -68,10 +68,11 @@ public class ChangeTilesInOneRoll : TileObjective
     public override void Evaluate(TileSplitManager manager)
     {
         //var rollCounts = manager.GetRollCounts();
-        //Progress = rollCounts.Values.Max();
         //IsCompleted = Progress >= Target;
-        Progress = 99;
-        IsCompleted = true;
+        int currentMaxRoll = manager.WhatIsMaxRoll();
+        Progress = currentMaxRoll;
+        //Progress = 99;
+        IsCompleted = currentMaxRoll >= Target;
     }
 }
 public class ChangeLessTilesInOneRoll : TileObjective
@@ -86,10 +87,11 @@ public class ChangeLessTilesInOneRoll : TileObjective
     public override void Evaluate(TileSplitManager manager)
     {
         //var rollCounts = manager.GetRollCounts();
-        //Progress = rollCounts.Values.Max();
         //IsCompleted = Progress >= Target;
-        Progress = 99;
-        IsCompleted = true;
+        int currentMinRoll = manager.WhatIsMinRoll();
+        Progress = currentMinRoll;
+        //Progress = 99;
+        IsCompleted = currentMinRoll <= Target;
     }
 }
 
@@ -104,10 +106,10 @@ public class AllFacesSameBiomeObjective : TileObjective
 
     public override void Evaluate(TileSplitManager manager)
     {
-        //Progress = manager.HasDiceWithAllFacesBiome(biome) ? 1 : 0;
+        Progress = manager.IsDiceMadeOfOneBiome(Biome) ? 1 : 0;
         //IsCompleted = Progress >= Target;
-        Progress = 99;
-        IsCompleted = true;
+        //Progress = 99;
+        IsCompleted = Progress == 1;
     }
 }
 
