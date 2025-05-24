@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class DefeatManager : MonoBehaviour
+public class DefeatManager : MonoBehaviour, IDataPersistence
 {
     public int maxNumberOfRolls;
     public int currentNumberOfRolls;
@@ -13,6 +13,16 @@ public class DefeatManager : MonoBehaviour
     void Start()
     {
         InitializeDefeatManager();
+    }
+
+    public void LoadData(GameData data)
+    {
+        currentNumberOfRolls = data.currentNumberOfRolls;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currentNumberOfRolls = currentNumberOfRolls;
     }
 
     void InitializeDefeatManager()

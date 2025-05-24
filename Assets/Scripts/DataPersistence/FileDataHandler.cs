@@ -1,0 +1,87 @@
+using UnityEngine;
+using System;
+using System.IO;
+using System.Collections.Generic;
+
+public class FileDataHandler
+{
+    private string dataDirPath = "";
+    private string dataFileName = "";
+
+    public FileDataHandler(string dataDirPath, string dataFileName)
+    {
+        this.dataDirPath = dataDirPath;
+    }
+
+    public GameData Load()
+    {
+        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        GameData loadedData = null;
+        if (File.Exists(fullPath))
+        {
+            try
+            {
+                string dataToLoad = "";
+                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        dataToLoad = reader.ReadToEnd();
+                    }
+                }
+
+                loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to load data from {fullPath}: {e.Message}");
+            }
+        }
+        return loadedData;
+    }
+
+    public void Save(GameData data)
+    {
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string dataFileName = $"gameData_{timestamp}.json";
+        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        try
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+            string dataToStore = JsonUtility.ToJson(data, true);
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            {
+                using (StreamWriter writer = new StreamWriter(stream))
+                {
+                    writer.Write(dataToStore);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to save data to {fullPath}: {e.Message}");
+            string json = JsonUtility.ToJson(data, true);
+            File.WriteAllText(fullPath, json);
+        }
+    }
+
+    public List<string> GetAllSaveFiles()
+    {
+        List<string> saveFiles = new List<string>();
+
+        if (Directory.Exists(dataDirPath))
+        {
+            string[] files = Directory.GetFiles(dataDirPath, "Save_*.json");
+            foreach (string file in files)
+            {
+                saveFiles.Add(Path.GetFileName(file));
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Save directory does not exist: {dataDirPath}");
+        }
+
+        return saveFiles;
+    }
+}
