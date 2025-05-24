@@ -510,6 +510,9 @@ MonoBehaviour:
   - {fileID: 1671714682}
   - {fileID: 364391519}
   - {fileID: 1862264771}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &20473638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,6 +1819,9 @@ MonoBehaviour:
   - {fileID: 1931913908}
   - {fileID: 763193155}
   - {fileID: 364391519}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &132238211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,6 +1874,9 @@ MonoBehaviour:
   - {fileID: 2084669899}
   - {fileID: 1860089986}
   - {fileID: 918786942}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &132547916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8613572608731749087, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -1931,6 +1940,9 @@ MonoBehaviour:
   - {fileID: 454407351}
   - {fileID: 317863486}
   - {fileID: 842983356}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &145931761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,6 +1994,9 @@ MonoBehaviour:
   - {fileID: 1671714682}
   - {fileID: 1564145663}
   - {fileID: 266252813}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &150646313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,6 +2256,9 @@ MonoBehaviour:
   neighbourTileGOs:
   - {fileID: 1862967580}
   - {fileID: 1756584744}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &175286827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -2879,6 +2897,9 @@ MonoBehaviour:
   - {fileID: 410228139}
   - {fileID: 388497878}
   - {fileID: 1996588385}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &266252813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,6 +2951,9 @@ MonoBehaviour:
   - {fileID: 1832943212}
   - {fileID: 145931761}
   - {fileID: 388497878}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &267980969
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,6 +3843,9 @@ MonoBehaviour:
   - {fileID: 123856175}
   - {fileID: 842983356}
   - {fileID: 524820218}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &301839936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,6 +3899,9 @@ MonoBehaviour:
   - {fileID: 1598812423}
   - {fileID: 1243815441}
   - {fileID: 1562188912}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &303594286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -3930,6 +3960,9 @@ MonoBehaviour:
   - {fileID: 1364397047}
   - {fileID: 1140256791}
   - {fileID: 1485954741}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &313424049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4057,6 +4090,9 @@ MonoBehaviour:
   - {fileID: 123856175}
   - {fileID: 1931913908}
   - {fileID: 1985895784}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &323912042 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 310458752294516087, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -4184,6 +4220,9 @@ MonoBehaviour:
   - {fileID: 769561813}
   - {fileID: 1097976177}
   - {fileID: 467847771}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &364391519
 GameObject:
   m_ObjectHideFlags: 0
@@ -4237,6 +4276,9 @@ MonoBehaviour:
   - {fileID: 123856175}
   - {fileID: 763193155}
   - {fileID: 1671714682}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &364564551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,6 +4444,9 @@ MonoBehaviour:
   - {fileID: 975702402}
   - {fileID: 266252813}
   - {fileID: 262092677}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &388498893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4733,6 +4778,9 @@ MonoBehaviour:
   - {fileID: 388497878}
   - {fileID: 262092677}
   - {fileID: 1364397047}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &411471920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -4922,6 +4970,9 @@ MonoBehaviour:
   - {fileID: 1881830572}
   - {fileID: 1579932583}
   - {fileID: 868086737}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &417553418
 GameObject:
   m_ObjectHideFlags: 0
@@ -4975,6 +5026,9 @@ MonoBehaviour:
   - {fileID: 763193155}
   - {fileID: 1832943212}
   - {fileID: 975702402}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!224 &426946362 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2087752688862131172, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -5355,6 +5409,9 @@ MonoBehaviour:
   - {fileID: 317863486}
   - {fileID: 1985895784}
   - {fileID: 1224077689}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &455045254
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,6 +5612,9 @@ MonoBehaviour:
   - {fileID: 1097976177}
   - {fileID: 1490708512}
   - {fileID: 2084669899}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &473137883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6098,6 +6158,9 @@ MonoBehaviour:
   - {fileID: 301440621}
   - {fileID: 842983356}
   - {fileID: 1661830482}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &526869832
 GameObject:
   m_ObjectHideFlags: 0
@@ -6427,8 +6490,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
-  m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6762,6 +6825,9 @@ MonoBehaviour:
   - {fileID: 467847771}
   - {fileID: 363463761}
   - {fileID: 1446694281}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &571062625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9219,6 +9285,9 @@ MonoBehaviour:
   - {fileID: 364391519}
   - {fileID: 1671714682}
   - {fileID: 1832943212}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &769561813
 GameObject:
   m_ObjectHideFlags: 0
@@ -9272,6 +9341,9 @@ MonoBehaviour:
   - {fileID: 301839936}
   - {fileID: 1778116384}
   - {fileID: 1097976177}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &774726446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9529,6 +9601,9 @@ MonoBehaviour:
   - {fileID: 1223044685}
   - {fileID: 864774573}
   - {fileID: 1327192034}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &826334892
 GameObject:
   m_ObjectHideFlags: 0
@@ -9760,6 +9835,9 @@ MonoBehaviour:
   - {fileID: 144904597}
   - {fileID: 317863486}
   - {fileID: 123856175}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &845447136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -9923,6 +10001,9 @@ MonoBehaviour:
   - {fileID: 1921912233}
   - {fileID: 957127839}
   - {fileID: 1223044685}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &868086737
 GameObject:
   m_ObjectHideFlags: 0
@@ -9974,6 +10055,9 @@ MonoBehaviour:
   - {fileID: 1579932583}
   - {fileID: 1262895858}
   - {fileID: 1463817668}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &890478615
 GameObject:
   m_ObjectHideFlags: 0
@@ -10237,6 +10321,9 @@ MonoBehaviour:
   - {fileID: 132238211}
   - {fileID: 1860089986}
   - {fileID: 1881830572}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &926423267
 GameObject:
   m_ObjectHideFlags: 0
@@ -10896,6 +10983,9 @@ MonoBehaviour:
   - {fileID: 2123583530}
   - {fileID: 132238211}
   - {fileID: 1353999847}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &957127839
 GameObject:
   m_ObjectHideFlags: 0
@@ -10949,6 +11039,9 @@ MonoBehaviour:
   - {fileID: 1224077689}
   - {fileID: 454407351}
   - {fileID: 1921912233}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &958956753
 GameObject:
   m_ObjectHideFlags: 0
@@ -11000,6 +11093,9 @@ MonoBehaviour:
   - {fileID: 2053191611}
   - {fileID: 1223044685}
   - {fileID: 811885377}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &968575633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11122,6 +11218,9 @@ MonoBehaviour:
   - {fileID: 266252813}
   - {fileID: 388497878}
   - {fileID: 410228139}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &985405478
 GameObject:
   m_ObjectHideFlags: 0
@@ -11173,6 +11272,9 @@ MonoBehaviour:
   - {fileID: 1227192644}
   - {fileID: 1947693263}
   - {fileID: 1982101435}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &986838677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -11861,6 +11963,9 @@ MonoBehaviour:
   - {fileID: 2084669899}
   - {fileID: 467847771}
   - {fileID: 570922175}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1097976177
 GameObject:
   m_ObjectHideFlags: 0
@@ -11914,6 +12019,9 @@ MonoBehaviour:
   - {fileID: 301839936}
   - {fileID: 1562188912}
   - {fileID: 1490708512}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!114 &1098208739 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7915866141876705299, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -12496,6 +12604,9 @@ MonoBehaviour:
   - {fileID: 1243815441}
   - {fileID: 1562188912}
   - {fileID: 1323090582}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1145987758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12972,6 +13083,9 @@ MonoBehaviour:
   - {fileID: 1862967580}
   - {fileID: 1485954741}
   - {fileID: 2123583530}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1165239927
 GameObject:
   m_ObjectHideFlags: 0
@@ -13011,6 +13125,51 @@ RectTransform:
   m_AnchoredPosition: {x: -204, y: 546}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1191232728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1191232730}
+  - component: {fileID: 1191232729}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1191232729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191232728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc199a10f0c00e441a621901a4052991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: 
+--- !u!4 &1191232730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191232728}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1432.5852, y: 758.7127, z: 839.6426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1210100294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -13138,6 +13297,9 @@ MonoBehaviour:
   - {fileID: 957127839}
   - {fileID: 1446694281}
   - {fileID: 2053191611}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1223387087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -13196,6 +13358,9 @@ MonoBehaviour:
   - {fileID: 1985895784}
   - {fileID: 769561813}
   - {fileID: 363463761}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1227192644
 GameObject:
   m_ObjectHideFlags: 0
@@ -13249,6 +13414,9 @@ MonoBehaviour:
   - {fileID: 864774573}
   - {fileID: 1921912233}
   - {fileID: 1353652823}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1233965997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13376,6 +13544,9 @@ MonoBehaviour:
   - {fileID: 1598812423}
   - {fileID: 410228139}
   - {fileID: 1364397047}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1255701750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -13503,6 +13674,9 @@ MonoBehaviour:
   - {fileID: 570922175}
   - {fileID: 1094297343}
   - {fileID: 1579932583}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1272069379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2678803484092343250, guid: 445756eada2fadd478d2497165be13b1, type: 3}
@@ -13714,6 +13888,9 @@ MonoBehaviour:
   - {fileID: 1562188912}
   - {fileID: 1490708512}
   - {fileID: 1353999847}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1327192034
 GameObject:
   m_ObjectHideFlags: 0
@@ -13765,6 +13942,9 @@ MonoBehaviour:
   - {fileID: 864774573}
   - {fileID: 1227192644}
   - {fileID: 985405478}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1335760539
 GameObject:
   m_ObjectHideFlags: 0
@@ -14043,6 +14223,9 @@ MonoBehaviour:
   - {fileID: 1227192644}
   - {fileID: 1921912233}
   - {fileID: 144904597}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1353999847
 GameObject:
   m_ObjectHideFlags: 0
@@ -14096,6 +14279,9 @@ MonoBehaviour:
   - {fileID: 1323090582}
   - {fileID: 1490708512}
   - {fileID: 2084669899}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1364397047
 GameObject:
   m_ObjectHideFlags: 0
@@ -14149,6 +14335,9 @@ MonoBehaviour:
   - {fileID: 262092677}
   - {fileID: 1996588385}
   - {fileID: 305223576}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1376900512 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -14468,8 +14657,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
-  m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14614,8 +14803,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
-  m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15153,6 +15342,9 @@ MonoBehaviour:
   - {fileID: 363463761}
   - {fileID: 1224077689}
   - {fileID: 957127839}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1447241845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -15371,6 +15563,9 @@ MonoBehaviour:
   - {fileID: 1262895858}
   - {fileID: 2053191611}
   - {fileID: 958956753}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1478277447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15493,6 +15688,9 @@ MonoBehaviour:
   - {fileID: 305223576}
   - {fileID: 1140256791}
   - {fileID: 1323090582}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1490708512
 GameObject:
   m_ObjectHideFlags: 0
@@ -15546,6 +15744,9 @@ MonoBehaviour:
   - {fileID: 1562188912}
   - {fileID: 1323090582}
   - {fileID: 1353999847}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1490970638
 GameObject:
   m_ObjectHideFlags: 0
@@ -15596,6 +15797,9 @@ MonoBehaviour:
   - {fileID: 1661830482}
   - {fileID: 1353652823}
   - {fileID: 1947693263}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1501532337
 GameObject:
   m_ObjectHideFlags: 0
@@ -15781,6 +15985,9 @@ MonoBehaviour:
   neighbourTileGOs:
   - {fileID: 1564145663}
   - {fileID: 17485741}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1525125551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15944,6 +16151,9 @@ MonoBehaviour:
   - {fileID: 1243815441}
   - {fileID: 1140256791}
   - {fileID: 1323090582}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1563282738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8233618516597459370, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
@@ -16011,6 +16221,9 @@ MonoBehaviour:
   - {fileID: 17485741}
   - {fileID: 1671714682}
   - {fileID: 145931761}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1567119429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -16209,6 +16422,9 @@ MonoBehaviour:
   neighbourTileGOs:
   - {fileID: 1881830572}
   - {fileID: 415340183}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1576907666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -16272,6 +16488,9 @@ MonoBehaviour:
   - {fileID: 1262895858}
   - {fileID: 868086737}
   - {fileID: 415340183}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1589802146
 GameObject:
   m_ObjectHideFlags: 0
@@ -16434,6 +16653,9 @@ MonoBehaviour:
   - {fileID: 417553418}
   - {fileID: 975702402}
   - {fileID: 410228139}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1605442717 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5542665937848157643, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -16560,6 +16782,9 @@ MonoBehaviour:
   - {fileID: 144904597}
   - {fileID: 1353652823}
   - {fileID: 1490970638}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1664299726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -16618,6 +16843,9 @@ MonoBehaviour:
   - {fileID: 1832943212}
   - {fileID: 145931761}
   - {fileID: 1564145663}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!114 &1674260178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17035,6 +17263,9 @@ MonoBehaviour:
   - {fileID: 1862967580}
   - {fileID: 1996588385}
   - {fileID: 305223576}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1769042492 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6986869847323201329, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -17271,6 +17502,9 @@ MonoBehaviour:
   - {fileID: 417553418}
   - {fileID: 1598812423}
   - {fileID: 301839936}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1797266535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17532,6 +17766,9 @@ MonoBehaviour:
   - {fileID: 145931761}
   - {fileID: 266252813}
   - {fileID: 975702402}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1835262349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17939,6 +18176,9 @@ MonoBehaviour:
   - {fileID: 2084669899}
   - {fileID: 1094297343}
   - {fileID: 1579932583}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1862264771
 GameObject:
   m_ObjectHideFlags: 0
@@ -17989,6 +18229,9 @@ MonoBehaviour:
   - {fileID: 17485741}
   - {fileID: 364391519}
   - {fileID: 301440621}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1862967580
 GameObject:
   m_ObjectHideFlags: 0
@@ -18041,6 +18284,9 @@ MonoBehaviour:
   - {fileID: 305223576}
   - {fileID: 1485954741}
   - {fileID: 1158797621}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1874290684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18162,6 +18408,9 @@ MonoBehaviour:
   - {fileID: 1579932583}
   - {fileID: 415340183}
   - {fileID: 1576032872}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1001 &1883636626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18373,6 +18622,9 @@ MonoBehaviour:
   - {fileID: 1353652823}
   - {fileID: 144904597}
   - {fileID: 454407351}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1931913908
 GameObject:
   m_ObjectHideFlags: 0
@@ -18426,6 +18678,9 @@ MonoBehaviour:
   - {fileID: 763193155}
   - {fileID: 417553418}
   - {fileID: 1778116384}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1940999894
 GameObject:
   m_ObjectHideFlags: 0
@@ -18485,8 +18740,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
-  m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18614,6 +18869,9 @@ MonoBehaviour:
   - {fileID: 1227192644}
   - {fileID: 985405478}
   - {fileID: 1982101435}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!4 &1950190054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276796977542601222, guid: d149d629c15a18c4fb0cb020ff2812ce, type: 3}
@@ -18799,6 +19057,9 @@ MonoBehaviour:
   neighbourTileGOs:
   - {fileID: 1947693263}
   - {fileID: 985405478}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1985895784
 GameObject:
   m_ObjectHideFlags: 0
@@ -18852,6 +19113,9 @@ MonoBehaviour:
   - {fileID: 1931913908}
   - {fileID: 1778116384}
   - {fileID: 769561813}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1988731841
 GameObject:
   m_ObjectHideFlags: 0
@@ -23845,6 +24109,9 @@ MonoBehaviour:
   - {fileID: 1364397047}
   - {fileID: 262092677}
   - {fileID: 1756584744}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &1999081653
 GameObject:
   m_ObjectHideFlags: 0
@@ -24624,6 +24891,9 @@ MonoBehaviour:
   - {fileID: 1446694281}
   - {fileID: 570922175}
   - {fileID: 1262895858}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &2054361227
 GameObject:
   m_ObjectHideFlags: 0
@@ -24922,6 +25192,9 @@ MonoBehaviour:
   - {fileID: 1490708512}
   - {fileID: 1353999847}
   - {fileID: 132238211}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &2103457210 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4246187060253654541, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -25253,6 +25526,9 @@ MonoBehaviour:
   - {fileID: 1323090582}
   - {fileID: 1353999847}
   - {fileID: 956406728}
+  gameManager: {fileID: 0}
+  baseHex: {fileID: 0}
+  id: 
 --- !u!1 &2127554180 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5180579866232548108, guid: c8ffd4e1b262ac0408c94e27e8b36fb3, type: 3}
@@ -25540,8 +25816,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective 2 : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
-  m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -26436,8 +26712,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective 1 :'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
-  m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -26754,8 +27030,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Objective 3 :'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
-  m_sharedMaterial: {fileID: 209273390515513862, guid: 53d998e7723248942a0f1b59ec118e57, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -27116,6 +27392,7 @@ SceneRoots:
   - {fileID: 890478616}
   - {fileID: 522651597}
   - {fileID: 8942213}
+  - {fileID: 1191232730}
   - {fileID: 1441868374}
   - {fileID: 723368897}
   - {fileID: 1826404929}
