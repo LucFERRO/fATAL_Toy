@@ -36,7 +36,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         transform.SetParent(transform.root); // Temporarily move to the root for dragging
         transform.SetAsLastSibling(); // Ensure it's rendered on top
-        group.alpha = 0.6f; // Make the item semi-transparent while dragging
+        group.alpha = 1f; 
         image.raycastTarget = false; // Disable raycast to avoid blocking drop detection
         childBackground.SetActive(true);
         childBackground.GetComponent<Image>().raycastTarget = false;
@@ -62,7 +62,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             Destroy(placeholderClone);
         }
-        group.alpha = 1f; // Restore full opacity
+        //group.alpha = 1f; // Restore full opacity
         image.raycastTarget = true; // Re-enable raycast
         childBackground.SetActive(false);
     }
