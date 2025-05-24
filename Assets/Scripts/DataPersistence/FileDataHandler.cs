@@ -42,7 +42,7 @@ public class FileDataHandler
 
     public void Save(GameData data)
     {
-        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string timestamp = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
         string dataFileName = $"gameData_{timestamp}.json";
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         try
