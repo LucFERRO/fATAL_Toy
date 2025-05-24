@@ -62,7 +62,7 @@ public class ChangeTilesInOneRoll : TileObjective
     {
         Biome = "";
         Target = target;
-        Description = $"Roll over TARGET or more tiles with the same roll";
+        Description = $"Modify directly TARGET or more tiles with the same roll";
     }
 
     public override void Evaluate(TileSplitManager manager)
@@ -81,7 +81,7 @@ public class ChangeLessTilesInOneRoll : TileObjective
     {
         Biome = "";
         Target = target;
-        Description = $"Roll over TARGET or less tiles with the same roll";
+        Description = $"Modify directly TARGET or less tiles with the same roll";
     }
 
     public override void Evaluate(TileSplitManager manager)

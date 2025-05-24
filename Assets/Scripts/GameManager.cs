@@ -126,7 +126,6 @@ public class GameManager : MonoBehaviour
             if (count > maxTilesRolled) maxTilesRolled = count;
         }
 
-        Debug.Log($"minTilesRolled: {minTilesRolled}, maxTilesRolled: {maxTilesRolled}");
 
         List<GameObject> NeighbourCascade = UpdateNeighboursCascade(tiles);
         StartCoroutine(TransitionSoundsCoroutine(tiles, 0f, 0));

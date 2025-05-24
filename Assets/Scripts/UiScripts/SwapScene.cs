@@ -1,27 +1,26 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SwapScene : MonoBehaviour
 {
     public string SceneExactName;
-    public GameObject maskStencil;
+    public Animator stencilAnimator;
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Backspace))
-    //    {
-    //        Debug.Log("backspace");
-    //        maskStencil.SetActive(true);
-    //    }
-    //}
-
-        public void changeSceneToSwapName( string newName)
+    public void changeSceneToSwapName(string newName)
     {
         SceneExactName = newName;
     }
 
+    public IEnumerator ChangeSceneCoroutine()
+    {
+        yield return new WaitForSeconds(2.3f);
+        SceneManager.LoadScene(SceneExactName);
+    }
+
     public void SwapTheScene()
     {
-        SceneManager.LoadScene(SceneExactName);
+        stencilAnimator.SetTrigger("StencielAppearTrigger");
+        StartCoroutine(ChangeSceneCoroutine());
     }
 }

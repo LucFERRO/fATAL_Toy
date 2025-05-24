@@ -50,15 +50,21 @@ public class UiManager : MonoBehaviour
     {
         if (isPaused)
         {
-            ToggleTimeCoroutine();
+            StartCoroutine(StopTimeCoroutine());
         }
         else
         {
-            Time.timeScale = 1f; // Resume the game
+            //StartCoroutine(ResumeTimeCoroutine());
+            Time.timeScale = 1f;
         }
     }
 
-    private IEnumerator ToggleTimeCoroutine()
+    private IEnumerator ResumeTimeCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 1f;
+    }    
+    private IEnumerator StopTimeCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0f;
