@@ -14,7 +14,10 @@ public class SwapScene : MonoBehaviour
 
     public IEnumerator ChangeSceneCoroutine()
     {
-        yield return new WaitForSeconds(2.3f);
+        Debug.Log($"[SwapScene] Attempting to change scene to '{SceneExactName}'");
+        Time.timeScale = 1f;
+        yield return new WaitForSecondsRealtime(2f);
+        Debug.Log($"[SwapScene] Loading scene '{SceneExactName}' now.");
         SceneManager.LoadScene(SceneExactName);
     }
 
@@ -22,5 +25,10 @@ public class SwapScene : MonoBehaviour
     {
         stencilAnimator.SetTrigger("StencielAppearTrigger");
         StartCoroutine(ChangeSceneCoroutine());
+    }
+
+    public void SelectTutorial(bool isTutorial)
+    {
+        CrossSceneTutorialData.isTutorial = isTutorial;
     }
 }

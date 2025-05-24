@@ -27227,6 +27227,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1441868376}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: FlatResumeTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9217071146890503053}
+        m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
+        m_MethodName: SelectTutorial
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9217071146890503053}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
         m_MethodName: changeSceneToSwapName
@@ -27295,6 +27319,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1441868376}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1191232729}
         m_TargetAssemblyTypeName: DataPersistenceManager, Assembly-CSharp
         m_MethodName: SaveGameData
@@ -28012,6 +28048,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1441868376}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: FlatResumeTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 9217071146890503053}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
         m_MethodName: changeSceneToSwapName

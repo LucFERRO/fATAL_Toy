@@ -51,6 +51,7 @@ public class UiManager : MonoBehaviour
         if (isPaused)
         {
             StartCoroutine(StopTimeCoroutine());
+            //Time.timeScale = 0f;
         }
         else
         {
@@ -59,14 +60,19 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    public void FlatResumeTime()
+    {
+        Time.timeScale = 1f;
+    }
+
     private IEnumerator ResumeTimeCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         Time.timeScale = 1f;
     }    
     private IEnumerator StopTimeCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         Time.timeScale = 0f;
     }
 

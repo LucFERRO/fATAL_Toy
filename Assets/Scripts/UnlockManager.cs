@@ -146,7 +146,7 @@ public class UnlockManager : MonoBehaviour
                     unlockStatus[unlockStatus.Keys.ElementAt(i)] = true;
                     pendingUnlockedStatus[i - 4] = true;
                     int newMaxLockedTiles = (maxLockedTiles - 4) / 2;
-                    Debug.Log(newMaxLockedTiles);
+                    //Debug.Log(newMaxLockedTiles);
                     if (maxLockedTiles %2 == 0 && maxLockedTiles > 4)
                     {
                         newLockEventInstance.setParameterByName("UnlockLockedLevel", newMaxLockedTiles);

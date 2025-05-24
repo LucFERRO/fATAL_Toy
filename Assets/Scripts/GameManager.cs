@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     public string chosenTileType;
     void Start()
     {
+        Debug.Log($"This game is {(CrossSceneTutorialData.isTutorial ? "":"not")} a tutorial game.");
         unlockManager = GetComponent<UnlockManager>();
         baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
         TypeBools = new bool[Enum.GetNames(typeof(TileType)).Length];
