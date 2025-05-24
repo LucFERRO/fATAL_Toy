@@ -29,7 +29,7 @@ public class MaskTransition : MonoBehaviour
             sideRectImg.rectTransform.anchorMin = Vector2.zero;
             sideRectImg.rectTransform.anchorMax = Vector2.zero;
             sideRectImg.rectTransform.pivot = Vector2.zero;
-
+            //sideRectImg.enabled = false;
             SideRects[i] = sideRectImg;
             SetRectSizePosBySide(SideRects[i].rectTransform, (Sides)i);
         }
@@ -66,8 +66,11 @@ public class MaskTransition : MonoBehaviour
     {
         for (int i = 0; i < SideRects.Length; i++)
         {
+            //SideRects[i].enabled = MaskImage.rectTransform.anchoredPosition.x < -1000;
             if (SideRects[i] != null)
+            {
                 SetRectSizePosBySide(SideRects[i].rectTransform, (Sides)i);
+            }
         }
     }
 }
