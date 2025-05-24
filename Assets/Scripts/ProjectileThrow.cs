@@ -82,7 +82,7 @@ public class ProjectileThrow : MonoBehaviour
         bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen && !splineSwitcher.isIdle && defeatManager.canRoll;
         if (Input.GetMouseButtonDown(0) && uiManager.isInventoryOpen && !isOverUI)
         {
-            uiManager.IsInventoryOpen = false;
+            uiManager.IsInventoryOpen = !uiManager.IsInventoryOpen;
         }
         if (Input.GetMouseButtonDown(0) && canThrowDice && !gameManager.isPreviewing && !EventSystem.current.IsPointerOverGameObject())
 

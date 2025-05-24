@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class OverUICheck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public ProjectileThrow projectileThrow;
-    public bool isInventory;
+    //public bool isInventory;
     //[SerializeField] private GraphicRaycaster raycaster;
     //[SerializeField] private EventSystem eventSystem;
 

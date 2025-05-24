@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class FileDataHandler
 {
-    private string dataDirPath = "";
-    private string dataFileName = "";
+    public string dataDirPath = "";
+    public string dataFileName = "";
 
     public FileDataHandler(string dataDirPath, string dataFileName)
     {
@@ -40,11 +40,13 @@ public class FileDataHandler
         return loadedData;
     }
 
-    public void Save(GameData data)
+    public void Save(GameData data, string sessionId)
     {
-        string timestamp = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
-        string dataFileName = $"gameData_{timestamp}.json";
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string dataFileName = $"gameData_{sessionId}.json";
+
+        string relativePath = Path.Combine("SaveData", "Save", dataFileName);
+        string fullPath = Path.Combine(Application.dataPath, "..", relativePath);
+        Debug.Log(fullPath);
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -60,8 +62,6 @@ public class FileDataHandler
         catch (Exception e)
         {
             Debug.LogError($"Failed to save data to {fullPath}: {e.Message}");
-            string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(fullPath, json);
         }
     }
 

@@ -1,6 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using FMOD.Studio;
+using static UnityEngine.Rendering.DebugUI.Table;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.PackageManager.UI;
+using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -8,10 +15,13 @@ public class DataPersistenceManager : MonoBehaviour
     [SerializeField] private string fileName;
 
     private GameData gameData;
+    public string sessionId = "defaultSession";
 
     private List<IDataPersistence> dataPersistenceObjects;
 
-    private FileDataHandler dataHandler;
+    public UiManager uiManager;
+    public FileDataHandler dataHandler;
+    private ScreenShotMachine screenShotMachine;
     public static DataPersistenceManager instance { get; private set; }
 
     private void Awake()
@@ -20,9 +30,10 @@ public class DataPersistenceManager : MonoBehaviour
         {
             Debug.Log("DataPersistenceManager already exists in the scene.");
         }
-
+        sessionId = System.Guid.NewGuid().ToString();
         instance = this;
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        screenShotMachine = GetComponent<ScreenShotMachine>();
         dataPersistenceObjects = FindAllDataPersistenceObjects();
         NewGame();
     }
@@ -33,20 +44,30 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
             dataPersistenceObjects = FindAllDataPersistenceObjects();
-            Debug.Log("Loading last save.");
+            //Debug.Log("Loading last save.");
             LoadGame();
         }
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-            SaveGame();
-            Debug.Log("Saving game.");
-        }
+    }
+
+    public void ReloadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SaveGameData()
+    {
+        screenShotMachine.SaveData(ref gameData);
+        screenShotMachine.ScreenShot();
+        SaveGame(sessionId);
+        uiManager.TogglePause(); // Handle pause state after saving
+        // TRANSITION FLASH BLANC
+        //SON CLICK PHOTO
     }
 
     public void NewGame()
     {
         this.gameData = new GameData();
-        Debug.Log("New game started.");
+        //Debug.Log("New game started.");
     }
 
     public void LoadGame()
@@ -54,7 +75,7 @@ public class DataPersistenceManager : MonoBehaviour
         gameData = dataHandler.Load();
         if (gameData == null)
         {
-            Debug.Log("No game data found. Starting a new game.");
+            //Debug.Log("No game data found. Starting a new game.");
             NewGame();
         }
 
@@ -63,14 +84,14 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.LoadData(gameData);
         }
 
-        Debug.Log("Loaded game data: " + gameData.currentNumberOfRolls);
+        //Debug.Log("Loaded game data: " + gameData.currentNumberOfRolls);
     }
 
-    public void SaveGame()
+    public void SaveGame(string sessionId)
     {
         if (dataHandler == null)
         {
-            Debug.LogError("DataHandler is not initialized. Cannot save game.");
+            //Debug.LogError("DataHandler is not initialized. Cannot save game.");
             return;
         }
 
@@ -79,9 +100,9 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(ref gameData);
         }
 
-        Debug.Log("Saved game data: ");
+        //Debug.Log("Saved game data: ");
 
-        dataHandler.Save(gameData);
+        dataHandler.Save(gameData, sessionId);
     }
 
     //private void OnApplicationQuit()

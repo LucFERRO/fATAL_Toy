@@ -1,9 +1,13 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
     [Header("Data")]
+    public bool isPaused;
+    public bool isLoadingMenu;
+    public bool isConfirmReaload;
     public bool isInventoryOpen;
     public bool IsInventoryOpen
     {
@@ -16,19 +20,12 @@ public class UiManager : MonoBehaviour
                 unlockManager.ResolveUnlockStatus();
             }
             inventoryAnimator.SetTrigger("ToggleTrigger");
-            //biomesUiGO.SetActive(value);
-            //baseBiomesGO.SetActive(value);
-            //doubleBiomesGO.SetActive(value);
-            //comboBiomesGO.SetActive(value);
         }
     }
-    //private Vector3 startingPosition;
-    //[SerializeField] private int speed;
-    //[SerializeField] private Vector3 targetPosition;
-    //[SerializeField] private float moveOffset = 5f;
-    //[SerializeField] private float snapThreshold;
 
     [Header("References")]
+    public GameObject pauseMenu;
+    public GameObject confirmReload;
     public Animator inventoryAnimator;
     private UnlockManager unlockManager;
     public GameObject inventoryGO;
@@ -36,25 +33,43 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
-        //startingPosition = inventoryGO.transform.position;
         unlockManager = GetComponent<UnlockManager>();
     }
-    //void Update()
-    //{
-    //    //HandleMoveDiceFaces();
-    //}
 
-    //private void HandleMoveDiceFaces()
-    //{
-    //    Vector3 offset = new Vector3(-moveOffset, 0, 0);
-    //    targetPosition = isInventoryOpen ? startingPosition + offset : startingPosition;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+            // SON BLURR 
+        }
 
-    //    inventoryGO.transform.position = Vector3.Lerp(inventoryGO.transform.position, targetPosition, Time.deltaTime * speed);
-    //    if (Vector3.Distance(inventoryGO.transform.position, targetPosition) < snapThreshold)
-    //    {
-    //        inventoryGO.transform.position = targetPosition;
-    //    }
-    //}
+        HandlePause();
+    }
+    public void HandlePause()
+    {
+        if (isPaused)
+        {
+            ToggleTimeCoroutine();
+        }
+        else
+        {
+            Time.timeScale = 1f; // Resume the game
+        }
+    }
+
+    private IEnumerator ToggleTimeCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0f;
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        pauseMenu.SetActive(isPaused);
+    }
+
     public void ToggleInventoryUI()
     {
         IsInventoryOpen = !IsInventoryOpen;

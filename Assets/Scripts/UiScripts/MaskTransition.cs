@@ -12,7 +12,7 @@ public class MaskTransition : MonoBehaviour
         Top,
         Bottom
     }
-    Image[] SideRects = new Image[((int)Sides.Bottom) + 1];
+    public Image[] SideRects;
     [SerializeField] Image MaskImage;
 
     void OnEnable()
@@ -20,18 +20,20 @@ public class MaskTransition : MonoBehaviour
         for (int i = 0; i < SideRects.Length; i++)
         {
             if (SideRects[i] != null) continue;
-            GameObject newSideRect = new GameObject("RectSide_" + (Sides)i, typeof(Image));
-            //newSideRect.transform.parent = MaskImage.transform.parent;
-            newSideRect.transform.SetParent(MaskImage.transform.parent, false);
-
-            Image sideRectImg = newSideRect.GetComponent<Image>();
-            sideRectImg.color = Color.black;
-            sideRectImg.rectTransform.anchorMin = Vector2.zero;
-            sideRectImg.rectTransform.anchorMax = Vector2.zero;
-            sideRectImg.rectTransform.pivot = Vector2.zero;
+            Image sideRectImg = SideRects[i].GetComponent<Image>();
             //sideRectImg.enabled = false;
-            SideRects[i] = sideRectImg;
             SetRectSizePosBySide(SideRects[i].rectTransform, (Sides)i);
+        }
+    }
+    void Update()
+    {
+        for (int i = 0; i < SideRects.Length; i++)
+        {
+            //SideRects[i].enabled = MaskImage.rectTransform.anchoredPosition.x < -1000;
+            if (SideRects[i] != null)
+            {
+                SetRectSizePosBySide(SideRects[i].rectTransform, (Sides)i);
+            }
         }
     }
 
@@ -62,15 +64,5 @@ public class MaskTransition : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        for (int i = 0; i < SideRects.Length; i++)
-        {
-            //SideRects[i].enabled = MaskImage.rectTransform.anchoredPosition.x < -1000;
-            if (SideRects[i] != null)
-            {
-                SetRectSizePosBySide(SideRects[i].rectTransform, (Sides)i);
-            }
-        }
-    }
+
 }
