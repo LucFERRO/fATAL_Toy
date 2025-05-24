@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
     public Sprite unlockedBiome;
     public DraggableItem currentlyDraggedItem;
     private static GameManager gameManager;
+    private static TileSplitManager tileSplitManager;
     Animator animator;
     FMOD.Studio.EventInstance interfaceEventInstance;
 
@@ -18,6 +19,12 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
         {
             GameObject gameManagerGO = GameObject.FindGameObjectWithTag("GameManager");
             gameManager = gameManagerGO.GetComponent<GameManager>();
+
+        }        
+        if (tileSplitManager == null)
+        {
+            GameObject tileSplitManagerGO = GameObject.FindGameObjectWithTag("HexMap");
+            tileSplitManager = tileSplitManagerGO.GetComponent<TileSplitManager>();
 
         }
         if (isDicePanelSlot)
@@ -108,6 +115,13 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
             if (transform.childCount > 0)
             {
                 Destroy(transform.GetChild(0).gameObject);
+            }
+
+            if (!gameManager.diceWasChanged)
+            {
+                Debug.Log("DICE WAS CHANGED");
+                gameManager.diceWasChanged = true;
+                tileSplitManager.UpdateObjectives();
             }
 
             // If this is a dice panel slot, clone the dragged item

@@ -63,6 +63,7 @@ public class UiManager : MonoBehaviour
     public void FlatResumeTime()
     {
         Time.timeScale = 1f;
+        isPaused = false;
     }
 
     private IEnumerator ResumeTimeCoroutine()

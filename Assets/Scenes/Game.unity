@@ -15032,7 +15032,7 @@ GameObject:
   - component: {fileID: 1394288966}
   m_Layer: 0
   m_Name: HexMap
-  m_TagString: Untagged
+  m_TagString: HexMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15174,7 +15174,8 @@ MonoBehaviour:
   numberOfTiles: 0
   objectiveColor: {r: 0.6745098, g: 0.43137255, b: 0.105882354, a: 1}
   finishedBatchCount: 0
-  lvlDifficulty: 3
+  lvlDifficulty: 5
+  hasCameraMoved: 0
   objectiveStrings: []
   objectiveBools: 
   lerpSpeed: 2
@@ -15194,6 +15195,7 @@ MonoBehaviour:
   - {r: 0.7686275, g: 0.8980393, b: 0, a: 0}
   - {r: 0.7686275, g: 0.8980393, b: 0, a: 0}
   ambientSoundsManager: {fileID: 31357688}
+  mainCamera: {fileID: 1852280151}
   gameManager: {fileID: 1441868373}
   endUiAnimator: {fileID: 1720491932}
   mainCanvas: {fileID: 293149564}
@@ -15772,6 +15774,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0c8fd5f05c4ea754faecadc12b6b0a8c, type: 2}
   - {fileID: 2100000, guid: bd78bdf3d5735b44493f77f08b3ea08b, type: 2}
   - {fileID: 2100000, guid: 39552bace88bcef4b8076846b3252cbf, type: 2}
+  diceWasChanged: 0
+  diceWasThrown: 0
   unlockManager: {fileID: 0}
   tileSplitManager: {fileID: 1394288966}
   maxLockedTiles: 0

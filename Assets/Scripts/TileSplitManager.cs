@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using System.Drawing;
+using UnityEngine.InputSystem;
 
 public class TileSplitManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class TileSplitManager : MonoBehaviour
     private List<TileObjective> objectives = new();
     public int finishedBatchCount;
     public int lvlDifficulty;
+    private Vector3 startingCameraPos;
+    public bool hasCameraMoved;
 
     [Header("OLD Objectives")]
     private string[] objectiveTargets;
@@ -49,6 +52,7 @@ public class TileSplitManager : MonoBehaviour
     private FMOD.Studio.EventInstance wildlifeEventInstance;
 
     [Header("References")]
+    public Camera mainCamera;
     public GameManager gameManager;
     public Animator endUiAnimator;
     public Canvas mainCanvas;
@@ -59,6 +63,7 @@ public class TileSplitManager : MonoBehaviour
 
     void Start()
     {
+        startingCameraPos = mainCamera.transform.position;
         numberOfTiles = transform.childCount;
         UpdateTileSplitDictionary();
         UpdatePreviousDictionaries();
@@ -101,7 +106,7 @@ public class TileSplitManager : MonoBehaviour
             foreach (KeyValuePair<string, int> kvp in gridTileSplitDictionary)
             {
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
-            }            
+            }
             foreach (KeyValuePair<string, int> kvp in previousGridTileSplitDictionary)
             {
                 Debug.Log($"{kvp.Key} : {kvp.Value}");
@@ -112,9 +117,20 @@ public class TileSplitManager : MonoBehaviour
             //    Debug.Log($"{kvp.Key} : {kvp.Value}");
             //}
         }
-        HandleObjectiveKeyWordColor();
+        if (!CrossSceneTutorialData.isTutorial)
+        {
+            HandleObjectiveKeyWordColor();
+        }
+        if (!hasCameraMoved)
+        {
+            if (mainCamera.transform.position != startingCameraPos)
+            {
+                hasCameraMoved = true;
+                Debug.Log("Tutorial: Camera moved!");
+                UpdateObjectives();
+            }
+        }
     }
-
     private void UpdateWildlife()
     {
         if (gridTileSplitDictionary["empty"] >= 30 && gridTileSplitDictionary["empty"] <= 60)
@@ -222,33 +238,33 @@ public class TileSplitManager : MonoBehaviour
         objectives = new List<TileObjective>();
         int objectiveCount = objectiveElements.Length;
         areObjectiveOpenBools = new bool[objectiveCount];
+        gameManager.minTilesRolled = int.MaxValue;
+        gameManager.maxTilesRolled = int.MinValue;
+
+        if (CrossSceneTutorialData.isTutorial)
+        {
+            for (int i = 0; i < objectiveCount; i++)
+            {
+                TileObjective obj = ObjectiveFactory.GenerateRandomObjective(i + 10, this);
+                objectives.Add(obj);
+                //UpdateObjectiveUI(i, obj);
+                areObjectiveOpenBools[i] = true;
+            }
+            CrossSceneTutorialData.isTutorial = false;
+            return;
+        }
+
         int[] objTypes = RandomObjectiveTypes();
         for (int i = 0; i < objectiveCount; i++)
         {
             TileObjective obj = ObjectiveFactory.GenerateRandomObjective(objTypes[i], this);
-            if (i == 1 || i == 4)
+            if (objTypes[i] == 1 || objTypes[i] == 4)
             {
                 obj = ObjectiveFactory.GenerateRandomObjective(objTypes[i], this, objectives[0].Biome);
             }
             objectives.Add(obj);
-            UpdateObjectiveUI(i, obj);
+            //UpdateObjectiveUI(i, obj);
             areObjectiveOpenBools[i] = true;
-            // OLD
-            //int objectiveNumber = objectiveListGo.transform.childCount;
-            //areObjectiveOpenBools = new bool[objectiveNumber];            
-            //objectiveBools = new bool[objectiveNumber];
-            //ObjectiveBools = new bool[objectiveNumber];
-            //objectiveTargets = new string[objectiveNumber];
-            //objectiveMaxNumbers = new int[objectiveNumber];
-            //objectiveCurrentNumbers = new int[objectiveNumber];
-            //RandomObjectives(1);
-            //for (int i = 0; i < objectiveNumber; i++)
-            //{
-            //    areObjectiveOpenBools[i] = true;
-            //    string fittingColor = $"{ColorUtility.ToHtmlStringRGB(biomeNameColors[Array.IndexOf(Enum.GetNames(typeof(TileType)), objectiveTargets[i])])}";
-            //    TextMeshProUGUI targetObjectiveString = objectiveElements[i];
-            //    targetObjectiveString.text = GetObjectiveString(i, objectiveTargets[i], objectiveCurrentNumbers[i], objectiveMaxNumbers[i], fittingColor);
-            //}
         }
     }
 
@@ -308,9 +324,23 @@ public class TileSplitManager : MonoBehaviour
                 continue;
             }
             objectives[i].Evaluate(this);
-            //UpdateObjectiveUI(i, objectives[i]);
+            UpdateObjectiveUI(i, objectives[i]);
         }
         CheckObjectives();
+    }
+
+    public bool CheckIfCameraHasMoved()
+    {
+        hasCameraMoved = mainCamera.transform.position != startingCameraPos;
+        return hasCameraMoved;
+    }
+    public bool CheckIfDiceHasChanged()
+    {
+        return gameManager.diceWasChanged;
+    }
+    public bool CheckIfDiceWasThrown()
+    {
+        return gameManager.diceWasThrown;
     }
 
     public int biomeTilesCreatedSinceReset(string tile)

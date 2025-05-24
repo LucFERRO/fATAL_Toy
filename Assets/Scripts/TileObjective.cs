@@ -89,9 +89,9 @@ public class ChangeLessTilesInOneRoll : TileObjective
         //var rollCounts = manager.GetRollCounts();
         //IsCompleted = Progress >= Target;
         int currentMinRoll = manager.WhatIsMinRoll();
-        Progress = currentMinRoll;
+        Progress = Mathf.Max(currentMinRoll,0);
         //Progress = 99;
-        IsCompleted = currentMinRoll <= Target;
+        IsCompleted = currentMinRoll != -1 && currentMinRoll <= Target;
     }
 }
 
@@ -129,6 +129,51 @@ public class ChainObjective : TileObjective
     }
 }
 
+public class TutorialMoveCamera : TileObjective
+{
+    public TutorialMoveCamera()
+    {
+        Biome = "";
+        Target = 1;
+        Description = "Move the camera: use ZQSD or Arrow Keys";
+    }
+    public override void Evaluate(TileSplitManager manager)
+    {
+        // This objective is always completed when the camera is moved
+        Progress = manager.CheckIfCameraHasMoved() ? 1 : 0;
+        IsCompleted = Progress == 1;
+    }
+}
+public class TutorialChangeDiceFace : TileObjective
+{
+    public TutorialChangeDiceFace()
+    {
+        Biome = "";
+        Target = 1;
+        Description = "Change the dice: drag and drop a biome from the inventory";
+    }
+    public override void Evaluate(TileSplitManager manager)
+    {
+        // This objective is always completed when the camera is moved
+        Progress = manager.CheckIfDiceHasChanged() ? 1 : 0;
+        IsCompleted = Progress == 1;
+    }
+}public class TutorialThrowDice : TileObjective
+{
+    public TutorialThrowDice()
+    {
+        Biome = "";
+        Target = 1;
+        Description = "Throw the dice: LClick once to preview, again to throw";
+    }
+    public override void Evaluate(TileSplitManager manager)
+    {
+        // This objective is always completed when the camera is moved
+        Progress = manager.CheckIfDiceWasThrown() ? 1 : 0;
+        IsCompleted = Progress == 1;
+    }
+}
+
 public static class ObjectiveFactory
 {
     public static TileObjective GenerateRandomObjective(int objectiveType, TileSplitManager manager, string forcedBiome = null)
@@ -157,6 +202,12 @@ public static class ObjectiveFactory
             //case 5:
             //    string chainBiome = manager.gridTileSplitDictionary.Keys.ElementAt(UnityEngine.Random.Range(0, manager.gridTileSplitDictionary.Count));
             //    return new ChainObjective((TileType)System.Enum.Parse(typeof(TileType), chainBiome), UnityEngine.Random.Range(3, 8));
+            case 10:
+                return new TutorialMoveCamera();
+            case 11:
+                return new TutorialChangeDiceFace();
+            case 12:
+                return new TutorialThrowDice();
             default:
                 return null;
         }

@@ -19,6 +19,7 @@ TagManager:
   - Lakitu
   - RotateImmuneProp
   - Particles
+  - HexMap
   layers:
   - Default
   - TransparentFX

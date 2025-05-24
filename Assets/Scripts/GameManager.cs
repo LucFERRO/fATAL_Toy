@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     public Color baseDiceFaceColor;
     public Material[] faceMaterials;
 
+    public bool diceWasChanged;
+    public bool diceWasThrown;
+
     [HideInInspector] public UnlockManager unlockManager;
     [HideInInspector] public TileSplitManager tileSplitManager;
 
@@ -36,7 +39,7 @@ public class GameManager : MonoBehaviour
     public int maxTilesRolled = int.MinValue;
     public string[] faceTypes;
 
-    public int MinTilesRolled => minTilesRolled == int.MaxValue ? 0 : minTilesRolled;
+    public int MinTilesRolled => minTilesRolled == int.MaxValue ? -1 : minTilesRolled;
     public int MaxTilesRolled => maxTilesRolled == int.MinValue ? 0 : maxTilesRolled;
 
     public Dictionary<int, string> baseTileDictionary = new();
@@ -123,8 +126,18 @@ public class GameManager : MonoBehaviour
         int count = tiles?.Count ?? 0;
         if (count > 0)
         {
-            if (count < minTilesRolled) minTilesRolled = count;
-            if (count > maxTilesRolled) maxTilesRolled = count;
+            Debug.Log("count "+count);
+            if (count < minTilesRolled)
+            {
+                minTilesRolled = count;
+                Debug.Log("NEW MIN ROLLED");
+            }
+
+            if (count > maxTilesRolled)
+            {
+                maxTilesRolled = count;
+                Debug.Log("NEW MAX ROLLED");
+            }
         }
 
 

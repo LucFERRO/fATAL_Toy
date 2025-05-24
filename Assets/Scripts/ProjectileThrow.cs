@@ -107,6 +107,11 @@ public class ProjectileThrow : MonoBehaviour
                 PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();
                 diceSpawner.SpawnDice(updatedProperties.direction * force, updatedProperties.initialPosition);
                 gameManager.isPreviewing = false;
+                if (!gameManager.diceWasThrown)
+                {
+                    Debug.Log("DICE WAS THROWN");
+                    gameManager.diceWasThrown = true;
+                }
             }
 
         }
