@@ -34,7 +34,7 @@ public class ScreenShotMachine : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.screenShotId = id;
-        data.timestamp = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
+        data.timestamp = DateTime.Now.ToString("dd-MM-yyyy / HH:mm:ss");
     }
 
     public void ScreenShot()
@@ -51,7 +51,7 @@ public class ScreenShotMachine : MonoBehaviour, IDataPersistence
         yield return new WaitForEndOfFrame();
 
 
-        string timestamp = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
+        string timestamp = DateTime.Now.ToString("dd-MM-yyyy / HH:mm:ss");
         string relativePath = Path.Combine(Application.dataPath, "..", "SaveData", "Images");
         Directory.CreateDirectory(relativePath); // Ensure the directory exists
         string filePath = Path.Combine(relativePath, id + ".png");

@@ -126,7 +126,6 @@ public class GameManager : MonoBehaviour
         int count = tiles?.Count ?? 0;
         if (count > 0)
         {
-            Debug.Log("count "+count);
             if (count < minTilesRolled)
             {
                 minTilesRolled = count;
@@ -139,7 +138,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("NEW MAX ROLLED");
             }
         }
-
 
         List<GameObject> NeighbourCascade = UpdateNeighboursCascade(tiles);
         StartCoroutine(TransitionSoundsCoroutine(tiles, 0f, 0));

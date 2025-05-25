@@ -13,9 +13,14 @@ public class SplineSwitcher : MonoBehaviour
     public bool isIdle = false;
 
     public Animator canvasAnimator;
+    public Animator spacebarAnimator;
+    public GameManager gameManager;
 
     private int currentIndex = 0;
     float time = 0f;
+
+    public int maxTimerToShowSpacebar;
+    private float currentTimerToSpace;
 
     void Start()
     {
@@ -25,10 +30,21 @@ public class SplineSwitcher : MonoBehaviour
         {
             cinemachineSplineDollies[i] = virtualCameras[i].GetComponent<CinemachineSplineDolly>();
         }
+        currentTimerToSpace = maxTimerToShowSpacebar;
     }
 
     private void Update()
     {
+        CheckCameraInput();
+        if (currentTimerToSpace > 0)
+        {
+            currentTimerToSpace -= Time.deltaTime;
+            spacebarAnimator.SetBool("IsBlinking", false);
+        } else
+        {
+            spacebarAnimator.SetBool("IsBlinking", true);
+        }
+
         if (Input.GetKey(KeyCode.Space) && !isIdle)
         {
             time += Time.deltaTime;
@@ -67,9 +83,26 @@ public class SplineSwitcher : MonoBehaviour
         }
     }
 
+    private void CheckCameraInput()
+    {
+        if (isIdle)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || 
+            Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Q) || 
+            Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            currentTimerToSpace = maxTimerToShowSpacebar;
+        }
+    }
+
     private void SwitchToIdle()
     {
         isIdle = true;
+        gameManager.isPreviewing = false;
+        spacebarAnimator.SetBool("IsBlinking", false);
         canvasAnimator.SetTrigger("ToggleTrigger");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

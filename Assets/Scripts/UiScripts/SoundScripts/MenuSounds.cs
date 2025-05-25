@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,12 +11,12 @@ public class MenuSounds : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     FMOD.Studio.EventInstance ambianceEventInstance;
     FMOD.Studio.EventInstance mainMenuEventInstance;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         inventory = transform.parent.GetComponent<Inventory>();
+
         interfaceEventInstance = inventory.interfaceEventInstance;
+        InstanciateParentInterfaceEvent();
 
         menuSelectEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/MenuSelect");
         ambianceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Ambiance");
@@ -44,6 +45,12 @@ public class MenuSounds : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             }
         }
     }
+    public IEnumerator InstanciateParentInterfaceEvent()
+    {
+        yield return new WaitForEndOfFrame();
+
+        inventory.interfaceEventInstance = interfaceEventInstance;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -55,5 +62,4 @@ public class MenuSounds : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         isOnButton = false;
     }
-
 }

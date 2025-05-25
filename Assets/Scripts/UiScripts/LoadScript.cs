@@ -88,7 +88,7 @@ public class LoadScript : MonoBehaviour
             {
                 GameObject newSaveGO = Instantiate(saveGO, transform.GetChild(0));
                 newSaveGO.name = Path.GetFileNameWithoutExtension(file);
-                newSaveGO.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Data N:{(6*currentPage) + i + 1}";
+                newSaveGO.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Data N#{(6*currentPage) + i + 1}";
                 newSaveGO.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = saveData.timestamp;
                 newSaveGO.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = newSaveGO.name;
 
