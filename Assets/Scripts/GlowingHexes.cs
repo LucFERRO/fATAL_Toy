@@ -114,8 +114,16 @@ public class GlowingHexes : MonoBehaviour
     {
         foreach (Renderer r in renderers)
         {
-            if (r == null || r.transform.CompareTag("WaterPlane")) continue;
-            r.materials = isLocked ? originalMaterials[r] : lockedMaterials[r];
+            if (r == null || r.transform.CompareTag("WaterPlane"))
+            {
+                Debug.Log("locking grass");
+                r.material.SetInt("_isLocked", r.material.GetInt("_isLocked") == 1 ? 0 : 1);
+                Debug.Log("isLocked: " + isLocked);
+            }
+            else
+            {
+                r.materials = isLocked ? originalMaterials[r] : lockedMaterials[r];
+            }
         }
 
         isLocked = !isLocked;
