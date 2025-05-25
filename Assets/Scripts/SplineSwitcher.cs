@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Cinemachine;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.InputSystem;
 
 public class SplineSwitcher : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class SplineSwitcher : MonoBehaviour
     public Animator canvasAnimator;
     public Animator spacebarAnimator;
     public GameManager gameManager;
+    public Inventory inventory;
 
     private int currentIndex = 0;
     float time = 0f;
@@ -36,6 +38,7 @@ public class SplineSwitcher : MonoBehaviour
     private void Update()
     {
         CheckCameraInput();
+        CheckInput();
         if (currentTimerToSpace > 0)
         {
             currentTimerToSpace -= Time.deltaTime;
@@ -61,16 +64,11 @@ public class SplineSwitcher : MonoBehaviour
             if (time >= 1f)
             {
                 Debug.Log("Exiting Idle");
-                virtualCameras[currentIndex].gameObject.SetActive(false);
-                splinesArray[currentIndex].gameObject.SetActive(false);
-                domeCamera.gameObject.SetActive(true);
-                isIdle = false;
-                canvasAnimator.SetTrigger("ToggleTrigger");
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                ExitIdle();
                 time = 0f;
             }
         }
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             time = 0f;
@@ -83,21 +81,41 @@ public class SplineSwitcher : MonoBehaviour
         }
     }
 
-    private void CheckCameraInput()
+    private void CheckInput()
     {
-        if (isIdle)
+        if (!isIdle)
         {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || 
-            Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Q) || 
-            Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
+            Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.DownArrow) || 
+            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ExitIdle();
+        }
+    }
+
+    private void CheckCameraInput()
+    {
+        if ((Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0) || isIdle)
         {
             currentTimerToSpace = maxTimerToShowSpacebar;
         }
     }
 
+    private void ExitIdle()
+    {
+        isIdle = false;
+        virtualCameras[currentIndex].gameObject.SetActive(false);
+        splinesArray[currentIndex].gameObject.SetActive(false);
+        domeCamera.gameObject.SetActive(true);
+        canvasAnimator.SetTrigger("ToggleTrigger");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        inventory.interfaceEventInstance.setParameterByName("IsInInventory", 1);
+        inventory.interfaceEventInstance.start();
+    }
     private void SwitchToIdle()
     {
         isIdle = true;
@@ -108,6 +126,9 @@ public class SplineSwitcher : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         domeCamera.gameObject.SetActive(false);
         SetActiveSplineAndCamera(currentIndex);
+        // son ouvre inventory
+        inventory.interfaceEventInstance.setParameterByName("IsInInventory", 0);
+        inventory.interfaceEventInstance.start();
     }
 
     private void SetActiveSplineAndCamera(int index)
