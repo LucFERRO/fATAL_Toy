@@ -7326,6 +7326,7 @@ MonoBehaviour:
   canvasAnimator: {fileID: 293149567}
   spacebarAnimator: {fileID: 1033586458}
   gameManager: {fileID: 1441868373}
+  inventory: {fileID: 72674476}
   maxTimerToShowSpacebar: 5
 --- !u!1 &524820218
 GameObject:

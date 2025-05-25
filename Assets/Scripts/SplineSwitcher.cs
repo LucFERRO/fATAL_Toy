@@ -113,7 +113,7 @@ public class SplineSwitcher : MonoBehaviour
         canvasAnimator.SetTrigger("ToggleTrigger");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        inventory.interfaceEventInstance.setParameterByName("IsInInventory", 1);
+        inventory.interfaceEventInstance.setParameterByName("UIState", 0);
         inventory.interfaceEventInstance.start();
     }
     private void SwitchToIdle()
@@ -127,7 +127,7 @@ public class SplineSwitcher : MonoBehaviour
         domeCamera.gameObject.SetActive(false);
         SetActiveSplineAndCamera(currentIndex);
         // son ouvre inventory
-        inventory.interfaceEventInstance.setParameterByName("IsInInventory", 0);
+        inventory.interfaceEventInstance.setParameterByName("UIState", 1);
         inventory.interfaceEventInstance.start();
     }
 
