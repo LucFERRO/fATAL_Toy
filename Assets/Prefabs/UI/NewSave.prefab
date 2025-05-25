@@ -89,9 +89,11 @@ GameObject:
   - component: {fileID: 2107070000431505138}
   - component: {fileID: -1829149608995928079}
   - component: {fileID: 2110618021619311677}
+  - component: {fileID: -812474182743524609}
+  - component: {fileID: -1680808770706371482}
   m_Layer: 5
   m_Name: NewSave
-  m_TagString: Untagged
+  m_TagString: StartGameSelect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,6 +250,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f761e1b27e7862b4fa868410f5c746ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-812474182743524609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731895268012138335}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21f8cf6116810347963c66d25e25f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnButton: 0
+--- !u!114 &-1680808770706371482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731895268012138335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec311448977ec840aa64ae14b07fff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnButton: 0
 --- !u!1 &6882397896213737160
 GameObject:
   m_ObjectHideFlags: 0
