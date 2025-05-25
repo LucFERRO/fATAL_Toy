@@ -25548,13 +25548,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\xCEle Flottantes Grid"
       objectReference: {fileID: 0}
+    - target: {fileID: 996382514875826302, guid: 4ae80bb08f7d9c7419a06dbfda3da2b6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2105663814266045921, guid: 4338a05fc59e7884aa138fb2170960fa, type: 3}
     - target: {fileID: 2711326096074510162, guid: 4ae80bb08f7d9c7419a06dbfda3da2b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.9458
       objectReference: {fileID: 0}
     - target: {fileID: 2711326096074510162, guid: 4ae80bb08f7d9c7419a06dbfda3da2b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.33
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 2711326096074510162, guid: 4ae80bb08f7d9c7419a06dbfda3da2b6, type: 3}
       propertyPath: m_LocalPosition.z
