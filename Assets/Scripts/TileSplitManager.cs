@@ -50,6 +50,7 @@ public class TileSplitManager : MonoBehaviour
     [Header("FMOD")]
     public AmbientSoundsManager ambientSoundsManager;
     private FMOD.Studio.EventInstance wildlifeEventInstance;
+    private FMOD.Studio.EventInstance objectivesEventInstance;
 
     [Header("References")]
     public Camera mainCamera;
@@ -69,6 +70,7 @@ public class TileSplitManager : MonoBehaviour
         UpdatePreviousDictionaries();
         InitializeObjectives();
         wildlifeEventInstance = ambientSoundsManager.wildlifeEventInstance;
+        objectivesEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Objectives");
     }
 
     void Update()
@@ -388,10 +390,11 @@ public class TileSplitManager : MonoBehaviour
             if (objectives[i].IsCompleted)
             {
                 objectiveElements[i].fontStyle = FontStyles.Strikethrough;
-                // AYMERIC SON / OBJECTIVE DONE
                 if (!textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().GetBool("DoneBool"))
                 {
                     textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", true);
+                    objectivesEventInstance.setParameterByName("ObjectiveState", 1);
+                    objectivesEventInstance.start();
                 }
                 if (areObjectiveOpenBools[i])
                 {
@@ -409,6 +412,8 @@ public class TileSplitManager : MonoBehaviour
 
             if (finishedBatchCount >= lvlDifficulty)
             {
+                objectivesEventInstance.setParameterByName("ObjectiveState", 0);
+                objectivesEventInstance.start();
                 endUiAnimator.gameObject.SetActive(true);
                 endUiAnimator.SetTrigger("ToggleTrigger");
             }

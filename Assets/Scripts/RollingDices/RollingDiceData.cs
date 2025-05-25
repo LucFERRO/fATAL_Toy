@@ -34,6 +34,7 @@ public class RollingDiceData : MonoBehaviour
     [Header("FMOD")]
     private FMOD.Studio.EventInstance diceEventInstance;
     public int numberOfBounces;
+    private FMOD.Studio.EventInstance diceDeathEventInstance;
 
     [Header("Velocity Watcher")]
     public float velocityWatcher;
@@ -92,6 +93,7 @@ public class RollingDiceData : MonoBehaviour
             diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             diceEventInstance.release();
             defeatManager.HandleRollCount();
+            diceDeathEventInstance.start();
             Destroy(gameObject);
 
 
@@ -126,6 +128,7 @@ public class RollingDiceData : MonoBehaviour
         isInUse = true;
         diceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/DiceOnTile");
         diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        diceDeathEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/DiceDeath");
     }
 
     private void HandleDisappearanceTimer()
