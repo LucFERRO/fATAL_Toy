@@ -117,7 +117,7 @@ public class TileSplitManager : MonoBehaviour
             //    Debug.Log($"{kvp.Key} : {kvp.Value}");
             //}
         }
-        if (!CrossSceneTutorialData.isTutorial)
+        if (!CrossSceneData.isTutorial)
         {
             HandleObjectiveKeyWordColor();
         }
@@ -241,7 +241,7 @@ public class TileSplitManager : MonoBehaviour
         gameManager.minTilesRolled = int.MaxValue;
         gameManager.maxTilesRolled = int.MinValue;
 
-        if (CrossSceneTutorialData.isTutorial)
+        if (CrossSceneData.isTutorial)
         {
             for (int i = 0; i < objectiveCount; i++)
             {
@@ -250,7 +250,7 @@ public class TileSplitManager : MonoBehaviour
                 //UpdateObjectiveUI(i, obj);
                 areObjectiveOpenBools[i] = true;
             }
-            CrossSceneTutorialData.isTutorial = false;
+            CrossSceneData.isTutorial = false;
             return;
         }
 

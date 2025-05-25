@@ -29,6 +29,6 @@ public class SwapScene : MonoBehaviour
 
     public void SelectTutorial(bool isTutorial)
     {
-        CrossSceneTutorialData.isTutorial = isTutorial;
+        CrossSceneData.isTutorial = isTutorial;
     }
 }

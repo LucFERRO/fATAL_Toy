@@ -10,7 +10,7 @@ public class GameData
 
     public SerializableDictionary<string, string> mapTypesDict;
 
-    string timestamp;
+    public string timestamp;
 
     public GameData()
     {

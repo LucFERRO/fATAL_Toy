@@ -8,9 +8,10 @@ public class FileDataHandler
     public string dataDirPath = "";
     public string dataFileName = "";
 
-    public FileDataHandler(string dataDirPath, string dataFileName)
+    public FileDataHandler(string dataDirPath)
     {
-        this.dataDirPath = dataDirPath;
+        this.dataDirPath = dataDirPath.Trim();
+        //this.dataFileName = dataFileName.Trim();
     }
 
     public GameData Load()
@@ -46,7 +47,7 @@ public class FileDataHandler
 
         string relativePath = Path.Combine("SaveData", "Save", dataFileName);
         string fullPath = Path.Combine(Application.dataPath, "..", relativePath);
-        Debug.Log(fullPath);
+        //Debug.Log(fullPath);
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));

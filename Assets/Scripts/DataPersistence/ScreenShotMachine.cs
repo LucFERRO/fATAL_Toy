@@ -34,6 +34,7 @@ public class ScreenShotMachine : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.screenShotId = id;
+        data.timestamp = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
     }
 
     public void ScreenShot()
