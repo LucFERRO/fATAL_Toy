@@ -6,6 +6,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     public Image image;
     public GameObject childBackground;
+    public GameObject cheatBgIcon;
     public CanvasGroup group;
     public Transform originalParent; // The original parent (inventory slot)
     public bool isDraggable = true; // Determines if the item can be dragged
@@ -36,7 +37,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         transform.SetParent(transform.root); // Temporarily move to the root for dragging
         transform.SetAsLastSibling(); // Ensure it's rendered on top
-        group.alpha = 1f; 
+        cheatBgIcon = childBackground.transform.GetChild(0).gameObject;
+        cheatBgIcon.GetComponent<Image>().raycastTarget = false; 
+        cheatBgIcon.transform.GetChild(0).GetComponent<Image>().raycastTarget = false; 
         image.raycastTarget = false; // Disable raycast to avoid blocking drop detection
         childBackground.SetActive(true);
         childBackground.GetComponent<Image>().raycastTarget = false;
@@ -62,7 +65,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             Destroy(placeholderClone);
         }
-        //group.alpha = 1f; // Restore full opacity
+        group.alpha = 1f; // Restore full opacity
         image.raycastTarget = true; // Re-enable raycast
         childBackground.SetActive(false);
     }

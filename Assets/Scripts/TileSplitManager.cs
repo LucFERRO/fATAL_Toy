@@ -287,10 +287,8 @@ public class TileSplitManager : MonoBehaviour
         {
             TextMeshProUGUI textMeshProElement = objectiveElements[i];
             Debug.Log("obj " + i);
-            Debug.Log(objectiveElements[i].fontStyle);
             objectiveElements[i].fontStyle = FontStyles.Normal;
-            Debug.Log(objectiveElements[i].fontStyle);
-            // ... (rest of your animation/trigger logic)
+            // AYMERIC SON ? NEW OBJECTIVES
             textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", false);
             if (!areObjectiveOpenBools[i])
             {
@@ -389,7 +387,7 @@ public class TileSplitManager : MonoBehaviour
             if (objectives[i].IsCompleted)
             {
                 objectiveElements[i].fontStyle = FontStyles.Strikethrough;
-                // ... (rest of your animation/trigger logic)
+                // AYMERIC SON / OBJECTIVE DONE
                 if (!textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().GetBool("DoneBool"))
                 {
                     textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", true);

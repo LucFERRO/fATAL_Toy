@@ -25,6 +25,7 @@ public class DefeatManager : MonoBehaviour
     }
     public void TriggerDefeat()
     {
+        // AYMERIC SON / DEFEAT
         rollCountGo.transform.GetChild(0).gameObject.SetActive(false);
         rollCountGo.transform.GetChild(1).gameObject.SetActive(true);
         defeatCanvas.SetActive(true);
@@ -34,6 +35,7 @@ public class DefeatManager : MonoBehaviour
 
     public void HandleRollCount()
     {
+        // AYMERIC SON / PERDRE UNE VIE
         currentNumberOfRolls--;
         if (currentNumberOfRolls <= 0) {
             rollCountGo.transform.GetChild(0).gameObject.SetActive(false);

@@ -354,6 +354,10 @@ public class NeighbourTileProcessor : MonoBehaviour
                 }
                 StartCoroutine(glowingHex.ClearParticlesCoroutine(3f));
             }
+            GetNeighbourTiles();
+            UpdateCurrentNeighbourTiles();
+            GetMajorTile();
+            UpdateComboTile();
         }
         else
         {
