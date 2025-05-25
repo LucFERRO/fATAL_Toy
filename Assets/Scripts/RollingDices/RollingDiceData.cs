@@ -50,11 +50,7 @@ public class RollingDiceData : MonoBehaviour
             if (value <= 0.1f && !hasChanged)
             {
                 GetClosestHexTile();
-                //Debug.Log(gameManager.tilePrefabs.Length);
-                //Debug.Log(Array.IndexOf(gameManager.tileTypes, GetChosenFace()));
-                //Debug.Log(gameManager.tilePrefabs[Array.IndexOf(gameManager.tileTypes, GetChosenFace())].name);
                 chosenFaceString = GetChosenFace();
-                //Destroy(gameObject);
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 diceRb.isKinematic = true;
                 gameObject.GetComponent<MeshCollider>().enabled = false;
@@ -62,6 +58,7 @@ public class RollingDiceData : MonoBehaviour
                 {
                     transform.GetChild(i).gameObject.SetActive(false);
                 }
+                CleanseLockedTiles();
                 UpdateTraveledHexes(chosenFaceString);
                 hasChanged = true;
             }
@@ -78,14 +75,12 @@ public class RollingDiceData : MonoBehaviour
         HandleDisappearanceTimer();
         HandleSelfDestruct();
         LiveUpdateChosenFaceUi();
-        //Debug.Log(diceRb.linearVelocity.magnitude);
     }
 
     private void HandleSelfDestruct()
     {
         if (transform.position.y <= -gameManager.lakituTreshold)
         {
-            //transform.position = respawnTransform.position;
             for (int i = 0; i < traveledTilesGO.Count; i++)
             {
                 traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
@@ -95,17 +90,17 @@ public class RollingDiceData : MonoBehaviour
             defeatManager.HandleRollCount();
             diceDeathEventInstance.start();
             Destroy(gameObject);
+        }
+    }
 
-
-            //
-            //Vector3 lakituVelocity = (respawnTransform.position - transform.position).normalized;
-            //lakituVelocity.y *= 2f;
-            //diceRb.linearVelocity = gameManager.lakitu * diceRb.linearVelocity.magnitude * lakituVelocity;
-            //if (diceRb.linearVelocity.magnitude > 15)
-            //{
-            //    diceRb.linearVelocity = diceRb.linearVelocity.normalized * 15f;
-            //}
-            //diceRb.angularVelocity = -diceRb.angularVelocity;
+    private void CleanseLockedTiles()
+    {
+        for (int i = 0; i < traveledTilesGO.Count; i++)
+        {
+            if (traveledTilesGO[i] == null || traveledTilesGO[i].GetComponent<NeighbourTileProcessor>().isLocked)
+            {
+                traveledTilesGO.RemoveAt(i);
+            }
         }
     }
 
@@ -113,7 +108,7 @@ public class RollingDiceData : MonoBehaviour
     {
         gameManager = transform.parent.GetComponent<GameManager>();
         gameManager.faceTypes = new string[numberOfFaces];
-        defeatManager = transform.parent.GetComponent<DefeatManager>(); 
+        defeatManager = transform.parent.GetComponent<DefeatManager>();
         diceRb = GetComponent<Rigidbody>();
         maxDisappearanceTimer = gameManager.diceMaxDisappearanceTimer;
         currentDisappearanceTimer = maxDisappearanceTimer;
@@ -163,10 +158,6 @@ public class RollingDiceData : MonoBehaviour
     }
     private string[] ProcessTileType(string tileType)
     {
-        //string[] res = tileType.Split(new[] { "Forest", "Lake", "Mountain", "Plain" }, StringSplitOptions.RemoveEmptyEntries)
-        //               .Select(word => word.ToLower())
-        //               .Distinct()
-        //               .ToArray();        
         string[] res = System.Text.RegularExpressions.Regex
         .Matches(tileType, @"[A-Z]?[a-z]+|[A-Z]+(?![a-z])")
         .Cast<System.Text.RegularExpressions.Match>()
@@ -188,9 +179,8 @@ public class RollingDiceData : MonoBehaviour
             {
                 if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
                 {
-                    continue; // Ignorez les tuiles verrouillées
+                    continue;
                 }
-
                 NeighbourTileProcessor newTile = UpdateSingleHex(tile, newHexPrefab, tileType);
                 newTiles.Add(newTile.gameObject);
             }
@@ -203,7 +193,7 @@ public class RollingDiceData : MonoBehaviour
             {
                 if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
                 {
-                    continue; // Ignorez les tuiles verrouillées
+                    continue;
                 }
                 if (tile == traveledTilesGO[closestTileIndex])
                 {
@@ -223,7 +213,7 @@ public class RollingDiceData : MonoBehaviour
             {
                 if (tile.transform.GetChild(0).GetComponent<NeighbourTileProcessor>().isLocked)
                 {
-                    continue; // Ignorez les tuiles verrouillées
+                    continue;
                 }
                 NeighbourTileProcessor newTileRing = UpdateSingleHex(tile.transform.GetChild(0).gameObject, gameManager.tilePrefabs[Array.IndexOf(Enum.GetNames(typeof(TileType)), tiles[randomRingTile])], tiles[randomRingTile]);
                 newTiles.Add(newTileRing.gameObject);
@@ -244,7 +234,7 @@ public class RollingDiceData : MonoBehaviour
         Quaternion randomRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 6) * 60, 0));
         GameObject newHex = Instantiate(newHexPrefab, hexToBeChanged.transform.position, (newTileType == "plain" || newTileType == "plainPlain") ? Quaternion.identity : randomRotation, hexToBeChanged.transform.parent);
 
-        //Props rotate
+        //Props random rotate
         if (newHex.transform.childCount > 1)
         {
             for (int i = 0; i < newHex.transform.GetChild(1).childCount; i++)
@@ -295,55 +285,6 @@ public class RollingDiceData : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Untagged"))
-        {
-            return;
-        }
-
-        hasLanded = true;
-
-        if (collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
-        {
-            GlowingHexes glowingHexes = new GlowingHexes();
-            glowingHexes = collision.gameObject.GetComponent<GlowingHexes>();
-            StartCoroutine(glowingHexes.ScaleEffect());
-            return;
-        }
-
-        string tileType = collision.collider.GetComponent<NeighbourTileProcessor>().tileType;
-
-        //if (tileType == gameManager.tileTypes[0]) // mountain
-        //{
-        //    ApplyMountainEffect();
-        //}
-
-        if (!traveledTilesGO.Contains(collision.gameObject))
-        {
-            if (collision.collider.CompareTag("Hex") && !gameManager.dicesCanReplaceAllHexes)
-            {
-                return;
-            }
-
-            diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-            // Timer pour pas skip des notes
-            diceEventInstance.setParameterByName("numberOfTiles", numberOfBounces);
-            diceEventInstance.start();
-            //collision.gameObject.GetComponent<NeighbourTileProcessor>().PlayTileBounceSound(numberOfBounces);
-            numberOfBounces += 1;
-            traveledTilesGO.Add(collision.gameObject);
-            collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
-
-        }
-    }
-
-    private void ApplyMountainEffect()
-    {
-        Vector3 diceVelocity = diceRb.linearVelocity;
-        diceRb.linearVelocity = new Vector3(diceVelocity.x, -0.5f * diceVelocity.y, diceVelocity.z);
-    }
-
     private void LiveUpdateChosenFaceUi()
     {
         float[] vectorDotResultArray = new float[numberOfFaces];
@@ -367,7 +308,6 @@ public class RollingDiceData : MonoBehaviour
         gameManager.diceFaces[closestIndex].transform.GetComponent<Outline>().effectDistance = new Vector2(3, 3);
         gameManager.diceFaces[closestIndex].transform.GetComponent<Outline>().effectColor = Color.yellow;
     }
-
     private string GetChosenFace()
     {
         float[] vectorDotResultArray = new float[numberOfFaces];
@@ -385,5 +325,40 @@ public class RollingDiceData : MonoBehaviour
         }
 
         return transform.GetChild(closestIndex).GetComponent<FaceComponent>().faceType;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Untagged"))
+        {
+            return;
+        }
+
+        hasLanded = true;
+
+        if (!traveledTilesGO.Contains(collision.gameObject))
+        {
+            if (collision.collider.CompareTag("Hex") && !gameManager.dicesCanReplaceAllHexes)
+            {
+                return;
+            }
+            GlowingHexes glowingHexes = collision.gameObject.GetComponent<GlowingHexes>();
+
+            if (collision.collider.GetComponent<NeighbourTileProcessor>().isLocked)
+            {
+                StartCoroutine(glowingHexes.ScaleEffect());
+            }
+            else
+            {
+                collision.gameObject.GetComponent<GlowingHexes>().ToggleGlow(true);
+            }
+
+            diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            // Timer pour pas skip des notes
+            diceEventInstance.setParameterByName("numberOfTiles", numberOfBounces);
+            diceEventInstance.start();
+            numberOfBounces += 1;
+            traveledTilesGO.Add(collision.gameObject);
+        }
     }
 }
