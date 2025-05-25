@@ -12,6 +12,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     //public string[] tileTypes;
+    public Vector3 lastDiceCoordinatesBeforeDestroy;
+
     public bool tilePatternRandom;
     public float lakitu;
     public float lakituTreshold;
