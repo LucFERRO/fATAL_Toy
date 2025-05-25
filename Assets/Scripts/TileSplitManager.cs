@@ -295,6 +295,7 @@ public class TileSplitManager : MonoBehaviour
                 Debug.Log($"force open obj {i + 1}");
                 ToggleOpenTargetObjective(i);
             }
+            SetTargetAnimationIsObjClosed(i, false);
         }
     }
 
@@ -397,6 +398,7 @@ public class TileSplitManager : MonoBehaviour
                     Debug.Log($"force close obj {i + 1}");
                     ToggleOpenTargetObjective(i);
                 }
+                SetTargetAnimationIsObjClosed(i, true);
             }
         }
 
@@ -412,9 +414,15 @@ public class TileSplitManager : MonoBehaviour
             }
             else
             {
-                CreateNewObjectiveBatch();
+                StartCoroutine(CreateNewObjectiveBatchCoroutine());
             }
         }
+    }
+
+    private IEnumerator CreateNewObjectiveBatchCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        CreateNewObjectiveBatch();
     }
 
     private void RandomObjectives(int difficulty)
@@ -504,7 +512,12 @@ public class TileSplitManager : MonoBehaviour
     public void ToggleOpenTargetObjective(int objectiveId)
     {
         areObjectiveOpenBools[objectiveId] = !areObjectiveOpenBools[objectiveId];
-        objectiveElements[objectiveId].transform.parent.GetComponent<Animator>().SetTrigger("ToggleTrigger");
+        SetTargetAnimationIsObjClosed(objectiveId, !areObjectiveOpenBools[objectiveId]);
+    }
+
+    public void SetTargetAnimationIsObjClosed(int objectiveId, bool objectiveState)
+    {
+        objectiveElements[objectiveId].transform.parent.GetComponent<Animator>().SetBool("IsObjectiveClosed", objectiveState);
     }
 
     private void CheckObjectivesOLD()
