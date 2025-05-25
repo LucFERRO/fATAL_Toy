@@ -290,7 +290,7 @@ public class TileSplitManager : MonoBehaviour
             TextMeshProUGUI textMeshProElement = objectiveElements[i];
             Debug.Log("obj " + i);
             objectiveElements[i].fontStyle = FontStyles.Normal;
-            // AYMERIC SON ? NEW OBJECTIVES
+            // AYMERIC SON ? NEW OBJECTIVES je sais plus
             textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", false);
             if (!areObjectiveOpenBools[i])
             {
