@@ -23,6 +23,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
+
     [Header("References")]
     public GameObject pauseMenu;
     public GameObject confirmReload;
@@ -30,6 +31,7 @@ public class UiManager : MonoBehaviour
     private UnlockManager unlockManager;
     public GameObject inventoryGO;
     public GameObject biomesUiGO;
+    public TileSplitManager tileSplitManager;
 
     private void Start()
     {
@@ -87,5 +89,4 @@ public class UiManager : MonoBehaviour
     {
         IsInventoryOpen = !IsInventoryOpen;
     }
-
 }

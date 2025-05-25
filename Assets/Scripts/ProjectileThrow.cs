@@ -102,6 +102,14 @@ public class ProjectileThrow : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
+                if (isOverUI)
+                {
+                    gameManager.isPreviewing = false;
+                    Cursor.visible = true;
+                    PreviewEventInstance.setParameterByName("PreviewState", 1);
+                    PreviewEventInstance.start();
+                    return;
+                }
                 DiceThrowEventInstance.start();
                 Cursor.visible = true;
                 PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();

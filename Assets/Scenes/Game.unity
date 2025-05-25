@@ -17787,11 +17787,17 @@ MonoBehaviour:
   isLoadingMenu: 0
   isConfirmReaload: 0
   isInventoryOpen: 1
+  isObjectivePanelOpen: 0
   pauseMenu: {fileID: 4182528640210037949}
   confirmReload: {fileID: 0}
   inventoryAnimator: {fileID: 72674475}
+  objectivePanelAnimators:
+  - {fileID: 777480519}
+  - {fileID: 519232468}
+  - {fileID: 1502545546}
   inventoryGO: {fileID: 72674472}
   biomesUiGO: {fileID: 2103457210}
+  tileSplitManager: {fileID: 0}
 --- !u!114 &1441868377
 MonoBehaviour:
   m_ObjectHideFlags: 0
