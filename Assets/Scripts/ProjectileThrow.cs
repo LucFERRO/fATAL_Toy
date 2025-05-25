@@ -18,7 +18,7 @@ public class ProjectileThrow : MonoBehaviour
     private GameManager gameManager;
     private UiManager uiManager;
     private DefeatManager defeatManager;
-    public bool isOverUI = false;
+    public bool isOverUI;
 
     [SerializeField]
     Rigidbody objectToThrow;
