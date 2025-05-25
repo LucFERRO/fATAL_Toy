@@ -12,6 +12,7 @@ public class UnlockManager : MonoBehaviour
     public bool[] pendingUnlockedStatus;
     GameManager gameManager;
     [Header("References")]
+    public GameObject sporeItem;
     Animator[] tileComboAnimators;
     [SerializeField] GameObject tileComboTitleGO;
     DraggableItem[] uiUnlockableTilesItems;

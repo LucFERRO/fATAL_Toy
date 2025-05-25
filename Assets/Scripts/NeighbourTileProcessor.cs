@@ -33,6 +33,7 @@ public class NeighbourTileProcessor : MonoBehaviour
     [Header("FMOD")]
     private FMOD.Studio.EventInstance lockStatusEventInstance;
     private FMOD.Studio.EventInstance tileBounceEventInstance;
+    private FMOD.Studio.EventInstance tileUnlockEventInstance;
 
     public bool IsLocked
     {
@@ -80,6 +81,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         lockStatusEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Lock");
         lockStatusEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/DiceOnTile");
+        tileUnlockEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/TilesUnlocking");
         //if (tileType == TileType.forest.ToString() || tileType == TileType.mountain.ToString())
         //{
         //    tileBounceEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Dice bouncing-Glockenspiel");
@@ -322,7 +324,17 @@ public class NeighbourTileProcessor : MonoBehaviour
             if (Enum.GetNames(typeof(TileType))[i] == GetComboTile())
             {
                 Enum.TryParse(Enum.GetNames(typeof(TileType))[i], out TileType tileType);
-                gameManager.unlockManager.HandleUnlockComboTile(tileType);
+                if (gameManager.unlockManager.HandleUnlockComboTile(tileType))
+                {
+                    Debug.Log($"Combo tile {Enum.GetNames(typeof(TileType))[i]} unlocked!");
+                    GameObject newSporeItem = Instantiate(gameManager.unlockManager.sporeItem, transform.position, Quaternion.identity);
+                    for (int j = 0; j < newSporeItem.transform.GetChild(0).childCount; j++)
+                    {
+                        newSporeItem.transform.GetChild(0).GetChild(j).GetComponent<MeshRenderer>().material = gameManager.faceMaterials[i];
+                    }
+                    // AYMERIC SON PLEASE //// JESUS M'AGGRESSE
+                    tileUnlockEventInstance.start();
+                }
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
                 UpdateHex();
                 gameManager.chosenPrefab = gameManager.tilePrefabs[0];
