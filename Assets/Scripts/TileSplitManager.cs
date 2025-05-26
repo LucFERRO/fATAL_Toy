@@ -128,7 +128,6 @@ public class TileSplitManager : MonoBehaviour
             if (mainCamera.transform.position != startingCameraPos)
             {
                 hasCameraMoved = true;
-                Debug.Log("Tutorial: Camera moved!");
                 UpdateObjectives();
             }
         }
@@ -288,13 +287,12 @@ public class TileSplitManager : MonoBehaviour
         for (int i = 0; i < objectives.Count; i++)
         {
             TextMeshProUGUI textMeshProElement = objectiveElements[i];
-            Debug.Log("obj " + i);
+            //Debug.Log("obj " + i);
             objectiveElements[i].fontStyle = FontStyles.Normal;
-            // AYMERIC SON ? NEW OBJECTIVES je sais plus
             textMeshProElement.transform.parent.GetChild(1).GetComponent<Animator>().SetBool("DoneBool", false);
             if (!areObjectiveOpenBools[i])
             {
-                Debug.Log($"force open obj {i + 1}");
+                //Debug.Log($"force open obj {i + 1}");
                 ToggleOpenTargetObjective(i);
             }
             SetTargetAnimationIsObjClosed(i, false);
@@ -398,7 +396,7 @@ public class TileSplitManager : MonoBehaviour
                 }
                 if (areObjectiveOpenBools[i])
                 {
-                    Debug.Log($"force close obj {i + 1}");
+                    //Debug.Log($"force close obj {i + 1}");
                     ToggleOpenTargetObjective(i);
                 }
                 SetTargetAnimationIsObjClosed(i, true);
@@ -412,10 +410,13 @@ public class TileSplitManager : MonoBehaviour
 
             if (finishedBatchCount >= lvlDifficulty)
             {
-                objectivesEventInstance.setParameterByName("ObjectiveState", 0);
-                objectivesEventInstance.start();
-                endUiAnimator.gameObject.SetActive(true);
-                endUiAnimator.SetTrigger("ToggleTrigger");
+                if (!endUiAnimator.gameObject.activeSelf)
+                {
+                    objectivesEventInstance.setParameterByName("ObjectiveState", 0);
+                    objectivesEventInstance.start();
+                    endUiAnimator.gameObject.SetActive(true);
+                    endUiAnimator.SetTrigger("ToggleTrigger");
+                }
             }
             else
             {
@@ -581,10 +582,7 @@ public class TileSplitManager : MonoBehaviour
             {
                 for (int j = 1; j < tileTransform.parent.childCount; j++)
                 {
-                    if (!tileTransform.parent.GetChild(j).CompareTag("Particles"))
-                    {
-                        Destroy(tileTransform.parent.GetChild(j).gameObject);
-                    }
+                    Destroy(tileTransform.parent.GetChild(0).gameObject);
                 }
             }
             string type = tileTransform.GetComponent<NeighbourTileProcessor>().tileType;

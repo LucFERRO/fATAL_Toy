@@ -117,7 +117,6 @@ public class ProjectileThrow : MonoBehaviour
                 gameManager.isPreviewing = false;
                 if (!gameManager.diceWasThrown)
                 {
-                    Debug.Log("DICE WAS THROWN");
                     gameManager.diceWasThrown = true;
                 }
             }

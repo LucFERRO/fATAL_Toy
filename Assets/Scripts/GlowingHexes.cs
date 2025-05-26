@@ -248,6 +248,7 @@ public class GlowingHexes : MonoBehaviour
         }
 
         ToggleMaterialize(false);
+        // DESTROY DICE QUI MERDE
         if (gameManager.gameObject.transform.childCount != 0)
         {
             Destroy(gameManager.gameObject.transform.GetChild(0).gameObject);

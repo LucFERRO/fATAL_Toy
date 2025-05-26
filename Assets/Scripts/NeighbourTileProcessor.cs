@@ -431,7 +431,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         newHex.GetComponent<GlowingHexes>().ToggleMaterialize(true);
         StartCoroutine(newHex.GetComponent<GlowingHexes>().TransitionAppear());
         newHex.transform.position = transform.position;
-        newHex.transform.SetAsFirstSibling();
+        //newHex.transform.SetAsFirstSibling(); // BUGGED ?
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
         newGridCoordinates.tileType = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tileType;

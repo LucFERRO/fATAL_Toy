@@ -12,7 +12,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     //public string[] tileTypes;
-    public Vector3 lastDiceCoordinatesBeforeDestroy;
 
     public bool tilePatternRandom;
     public float lakitu;
@@ -82,7 +81,7 @@ public class GameManager : MonoBehaviour
     public string chosenTileType;
     void Start()
     {
-        Debug.Log($"This game is {(CrossSceneData.isTutorial ? "":"not")} a tutorial game.");
+        Debug.Log($"This game is {(CrossSceneData.isTutorial ? "" : "not")} a tutorial game.");
         unlockManager = GetComponent<UnlockManager>();
         baseDiceFaceColor = diceFaces[0].transform.GetChild(0).GetComponent<Image>().color;
         TypeBools = new bool[Enum.GetNames(typeof(TileType)).Length];
@@ -95,6 +94,7 @@ public class GameManager : MonoBehaviour
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
 
         transitionEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Transition");
+        transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
     private Vector3 AverageClusterCenter(List<GameObject> tiles)
@@ -131,13 +131,11 @@ public class GameManager : MonoBehaviour
             if (count < minTilesRolled)
             {
                 minTilesRolled = count;
-                Debug.Log("NEW MIN ROLLED");
             }
 
             if (count > maxTilesRolled)
             {
                 maxTilesRolled = count;
-                Debug.Log("NEW MAX ROLLED");
             }
         }
 
@@ -187,7 +185,6 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject surroundingTiles in traveledTilesNeighbours)
         {
-            //surroundingTiles.GetComponent<MeshRenderer>().material.color = Color.blue;
             if (surroundingTiles.GetComponent<NeighbourTileProcessor>().isLocked)
             {
                 continue;
@@ -200,7 +197,12 @@ public class GameManager : MonoBehaviour
             processor.GetNeighbourTiles();
             processor.UpdateCurrentNeighbourTiles();
             processor.GetMajorTile();
+            string tempType = processor.tileType;
             processor.UpdateComboTile();
+            if (tempType != processor.tileType)
+            {
+                Debug.Log($"{surroundingTiles.name} CHANGED TO tileType: {processor.tileType}");
+            }
         }
         return traveledTilesNeighbours;
     }
@@ -225,9 +227,7 @@ public class GameManager : MonoBehaviour
             processor.GetNeighbourTiles();
             processor.UpdateCurrentNeighbourTiles();
             processor.GetMajorTile();
-            //Debug.Log($"name {tile.name},tileType: {tile.GetComponent<NeighbourTileProcessor>().tileType}, majorTile: {tile.GetComponent<NeighbourTileProcessor>().majorTile}");
             processor.UpdateComboTile();
-            //Debug.Log($"name {tile.name} Update {boo}");
 
         }
     }
