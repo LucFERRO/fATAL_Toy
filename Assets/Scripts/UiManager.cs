@@ -82,6 +82,7 @@ public class UiManager : MonoBehaviour
     public void TogglePause()
     {
         isPaused = !isPaused;
+        confirmReload.SetActive(false);
         pauseMenu.SetActive(isPaused);
     }
 

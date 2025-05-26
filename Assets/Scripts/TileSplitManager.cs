@@ -405,13 +405,13 @@ public class TileSplitManager : MonoBehaviour
 
         if (objectives.All(o => o.IsCompleted))
         {
-            Debug.Log("All objectives are done!");
             finishedBatchCount++;
 
             if (finishedBatchCount >= lvlDifficulty)
             {
                 if (!endUiAnimator.gameObject.activeSelf)
                 {
+                    Debug.Log("All objectives are done!");
                     objectivesEventInstance.setParameterByName("ObjectiveState", 0);
                     objectivesEventInstance.start();
                     endUiAnimator.gameObject.SetActive(true);

@@ -9,6 +9,7 @@ public class DefeatManager : MonoBehaviour
     public GameObject rollCountGo;
     private GameManager gameManager;
     private TextMeshProUGUI rollsLeftText;
+    private Animator rollCounterAnimator;
     public bool canRoll;
     void Start()
     {
@@ -20,6 +21,7 @@ public class DefeatManager : MonoBehaviour
         currentNumberOfRolls = maxNumberOfRolls;
         canRoll = currentNumberOfRolls > 0;
         rollsLeftText = rollCountGo.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        rollCounterAnimator = rollCountGo.GetComponent<Animator>();
         rollsLeftText.text = currentNumberOfRolls.ToString();
         gameManager = GetComponent<GameManager>();
     }
@@ -35,12 +37,14 @@ public class DefeatManager : MonoBehaviour
     public void HandleRollCount()
     {
         currentNumberOfRolls--;
+        if (currentNumberOfRolls > 1)
+        {
+            rollCounterAnimator.SetTrigger("UpdateCounter");
+        }
         if (currentNumberOfRolls <= 0) {
             rollCountGo.transform.GetChild(0).gameObject.SetActive(false);
             canRoll = false;
             TriggerDefeat();
         }
-        string rollMessage = $"{(currentNumberOfRolls == 1 ? $"<size=50><color=#ff0000>{currentNumberOfRolls.ToString()}!" : currentNumberOfRolls.ToString())}";
-        rollsLeftText.text = rollMessage;
     }
 }
