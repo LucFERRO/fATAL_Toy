@@ -110,6 +110,7 @@ public class ProjectileThrow : MonoBehaviour
                     PreviewEventInstance.start();
                     return;
                 }
+                Debug.Log("THROW");
                 DiceThrowEventInstance.start();
                 Cursor.visible = true;
                 PhysicalDiceProperties updatedProperties = trajectoryPreview.GetProjectileProperties();

@@ -16014,7 +16014,7 @@ MonoBehaviour:
   numberOfTiles: 0
   objectiveColor: {r: 0.6745098, g: 0.43137255, b: 0.105882354, a: 1}
   finishedBatchCount: 0
-  lvlDifficulty: 1
+  lvlDifficulty: 3
   hasCameraMoved: 0
   objectiveStrings: []
   objectiveBools: 
