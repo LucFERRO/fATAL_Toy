@@ -37,7 +37,7 @@ public class DefeatManager : MonoBehaviour
     public void HandleRollCount()
     {
         currentNumberOfRolls--;
-        if (currentNumberOfRolls > 1)
+        if (currentNumberOfRolls >= 1)
         {
             rollCounterAnimator.SetTrigger("UpdateCounter");
         }

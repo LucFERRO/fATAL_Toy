@@ -578,13 +578,6 @@ public class TileSplitManager : MonoBehaviour
         for (int i = 0; i < numberOfTiles; i++)
         {
             Transform tileTransform = transform.GetChild(i).GetChild(0);
-            if (tileTransform.parent.childCount > 1)
-            {
-                for (int j = 1; j < tileTransform.parent.childCount; j++)
-                {
-                    Destroy(tileTransform.parent.GetChild(0).gameObject);
-                }
-            }
             string type = tileTransform.GetComponent<NeighbourTileProcessor>().tileType;
 
             string[] types = Regex.Split(type, @"(?<!^)(?=[A-Z])");
@@ -603,6 +596,17 @@ public class TileSplitManager : MonoBehaviour
                 else
                 {
                     Debug.LogWarning($"Unexpected tile type: {subType}. Ensure all tile types are accounted for.");
+                }
+            }
+            if (tileTransform.GetComponent<NeighbourTileProcessor>().isLocked)
+            {
+                continue;
+            }
+            if (tileTransform.parent.childCount > 1)
+            {
+                for (int j = 1; j < tileTransform.parent.childCount; j++)
+                {
+                    Destroy(tileTransform.parent.GetChild(j).gameObject);
                 }
             }
         }

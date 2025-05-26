@@ -107,7 +107,11 @@ public class GlowingHexes : MonoBehaviour
     }
     public void ToggleGlow(bool state)
     {
-        if (isGlowing == state) return;
+        if (isGlowing == state)
+        {
+            return;
+        }
+
         ToggleGlow();
     }
     public void ToggleLock()
@@ -116,9 +120,7 @@ public class GlowingHexes : MonoBehaviour
         {
             if (r == null || r.transform.CompareTag("WaterPlane"))
             {
-                Debug.Log("locking grass");
                 r.material.SetInt("_isLocked", r.material.GetInt("_isLocked") == 1 ? 0 : 1);
-                Debug.Log("isLocked: " + isLocked);
             }
             else
             {
@@ -130,14 +132,22 @@ public class GlowingHexes : MonoBehaviour
     }
     public void ToggleLock(bool state)
     {
-        if (isLocked == state) return;
+        if (isLocked == state)
+        {
+            return;
+        }
+
         ToggleLock();
     }
     public void ToggleMaterialize()
     {
         foreach (Renderer r in renderers)
         {
-            if (r == null || r.transform.CompareTag("WaterPlane")) continue;
+            if (r == null || r.transform.CompareTag("WaterPlane"))
+            {
+                continue;
+            }
+
             r.materials = isMaterializing ? originalMaterials[r] : materializeMaterials[r];
         }
 
@@ -145,7 +155,11 @@ public class GlowingHexes : MonoBehaviour
     }
     public void ToggleMaterialize(bool state)
     {
-        if (isMaterializing == state) return;
+        if (isMaterializing == state)
+        {
+            return;
+        }
+
         ToggleMaterialize();
     }
 
@@ -157,6 +171,7 @@ public class GlowingHexes : MonoBehaviour
         {
             if (transform.parent.GetChild(i).GetComponent<ParticlesToBeDestroyed>().isToBeDestroyed)
             {
+                Debug.Log($"Destroying 'PARTICLES' {transform.parent.GetChild(i)}");
                 Destroy(transform.parent.GetChild(i).gameObject);
             }
         }
@@ -220,7 +235,7 @@ public class GlowingHexes : MonoBehaviour
                 r.materials[0].SetFloat("_Dissolve", 1f);
             }
         }
-
+        Debug.Log($"Destroying {gameObject}");
         Destroy(gameObject);
     }
     public IEnumerator TransitionAppear()
