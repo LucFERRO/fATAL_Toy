@@ -8,7 +8,7 @@ public class GridNeighbourHandler : MonoBehaviour, IDataPersistence
     public GameManager gameManager;
     public GameObject baseHex;
 
-    [SerializeField] private string id;
+    [SerializeField] public string id;
 
     [ContextMenu("Generate guid for id")]
     private void GenerateGuid()

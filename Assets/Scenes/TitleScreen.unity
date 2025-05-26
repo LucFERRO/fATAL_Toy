@@ -1038,6 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef34f2c4f66dff48a43d6dba1882e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleAnimator: {fileID: 2129132774}
 --- !u!114 &1071886820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,10 +1275,10 @@ RectTransform:
   - {fileID: 787829161}
   m_Father: {fileID: 2129132778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 652}
-  m_SizeDelta: {x: -600, y: -990}
+  m_SizeDelta: {x: 1320, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262545507
 MonoBehaviour:
@@ -1576,6 +1577,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1460399130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460399120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b90b66bc50a0f748b59266f9c4cc775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1462734341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,10 +1625,10 @@ RectTransform:
   - {fileID: 1542889301}
   m_Father: {fileID: 2129132778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 831}
-  m_SizeDelta: {x: -600, y: -990}
+  m_SizeDelta: {x: 1320, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462734343
 MonoBehaviour:
@@ -2230,6 +2243,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7128359510093483139, guid: 183cba281d88ea1418e61b3519b5c4a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1460399126}
+    - targetCorrespondingSourceObject: {fileID: 7128359510093483139, guid: 183cba281d88ea1418e61b3519b5c4a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1460399130}
     - targetCorrespondingSourceObject: {fileID: 5593969788344892734, guid: 183cba281d88ea1418e61b3519b5c4a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 16755199}
@@ -2479,10 +2495,10 @@ RectTransform:
   - {fileID: 1673178432}
   m_Father: {fileID: 2129132778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 652}
-  m_SizeDelta: {x: -600, y: -990}
+  m_SizeDelta: {x: 1320, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1892487128
 MonoBehaviour:
@@ -2955,6 +2971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmationPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 3325793690537306039, guid: 23d08931dc5e1d341a964fae32139c6d, type: 3}
+      propertyPath: mainMenuAnimator
+      value: 
+      objectReference: {fileID: 2129132774}
     - target: {fileID: 4980775849050851765, guid: 23d08931dc5e1d341a964fae32139c6d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

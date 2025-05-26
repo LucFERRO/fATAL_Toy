@@ -10,6 +10,8 @@ public class MenuSounds : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     FMOD.Studio.EventInstance menuSelectEventInstance;
     FMOD.Studio.EventInstance ambianceEventInstance;
     FMOD.Studio.EventInstance mainMenuEventInstance;
+    public GameManager gameManager;
+    public bool isObjective;
 
     void Awake()
     {
@@ -23,11 +25,22 @@ public class MenuSounds : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         mainMenuEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/MainMenu");
 
         ambianceEventInstance.start();
+        if (gameManager != null)
+        {
+            isObjective = true;
+        }
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && isOnButton)
         {
+            if (isObjective)
+            {
+                if (gameManager.isPreviewing)
+                {
+                    return;
+                }
+            }
             if (gameObject.CompareTag("StartGameSelect"))
             {
                 mainMenuEventInstance.setParameterByName("MainMenu", 1);
@@ -54,8 +67,12 @@ public class MenuSounds : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        inventory.PlaySound(2);
         isOnButton = true;
+        if (isObjective)
+        {
+            return;
+        }
+        inventory.PlaySound(2);
     }
 
     public void OnPointerExit(PointerEventData eventData)

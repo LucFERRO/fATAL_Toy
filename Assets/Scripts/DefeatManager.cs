@@ -28,7 +28,7 @@ public class DefeatManager : MonoBehaviour
     public void TriggerDefeat()
     {
         rollCountGo.transform.GetChild(0).gameObject.SetActive(false);
-        rollCountGo.transform.GetChild(1).gameObject.SetActive(true);
+        // TRIGGER ANIM IMAGE
         defeatCanvas.SetActive(true);
         defeatCanvas.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Restart";
         defeatCanvas.transform.GetComponent<Animator>().SetTrigger("ToggleTrigger");
@@ -43,6 +43,8 @@ public class DefeatManager : MonoBehaviour
         }
         if (currentNumberOfRolls <= 0) {
             rollCountGo.transform.GetChild(0).gameObject.SetActive(false);
+            rollCountGo.transform.GetChild(1).GetComponent<Animator>().SetBool("DefeatImage", true) ;
+
             canRoll = false;
             TriggerDefeat();
         }

@@ -143,11 +143,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TransitionSoundsCoroutine(tiles, 0f, 0));
         StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f, 0));
 
+        StartCoroutine(UpdateNeighboursCoroutine(NeighbourCascade, 1.1f, 1));
         //Fix 2e son always plays
         if (NeighbourCascade.Count != 0)
         {
             StartCoroutine(TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1));
-            StartCoroutine(UpdateNeighboursCoroutine(NeighbourCascade, 0.7f, 1));
         }
         StartCoroutine(GlobalGridUpdateCoroutine(2f));
     }
@@ -199,10 +199,6 @@ public class GameManager : MonoBehaviour
             processor.GetMajorTile();
             string tempType = processor.tileType;
             processor.UpdateComboTile();
-            if (tempType != processor.tileType)
-            {
-                Debug.Log($"{surroundingTiles.name} CHANGED TO tileType: {processor.tileType}");
-            }
         }
         return traveledTilesNeighbours;
     }
@@ -213,8 +209,16 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject tile in tiles)
         {
+            //if (transitionLevel == 1)
+            //{
+
+            //}
             if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
             {
+                if (transitionLevel == 1)
+                {
+                    Debug.Log("NULL IN UpdateNeighboursCoroutine 2nd wave");
+                }
                 continue;
             }
 

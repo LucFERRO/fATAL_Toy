@@ -5,8 +5,7 @@ using FMOD.Studio;
 using static UnityEngine.Rendering.DebugUI.Table;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
+//using UnityEditor.PackageManager.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using System.IO;
@@ -98,9 +97,10 @@ public class DataPersistenceManager : MonoBehaviour
             {
                 if (Vector3.Distance(pos, kvp.Key) < positionTolerance)
                 {
-                    var so = new SerializedObject(handler);
-                    so.FindProperty("id").stringValue = kvp.Value;
-                    so.ApplyModifiedProperties();
+                    //var so = new SerializedObject(handler);
+                    //so.FindProperty("id").stringValue = kvp.Value;
+                    //so.ApplyModifiedProperties();
+                    handler.id = kvp.Value;
                     assigned++;
                     found = true;
                     break;
