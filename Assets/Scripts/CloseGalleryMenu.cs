@@ -6,7 +6,7 @@ public class CloseGalleryMenu : MonoBehaviour
 
     private void Start()
     {
-        galleryAnimator = transform.parent.GetComponent<Animator>();
+        galleryAnimator = transform.parent.parent.GetComponent<Animator>();
     }
 
     public void CloseGallery()
