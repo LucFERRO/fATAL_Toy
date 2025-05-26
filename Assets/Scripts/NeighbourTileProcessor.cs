@@ -9,6 +9,7 @@ using System.Linq;
 
 public class NeighbourTileProcessor : MonoBehaviour
 {
+
     [Header("References")]
     public static GameManager gameManager;
     private static PhysicalDiceSpawner diceSpawner;
@@ -332,8 +333,16 @@ public class NeighbourTileProcessor : MonoBehaviour
                     {
                         newSporeItem.transform.GetChild(0).GetChild(j).GetComponent<MeshRenderer>().material = gameManager.faceMaterials[i];
                     }
-                    // AYMERIC SON PLEASE //// JESUS M'AGGRESSE
+                    float t = 0f;
+                    t += Time.deltaTime;
                     tileUnlockEventInstance.start();
+
+                    if (t >= 1f)
+                    {
+                        t = 0f;
+                        tileUnlockEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    }
+
                 }
                 gameManager.chosenPrefab = gameManager.tilePrefabs[i];
                 UpdateHex();
