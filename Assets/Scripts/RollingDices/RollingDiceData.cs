@@ -74,7 +74,6 @@ public class RollingDiceData : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"Velocity: {diceRb.linearVelocity.magnitude}");
         HandleDisappearanceTimer();
         HandleSelfDestruct();
         LiveUpdateChosenFaceUi();
