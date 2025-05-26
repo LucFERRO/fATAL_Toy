@@ -46,7 +46,9 @@ public class RollingDiceData : MonoBehaviour
         set
         {
             velocityWatcher = value;
-
+            if (value > 0.1f && value < 2f) { 
+                diceRb.AddForce(-3*Vector3.up, ForceMode.Force);
+            }
             if (value <= 0.1f && !hasChanged)
             {
                 GetClosestHexTile();
