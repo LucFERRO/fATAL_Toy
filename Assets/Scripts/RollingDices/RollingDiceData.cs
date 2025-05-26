@@ -18,6 +18,7 @@ public class RollingDiceData : MonoBehaviour
     public string chosenFaceString;
     public Vector2[] diceVectorArray;
     private bool hasChanged;
+    private Animator diceAnimator;
 
     [Header("State")]
     public bool isInUse;
@@ -83,15 +84,7 @@ public class RollingDiceData : MonoBehaviour
     {
         if (transform.position.y <= -gameManager.lakituTreshold)
         {
-            for (int i = 0; i < traveledTilesGO.Count; i++)
-            {
-                traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
-            }
-            diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            diceEventInstance.release();
-            defeatManager.HandleRollCount();
-            diceDeathEventInstance.start();
-            Destroy(gameObject);
+            diceAnimator.SetTrigger("TriggerShrink");
         }
     }
 
@@ -108,6 +101,7 @@ public class RollingDiceData : MonoBehaviour
 
     private void Initialize()
     {
+        diceAnimator = GetComponent<Animator>();
         gameManager = transform.parent.GetComponent<GameManager>();
         gameManager.faceTypes = new string[numberOfFaces];
         defeatManager = transform.parent.GetComponent<DefeatManager>();
@@ -327,6 +321,19 @@ public class RollingDiceData : MonoBehaviour
         }
 
         return transform.GetChild(closestIndex).GetComponent<FaceComponent>().faceType;
+    }
+
+    public void SelfDestroy()
+    {
+        for (int i = 0; i < traveledTilesGO.Count; i++)
+        {
+            traveledTilesGO[i].GetComponent<GlowingHexes>().ToggleGlow(false);
+        }
+        diceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        diceEventInstance.release();
+        defeatManager.HandleRollCount();
+        diceDeathEventInstance.start();
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -13,7 +13,6 @@ public class UpdateLiveCounter : MonoBehaviour
     {
         int currentNumberOfRolls = defeatManager.currentNumberOfRolls;
         string rollMessage = $"{(currentNumberOfRolls == 1 ? $"<color=#ff0000>{currentNumberOfRolls.ToString()}!" : currentNumberOfRolls.ToString())}";
-        Debug.Log(rollMessage);
         if (currentNumberOfRolls != 0)
         {
             liveCounterText.text = rollMessage;
