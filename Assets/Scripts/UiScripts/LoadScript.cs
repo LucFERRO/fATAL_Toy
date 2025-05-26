@@ -12,7 +12,7 @@ public class LoadScript : MonoBehaviour
     public Button prevPageButton; // Assign in inspector
 
     private List<string> saveFiles = new List<string>();
-    private int currentPage = 0;
+    public int currentPage = 0;
     private int itemsPerPage = 6;
     private int totalPages = 0;
     private string savePath;
@@ -56,7 +56,7 @@ public class LoadScript : MonoBehaviour
         }
     }
 
-    void ShowPage(int page)
+    public void ShowPage(int page)
     {
         // Remove old items
         foreach (Transform child in transform.GetChild(0))
@@ -115,12 +115,16 @@ public class LoadScript : MonoBehaviour
     public void NextPage()
     {
         if (currentPage < totalPages - 1)
+        {
             ShowPage(currentPage + 1);
+        }
     }
 
     public void PrevPage()
     {
         if (currentPage > 0)
+        {
             ShowPage(currentPage - 1);
+        }
     }
 }

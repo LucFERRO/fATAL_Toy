@@ -3940,9 +3940,9 @@ MonoBehaviour:
         z: 3.0947716
       Rotation:
         value:
-          x: 0.08476287
-          y: 0.22725639
-          z: 0.013594747
+          x: 0.08476288
+          y: 0.22725642
+          z: 0.013594748
           w: 0.9700438
     - Position:
         x: 16.38
@@ -16038,8 +16038,8 @@ MonoBehaviour:
   mainCamera: {fileID: 1852280151}
   gameManager: {fileID: 1441868373}
   endUiAnimator: {fileID: 1720491932}
+  stencilAnimator: {fileID: 522227580}
   mainCanvas: {fileID: 293149564}
-  winCanvas: {fileID: 1442645643}
   objectiveListGo: {fileID: 1479342594916325422}
   objectiveElements:
   - {fileID: 6920498941635664209}
@@ -16746,11 +16746,6 @@ MonoBehaviour:
   defeatCanvas: {fileID: 1720491928}
   rollCountGo: {fileID: 912871567}
   canRoll: 0
---- !u!223 &1442645643 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 4634290260522906813, guid: 27c1a2254dac8174b8da174bbc99cb8b, type: 3}
-  m_PrefabInstance: {fileID: 5251502055677364475}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1446694281
 GameObject:
   m_ObjectHideFlags: 0

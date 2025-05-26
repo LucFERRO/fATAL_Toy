@@ -56,8 +56,9 @@ public class TileSplitManager : MonoBehaviour
     public Camera mainCamera;
     public GameManager gameManager;
     public Animator endUiAnimator;
+    public Animator stencilAnimator;
     public Canvas mainCanvas;
-    public Canvas winCanvas;
+    //public Canvas winCanvas;
     public GameObject objectiveListGo;
     public TextMeshProUGUI[] objectiveElements;
     public bool[] areObjectiveOpenBools;
@@ -562,7 +563,8 @@ public class TileSplitManager : MonoBehaviour
     }
     public void RestartGameButton()
     {
-        winCanvas.gameObject.SetActive(true);
+        //winCanvas.gameObject.SetActive(true);
+        stencilAnimator.SetTrigger("StencielAppearTrigger");
         Invoke("ReloadScene", 2f);
     }
 

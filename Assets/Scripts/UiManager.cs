@@ -45,6 +45,10 @@ public class UiManager : MonoBehaviour
             TogglePause();
             // SON BLURR 
         }
+        if (isPaused)
+        {
+            Cursor.visible = true;
+        }
 
         HandlePause();
     }
@@ -82,6 +86,7 @@ public class UiManager : MonoBehaviour
     public void TogglePause()
     {
         isPaused = !isPaused;
+        Cursor.lockState = CursorLockMode.None;
         confirmReload.SetActive(false);
         pauseMenu.SetActive(isPaused);
     }
