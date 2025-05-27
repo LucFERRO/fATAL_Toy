@@ -126,12 +126,23 @@ public class GameManager : MonoBehaviour
             transitionEventInstance.start();
         }
 
-        Debug.Log($"{!isStopingBoolArray[transitionLevel]} / {transitionLevel}");
-        if (!isStopingBoolArray[transitionLevel] && (transitionLevel == 1 || transitionLevel == 2))
+        if (!isStopingBoolArray[transitionLevel] && transitionLevel == 1)
         {
-            //Debug.Log($"wave num {transitionLevel+1} CANCELLED");
             transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
             transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
+            transitionEventInstance.start();
+        }
+
+        if (!isStopingBoolArray[transitionLevel] && transitionLevel == 2)
+        {
+            transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
+            if (!isStopingBoolArray[transitionLevel - 1])
+            {
+                transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
+            } else
+            {
+                transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel-1);
+            }
             transitionEventInstance.start();
         }
     }
@@ -153,13 +164,6 @@ public class GameManager : MonoBehaviour
         }
 
         List<GameObject> NeighbourCascade = UpdateNeighboursCascade(tiles);
-        //IEnumerator firstWaveSoundCoroutine = TransitionSoundsCoroutine(tiles, 0f, 0);
-
-        //IEnumerator secondWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1);
-        //IEnumerator secondWaveUpdateCoroutine = UpdateNeighboursCoroutine(tiles, 0.6f, 0);
-
-        //IEnumerator thirdWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.2f, 2);
-        //IEnumerator thirdWaveUpdateCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.2f, 2);
 
         IEnumerator firstWaveSoundCoroutine = TransitionSoundsCoroutine(tiles, 0f, 0);
         StartCoroutine(firstWaveSoundCoroutine);
@@ -169,20 +173,17 @@ public class GameManager : MonoBehaviour
         IEnumerator secondWaveUpdateCoroutine = UpdateNeighboursCoroutine(tiles, 0.6f, 1);
         StartCoroutine(secondWaveUpdateCoroutine);
 
-        //if (!isStopingBoolArray[0])
-        //{
+
         IEnumerator secondWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 0.7f, 1);
         StartCoroutine(secondWaveSoundCoroutine);
 
         //WAVE 3
         IEnumerator thirdWaveSoundCoroutine = UpdateNeighboursCoroutine(NeighbourCascade, 1.2f, 2);
         StartCoroutine(thirdWaveSoundCoroutine);
-        //if (!isStopingBoolArray[1])
-        //{
+
         IEnumerator thirdWaveUpdateCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.3f, 2);
         StartCoroutine(thirdWaveUpdateCoroutine);
-        //    }
-        //}
+
 
         //StartCoroutine(firstWaveSoundCoroutine);
         //StartCoroutine(secondWaveSoundCoroutine);
@@ -190,10 +191,7 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(thirdWaveSoundCoroutine);
         //StartCoroutine(thirdWaveUpdateCoroutine);
 
-        ////Fix 2e son always plays
-        //if (NeighbourCascade.Count != 0)
-        //{
-        //}
+
         StartCoroutine(GlobalGridUpdateCoroutine(2f));
     }
 
@@ -230,13 +228,11 @@ public class GameManager : MonoBehaviour
             {
                 continue;
             }
-            //tile.GetComponent<MeshRenderer>().material.color = Color.red;
 
             GridNeighbourHandler gridNeighbourHandler = tile.transform.parent.GetComponent<GridNeighbourHandler>();
             foreach (GameObject neighbourTile in gridNeighbourHandler.neighbourTileGOs)
             {
                 GameObject neighbourChild = neighbourTile.transform.GetChild(0).gameObject;
-                //if (Array.IndexOf(traveledTiles, neighbourChild) < 0 && !traveledTilesNeighbours.Contains(neighbourChild))
                 if (!traveledTiles.Contains(neighbourChild) && !traveledTilesNeighbours.Contains(neighbourChild) && !neighbourChild.GetComponent<NeighbourTileProcessor>().isLocked)
                 {
                     traveledTilesNeighbours.Add(neighbourChild);
@@ -261,16 +257,13 @@ public class GameManager : MonoBehaviour
             string tempType = processor.tileType;
             processor.UpdateComboTile();
         }
-        //Debug.Log($"traveledTiles: {traveledTiles.Count}");
-        //Debug.Log($"traveledTilesNeighbours: {traveledTilesNeighbours.Count}");
-        //Debug.Log($"Wave N0: new tiles {NumberOfCreatedTiles()} / {Time.timeSinceLevelLoad}");
+
         return traveledTilesNeighbours;
     }
 
     private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles, float time, int transitionLevel)
     {
         yield return new WaitForSeconds(time);
-        //Debug.Log($"Level: {transitionLevel} / {tiles.Count}");
 
         foreach (GameObject tile in tiles)
         {
@@ -292,11 +285,9 @@ public class GameManager : MonoBehaviour
 
         }
         int createdTilesThisWave = NumberOfCreatedTiles();
-        Debug.Log($"Wave N{transitionLevel}: new tiles {createdTilesThisWave} / {Time.timeSinceLevelLoad}");
         if (createdTilesThisWave == 0)
         {
             isStopingBoolArray[transitionLevel] = true;
-            Debug.Log($"Wave: {transitionLevel+1} / isStopingBoolArray[{transitionLevel}] {isStopingBoolArray[transitionLevel]} ");
         }
     }
 
@@ -321,7 +312,6 @@ public class GameManager : MonoBehaviour
 
                 if (!faceTypes[i].Contains(targetBiome, StringComparison.OrdinalIgnoreCase))
                 {
-                    //Debug.Log($"Tile type {faceTypes[i]} of face {i} does not match target biome {targetBiome}");
                     return false;
                 }
             }
@@ -354,7 +344,6 @@ public class GameManager : MonoBehaviour
                 {
                     comboDictionary.Add(newKey, kvp.Value + "_" + kvp2.Value);
                 }
-                //Debug.Log(newKey + " " + kvp.Value + "_" + kvp2.Value);
             }
         }
 

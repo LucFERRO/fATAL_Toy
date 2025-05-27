@@ -225,7 +225,6 @@ public class TileSplitManager : MonoBehaviour
             {
                 continue;
             }
-            Debug.Log(newProcessors.Count());
             foreach (NeighbourTileProcessor processor in newProcessors)
             {
                 processor.isNew = false;

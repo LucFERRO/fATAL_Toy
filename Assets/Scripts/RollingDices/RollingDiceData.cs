@@ -30,11 +30,12 @@ public class RollingDiceData : MonoBehaviour
 
     [Header("Timers")]
     public int maxDisappearanceTimer;
-    public float currentDisappearanceTimer;
+    public float currentDisappearanceTimer = 0.1f;
 
     [Header("FMOD")]
     private FMOD.Studio.EventInstance diceEventInstance;
     public int numberOfBounces;
+    public bool noteDirection;
     private FMOD.Studio.EventInstance diceDeathEventInstance;
 
     [Header("Velocity Watcher")]
@@ -47,8 +48,9 @@ public class RollingDiceData : MonoBehaviour
         set
         {
             velocityWatcher = value;
-            if (value > 0.1f && value < 2f) { 
-                diceRb.AddForce(-3*Vector3.up, ForceMode.Force);
+            if (value > 0.1f && value < 2f)
+            {
+                diceRb.AddForce(-3 * Vector3.up, ForceMode.Force);
             }
             if (value <= 0.1f && !hasChanged)
             {
@@ -162,7 +164,6 @@ public class RollingDiceData : MonoBehaviour
         .ToArray();
         return res;
     }
-
     private void UpdateTraveledHexes(string tileType)
     {
         List<GameObject> newTiles = new List<GameObject>();
@@ -215,7 +216,6 @@ public class RollingDiceData : MonoBehaviour
                 newTiles.Add(newTileRing.gameObject);
             }
         }
-
         gameManager.UpdateNeighboursAfterDiceDestroy(newTiles);
     }
 
@@ -261,7 +261,6 @@ public class RollingDiceData : MonoBehaviour
         StartCoroutine(hexToBeChanged.GetComponent<GlowingHexes>().TransitionDisappear());
         return newGridCoordinates;
     }
-
     private void GetClosestHexTile()
     {
         float shortestTileDistance = float.MaxValue;
@@ -280,7 +279,6 @@ public class RollingDiceData : MonoBehaviour
             }
         }
     }
-
     private void LiveUpdateChosenFaceUi()
     {
         float[] vectorDotResultArray = new float[numberOfFaces];
@@ -364,9 +362,14 @@ public class RollingDiceData : MonoBehaviour
 
             diceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
             // Timer pour pas skip des notes
-            diceEventInstance.setParameterByName("numberOfTiles", numberOfBounces);
+            diceEventInstance.setParameterByName("numberOfTiles", numberOfBounces + 1);
             diceEventInstance.start();
-            numberOfBounces += 1;
+            numberOfBounces += noteDirection ? -1 : 1;
+
+            if (numberOfBounces == 8 || numberOfBounces == 0)
+            {
+                noteDirection = !noteDirection;
+            }
             traveledTilesGO.Add(collision.gameObject);
         }
     }

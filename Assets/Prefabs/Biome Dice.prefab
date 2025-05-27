@@ -714,7 +714,10 @@ MonoBehaviour:
   hasLanded: 0
   maxDisappearanceTimer: 1
   currentDisappearanceTimer: 0
+  maxBounceCooldown: 0.5
+  currentBounceCooldown: 0
   numberOfBounces: 0
+  noteDirection: 0
   velocityWatcher: 0
   traveledTilesGO: []
 --- !u!33 &342227487895964265
