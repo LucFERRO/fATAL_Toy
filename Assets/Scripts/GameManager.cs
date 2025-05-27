@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public Texture2D cursor;
 
+    private bool[] isStopingBoolArray;
+
     public GameObject[] tilePrefabs;
     public GameObject[] diceFaces;
     public Color baseDiceFaceColor;
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
         //Cursor.visible = false;
         Physics.gravity = new Vector3(0, gravity, 0);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
-
+        isStopingBoolArray = new bool[3];
         transitionEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Transition");
         transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
@@ -117,10 +119,21 @@ public class GameManager : MonoBehaviour
         Vector3 center = AverageClusterCenter(tiles);
 
         yield return new WaitForSeconds(time);
+        if (transitionLevel == 0)
+        {
+            transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
+            transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
+            transitionEventInstance.start();
+        }
 
-        transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
-        transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
-        transitionEventInstance.start();
+        Debug.Log($"{!isStopingBoolArray[transitionLevel]} / {transitionLevel}");
+        if (!isStopingBoolArray[transitionLevel] && (transitionLevel == 1 || transitionLevel == 2))
+        {
+            //Debug.Log($"wave num {transitionLevel+1} CANCELLED");
+            transitionEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(center));
+            transitionEventInstance.setParameterByName("TransitionLevel", transitionLevel);
+            transitionEventInstance.start();
+        }
     }
 
     public void UpdateNeighboursAfterDiceDestroy(List<GameObject> tiles)
@@ -151,17 +164,25 @@ public class GameManager : MonoBehaviour
         IEnumerator firstWaveSoundCoroutine = TransitionSoundsCoroutine(tiles, 0f, 0);
         StartCoroutine(firstWaveSoundCoroutine);
 
-        IEnumerator secondWaveUpdateCoroutine = UpdateNeighboursCoroutine(tiles, 0.6f, 0);
+
+        //WAVE 2
+        IEnumerator secondWaveUpdateCoroutine = UpdateNeighboursCoroutine(tiles, 0.6f, 1);
         StartCoroutine(secondWaveUpdateCoroutine);
 
-        IEnumerator secondWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1);
+        //if (!isStopingBoolArray[0])
+        //{
+        IEnumerator secondWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 0.7f, 1);
         StartCoroutine(secondWaveSoundCoroutine);
 
-        IEnumerator thirdWaveSoundCoroutine = UpdateNeighboursCoroutine(NeighbourCascade, 1.2f, 1);
+        //WAVE 3
+        IEnumerator thirdWaveSoundCoroutine = UpdateNeighboursCoroutine(NeighbourCascade, 1.2f, 2);
         StartCoroutine(thirdWaveSoundCoroutine);
-
-        IEnumerator thirdWaveUpdateCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.2f, 2);
+        //if (!isStopingBoolArray[1])
+        //{
+        IEnumerator thirdWaveUpdateCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.3f, 2);
         StartCoroutine(thirdWaveUpdateCoroutine);
+        //    }
+        //}
 
         //StartCoroutine(firstWaveSoundCoroutine);
         //StartCoroutine(secondWaveSoundCoroutine);
@@ -169,11 +190,6 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(thirdWaveSoundCoroutine);
         //StartCoroutine(thirdWaveUpdateCoroutine);
 
-
-        if (true)
-        {
-            //StopCoroutine(thirdWaveSoundCoroutine);
-        }
         ////Fix 2e son always plays
         //if (NeighbourCascade.Count != 0)
         //{
@@ -181,11 +197,27 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GlobalGridUpdateCoroutine(2f));
     }
 
+    public int NumberOfCreatedTiles()
+    {
+        int newTiles = 0;
+        for (int i = 0; i < tileSplitManager.transform.childCount; i++)
+        {
+            List<NeighbourTileProcessor> newProcessors = tileSplitManager.transform.GetChild(i).GetComponentsInChildren<NeighbourTileProcessor>().Where(tile => tile.isNew).ToList();
+            if (newProcessors.Count() > 0)
+            {
+                newTiles++;
+            }
+        }
+        tileSplitManager.ResetAllIsNew();
+        return newTiles;
+    }
+
     public IEnumerator GlobalGridUpdateCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
 
         tileSplitManager.UpdateObjectivePackage();
+        isStopingBoolArray = new bool[3];
     }
 
     public List<GameObject> UpdateNeighboursCascade(List<GameObject> traveledTiles)
@@ -229,15 +261,17 @@ public class GameManager : MonoBehaviour
             string tempType = processor.tileType;
             processor.UpdateComboTile();
         }
-        Debug.Log($"traveledTiles: {traveledTiles.Count}");
-        Debug.Log($"traveledTilesNeighbours: {traveledTilesNeighbours.Count}");
+        //Debug.Log($"traveledTiles: {traveledTiles.Count}");
+        //Debug.Log($"traveledTilesNeighbours: {traveledTilesNeighbours.Count}");
+        //Debug.Log($"Wave N0: new tiles {NumberOfCreatedTiles()} / {Time.timeSinceLevelLoad}");
         return traveledTilesNeighbours;
     }
 
     private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles, float time, int transitionLevel)
     {
         yield return new WaitForSeconds(time);
-        Debug.Log($"Level: {transitionLevel} / {tiles.Count}");
+        //Debug.Log($"Level: {transitionLevel} / {tiles.Count}");
+
         foreach (GameObject tile in tiles)
         {
             if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
@@ -256,6 +290,13 @@ public class GameManager : MonoBehaviour
             processor.GetMajorTile();
             processor.UpdateComboTile();
 
+        }
+        int createdTilesThisWave = NumberOfCreatedTiles();
+        Debug.Log($"Wave N{transitionLevel}: new tiles {createdTilesThisWave} / {Time.timeSinceLevelLoad}");
+        if (createdTilesThisWave == 0)
+        {
+            isStopingBoolArray[transitionLevel] = true;
+            Debug.Log($"Wave: {transitionLevel+1} / isStopingBoolArray[{transitionLevel}] {isStopingBoolArray[transitionLevel]} ");
         }
     }
 
@@ -280,7 +321,7 @@ public class GameManager : MonoBehaviour
 
                 if (!faceTypes[i].Contains(targetBiome, StringComparison.OrdinalIgnoreCase))
                 {
-                    Debug.Log($"Tile type {faceTypes[i]} of face {i} does not match target biome {targetBiome}");
+                    //Debug.Log($"Tile type {faceTypes[i]} of face {i} does not match target biome {targetBiome}");
                     return false;
                 }
             }

@@ -73,6 +73,7 @@ public class TileSplitManager : MonoBehaviour
         InitializeObjectives();
         wildlifeEventInstance = ambientSoundsManager.wildlifeEventInstance;
         objectivesEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Objectives");
+        GlowingHexes.OnDiceDestroyed += ResetAllIsNew;
     }
 
     void Update()
@@ -213,6 +214,24 @@ public class TileSplitManager : MonoBehaviour
         UpdateObjectives();
         CheckObjectives();
         UpdateWildlife();
+    }
+
+    public void ResetAllIsNew()
+    {
+        for (int i = 0; i < numberOfTiles; i++)
+        {
+            List<NeighbourTileProcessor> newProcessors = transform.GetChild(i).GetComponentsInChildren<NeighbourTileProcessor>().Where(tile => tile.isNew).ToList();
+            if (newProcessors.Count() == 0)
+            {
+                continue;
+            }
+            Debug.Log(newProcessors.Count());
+            foreach (NeighbourTileProcessor processor in newProcessors)
+            {
+                processor.isNew = false;
+            }
+        }
+        //Debug.Log("ALL IS NEW HAVE BEEN RESET");
     }
 
     private int[] RandomObjectiveTypes()

@@ -266,7 +266,10 @@ public class GlowingHexes : MonoBehaviour
         if (gameManager.gameObject.transform.childCount != 0)
         {
             if (OnDiceDestroyed != null)
+            {
                 OnDiceDestroyed.Invoke();
+            }
+
             Destroy(gameManager.gameObject.transform.GetChild(0).gameObject);
         }
     }

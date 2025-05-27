@@ -9,7 +9,7 @@ using System.Linq;
 
 public class NeighbourTileProcessor : MonoBehaviour
 {
-
+    public bool isNew;
     [Header("References")]
     public static GameManager gameManager;
     private static PhysicalDiceSpawner diceSpawner;
@@ -327,7 +327,7 @@ public class NeighbourTileProcessor : MonoBehaviour
                 Enum.TryParse(Enum.GetNames(typeof(TileType))[i], out TileType tileType);
                 if (gameManager.unlockManager.HandleUnlockComboTile(tileType))
                 {
-                    Debug.Log($"Combo tile {Enum.GetNames(typeof(TileType))[i]} unlocked!");
+                    //Debug.Log($"Combo tile {Enum.GetNames(typeof(TileType))[i]} unlocked!");
                     GameObject newSporeItem = Instantiate(gameManager.unlockManager.sporeItem, transform.position, Quaternion.identity);
                     for (int j = 0; j < newSporeItem.transform.GetChild(0).childCount; j++)
                     {
@@ -434,6 +434,7 @@ public class NeighbourTileProcessor : MonoBehaviour
         //newHex.transform.SetAsFirstSibling(); // BUGGED ?
 
         NeighbourTileProcessor newGridCoordinates = newHex.GetComponent<NeighbourTileProcessor>();
+        newGridCoordinates.isNew = true;
         newGridCoordinates.tileType = gameManager.chosenPrefab.GetComponent<NeighbourTileProcessor>().tileType;
         newGridCoordinates.cellPosition = hexPosition;
         StartCoroutine(GetComponent<GlowingHexes>().TransitionDisappear());
