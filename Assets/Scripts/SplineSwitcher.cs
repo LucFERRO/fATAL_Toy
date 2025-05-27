@@ -21,6 +21,10 @@ public class SplineSwitcher : MonoBehaviour
     private int currentIndex = 0;
     float time = 0f;
 
+    public int maxSplineAutoSwitchTimer;
+    public float currentSplineAutoSwitchTimer;
+
+
     public int maxTimerToShowSpacebar;
     private float currentTimerToSpace;
 
@@ -33,6 +37,7 @@ public class SplineSwitcher : MonoBehaviour
             cinemachineSplineDollies[i] = virtualCameras[i].GetComponent<CinemachineSplineDolly>();
         }
         currentTimerToSpace = maxTimerToShowSpacebar;
+        currentSplineAutoSwitchTimer = maxSplineAutoSwitchTimer;
     }
 
     private void Update()
@@ -43,7 +48,8 @@ public class SplineSwitcher : MonoBehaviour
         {
             currentTimerToSpace -= Time.deltaTime;
             spacebarAnimator.SetBool("IsBlinking", false);
-        } else
+        }
+        else
         {
             spacebarAnimator.SetBool("IsBlinking", true);
         }
@@ -74,10 +80,24 @@ public class SplineSwitcher : MonoBehaviour
             time = 0f;
         }
 
-        // Check for input to switch splines
-        if (Input.GetKeyDown(KeyCode.P) && isIdle)
+        HandleIdleCameraAutoSwitch();
+    }
+
+    private void HandleIdleCameraAutoSwitch()
+    {
+        if (!isIdle)
         {
+            return;
+        }
+
+        if (currentSplineAutoSwitchTimer > 0)
+        {
+            currentSplineAutoSwitchTimer -= Time.deltaTime;
+        } else
+        {
+            Debug.Log("auto switch");
             SwitchCamera(currentIndex + 1);
+            currentSplineAutoSwitchTimer = maxSplineAutoSwitchTimer;
         }
     }
 
@@ -89,7 +109,7 @@ public class SplineSwitcher : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
-            Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.DownArrow) || 
+            Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.DownArrow) ||
             Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             ExitIdle();
@@ -107,6 +127,7 @@ public class SplineSwitcher : MonoBehaviour
     private void ExitIdle()
     {
         isIdle = false;
+        currentSplineAutoSwitchTimer = maxSplineAutoSwitchTimer;
         virtualCameras[currentIndex].gameObject.SetActive(false);
         splinesArray[currentIndex].gameObject.SetActive(false);
         domeCamera.gameObject.SetActive(true);
@@ -142,7 +163,7 @@ public class SplineSwitcher : MonoBehaviour
         virtualCameras[currentIndex].gameObject.SetActive(false);
         splinesArray[currentIndex].gameObject.SetActive(false);
 
-        currentIndex = (int) Mathf.Repeat(index, splinesArray.Length);
+        currentIndex = (int)Mathf.Repeat(index, splinesArray.Length);
 
         SetActiveSplineAndCamera(currentIndex);
     }

@@ -1149,7 +1149,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   TiltAxis:
-    Value: 15
+    Value: 35
     Center: 27.4
     Range: {x: 15, y: 60}
     Wrap: 0
@@ -1209,13 +1209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51024717}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1305262, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: -3.8604164, y: 19.729969, z: -4.130665}
+  m_LocalRotation: {x: 0.3007058, y: 0, z: 0, w: 0.95371693}
+  m_LocalPosition: {x: -5.5604153, y: 25.080843, z: -1.6355114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 890478616}
-  m_LocalEulerAnglesHint: {x: 30.824, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 14.5, y: 0, z: 0}
 --- !u!114 &51024722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,7 +1231,7 @@ MonoBehaviour:
   CameraDistance: 17
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: -0.1, y: 0}
+    ScreenPosition: {x: -0.05, y: 0}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -7113,8 +7113,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522651596}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1305262, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 11.49, y: 4.3999243, z: -9.940738}
+  m_LocalRotation: {x: 0.3007058, y: 0, z: 0, w: 0.95371693}
+  m_LocalPosition: {x: 9.790001, y: 9.750798, z: -7.4455843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7178,6 +7178,7 @@ MonoBehaviour:
   spacebarAnimator: {fileID: 1033586458}
   gameManager: {fileID: 1441868373}
   inventory: {fileID: 72674476}
+  maxSplineAutoSwitchTimer: 42
   maxTimerToShowSpacebar: 10
 --- !u!1 &524820218
 GameObject:
@@ -40998,6 +40999,10 @@ PrefabInstance:
       propertyPath: bottomPlane
       value: 
       objectReference: {fileID: 1119163231}
+    - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
+      propertyPath: throwCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4014855612168302464, guid: 651e5870a633ffe44a0131d4b1fd7629, type: 3}
       propertyPath: throwOffset.y
       value: -0.2
