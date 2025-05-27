@@ -20,6 +20,9 @@ public class ProjectileThrow : MonoBehaviour
     private DefeatManager defeatManager;
     public bool isOverUI;
 
+    private float nextAllowedThrowTime = 0f;
+    [SerializeField] private float throwCooldown = 0.5f;
+
     [SerializeField]
     Rigidbody objectToThrow;
 
@@ -37,6 +40,7 @@ public class ProjectileThrow : MonoBehaviour
     void OnEnable()
     {
         trajectoryPreview = GetComponent<TrajectoryPreview>();
+        GlowingHexes.OnDiceDestroyed += HandleDiceDestroyed;
         if (diceSpawner == null)
         {
             diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
@@ -79,7 +83,7 @@ public class ProjectileThrow : MonoBehaviour
 
     void Update()
     {
-        bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen && !splineSwitcher.isIdle && defeatManager.canRoll;
+        bool canThrowDice = gameManager.transform.childCount == 0 && !uiManager.isInventoryOpen && !splineSwitcher.isIdle && defeatManager.canRoll && Time.time >= nextAllowedThrowTime;
         if (Input.GetMouseButtonDown(0) && uiManager.isInventoryOpen && !isOverUI)
         {
             uiManager.IsInventoryOpen = !uiManager.IsInventoryOpen;
@@ -121,9 +125,13 @@ public class ProjectileThrow : MonoBehaviour
                     gameManager.diceWasThrown = true;
                 }
             }
-
         }
         trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
+    }
+
+    private void HandleDiceDestroyed()
+    {
+        nextAllowedThrowTime = Time.time + throwCooldown;
     }
 
     private IEnumerator SetTestPreviewAfterDelay(float delay)

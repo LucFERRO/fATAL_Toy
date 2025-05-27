@@ -25,6 +25,7 @@ public class UiManager : MonoBehaviour
 
 
     [Header("References")]
+    public ProjectileThrow projectileThrow;
     public GameObject pauseMenu;
     public GameObject confirmReload;
     public Animator inventoryAnimator;
@@ -85,7 +86,13 @@ public class UiManager : MonoBehaviour
 
     public void TogglePause()
     {
+        if (isPaused)
+        {
+            projectileThrow.isOverUI = false;
+        }
+
         isPaused = !isPaused;
+
         Cursor.lockState = CursorLockMode.None;
         confirmReload.SetActive(false);
         pauseMenu.SetActive(isPaused);
