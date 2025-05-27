@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 public class TileSplitManager : MonoBehaviour
 {
     public int numberOfTiles;
+    public int objectiveIconSize;
     public Dictionary<string, int> gridTileSplitDictionary = new();
     public Dictionary<string, int> comboTileSplitDictionary = new();
     public Dictionary<string, int> previousGridTileSplitDictionary = new();
@@ -306,7 +307,7 @@ public class TileSplitManager : MonoBehaviour
         UpdateObjectiveShortVersion(objectiveElements[objectiveId].transform.parent, objective.Biome, objective.Progress, objective.Target);
         //string message = $"Create {objective.Target} <sprite name={objective.Biome}> <color=#{objectiveColor}>{(TileTypeUtils.TileTypeToString.TryGetValue(objective.Biome, out string result) ? result : "")}{(objective.Target > 1 ? "s" : "")}</color>.";
         string properBiomeName = $"{(TileTypeUtils.TileTypeToString.TryGetValue(objective.Biome, out string result) ? result : "")}{(objective.Target > 1 ? (result == "Marsh" ? "es" : "s") : "")}";
-        string message = objective.Description.Replace("TARGET", objective.Target.ToString()).Replace("BIOME", $"<sprite name={objective.Biome}> <color=#{objectiveColor}>{properBiomeName}</color>");
+        string message = objective.Description.Replace("TARGET", objective.Target.ToString()).Replace("BIOME", $"<size={objectiveIconSize}><sprite name={objective.Biome}></size> <color=#{objectiveColor}>{properBiomeName}</color>");
         return message;
     }
 

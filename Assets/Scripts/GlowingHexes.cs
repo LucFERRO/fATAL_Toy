@@ -235,7 +235,6 @@ public class GlowingHexes : MonoBehaviour
                 r.materials[0].SetFloat("_Dissolve", 1f);
             }
         }
-        Debug.Log($"Destroying {gameObject}");
         Destroy(gameObject);
     }
     public IEnumerator TransitionAppear()

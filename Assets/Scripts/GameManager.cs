@@ -140,15 +140,44 @@ public class GameManager : MonoBehaviour
         }
 
         List<GameObject> NeighbourCascade = UpdateNeighboursCascade(tiles);
-        StartCoroutine(TransitionSoundsCoroutine(tiles, 0f, 0));
-        StartCoroutine(UpdateNeighboursCoroutine(tiles, 0.6f, 0));
+        //IEnumerator firstWaveSoundCoroutine = TransitionSoundsCoroutine(tiles, 0f, 0);
 
-        StartCoroutine(UpdateNeighboursCoroutine(NeighbourCascade, 1.1f, 1));
-        //Fix 2e son always plays
-        if (NeighbourCascade.Count != 0)
+        //IEnumerator secondWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1);
+        //IEnumerator secondWaveUpdateCoroutine = UpdateNeighboursCoroutine(tiles, 0.6f, 0);
+
+        //IEnumerator thirdWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.2f, 2);
+        //IEnumerator thirdWaveUpdateCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.2f, 2);
+
+        IEnumerator firstWaveSoundCoroutine = TransitionSoundsCoroutine(tiles, 0f, 0);
+        StartCoroutine(firstWaveSoundCoroutine);
+
+        IEnumerator secondWaveUpdateCoroutine = UpdateNeighboursCoroutine(tiles, 0.6f, 0);
+        StartCoroutine(secondWaveUpdateCoroutine);
+
+        IEnumerator secondWaveSoundCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1);
+        StartCoroutine(secondWaveSoundCoroutine);
+
+        IEnumerator thirdWaveSoundCoroutine = UpdateNeighboursCoroutine(NeighbourCascade, 1.2f, 1);
+        StartCoroutine(thirdWaveSoundCoroutine);
+
+        IEnumerator thirdWaveUpdateCoroutine = TransitionSoundsCoroutine(NeighbourCascade, 1.2f, 2);
+        StartCoroutine(thirdWaveUpdateCoroutine);
+
+        //StartCoroutine(firstWaveSoundCoroutine);
+        //StartCoroutine(secondWaveSoundCoroutine);
+        //StartCoroutine(secondWaveUpdateCoroutine);
+        //StartCoroutine(thirdWaveSoundCoroutine);
+        //StartCoroutine(thirdWaveUpdateCoroutine);
+
+
+        if (true)
         {
-            StartCoroutine(TransitionSoundsCoroutine(NeighbourCascade, 0.6f, 1));
+            //StopCoroutine(thirdWaveSoundCoroutine);
         }
+        ////Fix 2e son always plays
+        //if (NeighbourCascade.Count != 0)
+        //{
+        //}
         StartCoroutine(GlobalGridUpdateCoroutine(2f));
     }
 
@@ -200,25 +229,19 @@ public class GameManager : MonoBehaviour
             string tempType = processor.tileType;
             processor.UpdateComboTile();
         }
+        Debug.Log($"traveledTiles: {traveledTiles.Count}");
+        Debug.Log($"traveledTilesNeighbours: {traveledTilesNeighbours.Count}");
         return traveledTilesNeighbours;
     }
 
     private IEnumerator UpdateNeighboursCoroutine(List<GameObject> tiles, float time, int transitionLevel)
     {
         yield return new WaitForSeconds(time);
-
+        Debug.Log($"Level: {transitionLevel} / {tiles.Count}");
         foreach (GameObject tile in tiles)
         {
-            //if (transitionLevel == 1)
-            //{
-
-            //}
             if (tile == null || tile.GetComponent<NeighbourTileProcessor>().isLocked)
             {
-                if (transitionLevel == 1)
-                {
-                    Debug.Log("NULL IN UpdateNeighboursCoroutine 2nd wave");
-                }
                 continue;
             }
 
