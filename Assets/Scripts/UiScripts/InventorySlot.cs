@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -94,12 +95,14 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
         if (isDicePanelSlot)
         {
             int sameBiomeCount = 0;
+            List<Animator> sameTileOnDiceAnimators = new List<Animator>();
             foreach (Transform child in transform.parent)
             {
                 DraggableItem childItem = child.GetComponentInChildren<DraggableItem>();
                 if (childItem != null && childItem.biomeId == draggedItem.biomeId)
                 {
                     sameBiomeCount++;
+                    sameTileOnDiceAnimators.Add(child.GetComponent<Animator>());
                 }
             }
 
@@ -107,6 +110,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
             if (sameBiomeCount >= 2)
             {
                 Debug.Log("Cannot add more items with the same biomeId to the dice panel.");
+                foreach (Animator diceSlotAnimator in sameTileOnDiceAnimators)
+                {
+                    animator.SetBool("IsMouseDraggingOver", false);
+                    diceSlotAnimator.SetTrigger("NoMore");
+                }
                 interfaceEventInstance.setParameterByName("UIState", 5);
                 interfaceEventInstance.start();
                 return;
@@ -143,6 +151,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
             draggedItem.transform.SetParent(transform);
             draggedItem.transform.localPosition = Vector3.zero;
         }
+        animator.SetBool("IsMouseDraggingOver", false);
         draggedItem = null;
     }
 }
