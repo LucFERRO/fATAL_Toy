@@ -3,6 +3,7 @@ using System.IO;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 //using Newtonsoft.Json;
 public class LoadScript : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class LoadScript : MonoBehaviour
         if (Directory.Exists(savePath))
         {
             saveFiles.AddRange(Directory.GetFiles(savePath, "*.json"));
+            SortSaveFilesByDate(); // Sort files by date
             totalPages = Mathf.CeilToInt(saveFiles.Count / (float)itemsPerPage);
         }
         else
@@ -126,5 +128,30 @@ public class LoadScript : MonoBehaviour
         {
             ShowPage(currentPage - 1);
         }
+    }
+    void SortSaveFilesByDate()
+    {
+        saveFiles.Sort((file1, file2) =>
+        {
+            // Read and parse the first file
+            string jsonContent1 = File.ReadAllText(file1);
+            GameData saveData1 = JsonUtility.FromJson<GameData>(jsonContent1);
+            DateTime date1 = ParseCustomTimestamp(saveData1.timestamp);
+
+            // Read and parse the second file
+            string jsonContent2 = File.ReadAllText(file2);
+            GameData saveData2 = JsonUtility.FromJson<GameData>(jsonContent2);
+            DateTime date2 = ParseCustomTimestamp(saveData2.timestamp);
+
+            // Compare the dates (newest first)
+            return date2.CompareTo(date1);
+        });
+    }
+
+    DateTime ParseCustomTimestamp(string timestamp)
+    {
+        // Define the exact format of the timestamp
+        string format = "dd-MM-yyyy / HH:mm:ss";
+        return DateTime.ParseExact(timestamp, format, System.Globalization.CultureInfo.InvariantCulture);
     }
 }

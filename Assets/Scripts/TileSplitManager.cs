@@ -566,6 +566,7 @@ public class TileSplitManager : MonoBehaviour
     {
         //winCanvas.gameObject.SetActive(true);
         stencilAnimator.SetTrigger("StencielAppearTrigger");
+        NeighbourTileProcessor.currentLockedTiles = 0;
         Invoke("ReloadScene", 2f);
     }
 
