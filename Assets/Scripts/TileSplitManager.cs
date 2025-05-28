@@ -264,7 +264,7 @@ public class TileSplitManager : MonoBehaviour
 
         if (CrossSceneData.isTutorial)
         {
-            lvlDifficulty = 1;
+            lvlDifficulty = 2;
             for (int i = 0; i < objectiveCount; i++)
             {
                 TileObjective obj = ObjectiveFactory.GenerateRandomObjective(i + 10, this);
