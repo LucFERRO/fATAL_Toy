@@ -263,10 +263,12 @@ public class GlowingHexes : MonoBehaviour
 
         ToggleMaterialize(false);
         // DESTROY DICE QUI MERDE
+
         if (gameManager.gameObject.transform.childCount != 0)
         {
             if (OnDiceDestroyed != null)
             {
+                Debug.Log("Destroying Dice");
                 OnDiceDestroyed.Invoke();
             }
 

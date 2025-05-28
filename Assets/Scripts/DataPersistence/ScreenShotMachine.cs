@@ -7,6 +7,7 @@ public class ScreenShotMachine : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private string id;
     public GameObject UI;
+    public SplineSwitcher splineSwitcher;
     [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
@@ -44,7 +45,10 @@ public class ScreenShotMachine : MonoBehaviour, IDataPersistence
 
     private IEnumerator TakeScreenshot()
     {
-        UI.SetActive(false);
+        if (!splineSwitcher.isIdle)
+        {
+            UI.SetActive(false);
+        }
         Cursor.visible = false;
         GetComponent<DataPersistenceManager>().uiManager.isInventoryOpen = true;
         // Wait for the end of the frame to ensure UI and cursor updates are applied
@@ -60,7 +64,10 @@ public class ScreenShotMachine : MonoBehaviour, IDataPersistence
         Debug.Log("Screenshot saved to: " + filePath);
 
         // Re-enable UI and cursor after taking the screenshot
-        UI.SetActive(true);
+        if (!splineSwitcher.isIdle)
+        {
+            UI.SetActive(true);
+        }
         Cursor.visible = true;
     }
 }
