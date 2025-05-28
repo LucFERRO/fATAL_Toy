@@ -212,7 +212,7 @@ public class TileSplitManager : MonoBehaviour
     {
         UpdateTileSplitDictionary();
         UpdateObjectives();
-        CheckObjectives();
+        //CheckObjectives();
         UpdateWildlife();
     }
 
@@ -426,6 +426,7 @@ public class TileSplitManager : MonoBehaviour
 
         if (objectives.All(o => o.IsCompleted))
         {
+            Debug.Log("FINISHED ALL OBJ");
             finishedBatchCount++;
 
             if (finishedBatchCount >= lvlDifficulty)
