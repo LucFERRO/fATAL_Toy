@@ -7179,6 +7179,7 @@ MonoBehaviour:
   gameManager: {fileID: 1441868373}
   inventory: {fileID: 72674476}
   maxSplineAutoSwitchTimer: 42
+  currentSplineAutoSwitchTimer: 0
   maxTimerToShowSpacebar: 10
 --- !u!1 &524820218
 GameObject:
@@ -39350,10 +39351,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.82234746, b: 0.64716977, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.6754716, g: 0.3897669, b: 0.20264141, a: 1}
     m_SelectedColor: {r: 0.6745098, g: 0.38823533, b: 0.20392159, a: 1}
-    m_DisabledColor: {r: 0.7509433, g: 0.681512, b: 0.6390102, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -39368,7 +39369,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 6793623143153805210}
+  m_TargetGraphic: {fileID: 4205578779712487933}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:

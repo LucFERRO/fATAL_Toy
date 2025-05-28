@@ -16,7 +16,7 @@ public class SwapScene : MonoBehaviour
     {
         Debug.Log($"[SwapScene] Attempting to change scene to '{SceneExactName}'");
         Time.timeScale = 1f;
-        yield return new WaitForSecondsRealtime(2.2f);
+        yield return new WaitForSecondsRealtime(2.5f);
         Debug.Log($"[SwapScene] Loading scene '{SceneExactName}' now.");
         SceneManager.LoadScene(SceneExactName);
     }
