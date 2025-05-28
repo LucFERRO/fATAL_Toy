@@ -73,7 +73,7 @@ public class TileSplitManager : MonoBehaviour
         InitializeObjectives();
         wildlifeEventInstance = ambientSoundsManager.wildlifeEventInstance;
         objectivesEventInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Objectives");
-        GlowingHexes.OnDiceDestroyed += ResetAllIsNew;
+        //GlowingHexes.OnDiceDestroyed += ResetAllIsNew;
     }
 
     void Update()

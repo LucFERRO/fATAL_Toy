@@ -31,7 +31,7 @@ public class GlowingHexes : MonoBehaviour
     private static Dictionary<Texture, Material> cachedMaterializeMaterial = new Dictionary<Texture, Material>();
 
     public GameObject splashParticule;
-    public static event Action OnDiceDestroyed;
+    //public static event Action OnDiceDestroyed;
 
     private void Awake()
     {
@@ -266,11 +266,11 @@ public class GlowingHexes : MonoBehaviour
 
         if (gameManager.gameObject.transform.childCount != 0)
         {
-            if (OnDiceDestroyed != null)
-            {
-                Debug.Log("Destroying Dice");
-                OnDiceDestroyed.Invoke();
-            }
+            //if (OnDiceDestroyed != null)
+            //{
+            //    Debug.Log("Destroying Dice");
+            //    OnDiceDestroyed.Invoke();
+            //}
 
             Destroy(gameManager.gameObject.transform.GetChild(0).gameObject);
         }

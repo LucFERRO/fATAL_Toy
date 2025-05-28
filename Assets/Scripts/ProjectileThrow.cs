@@ -40,7 +40,7 @@ public class ProjectileThrow : MonoBehaviour
     void OnEnable()
     {
         trajectoryPreview = GetComponent<TrajectoryPreview>();
-        GlowingHexes.OnDiceDestroyed += HandleDiceDestroyed;
+        //GlowingHexes.OnDiceDestroyed += HandleDiceDestroyed;
         if (diceSpawner == null)
         {
             diceSpawner = GameObject.FindGameObjectWithTag("DiceSpawner").GetComponent<PhysicalDiceSpawner>();
@@ -128,10 +128,10 @@ public class ProjectileThrow : MonoBehaviour
         trajectoryPreview.SetTrajectoryVisible(gameManager.isPreviewing);
     }
 
-    private void HandleDiceDestroyed()
-    {
-        nextAllowedThrowTime = Time.time + throwCooldown;
-    }
+    //private void HandleDiceDestroyed()
+    //{
+    //    nextAllowedThrowTime = Time.time + throwCooldown;
+    //}
 
     private IEnumerator SetTestPreviewAfterDelay(float delay)
     {
